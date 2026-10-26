@@ -1,0 +1,61 @@
+{
+  "asOf": "2026-10-26",
+  "status": "preparation-incomplete",
+  "checks": [
+    {
+      "id": "verified-publisher",
+      "status": "pending",
+      "detail": "vitverk is the requested repository owner, not a verified legal/developer identity. Confirm the intended publisher in each portal."
+    },
+    {
+      "id": "privacy-policy",
+      "status": "pending",
+      "detail": "Publish and verify an actual policy covering guest channels, host context and infrastructure logs; add its URL to both listing manifests."
+    },
+    {
+      "id": "terms-of-service",
+      "status": "pending",
+      "detail": "Publish and verify actual Seed terms; add their URL to both listing manifests."
+    },
+    {
+      "id": "license-and-brand-rights",
+      "status": "pending",
+      "detail": "Choose a license for original package material and confirm rights to redistribute the SEED mark and any screenshots containing third-party artwork. No open-source license is inferred."
+    },
+    {
+      "id": "countries",
+      "status": "pending",
+      "detail": "Confirm supported country targeting, including explicit consent for all countries if desired."
+    },
+    {
+      "id": "commerce",
+      "status": "pending",
+      "detail": "Confirm whether this demo involves payments or purchases and declare review.commerce."
+    },
+    {
+      "id": "review-contact",
+      "status": "pending",
+      "detail": "Provide a working publisher/support contact through secure portal fields; GitHub Issues is available for package support."
+    },
+    {
+      "id": "recorded-demo",
+      "status": "pending",
+      "detail": "Record and host real interactions in a target chat host; submission/demo-walkthrough.md provides the script. A script is not a recording."
+    },
+    {
+      "id": "claude-screenshots",
+      "status": "pending",
+      "detail": "Capture 3\u20135 PNGs >=1000px wide from actual Claude MCP App responses and provide prompts separately. Standalone browser screenshots cannot prove Claude host behavior."
+    },
+    {
+      "id": "host-review-cases",
+      "status": "not_run",
+      "detail": "Run five positive and three negative cases in ChatGPT and Claude against this package. Direct MCP smoke is separate evidence."
+    },
+    {
+      "id": "portal-validation",
+      "status": "not_run",
+      "detail": "Complete connection/validation, domain/developer verification, scans, authorized attestations, and review in the intended accounts. No portal draft or submission was created."
+    }
+  ]
+}

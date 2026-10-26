@@ -1,0 +1,20 @@
+{
+  "name": "vitverk-seed",
+  "interface": {
+    "displayName": "Seed by vitverk"
+  },
+  "plugins": [
+    {
+      "name": "seed",
+      "source": {
+        "source": "local",
+        "path": "./"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Entertainment"
+    }
+  ]
+}

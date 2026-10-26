@@ -1,0 +1,15 @@
+{
+  "name": "vitverk-seed",
+  "owner": {
+    "name": "vitverk",
+    "url": "https://github.com/vitverk"
+  },
+  "plugins": [
+    {
+      "name": "seed",
+      "source": "./",
+      "description": "A temporary Seedling simulation with activities, resources, goals, and a game calendar."
+    }
+  ],
+  "description": "The Seed guest companion plugin from vitverk."
+}

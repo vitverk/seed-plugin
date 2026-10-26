@@ -1,0 +1,103 @@
+import assert from 'node:assert/strict';
+import { randomUUID } from 'node:crypto';
+import { mkdir, writeFile } from 'node:fs/promises';
+import { resolve } from 'node:path';
+import { defaultRoot, endpoint } from './validate.mjs';
+import { parseRpcResponse } from './rpc.mjs';
+
+// Anonymous, synthetic, detached snapshots only. Never accepts browser channel tokens.
+const checks = [];
+let id = 0;
+const version = '2025-11-25';
+const check = name => { checks.push({ name, status: 'passed' }); console.log(`✓ ${name}`); };
+async function request(url, options = {}) {
+  const response = await fetch(url, { ...options, signal: AbortSignal.timeout(20000) });
+  assert.equal(response.headers.get('set-cookie'), null, 'Anonymous service must not set cookies');
+  assert.equal(response.headers.get('www-authenticate'), null, 'Anonymous service must not request login');
+  assert.ok(response.ok, `HTTP ${response.status} from ${new URL(url).pathname}`);
+  return response;
+}
+async function rpc(method, params = {}) {
+  const current = ++id;
+  const response = await request(endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json, text/event-stream', 'MCP-Protocol-Version': version }, body: JSON.stringify({ jsonrpc: '2.0', id: current, method, params }) });
+  const data = parseRpcResponse(await response.text(), response.headers.get('content-type'), current);
+  assert.ok(!data.error, `${method} failed: ${data.error?.message ?? 'unknown error'}`);
+  return data.result;
+}
+async function tool(name, args = {}) {
+  assert.ok(!('guestChannel' in args), 'Smoke must never act on a browser guest');
+  const result = await rpc('tools/call', { name, arguments: args });
+  assert.ok(!result.isError, `${name} returned an error`);
+  assert.ok(result.structuredContent, `${name} needs structuredContent`);
+  return result.structuredContent;
+}
+let serverInfo;
+try {
+  const health = await (await request(new URL('/health', endpoint))).json();
+  assert.equal(health.mode, 'guest');
+  for (const key of ['saved', 'authentication', 'backgroundEvents']) assert.equal(health[key], false, `health.${key}`);
+  check('Anonymous guest health, no persistence or background simulation');
+  const initialized = await rpc('initialize', { protocolVersion: version, clientInfo: { name: 'seed-plugin-release-smoke', version: '1.3.0' }, capabilities: {} });
+  assert.equal(initialized.protocolVersion, version);
+  serverInfo = { name: initialized.serverInfo.name, version: initialized.serverInfo.version };
+  check('MCP initialization');
+  const discovered = await rpc('tools/list');
+  const expected = ['open_seedling', 'browse_seedling', 'get_companion_capabilities', 'get_seedling_state', 'schedule_activity', 'update_schedule', 'queue_action', 'cancel_action', 'advance_demo_time', 'set_clock', 'create_goal', 'cancel_goal'];
+  for (const name of expected) assert.ok(discovered.tools.some(tool => tool.name === name), `Missing tool: ${name}`);
+  for (const entry of discovered.tools) {
+    assert.ok(entry.title && entry.description, `Tool needs a title and description: ${entry.name}`);
+    for (const hint of ['readOnlyHint', 'destructiveHint', 'openWorldHint']) assert.equal(typeof entry.annotations?.[hint], 'boolean', `${entry.name}.${hint}`);
+    assert.deepEqual(entry._meta?.securitySchemes, [{ type: 'noauth' }]);
+  }
+  check('Twelve expected tools, titles, boolean annotations, and anonymous security metadata');
+  const opener = discovered.tools.find(tool => tool.name === 'open_seedling');
+  const uri = opener._meta?.ui?.resourceUri;
+  assert.ok(uri?.startsWith('ui://'), 'Opening tool must advertise MCP App resource');
+  const resources = await rpc('resources/list');
+  assert.ok(resources.resources.some(resource => resource.uri === uri));
+  const resource = await rpc('resources/read', { uri });
+  const view = resource.contents.find(content => content.uri === uri);
+  assert.equal(view.mimeType, 'text/html;profile=mcp-app');
+  assert.ok(view.text?.includes('<html'), 'App resource must return HTML');
+  assert.ok(view._meta?.ui?.csp, 'App resource needs CSP metadata');
+  check('MCP App resource and content-security metadata');
+  const capabilities = await tool('get_companion_capabilities');
+  assert.equal(capabilities.mode, 'guest');
+  assert.equal(capabilities.saved, false);
+  assert.ok(capabilities.recurrence?.includes('weekly') || JSON.stringify(capabilities).includes('weekdays'), 'Catalog must describe recurrence');
+  check('Read-only capability discovery');
+  const opened = await tool('open_seedling');
+  let state = opened.state;
+  assert.equal(state.demo, true); assert.equal(state.clock.paused, true);
+  assert.equal(opened.saved, false); assert.equal(opened.browserUpdated, false);
+  const originalBlocks = state.schedule.map(block => ({ ...block }));
+  check('Fresh paused detached guest snapshot');
+  const scheduled = await tool('schedule_activity', { state, commandId: randomUUID(), expectedVersion: state.version, activity: 'harvest', durationMinutes: 60, repeat: 'once' });
+  assert.equal(scheduled.browserUpdated, false);
+  assert.equal(scheduled.state.schedule.length, state.schedule.length + 1);
+  for (const block of originalBlocks) assert.deepEqual(scheduled.state.schedule.find(item => item.id === block.id), block);
+  assert.equal(scheduled.state.clock.paused, true);
+  state = scheduled.state;
+  check('Detached harvest scheduling preserves existing blocks and paused clock');
+  const planned = await tool('create_goal', { state, commandId: randomUUID(), expectedVersion: state.version, title: 'Package smoke cabin fitting', steps: [{ activity: 'mine', targetId: 'hematite-mine' }, { activity: 'haul', targetId: 'hematite-mine' }, { activity: 'craft', recipeId: 'iron-ingot' }, { activity: 'custom', title: 'Fit the cabin bracket', durationMinutes: 10, targetId: 'cabin' }] });
+  assert.equal(planned.browserUpdated, false);
+  assert.equal(planned.state.goals.at(-1).actionIds.length, 4);
+  assert.equal(planned.state.clock.paused, true);
+  state = planned.state;
+  check('Detached ordered goal with modeled and fictional steps');
+  const beforeMinutes = (state.clock.day - 1) * 1440 + state.clock.minute;
+  const advanced = await tool('advance_demo_time', { state, commandId: randomUUID(), expectedVersion: state.version, minutes: 30 });
+  assert.equal((advanced.state.clock.day - 1) * 1440 + advanced.state.clock.minute, beforeMinutes + 30);
+  assert.equal(advanced.browserUpdated, false);
+  check('Detached advance uses minutes=30 and reports no visible browser update');
+  const missing = await rpc('tools/call', { name: 'get_seedling_state', arguments: {} });
+  assert.equal(missing.isError, true, 'Missing target must fail instead of inventing state');
+  check('Missing target is rejected');
+  await mkdir(resolve(defaultRoot, 'dist'), { recursive: true });
+  const report = { checkedAt: new Date().toISOString(), endpoint, server: serverInfo, protocolVersion: version, scope: 'Direct anonymous MCP and detached synthetic snapshots only; does not establish ChatGPT/Claude UI or prompt review-case acceptance.', checks };
+  await writeFile(resolve(defaultRoot, 'dist/smoke-results.json'), `${JSON.stringify(report, null, 2)}\n`);
+  console.log('Saved dist/smoke-results.json. No browser channel or live game account was used.');
+} catch (error) {
+  console.error(`Smoke failed: ${error.message}`);
+  process.exitCode = 1;
+}
