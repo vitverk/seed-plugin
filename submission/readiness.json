@@ -5,42 +5,42 @@
     {
       "id": "verified-publisher",
       "status": "pending",
-      "detail": "vitverk is the requested repository owner, not a verified legal/developer identity. Confirm the intended publisher in each portal."
+      "detail": "The owner selected Vitverk on 2026-10-26; all package author/developer metadata now uses Vitverk. Verified identity in the OpenAI and Claude portals still needs confirmation."
     },
     {
       "id": "privacy-policy",
-      "status": "pending",
-      "detail": "Publish and verify an actual policy covering guest channels, host context and infrastructure logs; add its URL to both listing manifests."
+      "status": "passed",
+      "detail": "https://flaxa.app/privacy returned HTTP 200 anonymously on 2026-10-26 and matched the reviewed Seed-specific source page byte for byte. All platform manifests use this URL. See submission/policy-check.json for content hashes and scope; this verifies publication, not legal compliance."
     },
     {
       "id": "terms-of-service",
-      "status": "pending",
-      "detail": "Publish and verify actual Seed terms; add their URL to both listing manifests."
+      "status": "passed",
+      "detail": "https://flaxa.app/terms returned HTTP 200 anonymously on 2026-10-26 and matched the reviewed Seed-specific source page byte for byte. All platform manifests use this URL. See submission/policy-check.json for content hashes and scope; this verifies publication, not legal compliance."
     },
     {
       "id": "license-and-brand-rights",
       "status": "pending",
-      "detail": "Choose a license for original package material and confirm rights to redistribute the SEED mark and any screenshots containing third-party artwork. No open-source license is inferred."
+      "detail": "The owner explicitly chose to leave licensing pending on 2026-10-26. No license grant was added. Branding/asset clearance remains unresolved."
     },
     {
       "id": "countries",
-      "status": "pending",
-      "detail": "Confirm supported country targeting, including explicit consent for all countries if desired."
+      "status": "passed",
+      "detail": "The owner selected Iceland only on 2026-10-26. OpenAI publication.countries is [\"IS\"]. Claude has no country-targeting field in the reviewed manifest reference; confirm an Iceland-only publication route in its portal before releasing there. Public repository access and the MCP endpoint are not geographically restricted by these metadata."
     },
     {
       "id": "commerce",
-      "status": "pending",
-      "detail": "Confirm whether this demo involves payments or purchases and declare review.commerce."
+      "status": "passed",
+      "detail": "The owner confirmed no payments or purchases on 2026-10-26. OpenAI review.commerce is false; declare the same in any applicable Claude review fields."
     },
     {
       "id": "review-contact",
       "status": "pending",
-      "detail": "Provide a working publisher/support contact through secure portal fields; GitHub Issues is available for package support."
+      "detail": "Vitverk publicly lists support@vitverk.is on its company and privacy pages. GitHub Issues remains the Seed package support page. Designate the review contact in the secure portal during setup."
     },
     {
       "id": "recorded-demo",
       "status": "pending",
-      "detail": "Record and host real interactions in a target chat host; submission/demo-walkthrough.md provides the script. A script is not a recording."
+      "detail": "The owner will provide the video later. submission/demo-walkthrough.md remains the prepared recording script; no recording URL or completed demo is claimed."
     },
     {
       "id": "claude-screenshots",
@@ -55,7 +55,7 @@
     {
       "id": "portal-validation",
       "status": "not_run",
-      "detail": "Complete connection/validation, domain/developer verification, scans, authorized attestations, and review in the intended accounts. No portal draft or submission was created."
+      "detail": "Complete connection/validation, domain/developer verification, scans and authorized attestations in the intended accounts. Verify Iceland-only availability in Claude before publishing; the reviewed manifest reference does not document a country field. No portal draft or submission was created."
     }
   ]
 }

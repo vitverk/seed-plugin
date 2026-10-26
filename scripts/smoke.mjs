@@ -37,7 +37,7 @@ try {
   assert.equal(health.mode, 'guest');
   for (const key of ['saved', 'authentication', 'backgroundEvents']) assert.equal(health[key], false, `health.${key}`);
   check('Anonymous guest health, no persistence or background simulation');
-  const initialized = await rpc('initialize', { protocolVersion: version, clientInfo: { name: 'seed-plugin-release-smoke', version: '1.3.0' }, capabilities: {} });
+  const initialized = await rpc('initialize', { protocolVersion: version, clientInfo: { name: 'seed-plugin-release-smoke', version: '1.3.1' }, capabilities: {} });
   assert.equal(initialized.protocolVersion, version);
   serverInfo = { name: initialized.serverInfo.name, version: initialized.serverInfo.version };
   check('MCP initialization');

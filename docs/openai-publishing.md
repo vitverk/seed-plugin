@@ -14,11 +14,11 @@ The app's interactive UI and thread/global entrypoints are served by the MCP ser
 
 ## Complete preparation
 
-1. Confirm the intended verified publisher. `vitverk` currently identifies the requested repository owner; it is not an assertion of verified legal identity.
-2. Publish real privacy and terms pages, verify their content anonymously, then add `privacyPolicyURL` and `termsOfServiceURL` to the portable interface and compatibility interface. The repository homepage and Issues page provide website and package-support destinations; verify them after publication.
-3. Resolve distribution licensing and rights to the existing SEED branding. Do not add a blanket MIT declaration over third-party assets.
-4. Confirm countries and whether payments or purchases are involved. Add `publication.countries` only after that decision; `[]` explicitly means no country restrictions. Put the commerce declaration under `review.commerce`, with `commerce_description` where applicable.
-5. Rehearse and record the real target-host flow in `submission/demo-walkthrough.md`. Host the actual video for reviewers, verify playback without private access, and add `review.demo_recording_url`. A written walkthrough or standalone screenshot does not meet that requirement.
+1. Use the owner-selected publisher **Vitverk**, already set in author and developer metadata. Confirm the matching verified identity in the portal; selecting a publisher name does not complete portal verification.
+2. Use the published Seed-specific [privacy policy](https://flaxa.app/privacy) and [terms](https://flaxa.app/terms). Both URLs are configured in the portable and compatibility interfaces and were verified anonymously on 2026-10-26; see [publication evidence](../submission/policy-check.json). Confirm they import correctly into the portal. The repository homepage and Issues page provide website and package-support destinations; Vitverk's public support contact is **support@vitverk.is**.
+3. Licensing was deferred by the owner. Before submission, resolve the distribution license and rights to the existing SEED branding. Do not add a blanket MIT declaration over third-party assets.
+4. Preserve the confirmed **Iceland** targeting (`publication.countries: ["IS"]`) and **no payments or purchases** declaration (`review.commerce: false`). Verify these values imported correctly. These listing declarations do not restrict access to the public repository or MCP endpoint.
+5. The owner will provide the demo video later. Use `submission/demo-walkthrough.md` to rehearse and record the real target-host flow. Host the actual video for reviewers, verify playback without private access, and add `review.demo_recording_url`. A written walkthrough or standalone screenshot does not meet that requirement.
 6. Run the five positive and three negative cases from `plugin.json` in the intended host and record results in `submission/test-results.md`. Direct MCP checks are additional evidence, not replacements for host cases.
 7. Run `npm run check`, `npm run package`, `npm run smoke`, and `npm run check:submission`. Inspect the produced ZIP and its exact version after every content change.
 

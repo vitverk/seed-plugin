@@ -1,10 +1,10 @@
 {
   "name": "seed",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "description": "A temporary Seedling simulation with activities, resources, goals, and a game calendar.",
   "author": {
-    "name": "vitverk",
-    "url": "https://github.com/vitverk"
+    "name": "Vitverk",
+    "url": "https://vitverk.is/"
   },
   "homepage": "https://github.com/vitverk/seed-plugin",
   "repository": "https://github.com/vitverk/seed-plugin",
@@ -18,5 +18,7 @@
   "displayName": "Seed",
   "documentationUrl": "https://github.com/vitverk/seed-plugin#readme",
   "supportUrl": "https://github.com/vitverk/seed-plugin/issues",
-  "icon": "./assets/icon.png"
+  "icon": "./assets/icon.png",
+  "privacyPolicyUrl": "https://flaxa.app/privacy",
+  "termsOfServiceUrl": "https://flaxa.app/terms"
 }

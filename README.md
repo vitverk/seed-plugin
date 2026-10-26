@@ -2,7 +2,9 @@
 
 Seed is a temporary Seedling companion simulation with an interactive calendar, activities, resources, needs, and ordered goals. Open a populated guest, plan its day, and inspect the results of simulated work. It uses an anonymous hosted MCP server; you do not need a Seed account, API key, or local server.
 
-**This repository is a public distribution and submission-preparation package. It is not an approved OpenAI or Claude directory listing.** The manifests and ZIP can be validated locally. Publisher verification, policy pages, licensing, recorded demo, and host review evidence still need completion before official submission. See the [readiness checklist](https://github.com/vitverk/seed-plugin/blob/main/submission/readiness.json).
+**This repository is a public distribution and submission-preparation package. It is not an approved OpenAI or Claude directory listing.** The manifests and ZIP can be validated locally. Portal identity verification, licensing, the recorded demo, and host review evidence still need completion before official submission. See the [readiness checklist](https://github.com/vitverk/seed-plugin/blob/main/submission/readiness.json).
+
+The publisher is **Vitverk**. The owner selected **Iceland** as the intended marketplace audience and confirmed **no payments or purchases**. OpenAI's publication metadata declares `IS`; Claude availability still needs confirmation in its portal. Neither the public repository nor the MCP endpoint is geographically restricted by these declarations. The listings use the new Seed-specific [privacy policy](https://flaxa.app/privacy) and [terms](https://flaxa.app/terms); both pages were published and verified on 2026-10-26. See the [publication evidence](submission/policy-check.json).
 
 Seed is an independent prototype, with no Klang Games API connection or control over a live SEED game account. Progress lives in the open guest view, starts paused, and disappears on reload or close. No simulation continues after closing the view. The chat host may retain shared context and tool results; see [data behavior](https://github.com/vitverk/seed-plugin/blob/main/docs/data-behavior.md).
 
@@ -33,7 +35,7 @@ In Claude Code, check `/mcp` after installation. Use a recent CLI: the additiona
 codex plugin marketplace add vitverk/seed-plugin
 ```
 
-Use a supported desktop host's Plugins Directory to select **Seed by vitverk** and install Seed. Repository marketplace availability varies by client. Public ChatGPT/Codex distribution requires the OpenAI submission flow; see the [OpenAI publishing guide](https://github.com/vitverk/seed-plugin/blob/main/docs/openai-publishing.md).
+Use a supported desktop host's Plugins Directory to select **Seed by Vitverk** and install Seed. Repository marketplace availability varies by client. Public ChatGPT/Codex distribution requires the OpenAI submission flow; see the [OpenAI publishing guide](https://github.com/vitverk/seed-plugin/blob/main/docs/openai-publishing.md).
 
 ## Try it
 
@@ -69,10 +71,10 @@ npm run check:submission
 | `skills/` | Companion and calendar workflows |
 | `submission/` | Readiness, review evidence plan, and demo walkthrough |
 
-The ZIP contains one plugin and excludes marketplace catalogs, source deployment files, private app bindings, credentials, and repository history. This package connects to the existing hosted app; it does not deploy the service or replace its private development installation. Package version **1.3.0** and server runtime **0.9.0** are separate version lines.
+The ZIP contains one plugin and excludes marketplace catalogs, source deployment files, private app bindings, credentials, and repository history. This package connects to the existing hosted app; it does not deploy the service or replace its private development installation. Package version **1.3.1** and server runtime **0.9.0** are separate version lines.
 
 See [release maintenance](https://github.com/vitverk/seed-plugin/blob/main/docs/releasing.md) and [platform support](https://github.com/vitverk/seed-plugin/blob/main/docs/platform-support.md). Use [GitHub Issues](https://github.com/vitverk/seed-plugin/issues) for package support.
 
 ## License and branding
 
-A distribution license has not yet been selected. Public repository access does not grant an open-source license. The existing SEED mark and app artwork are not relicensed by this package; rights clearance is a release requirement. See [asset provenance](https://github.com/vitverk/seed-plugin/blob/main/assets/README.md). Do not treat this prototype as an official Klang Games product.
+The owner has deferred selection of a distribution license. Public repository access does not grant an open-source license. The existing SEED mark and app artwork are not relicensed by this package; rights clearance is a release requirement. See [asset provenance](https://github.com/vitverk/seed-plugin/blob/main/assets/README.md). Do not treat this prototype as an official Klang Games product.

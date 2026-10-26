@@ -1,6 +1,29 @@
 # Package verification
 
-Observed on 2026-10-26 for Seed package 1.3.0 and server runtime 0.9.0.
+## Current package 1.3.1
+
+Metadata and package checks observed on **2026-10-26**. This update selects **Vitverk** as publisher, preserves the owner's **Iceland** audience and **no payments or purchases** decisions, and configures the new Seed-specific policy URLs in both platform manifests and the OpenAI compatibility manifest:
+
+- Privacy: `https://flaxa.app/privacy`
+- Terms: `https://flaxa.app/terms`
+
+Both policy pages returned HTTP 200 anonymously and matched the reviewed Seed-specific source content byte for byte on 2026-10-26. The homepage links and shared stylesheet were also verified. See [publication evidence](../submission/policy-check.json) for content hashes. This verifies publication, not legal compliance. Portal identity verification remains pending. OpenAI declares `publication.countries: ["IS"]`; no unsupported Claude country field is added, and Claude availability must be confirmed in its portal. Public repository and endpoint access are not geographically restricted by these metadata.
+
+| Check | Result | Scope |
+| --- | --- | --- |
+| `npm run check` | Passed; eleven regression tests | Agent Plugins schemas, synchronized manifests, package safety and both-platform submission-gate regression |
+| `npm run package` | Passed; 13 files | Deterministic `seed-plugin-1.3.1.zip`, verified inventory and SHA-256 |
+| Claude Code 2.1.310 plugin manifest validation, `--strict` | Passed | Basic manifest/component checks; separately reports the missing license |
+| Claude Code 2.1.310 marketplace validation, `--strict` | Passed | Repository catalog structure |
+| Claude Code 2.1.310 `--profile directory` | Expected failure: `LICENSE_MISSING` | The owner has deferred licensing; no license grant was invented |
+| `npm run check:submission` | Expected failure | Deferred license/video, portal identity/contact/availability, screenshots and host review evidence remain unfinished |
+| Live runtime and target-host review | Not rerun for this metadata update | Earlier direct runtime evidence is retained below; no new installed-host acceptance is claimed |
+
+The owner will provide the demo recording later. The actual video URL remains absent. The package's policy publication checks are passed based on anonymous retrieval and exact source-content comparison.
+
+## Earlier package 1.3.0 and runtime 0.9.0
+
+The following evidence was observed on **2026-10-26** for Seed package **1.3.0** and server runtime **0.9.0**. Its missing-policy warning describes that earlier package, not the current 1.3.1 fields.
 
 | Check | Result | Scope |
 | --- | --- | --- |

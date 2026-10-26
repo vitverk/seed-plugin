@@ -1,6 +1,6 @@
 # Reviewer demo walkthrough
 
-Status: **script prepared; recording not yet made or hosted**.
+Status: **script prepared; the owner will provide the video later**. No completed recording or reviewer-accessible video URL is claimed.
 
 Use a fresh development installation of the exact packaged version in ChatGPT or Claude. Capture only the app and relevant prompts/results. Do not show private sidebars, unrelated conversations, accounts, credentials, or raw guest channels. Demonstrating a development connection does not require creating a public submission draft.
 
