@@ -184,10 +184,25 @@ export async function validate(root = defaultRoot, { submission = false, quiet =
   if (submission) {
     const missing = [];
     for (const key of ['websiteURL', 'supportURL', 'privacyPolicyURL', 'termsOfServiceURL', 'developerName']) if (!ui[key]) missing.push(`OpenAI interface.${key}`);
+    for (const key of ['documentationUrl', 'supportUrl', 'privacyPolicyUrl', 'termsOfServiceUrl']) {
+      if (!claude[key]) missing.push(`Claude manifest.${key}`);
+      else https(claude[key], `Claude manifest.${key}`);
+    }
+    for (const [openaiKey, claudeKey] of [['privacyPolicyURL', 'privacyPolicyUrl'], ['termsOfServiceURL', 'termsOfServiceUrl']]) {
+      if (ui[openaiKey] && claude[claudeKey] && new URL(ui[openaiKey]).href !== new URL(claude[claudeKey]).href) {
+        missing.push(`OpenAI ${openaiKey} and Claude ${claudeKey} must reference the same URL`);
+      }
+    }
     if (!review?.demo_recording_url) missing.push('Verified reviewer demo recording URL');
+    else https(review.demo_recording_url, 'Reviewer demo recording URL');
     if (typeof review?.commerce !== 'boolean') missing.push('Owner-confirmed commerce declaration');
+    if (review?.commerce === true && (typeof review.commerce_description !== 'string' || !review.commerce_description.trim())) missing.push('Commerce description is required when commerce is true');
     if (!Array.isArray(openai.publication?.countries)) missing.push('Owner-confirmed supported countries');
-    if (!portable.license && !files.includes('LICENSE')) missing.push('Owner-approved LICENSE file or manifest license');
+    else if (!openai.publication.countries.every(country => typeof country === 'string' && /^[A-Z]{2}$/.test(country))) missing.push('Countries must be two-letter uppercase codes; use [] explicitly for all countries');
+    const hasLicenseFile = files.includes('LICENSE') && Boolean((await readFile(resolve(root, 'LICENSE'), 'utf8')).trim());
+    const hasLicense = manifest => typeof manifest.license === 'string' && Boolean(manifest.license.trim());
+    if (!hasLicense(portable) && !hasLicenseFile) missing.push('Owner-approved LICENSE file or portable manifest license');
+    if (!hasLicense(claude) && !hasLicenseFile) missing.push('Owner-approved LICENSE file or Claude manifest license');
     if (!review?.test_cases) missing.push('Five positive and three negative MCP review cases');
     if (!(await exists(resolve(root, 'submission/readiness.json')))) missing.push('submission/readiness.json evidence');
     else {

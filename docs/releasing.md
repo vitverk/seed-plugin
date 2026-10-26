@@ -2,6 +2,18 @@
 
 The root `plugin.json` is the public package identity. Keep its name and version synchronized with `.codex-plugin/plugin.json`, `.claude-plugin/plugin.json`, and `package.json`. Both MCP configurations must point at the same hosted endpoint; `streamable-http` is the portable transport spelling and `http` is Claude's spelling. Marketplace entries resolve the plugin at the repository root and do not override its version.
 
+When publisher information is supplied, update each platform's actual manifest. OpenAI's interface is also duplicated in the Codex compatibility manifest; a root portable field does not populate Claude's listing automatically.
+
+| Publisher value | OpenAI `extensions.com.openai.interface` | Claude `.claude-plugin/plugin.json` |
+| --- | --- | --- |
+| Support page | `supportURL` | `supportUrl` |
+| Privacy policy | `privacyPolicyURL` | `privacyPolicyUrl` |
+| Terms of service | `termsOfServiceURL` | `termsOfServiceUrl` |
+| Documentation | Product information in `websiteURL` | `documentationUrl` |
+| Distribution license | Root `license`, or packaged `LICENSE` | Manifest `license`, or packaged `LICENSE` |
+
+The submission gate checks both platforms independently and requires matching privacy and terms URLs. A checked-off readiness item cannot replace a missing manifest field. The gate also checks the demo URL format, country-code format, and a commerce explanation when commerce is declared; these syntax checks do not verify the publisher's facts or external pages.
+
 1. Update skills from the application source only after reviewing their public contents and preserving internal references. Do not copy deployment secrets, app bindings, host screenshots, or private verification dumps.
 2. Update release notes, supported behavior, review cases, and server compatibility when the runtime changes. Package and server runtime versions are independent.
 3. Update publisher-provided facts in both platform listings, and update `submission/readiness.json` with evidence rather than simply marking all entries passed. Preserve unknown fields as absent.

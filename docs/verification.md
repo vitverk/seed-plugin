@@ -4,7 +4,7 @@ Observed on 2026-10-26 for Seed package 1.3.0 and server runtime 0.9.0.
 
 | Check | Result | Scope |
 | --- | --- | --- |
-| `npm run check` | Passed; nine regression tests | Vendored Agent Plugins schemas, compatible manifests, skills, icons, bindings, archive safety and submission-gate regression |
+| `npm run check` | Passed; eleven regression tests | Vendored Agent Plugins schemas, compatible manifests, skills, icons, bindings, archive safety and submission-gate regression |
 | `npm run package` | Passed; 13 files, deterministic ZIP with verified inventory and SHA-256 | One plugin; marketplace catalogs, private app bindings and development files excluded |
 | `npm run smoke` | Passed; ten live checks | Anonymous MCP and disposable detached sample state; see `submission/protocol-check.json` |
 | Claude Code 2.1.310 plugin manifest validation, `--strict` | Passed | Manifest/component checks; directory gaps are reported separately |
@@ -16,5 +16,7 @@ Observed on 2026-10-26 for Seed package 1.3.0 and server runtime 0.9.0.
 The production smoke was executed against `https://mcp.flaxa.app/mcp`. It verified health, initialization, twelve expected titled/annotated tools, the app resource and CSP, capabilities, a new paused snapshot, calendar preservation after adding harvesting, ordered goals, 30-minute time advancement, and missing-target rejection. It did not obtain guest channels or touch a live game account.
 
 Claude CLI validation was invoked from the official `@anthropic-ai/claude-code` npm package at pinned version 2.1.310. Its basic validator can pass while emitting directory failures; use `--profile directory` to make directory blockers affect the exit status. This distinction is why package validity is reported separately from submission readiness.
+
+GitHub package CI and the automatic CodeQL setup both passed for the initial public commit `92dd7f44a7f449dbb6a4e04f74086f7a94ec5414`. The submission gate subsequently gained separate Claude metadata/license checks and regression coverage; see the repository Actions tab for checks on each later commit.
 
 CI runs offline validation and packaging on pushes and pull requests. Live endpoint checks can be requested with the manual workflow input. Neither CI nor this record certifies marketplace approval, policy compliance, licensing, or embedded-host behavior.

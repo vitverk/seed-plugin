@@ -18,6 +18,42 @@ async function alter(root, path, modify) {
   modify(data);
   await writeFile(join(root, path), `${JSON.stringify(data, null, 2)}\n`);
 }
+async function syntheticSubmission(t) {
+  // Test-only declarations in a disposable directory. These are not actual policies,
+  // license grants, commerce declarations, country targeting or review evidence.
+  const root = await fixture(t);
+  const privacy = 'https://example.invalid/test-only/privacy';
+  const terms = 'https://example.invalid/test-only/terms';
+  await alter(root, 'plugin.json', data => {
+    data.license = 'LicenseRef-TestOnly';
+    const openai = data.extensions['com.openai'];
+    Object.assign(openai.interface, { privacyPolicyURL: privacy, termsOfServiceURL: terms });
+    Object.assign(openai.review, { demo_recording_url: 'https://example.invalid/test-only/demo', commerce: false });
+    openai.publication.countries = ['IS', 'US'];
+  });
+  await alter(root, '.codex-plugin/plugin.json', data => {
+    Object.assign(data.interface, { privacyPolicyURL: privacy, termsOfServiceURL: terms });
+  });
+  await alter(root, '.claude-plugin/plugin.json', data => {
+    for (const key of ['documentationUrl', 'supportUrl', 'privacyPolicyUrl', 'termsOfServiceUrl', 'license']) delete data[key];
+  });
+  await alter(root, 'submission/readiness.json', data => {
+    for (const check of data.checks) {
+      check.status = 'passed';
+      check.detail = 'Test-only synthetic evidence; never publish this fixture.';
+    }
+  });
+  return { root, privacy, terms };
+}
+async function completeSyntheticClaude({ root, privacy, terms }) {
+  await alter(root, '.claude-plugin/plugin.json', data => Object.assign(data, {
+    documentationUrl: 'https://example.invalid/test-only/docs',
+    supportUrl: 'https://example.invalid/test-only/support',
+    privacyPolicyUrl: privacy,
+    termsOfServiceUrl: terms,
+    license: 'LicenseRef-TestOnly',
+  }));
+}
 test('release archive is deterministic and contains only allowlisted plugin files', async t => {
   const root = await fixture(t);
   const first = await buildPackage(root, { quiet: true });
@@ -54,6 +90,49 @@ test('submission readiness cannot be bypassed with missing, empty or malformed c
     await assert.rejects(validate(root, { submission: true, quiet: true }), /Readiness checks must/);
   }
   await validate(root, { quiet: true }); // Incomplete evidence does not prevent a technical package.
+});
+test('submission requires independent Claude metadata and matching policy URLs', async t => {
+  const synthetic = await syntheticSubmission(t);
+  const { root, privacy, terms } = synthetic;
+  await assert.rejects(validate(root, { submission: true, quiet: true }), error => {
+    for (const field of ['documentationUrl', 'supportUrl', 'privacyPolicyUrl', 'termsOfServiceUrl']) assert.match(error.message, new RegExp(`Claude manifest\\.${field}`));
+    assert.match(error.message, /Claude manifest license/);
+    return true;
+  });
+  await completeSyntheticClaude(synthetic);
+  await validate(root, { submission: true, quiet: true });
+  for (const [field, original] of [['privacyPolicyUrl', privacy], ['termsOfServiceUrl', terms]]) {
+    await alter(root, '.claude-plugin/plugin.json', data => { data[field] = `${original}-different`; });
+    await assert.rejects(validate(root, { submission: true, quiet: true }), /must reference the same URL/);
+    await alter(root, '.claude-plugin/plugin.json', data => { data[field] = original; });
+  }
+  await alter(root, '.claude-plugin/plugin.json', data => { delete data.license; });
+  await assert.rejects(validate(root, { submission: true, quiet: true }), /Claude manifest license/);
+  await writeFile(join(root, 'LICENSE'), 'Test-only synthetic license file. No actual license grant.\n');
+  await validate(root, { submission: true, quiet: true });
+});
+test('submission validates demo HTTPS, uppercase countries and applicable commerce details', async t => {
+  const synthetic = await syntheticSubmission(t);
+  await completeSyntheticClaude(synthetic);
+  const { root } = synthetic;
+  for (const url of ['/test-only/demo', 'http://example.invalid/test-only/demo']) {
+    await alter(root, 'plugin.json', data => { data.extensions['com.openai'].review.demo_recording_url = url; });
+    await assert.rejects(validate(root, { submission: true, quiet: true }), /Invalid URL|must use HTTPS/);
+  }
+  await alter(root, 'plugin.json', data => { data.extensions['com.openai'].review.demo_recording_url = 'https://example.invalid/test-only/demo'; });
+  for (const countries of [['is'], ['USA'], [null]]) {
+    await alter(root, 'plugin.json', data => { data.extensions['com.openai'].publication.countries = countries; });
+    await assert.rejects(validate(root, { submission: true, quiet: true }), /two-letter uppercase/);
+  }
+  await alter(root, 'plugin.json', data => { data.extensions['com.openai'].publication.countries = []; });
+  await validate(root, { submission: true, quiet: true });
+  await alter(root, 'plugin.json', data => {
+    data.extensions['com.openai'].review.commerce = true;
+    data.extensions['com.openai'].review.commerce_description = ' ';
+  });
+  await assert.rejects(validate(root, { submission: true, quiet: true }), /Commerce description is required/);
+  await alter(root, 'plugin.json', data => { data.extensions['com.openai'].review.commerce_description = 'Test-only commerce description; no real purchases.'; });
+  await validate(root, { submission: true, quiet: true });
 });
 test('package rejects symbolic links and unresolved Git LFS assets', async t => {
   const root = await fixture(t);
