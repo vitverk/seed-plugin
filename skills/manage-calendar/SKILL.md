@@ -1,6 +1,6 @@
 ---
 name: manage-calendar
-description: Read or change the Seed Seedling game calendar, modeled or fictional activities, and once, daily, weekday or weekly routines. Use for “what is on my calendar?”, “what is Bowen doing today?”, brief “Schedule?” follow-ups, and requests to add or change activities in Seed context.
+description: Read, show or change the Seed Seedling game calendar, modeled or fictional activities, and once, daily, weekday or weekly routines. Use for inline day/week calendars, calendar refresh, “what is on my calendar?”, “what is Bowen doing today?”, brief “Schedule?” follow-ups, and requests to add or change activities in Seed context.
 ---
 
 # Manage a Seedling calendar
@@ -16,6 +16,14 @@ Today means `state.clock.day`. A selected future calendar day is not today. Incl
 If document-local tools are unavailable but current companion context or explicit shared state exists, answer from it and label it as the latest shared state. Do not claim no calendar access: a current guestChannel can read the visible guest, and captured context can answer directly. If no usable state or visible UI is available, offer the companion's single **Share with chat** fallback; opening another demo would answer a different question.
 
 For an outcome with several dependent activities, use the companion’s [goal workflow](../seedling-companion/SKILL.md#connected-simulation-loops). A goal stacks queued actions; it does not add timed calendar blocks or recurring routines unless those are separately requested.
+
+## Show a small calendar in chat
+
+For a visual day/week calendar or an inline calendar request, use `show_seedling_calendar`. Reuse one captured context or successful read from the intended guest; if a fresh view is requested, read that same guest first with its document-local read or `get_seedling_state` and its current `guestChannel`. This display tool only validates and renders supplied data. It does not independently read a guest or prove that a snapshot is current.
+
+Pass `snapshot` with exactly `version`, `clock`, `seedling: { name }`, the complete `schedule`, and `locations` reduced to `{ id, name }`. Choose `view: "day" | "week"` and an optional numbered game `day`. Use `source: "browser_snapshot"` for an actual captured browser read, otherwise `"supplied_snapshot"`. Copy `browserSessionId` and the original `capturedAt` when known; omit an unknown capture time rather than inventing one. Do not pass a full world, `guestChannel`, `commandToken`, `ownerToken`, or other credentials. If a bounded read omitted the schedule or locations, do not turn missing data into an empty calendar; obtain a complete calendar projection or explain the missing data.
+
+The card is a snapshot. Its navigation and expansion do not change the companion or advance game time. Its Refresh control sends a request to chat: match the supplied browser session to the latest context, read that same guest again, then call `show_seedling_calendar` with the new snapshot and requested day/view. Never call `open_seedling` or `browse_seedling` to refresh, never substitute another guest, and never claim the old card updates live. If the matching guest is unavailable, explain that refresh is unavailable and preserve the displayed snapshot.
 
 ## Fast path for the open demo
 
@@ -78,3 +86,7 @@ If browser tools are unavailable, use guestChannel or the visible calendar contr
 On mobile or a host without browser context, do not repeatedly search for tabs or require an additional host or browser integration. If UI access is also unavailable, follow the companion's [explicit-snapshot fallback](../seedling-companion/SKILL.md#explicit-snapshots). An acknowledged guestChannel result confirms the visible guest handled the command. A detached state result confirms only the supplied snapshot changed.
 
 Use the [guest calendar reference](references/seed-calendar.md) for state scope, game time, recurrence and the distinction between plans and completed actions. Read `get_companion_capabilities` for the current modeled activities and recipes. A creative request outside that catalog can become a custom fictional calendar activity following [Play cooperatively](../seedling-companion/SKILL.md#play-cooperatively); it does not create external effects. Ordinary guest edits and fictional play require no documentation research.
+
+## Real-game documentation
+
+For an explanation of native SEED mechanics or a help-center question, use [seed-game-guide](../seed-game-guide/SKILL.md) to search and read the source articles. The linked care, building, economy, society and support skills load detailed references only when needed. Cite each article's source URL and distinguish its retrieval date from current game behavior. These guides do not establish the guest simulator's executable capabilities; use `get_companion_capabilities` and actual state for those. Ordinary guest actions, status questions and fictional play keep the direct routes above and require no documentation search.

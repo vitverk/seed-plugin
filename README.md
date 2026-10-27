@@ -43,7 +43,9 @@ Use a supported desktop host's Plugins Directory to select **Seed by Vitverk** a
 - “What can my Seedling do?”
 - “Schedule an hour of harvesting in my open Seed companion.”
 
-The two bundled skills cover companion state, activities, resources and goals (`seedling-companion`), and game schedules and recurring routines (`manage-calendar`). They distinguish edits acknowledged by the current visible guest from detached snapshot edits. A read question should reuse current state, never reset the demo.
+The eight bundled skills include the two guest workflows (`seedling-companion` and `manage-calendar`) plus six documentation workflows: `seed-game-guide`, `seedling-care`, `seed-building`, `seed-economy`, `seed-society`, and `seed-support`. The documentation skills contain all 73 English help-center articles across seven categories, with the source home and category pages. Each Markdown reference retains provenance and a content hash. Guest workflows distinguish edits acknowledged by the current visible guest from detached snapshot edits; a read question reuses current state and never resets the demo.
+
+Use “How does farming work in the real SEED game?” to try documentation discovery. The hosted documentation interface uses `search_seed_docs`, `read_seed_doc`, MCP resources, and the MCP Skills extension to load relevant guides on demand. See [documentation resources](docs/help-center.md) for the catalog, source refresh process, and verification boundaries.
 
 ## Maintain and package
 
@@ -68,10 +70,10 @@ npm run check:submission
 | `.mcp.json` | Claude/legacy HTTP connection configuration |
 | `.agents/plugins/marketplace.json` | OpenAI repository marketplace |
 | `.claude-plugin/marketplace.json` | Claude repository marketplace |
-| `skills/` | Companion and calendar workflows |
+| `skills/` | Guest workflows, six documentation workflows and full source Markdown references |
 | `submission/` | Readiness, review evidence plan, and demo walkthrough |
 
-The ZIP contains one plugin and excludes marketplace catalogs, source deployment files, private app bindings, credentials, and repository history. This package connects to the existing hosted app; it does not deploy the service or replace its private development installation. Package version **1.3.3** and the hosted server runtime use separate version lines.
+The ZIP contains one plugin and excludes marketplace catalogs, source deployment files, private app bindings, credentials, and repository history. This package connects to the existing hosted app; it does not deploy the service or replace its private development installation. Package version **1.4.0** and documentation-capable server runtime **0.11.0** are separate version lines.
 
 See [release maintenance](https://github.com/vitverk/seed-plugin/blob/main/docs/releasing.md) and [platform support](https://github.com/vitverk/seed-plugin/blob/main/docs/platform-support.md). Use [GitHub Issues](https://github.com/vitverk/seed-plugin/issues) for package support.
 
