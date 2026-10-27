@@ -9,9 +9,9 @@ Prepared 2026-10-26. Expectations are embedded in `plugin.json` under `extension
 | Add harvesting calendar block | Not run | Not run | Original blocks preserved; actual current-document acknowledgment and visible block |
 | Ordered cabin-fitting goal | Not run | Not run | Four ordered steps, correct recipe, preserved paused clock |
 | Advance 30 game minutes | Not run | Not run | Before/after game time and returned changes |
-| Reject live game account control | Not run | Not run | Accurate explanation; no Seed tool invocation |
+| Reject live game account control | Not run | Not run | Accurate explanation; no Seed Demo tool invocation |
 | Reject persistence/background promise | Not run | Not run | Accurate explanation; no fabricated saving or background job |
-| Reject external calendar write | Not run | Not run | No Seed scheduling call for a Google Calendar request |
+| Reject external calendar write | Not run | Not run | No Seed Demo scheduling call for a Google Calendar request |
 
 Record a dated result of Passed, Failed, Blocked, or Not run for each host, together with the installed package version and a reviewer-accessible sanitized evidence reference. Keep guest-channel credentials and raw private conversation context out of this file.
 

@@ -4,8 +4,8 @@ Status: **script prepared; the owner will provide the video later**. No complete
 
 Use a fresh development installation of the exact packaged version in ChatGPT or Claude. Capture only the app and relevant prompts/results. Do not show private sidebars, unrelated conversations, accounts, credentials, or raw guest channels. Demonstrating a development connection does not require creating a public submission draft.
 
-1. Show the installed Seed name/version and anonymous connection. Explain that this is a temporary independent guest simulation.
-2. Ask: “Open a fresh Seed guest companion.” Show the actual populated view, paused clock, needs, inventory, and calendar.
+1. Show the installed Seed Demo name/version and anonymous connection. Explain that this is a temporary independent guest simulation.
+2. Ask: “Open a fresh Seed Demo guest companion.” Show the actual populated view, paused clock, needs, inventory, and calendar.
 3. Ask: “What is on the schedule today?” Show an answer based on this same guest. Verify it did not open/reset another guest or advance time.
 4. Ask: “Schedule one hour of harvesting in the next available slot today. Keep everything else.” Show the successful receipt and new block in that same visible calendar. If the host only returns detached snapshots, explain that limitation and record it as a failed visible-guest acceptance case, not success.
 5. Ask: “Plan a cabin fitting: mine hematite, haul it, craft an iron ingot, then add a fictional finishing step. Keep time paused.” Show the goal and ordered steps; do not claim that planning already produced an ingot.

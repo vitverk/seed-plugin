@@ -1,7 +1,7 @@
 {
   "name": "vitverk-seed",
   "interface": {
-    "displayName": "Seed by Vitverk"
+    "displayName": "Seed Demo by Vitverk"
   },
   "plugins": [
     {

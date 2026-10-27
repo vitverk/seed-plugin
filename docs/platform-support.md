@@ -2,7 +2,7 @@
 
 Distribution requirements reviewed on **2026-10-26**. This page describes package routes and test boundaries; it is not a claim that every host has passed acceptance testing.
 
-Seed is an anonymous guest simulation. It does not connect to a live SEED account. Guest progress resides in the open view and resets when that view is reloaded or closed. Chat hosts may retain supplied context and tool results.
+Seed Demo is an anonymous guest simulation. It does not connect to a live SEED account. Guest progress resides in the open view and resets when that view is reloaded or closed. Chat hosts may retain supplied context and tool results.
 
 ## Distribution surfaces
 
@@ -26,10 +26,10 @@ Record host name/version, plugin version, endpoint, test date, prompts, relevant
 
 ## Publication status
 
-GitHub availability, repository-marketplace installation, account-local installation, and official directory publication are separate states. The Claude directory requires its own submission and review. Submit both the remote connector and the plugin from the same organization when distributing a product that provides both. No MCPB package is required for Seed's hosted HTTP server. [Claude directory publishing](https://claude.com/docs/directory/publish)
+GitHub availability, repository-marketplace installation, account-local installation, and official directory publication are separate states. The Claude directory requires its own submission and review. Submit both the remote connector and the plugin from the same organization when distributing a product that provides both. No MCPB package is required for Seed Demo's hosted HTTP server. [Claude directory publishing](https://claude.com/docs/directory/publish)
 
 OpenAI's public directory and repository marketplaces are also separate distribution routes. The portable package and OpenAI-specific metadata follow the [OpenAI plugin packaging guide](https://developers.openai.com/plugins/build/plugins); public listing follows the [OpenAI submission process](https://developers.openai.com/plugins/deploy/submission).
 
-The owner selected Vitverk, Iceland, and no payments or purchases. Both platform manifests use the Seed-specific policy URLs at `https://flaxa.app/privacy` and `https://flaxa.app/terms`. OpenAI declares `IS`; Claude's reviewed manifest has no documented country-targeting field, so confirm its publication availability in the portal. These metadata do not geographically restrict the public repository or endpoint.
+The owner selected Vitverk, Iceland, and no payments or purchases. Both platform manifests use the Seed Demo-specific policy URLs at `https://flaxa.app/privacy` and `https://flaxa.app/terms`. OpenAI declares `IS`; Claude's reviewed manifest has no documented country-targeting field, so confirm its publication availability in the portal. These metadata do not geographically restrict the public repository or endpoint.
 
 Before claiming submission readiness, complete portal identity and review-contact checks, licensing and asset rights, the deferred demo video, required Claude screenshots, and host acceptance testing. The policy pages are published and verified; see [publication evidence](../submission/policy-check.json). See [Claude publishing](claude-publishing.md) for the remaining preparation gaps. `npm run check:submission` is a repository readiness gate, not a substitute for either platform's review.

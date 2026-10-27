@@ -1,6 +1,21 @@
 # Package verification
 
-## Current package 1.3.3
+## Current package 1.6.1: Seed Demo
+
+Checked on **2026-10-27**. All three plugin manifests display **Seed Demo**, and both connection manifests use `https://mcp.flaxa.app/demo/mcp`. The OpenAI repository marketplace is labeled **Seed Demo by Vitverk**; Claude's listing description uses Seed Demo. Stable plugin identifier `seed` and marketplace identifier `vitverk-seed` are preserved. Existing `/mcp` connections retain a compatibility alias.
+
+| Check | Result | Scope |
+| --- | --- | --- |
+| `npm run check` | Passed; 24 regression tests | Package schemas, synchronized manifests, skills, references and archive guards |
+| `npm run package` | Passed; 143 files | Deterministic `seed-plugin-1.6.1.zip`, verified inventory and SHA-256 |
+| `npm run smoke` | Passed; 12 live checks | Canonical `/demo/mcp`, Seed Demo 0.13.1 metadata, sixteen tools, three skills, documents, app resources and detached synthetic gameplay |
+| Claude Code 2.1.224 `plugin validate . --strict` | Five compatibility warnings treated as errors | This older CLI ignores existing directory fields `documentationUrl`, `supportUrl`, `icon`, `privacyPolicyUrl` and `termsOfServiceUrl`; those required listing fields were preserved |
+| `npm run check:submission` | Expected failure | Existing license, demo recording, publisher/portal and installed-host evidence remain incomplete |
+| Installed-host review | Not rerun for this public package | Direct MCP success does not establish ChatGPT/Claude host UI acceptance |
+
+The [live smoke receipt](../submission/seed-demo-smoke.json) records the endpoint, server identity/version and each passing check. The smoke uses detached sample state only, with no browser channel or real game account.
+
+## Earlier package 1.3.3
 
 Checked on **2026-10-27**. The calendar reference now covers only the guest simulation, with its state, recurrence and fictional-activity boundaries. Skills no longer route requests to native-game research. Package identity, branding, MCP connections and host distribution support are unchanged.
 

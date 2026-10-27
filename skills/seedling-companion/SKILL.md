@@ -1,15 +1,15 @@
 ---
 name: seedling-companion
-description: Open and play the Seed guest companion; plan goals with stacked activities, manage modeled activities, create fictional adventures, or answer Bowen’s activity, needs, skills and resource status. Use for Seed gameplay, creative game requests and brief status follow-ups. For calendar questions and edits use manage-calendar.
+description: Open and play the Seed Demo guest companion; plan goals with stacked activities, manage modeled activities, create fictional adventures, or answer Bowen’s activity, needs, skills and resource status. Use for Seed Demo gameplay, creative game requests and brief status follow-ups. For calendar questions and edits use manage-calendar.
 ---
 
-# Seed guest companion
+# Seed Demo guest companion
 
-Seed is a login-free simulation, with no live SEED account connection. Progress lives in the open document and resets on reload or close. No worlds are saved and no background game simulation runs. Separately, users may opt in to synthetic MCP event notifications for delivery tests.
+Seed Demo is a login-free simulation, with no live SEED account connection. Progress lives in the open document and resets on reload or close. No worlds are saved and no background game simulation runs. Separately, users may opt in to synthetic MCP event notifications for delivery tests.
 
 ## Open or reuse
 
-Use `open_seedling({})` or `browse_seedling({})` to start a **fresh paused** demo. Reuse an existing Seed view for changes to its current state; opening again or reloading resets it.
+Use `open_seedling({})` or `browse_seedling({})` to start a **fresh paused** demo. Reuse an existing Seed Demo view for changes to its current state; opening again or reloading resets it.
 
 When the latest companion context contains `guestChannel`, use the existing remote MCP tools with that channel to control the **same open guest**. Copy the complete `guestChannel` object unchanged and pass it **instead of `state`**. Call `get_seedling_state({guestChannel})` only when a current read is needed. For changes, use the corresponding name without `flaxa_` (`advance_demo_time` for time), a new `commandId` and the latest `state.version` as `expectedVersion`. For example, `create_goal({guestChannel, commandId, expectedVersion, title, steps})` sends the whole plan to the visible guest. No browser discovery, manual share, login or new guest is needed for this route.
 
@@ -21,7 +21,7 @@ For an open companion, prefer its document-local tools exposed through the MCP A
 
 Fresh guests start as Bowen. For an already open guest or supplied snapshot, use its actual Seedling name and state; do not rename it, reset it or open a fresh guest just to match the default.
 
-“What is my Seedling doing?”, “What is Bowen up to?”, “Activity?” and similar follow-ups refer to this guest. A typo such as “seeding” does not require clarification when Seed context is clear.
+“What is my Seedling doing?”, “What is Bowen up to?”, “Activity?” and similar follow-ups refer to this guest. A typo such as “seeding” does not require clarification when Seed Demo context is clear.
 
 Use the latest successful browser read, or the latest context published by the embedded companion through MCP Apps. Browser context identifies its source, browser session, capture time and world version, and includes an answer summary. A full state is included only when `snapshotAvailable` is true; size-limited context identifies omitted data. Never invent omitted entries or pass a summary as full state. Use context from the relevant open session; never combine worlds from different sessions or treat a detached remote snapshot as a newer browser observation. Context is a captured observation, not a promise of continuous access. When only context or an explicitly shared snapshot is available, say “In the latest shared state…” and include the game day/time when it matters. An opening result is a fresh demo fixture; it is not evidence about another already-open guest.
 
@@ -89,11 +89,11 @@ Selecting an activity, location or recipe does not queue work. Appearance, calen
 
 ## Explicit snapshots
 
-A host with an installed Seed connector and MCP Apps support may render the companion. Availability varies by host, including mobile; do not assume a registered private app or browser WebMCP access. Use only tools actually available in the current conversation. If the host reports missing browser context or no open tabs, do not keep retrying browser discovery or require an additional host or browser integration to open the mobile companion. Use its current guestChannel before browser discovery or UI automation; if that route is unavailable too, explain the limit and follow the explicit-snapshot fallback below. Never claim a detached snapshot changed the visible calendar.
+A host with an installed Seed Demo connector and MCP Apps support may render the companion. Availability varies by host, including mobile; do not assume a registered private app or browser WebMCP access. Use only tools actually available in the current conversation. If the host reports missing browser context or no open tabs, do not keep retrying browser discovery or require an additional host or browser integration to open the mobile companion. Use its current guestChannel before browser discovery or UI automation; if that route is unavailable too, explain the limit and follow the explicit-snapshot fallback below. Never claim a detached snapshot changed the visible calendar.
 
 Without guestChannel, remote MCP tools without the `flaxa_` prefix transform a supplied **full** `state` snapshot. This detached mode cannot read the open browser; compact browser results are not full snapshots. Full state may come from current companion context, an explicitly shared snapshot, or a fresh opening result for that new demo. Carry each returned state forward for that detached snapshot. A successful detached snapshot command does not confirm a visible-browser change; say which snapshot changed and do not promise synchronization. Prefer App-side tools, browser WebMCP or visible controls for changes to the open guest.
 
-The embedded companion publishes current state as host model context when the host supports it; this does not send a user message or save a world. **Share with chat** separately sends an explicit message and may trigger a response. Request it only when the available companion context, guestChannel, browser tools and UI access cannot satisfy the request. The host may retain context, shared messages and tool results; Seed stores no world or account. The channel temporarily holds bounded commands and receipts in memory and expires without its owner heartbeat; guest progress remains in the open view. Remote capability discovery describes the browser tools; it does not register them remotely or grant access to an open document's appearance, selections or draft.
+The embedded companion publishes current state as host model context when the host supports it; this does not send a user message or save a world. **Share with chat** separately sends an explicit message and may trigger a response. Request it only when the available companion context, guestChannel, browser tools and UI access cannot satisfy the request. The host may retain context, shared messages and tool results; Seed Demo stores no world or account. The channel temporarily holds bounded commands and receipts in memory and expires without its owner heartbeat; guest progress remains in the open view. Remote capability discovery describes the browser tools; it does not register them remotely or grant access to an open document's appearance, selections or draft.
 
 ## Embedded host recovery
 

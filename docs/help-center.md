@@ -1,6 +1,6 @@
 # SEED documentation resources
 
-Public plugin **1.6.0** packages **121 source documents** in two collections. The hosted search interface requires runtime **0.13.0**. The separate App-backed plugin uses version **1.7.0**; these version lines do not change the public package's direct MCP connection.
+Public plugin **1.6.1** packages **121 source documents** in two collections. The hosted search interface requires runtime **0.13.1**. The separate App-backed plugin uses version **1.7.1**; these version lines do not change the public package's direct MCP connection.
 
 | Collection | Contents | Provenance |
 | --- | --- | --- |

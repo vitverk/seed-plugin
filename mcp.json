@@ -3,7 +3,7 @@
   "mcpServers": {
     "seed": {
       "type": "streamable-http",
-      "url": "https://mcp.flaxa.app/mcp"
+      "url": "https://mcp.flaxa.app/demo/mcp"
     }
   }
 }

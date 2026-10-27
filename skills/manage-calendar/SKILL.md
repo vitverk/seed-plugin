@@ -1,11 +1,11 @@
 ---
 name: manage-calendar
-description: Read, show or change the Seed Seedling game calendar, modeled or fictional activities, and once, daily, weekday or weekly routines. Use for inline day/week calendars, calendar refresh, “what is on my calendar?”, “what is Bowen doing today?”, brief “Schedule?” follow-ups, and requests to add or change activities in Seed context.
+description: Read, show or change the Seed Demo Seedling game calendar, modeled or fictional activities, and once, daily, weekday or weekly routines. Use for inline day/week calendars, calendar refresh, “what is on my calendar?”, “what is Bowen doing today?”, brief “Schedule?” follow-ups, and requests to add or change activities in Seed Demo context.
 ---
 
 # Manage a Seedling calendar
 
-In Seed context, schedule/calendar/harvesting refers to the **Seedling's game calendar**. Do not search Codex automations, cron or external calendars unless the user explicitly asks for those. Seed is a guest simulation: no login, saved progress or live SEED control.
+In Seed Demo context, schedule/calendar/harvesting refers to the **Seedling's game calendar**. Do not search Codex automations, cron or external calendars unless the user explicitly asks for those. Seed Demo is a guest simulation: no login, saved progress or live SEED control.
 
 ## Answer calendar questions
 
@@ -27,7 +27,7 @@ The card is a snapshot. Its navigation and expansion do not change the companion
 
 ## Fast path for the open demo
 
-1. Reuse the open Seed view. If its latest context includes `guestChannel`, call remote `get_seedling_state`, `schedule_activity` or `update_schedule` with that channel instead of state. Mutations require a new `commandId` and the latest `state.version` as `expectedVersion`. An acknowledged channel mutation changes the same visible calendar without browser discovery or manual sharing. See the companion’s channel instructions for uncertain retries. Use its document-local App-side tools through the MCP Apps bridge when available, or discover its browser WebMCP tools. Both act on the same visible guest. Do not reopen/reset it.
+1. Reuse the open Seed Demo view. If its latest context includes `guestChannel`, call remote `get_seedling_state`, `schedule_activity` or `update_schedule` with that channel instead of state. Mutations require a new `commandId` and the latest `state.version` as `expectedVersion`. An acknowledged channel mutation changes the same visible calendar without browser discovery or manual sharing. See the companion’s channel instructions for uncertain retries. Use its document-local App-side tools through the MCP Apps bridge when available, or discover its browser WebMCP tools. Both act on the same visible guest. Do not reopen/reset it.
 2. Call `flaxa_get_state({})` once. Parse a JSON-string response if needed, then inspect `ok` and use its `state.version`, game day/time, schedule and valid locations.
 3. Call the matching tool below. Every mutation requires a fresh `commandId` and `expectedVersion`. Use the successful result as the next state and confirmation; do not add a redundant read.
 

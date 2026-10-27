@@ -1,12 +1,12 @@
-# Publish Seed for Claude
+# Publish Seed Demo for Claude
 
 Requirements reviewed against official Claude documentation on **2026-10-26**.
 
-This repository prepares Seed for distribution. Publishing the GitHub repository, passing local checks, or installing its marketplace entry does **not** mean Anthropic has listed or approved it.
+This repository prepares Seed Demo for distribution. Publishing the GitHub repository, passing local checks, or installing its marketplace entry does **not** mean Anthropic has listed or approved it.
 
 ## Package and marketplace
 
-The plugin lives at this repository's root. Its identity is `seed`, version `1.6.0`. Claude reads `.claude-plugin/plugin.json`, the remote server in `.mcp.json`, and the root `skills/` directory. The MCP endpoint is `https://mcp.flaxa.app/mcp`; its Claude transport is `http`. No API key, account credential, local server, or MCPB bundle is required for this anonymous guest simulation. See [plugin structure and testing](https://claude.com/docs/plugins/build).
+The plugin lives at this repository's root. Its identity is `seed`, version `1.6.0`. Claude reads `.claude-plugin/plugin.json`, the remote server in `.mcp.json`, and the root `skills/` directory. The MCP endpoint is `https://mcp.flaxa.app/demo/mcp`; its Claude transport is `http`. No API key, account credential, local server, or MCPB bundle is required for this anonymous guest simulation. See [plugin structure and testing](https://claude.com/docs/plugins/build).
 
 The repository's `.claude-plugin/marketplace.json` declares marketplace `vitverk-seed`, with plugin source `./`. Users can install the repository catalog with:
 
@@ -48,10 +48,10 @@ Connect a GitHub account with push access, run the portal's Validate step, and c
 
 ## Prepare the remaining review material
 
-The owner selected **Vitverk**, **Iceland** as the intended audience, and **no payments or purchases**. The current manifest carries Vitverk's name and the new Seed-specific policy URLs. Portal identity verification, availability controls, and review evidence remain separate requirements:
+The owner selected **Vitverk**, **Iceland** as the intended audience, and **no payments or purchases**. The current manifest carries Vitverk's name and the new Seed Demo-specific policy URLs. Portal identity verification, availability controls, and review evidence remain separate requirements:
 
 - **License and rights:** the owner deferred licensing. Before submission, obtain the chosen distribution license and confirm permission to distribute any third-party names and visual assets. Add the approved license in the plugin folder or manifest. The directory requires a license; its documentation does not establish that an all-rights-reserved notice alone grants sufficient distribution rights. See the [plugin pre-submission checklist](https://claude.com/docs/plugins/pre-submission-checklist).
-- **Legal and contact information:** the manifest now declares [Seed privacy](https://flaxa.app/privacy) and [Seed terms](https://flaxa.app/terms). Both pages were published and verified anonymously on 2026-10-26; see [publication evidence](../submission/policy-check.json). Use the intended Vitverk identity and confirm its portal verification. **support@vitverk.is** is a known public support contact; designate the review contact in the secure portal without inventing reviewer credentials.
+- **Legal and contact information:** the manifest now declares [Seed Demo privacy](https://flaxa.app/privacy) and [Seed Demo terms](https://flaxa.app/terms). Both pages were published and verified anonymously on 2026-10-26; see [publication evidence](../submission/policy-check.json). Use the intended Vitverk identity and confirm its portal verification. **support@vitverk.is** is a known public support contact; designate the review contact in the secure portal without inventing reviewer credentials.
 - **Availability and commerce:** the owner requested Iceland only and confirmed no payments or purchases. The reviewed Claude manifest reference does not document a country-targeting field, so none is added. Confirm an Iceland-only publication route in the portal before releasing; do not infer geographic enforcement from the OpenAI `IS` declaration. The repository and remote endpoint remain public.
 - **Demo recording:** the owner will provide the video later. The prepared walkthrough remains in `submission/demo-walkthrough.md`; no recording or recording URL is claimed.
 - **MCP App carousel:** capture 3–5 actual app-response PNGs, each at least 1000 pixels wide. Exclude the chat prompt from the crop and record each paired prompt separately. Do not present mockups or older host captures as fresh Claude verification. See [connector screenshot requirements](https://claude.com/docs/connectors/building/submission#carousel-screenshots-for-mcp-apps).

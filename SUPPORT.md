@@ -1,4 +1,4 @@
-# Seed support
+# Seed Demo support
 
 Report packaging, installation, or companion issues at https://github.com/vitverk/seed-plugin/issues.
 

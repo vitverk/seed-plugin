@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "seed",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "description": "A temporary Seedling simulation with activities, resources, goals, and a game calendar.",
   "author": {
     "name": "Vitverk",
@@ -19,9 +19,9 @@
   "extensions": {
     "com.openai": {
       "interface": {
-        "displayName": "Seed",
+        "displayName": "Seed Demo",
         "shortDescription": "Your Seedling guest companion",
-        "longDescription": "Explore a temporary Seedling simulation in chat. Plan a game calendar, queue modeled or fictional activities, inspect needs and resources, and build goals from ordered steps. The companion opens as a new paused guest with sample data and needs no account. Progress lives in the open view and is lost on reload or close. Supported hosts can display the interactive companion; current-view edits require a valid guest channel or document-local tools. Detached snapshot results do not update an open view. Seed is an independent prototype with no live SEED game account or Klang Games API connection.",
+        "longDescription": "Explore a temporary Seedling simulation in chat. Plan a game calendar, queue modeled or fictional activities, inspect needs and resources, and build goals from ordered steps. The companion opens as a new paused guest with sample data and needs no account. Progress lives in the open view and is lost on reload or close. Supported hosts can display the interactive companion; current-view edits require a valid guest channel or document-local tools. Detached snapshot results do not update an open view. Seed Demo is an independent prototype with no live SEED game account or Klang Games API connection.",
         "developerName": "Vitverk",
         "category": "Entertainment",
         "capabilities": [
@@ -32,9 +32,9 @@
         "websiteURL": "https://github.com/vitverk/seed-plugin",
         "supportURL": "https://github.com/vitverk/seed-plugin/issues",
         "defaultPrompt": [
-          "Open a fresh Seed guest companion.",
+          "Open a fresh Seed Demo guest companion.",
           "What can my Seedling do?",
-          "Schedule an hour of harvesting in my open Seed companion."
+          "Schedule an hour of harvesting in my open Seed Demo companion."
         ],
         "logo": "./assets/icon.png",
         "composerIcon": "./assets/composer.png",
@@ -43,7 +43,7 @@
       },
       "review": {
         "prompts": [
-          "Open a fresh Seed guest companion.",
+          "Open a fresh Seed Demo guest companion.",
           "What activities and recipes can my Seedling use, and can I plan weekly routines?",
           "Schedule one hour of harvesting in the next available slot today. Keep the rest of the calendar and leave time paused."
         ],
@@ -51,7 +51,7 @@
           "positive": [
             {
               "description": "Start a new disposable guest. No login or prior state is required.",
-              "prompt": "Open a fresh Seed guest companion.",
+              "prompt": "Open a fresh Seed Demo guest companion.",
               "tools_triggered": "open_seedling",
               "expected_behavior": "Returns a new guest snapshot with saved=false and paused clock plus the companion UI resource. A compatible host displays the populated guest. Explain that closing or reloading loses progress; do not imply live SEED account access."
             },
@@ -86,19 +86,19 @@
               "prompt": "Log into my real SEED account and transfer everything from my live inventory to another player."
             },
             {
-              "description": "Persistent storage and background automation are unsupported. Explain that the temporary guest is lost on close and no game simulation runs while closed. Do not invoke Seed tools to promise persistence or background work.",
+              "description": "Persistent storage and background automation are unsupported. Explain that the temporary guest is lost on close and no game simulation runs while closed. Do not invoke Seed Demo tools to promise persistence or background work.",
               "prompt": "Save this Seedling permanently and keep it harvesting overnight after I close the app."
             },
             {
-              "description": "External personal calendar writes are outside Seed. Clarify that its calendar uses game time. Do not call Seed scheduling tools or claim a Google/Outlook calendar event was created.",
-              "prompt": "Add a dentist appointment to my real Google Calendar tomorrow at 9 AM using Seed."
+              "description": "External personal calendar writes are outside Seed Demo. Clarify that its calendar uses game time. Do not call Seed Demo scheduling tools or claim a Google/Outlook calendar event was created.",
+              "prompt": "Add a dentist appointment to my real Google Calendar tomorrow at 9 AM using Seed Demo."
             }
           ]
         },
         "commerce": false
       },
       "publication": {
-        "release_notes": "Set Vitverk as the publisher, declare Iceland in OpenAI publication metadata and no payments or purchases, and link new Seed-specific privacy and terms pages at flaxa.app/privacy and flaxa.app/terms. Licensing and the demo recording remain deferred. Both policy pages are published and verified. Platform review and Claude availability require portal confirmation.",
+        "release_notes": "Rename the guest companion to Seed Demo and move its canonical anonymous MCP endpoint to https://mcp.flaxa.app/demo/mcp. Existing plugin and marketplace identifiers are preserved. The earlier /mcp endpoint remains a compatibility alias.",
         "countries": [
           "IS"
         ]

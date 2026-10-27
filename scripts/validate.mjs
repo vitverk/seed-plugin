@@ -7,7 +7,7 @@ import Ajv2020 from 'ajv/dist/2020.js';
 import { createMetadataValidator, decodeDocument } from './document-metadata.mjs';
 
 export const defaultRoot = fileURLToPath(new URL('../', import.meta.url));
-export const endpoint = 'https://mcp.flaxa.app/mcp';
+export const endpoint = 'https://mcp.flaxa.app/demo/mcp';
 const schemaBase = 'https://agent-plugins.org/schemas/1.0.0/';
 const ignored = new Set(['.git', 'node_modules', 'dist']);
 const guestSkillFiles = [
@@ -244,7 +244,7 @@ export async function validate(root = defaultRoot, { submission = false, quiet =
     }
     if (missing.length) throw new Error(`Submission is incomplete:\n- ${missing.join('\n- ')}`);
   }
-  if (!quiet) console.log(`Validated Seed ${portable.version}: ${files.length} package files, ${(total / 1024).toFixed(1)} KiB. ${submission ? 'Submission fields and recorded readiness passed.' : 'Package validation does not imply marketplace approval or submission readiness.'}`);
+  if (!quiet) console.log(`Validated Seed Demo ${portable.version}: ${files.length} package files, ${(total / 1024).toFixed(1)} KiB. ${submission ? 'Submission fields and recorded readiness passed.' : 'Package validation does not imply marketplace approval or submission readiness.'}`);
   return { root, files, manifest: portable, bytes: total };
 }
 
