@@ -1,6 +1,6 @@
 {
   "name": "seed",
-  "version": "1.6.1",
+  "version": "1.6.2",
   "description": "A temporary Seedling simulation with activities, resources, goals, and a game calendar.",
   "author": {
     "name": "Vitverk",
@@ -15,7 +15,7 @@
     "game",
     "calendar"
   ],
-  "displayName": "Seed Demo",
+  "displayName": "SEED Demo",
   "documentationUrl": "https://github.com/vitverk/seed-plugin#readme",
   "supportUrl": "https://github.com/vitverk/seed-plugin/issues",
   "icon": "./assets/icon.png",

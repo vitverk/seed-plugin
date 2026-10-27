@@ -1,6 +1,6 @@
 {
   "name": "seed",
-  "version": "1.6.1",
+  "version": "1.6.2",
   "description": "A temporary Seedling simulation with activities, resources, goals, and a game calendar.",
   "author": {
     "name": "Vitverk",
@@ -18,7 +18,7 @@
   "skills": "./skills/",
   "mcpServers": "./.mcp.json",
   "interface": {
-    "displayName": "Seed Demo",
+    "displayName": "SEED Demo",
     "shortDescription": "Your Seedling guest companion",
     "longDescription": "Explore a temporary Seedling simulation in chat. Plan a game calendar, queue modeled or fictional activities, inspect needs and resources, and build goals from ordered steps. The companion opens as a new paused guest with sample data and needs no account. Progress lives in the open view and is lost on reload or close. Supported hosts can display the interactive companion; current-view edits require a valid guest channel or document-local tools. Detached snapshot results do not update an open view. Seed Demo is an independent prototype with no live SEED game account or Klang Games API connection.",
     "developerName": "Vitverk",

@@ -1,14 +1,14 @@
-# Seed Demo plugin
+# SEED Demo plugin
 
-Seed Demo is a temporary Seedling companion simulation with an interactive calendar, activities, resources, needs, and ordered goals. Open a populated guest, plan its day, and inspect the results of simulated work. It uses an anonymous hosted MCP server; you do not need a SEED account, API key, or local server.
+SEED Demo is a temporary Seedling companion simulation with an interactive calendar, activities, resources, needs, and ordered goals. Open a populated guest, plan its day, and inspect the results of simulated work. It uses an anonymous hosted MCP server; you do not need a SEED account, API key, or local server.
 
 **This repository is a public distribution and submission-preparation package. It is not an approved OpenAI or Claude directory listing.** The manifests and ZIP can be validated locally. Portal identity verification, licensing, the recorded demo, and host review evidence still need completion before official submission. See the [readiness checklist](https://github.com/vitverk/seed-plugin/blob/main/submission/readiness.json).
 
-The publisher is **Vitverk**. The owner selected **Iceland** as the intended marketplace audience and confirmed **no payments or purchases**. OpenAI's publication metadata declares `IS`; Claude availability still needs confirmation in its portal. Neither the public repository nor the MCP endpoint is geographically restricted by these declarations. The listings use the new Seed Demo-specific [privacy policy](https://flaxa.app/privacy) and [terms](https://flaxa.app/terms); both pages were published and verified on 2026-10-26. See the [publication evidence](https://github.com/vitverk/seed-plugin/blob/main/submission/policy-check.json).
+The publisher is **Vitverk**. The owner selected **Iceland** as the intended marketplace audience and confirmed **no payments or purchases**. OpenAI's publication metadata declares `IS`; Claude availability still needs confirmation in its portal. Neither the public repository nor the MCP endpoint is geographically restricted by these declarations. The listings use the new SEED Demo-specific [privacy policy](https://flaxa.app/privacy) and [terms](https://flaxa.app/terms); both pages were published and verified on 2026-10-26. See the [publication evidence](https://github.com/vitverk/seed-plugin/blob/main/submission/policy-check.json).
 
-Seed Demo is an independent prototype, with no Klang Games API connection or control over a live SEED game account. Progress lives in the open guest view, starts paused, and disappears on reload or close. No simulation continues after closing the view. The chat host may retain shared context and tool results; see [data behavior](https://github.com/vitverk/seed-plugin/blob/main/docs/data-behavior.md).
+SEED Demo is an independent prototype, with no Klang Games API connection or control over a live SEED game account. Progress lives in the open guest view, starts paused, and disappears on reload or close. No simulation continues after closing the view. The chat host may retain shared context and tool results; see [data behavior](https://github.com/vitverk/seed-plugin/blob/main/docs/data-behavior.md).
 
-![Guest companion before the Seed Demo rename](https://raw.githubusercontent.com/vitverk/seed-plugin/main/docs/images/standalone-companion.png)
+![Guest companion before the SEED Demo rename](https://raw.githubusercontent.com/vitverk/seed-plugin/main/docs/images/standalone-companion.png)
 
 *Standalone browser capture, 26 October 2026. This is not evidence of ChatGPT or Claude host acceptance.*
 
@@ -37,13 +37,13 @@ In Claude Code, check `/mcp` after installation. Use a recent CLI: the additiona
 codex plugin marketplace add vitverk/seed-plugin
 ```
 
-Use a supported desktop host's Plugins Directory to select **Seed Demo by Vitverk** and install Seed Demo. Repository marketplace availability varies by client. Public ChatGPT/Codex distribution requires the OpenAI submission flow; see the [OpenAI publishing guide](https://github.com/vitverk/seed-plugin/blob/main/docs/openai-publishing.md).
+Use a supported desktop host's Plugins Directory to select **SEED Demo by Vitverk** and install SEED Demo. Repository marketplace availability varies by client. Public ChatGPT/Codex distribution requires the OpenAI submission flow; see the [OpenAI publishing guide](https://github.com/vitverk/seed-plugin/blob/main/docs/openai-publishing.md).
 
 ## Try it
 
-- “Open a fresh Seed Demo guest companion.”
+- “Open a fresh SEED Demo guest companion.”
 - “What can my Seedling do?”
-- “Schedule an hour of harvesting in my open Seed Demo companion.”
+- “Schedule an hour of harvesting in my open SEED Demo companion.”
 
 The three bundled skills are `seed-game-guide`, `seedling-companion` and `manage-calendar`. The [game guide](skills/seed-game-guide/SKILL.md) links to topic indexes under `resources/` for getting started, care, building, economy, society, support and supplemental references. All 121 source documents are retained: 81 help-center pages plus 40 supplied manual, developer, local API and project documents. The package contains 133 Markdown files: three skill instructions, 121 sources, eight navigation indexes and one guest calendar reference. Source metadata, body hashes, citations and conflict links remain intact. The two guest workflows handle current simulation state and actions.
 
@@ -75,7 +75,7 @@ npm run check:submission
 | `skills/` | Two guest workflows and one game guide with topic resources |
 | `submission/` | Readiness, review evidence plan, and demo walkthrough |
 
-The ZIP contains one plugin and excludes marketplace catalogs, source deployment files, private app bindings, credentials, and repository history. This package connects to the existing hosted app; it does not deploy the service or replace its private development installation. Public package version **1.6.1**, Seed Demo server runtime **0.13.2**, and App-backed plugin version **1.7.2** are separate version lines. See [documentation resources](docs/help-center.md) for their shared three-skill layout.
+The ZIP contains one plugin and excludes marketplace catalogs, source deployment files, private app bindings, credentials, and repository history. This package connects to the existing hosted app; it does not deploy the service or replace its private development installation. Public package version **1.6.1**, SEED Demo server runtime **0.13.2**, and App-backed plugin version **1.7.2** are separate version lines. See [documentation resources](docs/help-center.md) for their shared three-skill layout.
 
 See [release maintenance](https://github.com/vitverk/seed-plugin/blob/main/docs/releasing.md) and [platform support](https://github.com/vitverk/seed-plugin/blob/main/docs/platform-support.md). Use [GitHub Issues](https://github.com/vitverk/seed-plugin/issues) for package support.
 
@@ -87,4 +87,4 @@ The owner has deferred selection of a distribution license. Public repository ac
 
 Supporting Cloud Work hosts can discover `seed.demo.notification` on the same hosted endpoint. It emits clearly synthetic notifications independently of any open guest. `interval_minutes` defaults to 15; optional `until` is an absolute ISO 8601 stop time enforced by the server, including across subscription refreshes. Create a native event-triggered task and specify the response to each notification. Timer-based polling is a separate mechanism.
 
-For example: “Create an event-triggered task for Seed Demo’s seed.demo.notification every minute, with until set to ten minutes from now. When one arrives, say Seed Demo event received, its sequence, and the fictional message.” Refresh the custom MCP connection’s metadata if the event is missing. This does not require re-uploading a skills ZIP. The public marketplace package’s direct MCP declaration remains desktop-only under current OpenAI import rules; web/Cloud Work needs its own eligible hosted connection. See [data behavior](docs/data-behavior.md) for retained subscription data.
+For example: “Create an event-triggered task for SEED Demo’s seed.demo.notification every minute, with until set to ten minutes from now. When one arrives, say SEED Demo event received, its sequence, and the fictional message.” Refresh the custom MCP connection’s metadata if the event is missing. This does not require re-uploading a skills ZIP. The public marketplace package’s direct MCP declaration remains desktop-only under current OpenAI import rules; web/Cloud Work needs its own eligible hosted connection. See [data behavior](docs/data-behavior.md) for retained subscription data.

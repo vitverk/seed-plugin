@@ -8,8 +8,8 @@
     {
       "name": "seed",
       "source": "./",
-      "description": "Seed Demo: a temporary Seedling simulation with activities, resources, goals, and a game calendar."
+      "description": "SEED Demo: a temporary Seedling simulation with activities, resources, goals, and a game calendar."
     }
   ],
-  "description": "The Seed Demo guest companion plugin from Vitverk."
+  "description": "The SEED Demo guest companion plugin from Vitverk."
 }
