@@ -71,7 +71,7 @@ npm run check:submission
 | `skills/` | Companion and calendar workflows |
 | `submission/` | Readiness, review evidence plan, and demo walkthrough |
 
-The ZIP contains one plugin and excludes marketplace catalogs, source deployment files, private app bindings, credentials, and repository history. This package connects to the existing hosted app; it does not deploy the service or replace its private development installation. Package version **1.3.2** and server runtime **0.9.0** are separate version lines.
+The ZIP contains one plugin and excludes marketplace catalogs, source deployment files, private app bindings, credentials, and repository history. This package connects to the existing hosted app; it does not deploy the service or replace its private development installation. Package version **1.3.3** and the hosted server runtime use separate version lines.
 
 See [release maintenance](https://github.com/vitverk/seed-plugin/blob/main/docs/releasing.md) and [platform support](https://github.com/vitverk/seed-plugin/blob/main/docs/platform-support.md). Use [GitHub Issues](https://github.com/vitverk/seed-plugin/issues) for package support.
 

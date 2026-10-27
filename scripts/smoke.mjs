@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { randomUUID } from 'node:crypto';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
-import { defaultRoot, endpoint } from './validate.mjs';
+import { defaultRoot, endpoint, json } from './validate.mjs';
 import { parseRpcResponse } from './rpc.mjs';
 
 // Anonymous, synthetic, detached snapshots only. Never accepts browser channel tokens.
@@ -39,7 +39,7 @@ try {
   assert.equal(typeof health.backgroundEvents, 'boolean');
   if (health.backgroundEvents) assert.equal(health.backgroundSimulation, false, 'Synthetic notifications cannot imply background game simulation.');
   check('Anonymous guest health, no persistence or background simulation');
-  const initialized = await rpc('initialize', { protocolVersion: version, clientInfo: { name: 'seed-plugin-release-smoke', version: '1.3.2' }, capabilities: {} });
+  const initialized = await rpc('initialize', { protocolVersion: version, clientInfo: { name: 'seed-plugin-release-smoke', version: (await json(defaultRoot, 'package.json')).version }, capabilities: {} });
   assert.equal(initialized.protocolVersion, version);
   serverInfo = { name: initialized.serverInfo.name, version: initialized.serverInfo.version };
   check('MCP initialization');

@@ -78,6 +78,33 @@ test('version drift across clients fails validation', async t => {
   await alter(root, '.claude-plugin/plugin.json', data => { data.version = '99.0.0'; });
   await assert.rejects(validate(root, { quiet: true }), /version drift/);
 });
+test('lockfile root versions stay aligned with the released package', async t => {
+  const root = await fixture(t);
+  const original = await readFile(join(root, 'package-lock.json'), 'utf8');
+  for (const modify of [data => { data.version = '99.0.0'; }, data => { data.packages[''].version = '99.0.0'; }]) {
+    await alter(root, 'package-lock.json', modify);
+    await assert.rejects(validate(root, { quiet: true }), /package-lock.json.*version drift/);
+    await writeFile(join(root, 'package-lock.json'), original);
+  }
+});
+test('release packaging rejects extra archived material in the skills directory', async t => {
+  const root = await fixture(t);
+  await writeFile(join(root, 'skills/manage-calendar/references/archive.md'), '# Earlier calendar research\n');
+  await assert.rejects(buildPackage(root, { quiet: true }), /only the guest workflows and calendar reference/);
+});
+test('release packaging rejects archived research or app control inside allowed skill files', async t => {
+  const root = await fixture(t);
+  const replacements = [
+    ['skills/manage-calendar/references/seed-calendar.md', '# Native-game research\nhttps://klang-games.eu.theymes.com/hc/en/seed\n'],
+    ['skills/manage-calendar/SKILL.md', '\nOpen the app with cua.getApp("com.Klang.Seed").\n'],
+  ];
+  for (const [path, forbidden] of replacements) {
+    const original = await readFile(join(root, path), 'utf8');
+    await writeFile(join(root, path), original + forbidden);
+    await assert.rejects(buildPackage(root, { quiet: true }), /Native app control or archived research/);
+    await writeFile(join(root, path), original);
+  }
+});
 test('portable MCP configuration is checked against the official schema', async t => {
   const root = await fixture(t);
   await alter(root, 'mcp.json', data => { data.mcpServers.seed.unrecognized = true; });
