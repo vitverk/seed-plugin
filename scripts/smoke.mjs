@@ -44,14 +44,26 @@ try {
   serverInfo = { name: initialized.serverInfo.name, version: initialized.serverInfo.version };
   check('MCP initialization');
   const discovered = await rpc('tools/list');
-  const expected = ['open_seedling', 'browse_seedling', 'get_companion_capabilities', 'get_seedling_state', 'schedule_activity', 'update_schedule', 'queue_action', 'cancel_action', 'advance_demo_time', 'set_clock', 'create_goal', 'cancel_goal'];
+  const expected = ['open_seedling', 'browse_seedling', 'get_companion_capabilities', 'get_seedling_state', 'schedule_activity', 'update_schedule', 'queue_action', 'cancel_action', 'advance_demo_time', 'set_clock', 'create_goal', 'cancel_goal', 'search_seed_docs', 'read_seed_doc'];
   for (const name of expected) assert.ok(discovered.tools.some(tool => tool.name === name), `Missing tool: ${name}`);
   for (const entry of discovered.tools) {
     assert.ok(entry.title && entry.description, `Tool needs a title and description: ${entry.name}`);
     for (const hint of ['readOnlyHint', 'destructiveHint', 'openWorldHint']) assert.equal(typeof entry.annotations?.[hint], 'boolean', `${entry.name}.${hint}`);
     assert.deepEqual(entry._meta?.securitySchemes, [{ type: 'noauth' }]);
   }
-  check('Twelve expected tools, titles, boolean annotations, and anonymous security metadata');
+  check('Fourteen expected tools, titles, boolean annotations, and anonymous security metadata');
+  const skills = await rpc('skills/list');
+  assert.equal(skills.skills.length, 8);
+  const docs = await tool('search_seed_docs', { query: 'access rights', limit: 1 });
+  const guide = docs.results[0];
+  assert.equal(guide.title, 'Access Rights');
+  assert.ok(guide.sourceUrl.startsWith('https://klang-games.eu.theymes.com/hc/en/seed/articles/'));
+  const article = await rpc('resources/read', { uri: guide.uri });
+  const doc = await tool('read_seed_doc', { uri: guide.uri });
+  assert.equal(doc.text, article.contents[0].text);
+  assert.equal(doc.sourceUrl, guide.sourceUrl);
+  assert.equal(doc.nextOffset, null);
+  check('Eight documentation/gameplay skills and sourced search/read tools without guest state');
   const opener = discovered.tools.find(tool => tool.name === 'open_seedling');
   const uri = opener._meta?.ui?.resourceUri;
   assert.ok(uri?.startsWith('ui://'), 'Opening tool must advertise MCP App resource');

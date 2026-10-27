@@ -14,7 +14,7 @@ When publisher information is supplied, update each platform's actual manifest. 
 
 The submission gate checks both platforms independently and requires matching privacy and terms URLs. A checked-off readiness item cannot replace a missing manifest field. The gate also checks the demo URL format, country-code format, and a commerce explanation when commerce is declared; these syntax checks do not verify the publisher's facts or external pages.
 
-1. Update skills from the application source only after reviewing their public contents and preserving internal references. Do not copy deployment secrets, app bindings, host screenshots, or private verification dumps.
+1. Update skills from the application source only after reviewing their public contents and preserving internal references. For help-center skills, follow [documentation refresh](help-center.md#refresh-and-validate) so every source file is copied unchanged and the catalog is regenerated. Do not copy deployment secrets, app bindings, host screenshots, or private verification dumps.
 2. Update release notes, supported behavior, review cases, and server compatibility when the runtime changes. Package and server runtime versions are independent.
 3. Update publisher-provided facts in both platform listings, and update `submission/readiness.json` with evidence rather than simply marking all entries passed. Preserve unknown fields as absent.
 4. Run `npm ci`, `npm run check`, `npm run package`, and `npm run smoke`. Review the generated archive inventory and checksum. CI performs offline package checks; live checks are separately invoked.

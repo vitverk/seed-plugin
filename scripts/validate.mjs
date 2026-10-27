@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import { readFile, readdir, lstat, access } from 'node:fs/promises';
 import { resolve, relative, dirname, sep } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
+import { createHash } from 'node:crypto';
 import YAML from 'yaml';
 import Ajv2020 from 'ajv/dist/2020.js';
 
@@ -55,7 +56,7 @@ function scanPublicText(content, path) {
   assert.ok(!/plugin_asdk_app_[a-f0-9]{20,}|asdk_app_[a-f0-9]{20,}/.test(content), `Private app binding identifier in package: ${path}`);
 }
 async function validateGuestSkills(root, files) {
-  assert.deepEqual(files.filter(path => path.startsWith('skills/')), guestSkillFiles, 'Packaged skills must contain only the guest workflows and calendar reference');
+  assert.deepEqual(files.filter(path => path.startsWith('skills/manage-calendar/') || path.startsWith('skills/seedling-companion/')), guestSkillFiles, 'Guest skill folders must contain only the guest workflows and calendar reference');
   for (const path of guestSkillFiles) {
     const content = await readFile(resolve(root, path), 'utf8');
     assert.ok(!/com\.klang\.seed|cua\.getApp|\bmacOS\b|computer[- ]use|desktop[- ]extension|native[- ]game research|klang-games\.eu\.theymes\.com/i.test(content), `Native app control or archived research must not be packaged in guest skills: ${path}`);
@@ -159,7 +160,7 @@ export async function validate(root = defaultRoot, { submission = false, quiet =
   assert.ok(!legacy.mcpServers.seed.headers && !mcp.mcpServers.seed.headers, 'Anonymous endpoint must not include credential headers');
   assert.equal(codex.mcpServers, './.mcp.json');
   const skillFiles = files.filter(x => /^skills\/[^/]+\/SKILL\.md$/.test(x));
-  assert.equal(skillFiles.length, 2, 'Both Seed skills must be packaged');
+  assert.deepEqual(skillFiles.map(path => path.split('/')[1]).sort(), ['manage-calendar', 'seed-building', 'seed-economy', 'seed-game-guide', 'seed-society', 'seed-support', 'seedling-care', 'seedling-companion'], 'Package both guest skills and all six documentation skills');
   for (const path of skillFiles) {
     const content = await readFile(resolve(root, path), 'utf8');
     const frontmatter = content.match(/^---\r?\n([\s\S]*?)\r?\n---(?:\r?\n|$)/);
@@ -177,6 +178,7 @@ export async function validate(root = defaultRoot, { submission = false, quiet =
     }
   }
   for (const path of files.filter(x => /agents\/openai\.yaml$/.test(x))) object(YAML.parse(await readFile(resolve(root, path), 'utf8'), { uniqueKeys: true }), path);
+  await validateHelpCenter(root, files);
   if (openai.onboardingSkill) assert.ok(files.includes(relative(root, safePath(root, openai.onboardingSkill)).split(sep).join('/')), 'Onboarding skill must be packaged');
   const aiMarket = await json(root, '.agents/plugins/marketplace.json');
   const claudeMarket = await json(root, '.claude-plugin/marketplace.json');
@@ -244,6 +246,44 @@ export async function validate(root = defaultRoot, { submission = false, quiet =
   }
   if (!quiet) console.log(`Validated Seed ${portable.version}: ${files.length} package files, ${(total / 1024).toFixed(1)} KiB. ${submission ? 'Submission fields and recorded readiness passed.' : 'Package validation does not imply marketplace approval or submission readiness.'}`);
   return { root, files, manifest: portable, bytes: total };
+}
+
+async function validateHelpCenter(root, files) {
+  const catalogPath = 'skills/seed-game-guide/references/catalog.md';
+  const parse = (content, path) => {
+    const match = content.match(/^---\n([\s\S]*?)\n---\n\n/);
+    assert.ok(match, `Missing documentation frontmatter: ${path}`);
+    return { metadata: YAML.parse(match[1], { uniqueKeys: true }), body: content.slice(match[0].length) };
+  };
+  const catalog = await readFile(resolve(root, catalogPath), 'utf8');
+  const { metadata: inventory } = parse(catalog, catalogPath);
+  const sources = new Set();
+  let articleCount = 0;
+  for (const path of files.filter(path => /^skills\/(?:seed-game-guide|seedling-care|seed-building|seed-economy|seed-society|seed-support)\/references\/.+\.md$/.test(path))) {
+    const content = await readFile(resolve(root, path), 'utf8');
+    const { metadata, body } = parse(content, path);
+    if (metadata.source_type === 'derived_index') continue;
+    text(metadata.title, `Article title: ${path}`);
+    if (metadata.source_url?.includes('/articles/')) text(metadata.description, `Article description: ${path}`);
+    assert.equal(metadata.language, 'en', `Article language: ${path}`);
+    assert.ok(!Number.isNaN(Date.parse(metadata.retrieved_at)), `Article retrieval date: ${path}`);
+    assert.match(metadata.source_url, /^https:\/\/klang-games\.eu\.theymes\.com\/hc\/en\/seed(?:\/(?:articles|categories)\/[a-z0-9-]+)?$/, `Canonical source URL: ${path}`);
+    assert.ok(!sources.has(metadata.source_url), `Duplicate help-center source: ${metadata.source_url}`);
+    sources.add(metadata.source_url);
+    if (metadata.source_url.includes('/articles/')) articleCount++;
+    assert.ok(body.startsWith(`# ${metadata.title}\n\n`), `Article heading: ${path}`);
+    const original = body.slice(`# ${metadata.title}\n\n`.length);
+    assert.equal(`sha256:${createHash('sha256').update(original).digest('hex')}`, metadata.content_hash, `Article content hash mismatch: ${path}`);
+    const link = `../../${path.slice('skills/'.length)}`;
+    assert.ok(catalog.includes(`](${link})`), `Source article missing from catalog: ${path}`);
+  }
+  assert.equal(sources.size, inventory.page_count, 'Help-center page coverage differs from catalog');
+  assert.equal(articleCount, inventory.article_count, 'Help-center article coverage differs from catalog');
+  for (const match of catalog.matchAll(/\[[^\]]*\]\(([^\s)]+)\)/g)) {
+    if (/^https?:/.test(match[1])) continue;
+    const target = resolve(root, dirname(catalogPath), match[1]);
+    assert.ok(files.includes(relative(root, target).split(sep).join('/')), `Catalog resource is not packaged: ${match[1]}`);
+  }
 }
 if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1])).href) {
   try { await validate(defaultRoot, { submission: process.argv.includes('--submission') }); }

@@ -173,6 +173,17 @@ test('referenced paths cannot escape the package root', () => {
   assert.throws(() => safePath(defaultRoot, './../private/icon.png'), /escapes/);
   assert.throws(() => safePath(defaultRoot, '/tmp/icon.png'), /prefixed/);
 });
+test('documentation inventory rejects an omitted source article', async t => {
+  const root = await fixture(t);
+  await rm(join(root, 'skills/seed-building/references/access-rights-317.md'));
+  await assert.rejects(validate(root, { quiet: true }), /coverage differs|not packaged/);
+});
+test('documentation content remains tied to its source digest', async t => {
+  const root = await fixture(t);
+  const path = join(root, 'skills/seed-building/references/access-rights-317.md');
+  await writeFile(path, `${await readFile(path, 'utf8')}\nA changed rule without refreshed provenance.\n`);
+  await assert.rejects(validate(root, { quiet: true }), /content hash mismatch/);
+});
 test('transport parser handles JSON and SSE while selecting the correct request', () => {
   const reply = { jsonrpc: '2.0', id: 2, result: { ok: true } };
   assert.deepEqual(parseRpcResponse(JSON.stringify(reply), 'application/json', 2), reply);
