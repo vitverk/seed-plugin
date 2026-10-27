@@ -1,0 +1,18 @@
+{
+  "name": "seed-live",
+  "version": "1.0.0",
+  "description": "The authenticated SEED companion through the Flaxa proxy, currently connected to SEED staging.",
+  "author": {
+    "name": "Vitverk",
+    "url": "https://vitverk.is/"
+  },
+  "homepage": "https://github.com/vitverk/seed-plugin",
+  "repository": "https://github.com/vitverk/seed-plugin",
+  "keywords": [
+    "seed",
+    "game",
+    "seedling"
+  ],
+  "displayName": "SEED",
+  "icon": "./assets/icon.png"
+}

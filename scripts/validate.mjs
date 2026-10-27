@@ -184,13 +184,18 @@ export async function validate(root = defaultRoot, { submission = false, quiet =
   const claudeMarket = await json(root, '.claude-plugin/marketplace.json');
   for (const [label, market] of [['OpenAI', aiMarket], ['Claude', claudeMarket]]) {
     assert.equal(market.name, 'vitverk-seed', `${label} marketplace name`);
-    assert.equal(market.plugins.length, 1, `${label} marketplace must contain one plugin`);
+    assert.deepEqual(market.plugins.map(plugin => plugin.name), ['seed', 'seed-live'], `${label} marketplace must preserve the demo and include the live proxy`);
     assert.equal(market.plugins[0].name, portable.name);
   }
   assert.equal(aiMarket.plugins[0].source.path, './');
   assert.equal(aiMarket.plugins[0].source.source, 'local');
   assert.ok(aiMarket.plugins[0].policy?.installation && aiMarket.plugins[0].policy?.authentication, 'OpenAI marketplace needs policies');
   assert.equal(claudeMarket.plugins[0].source, './');
+  assert.equal(aiMarket.plugins[1].source.path, './plugins/seed-live');
+  assert.equal(aiMarket.plugins[1].source.source, 'local');
+  assert.equal(aiMarket.plugins[1].policy?.authentication, 'ON_INSTALL');
+  assert.equal(claudeMarket.plugins[1].source, './plugins/seed-live');
+  await validateLivePackage(root);
   const review = openai.review;
   if (review?.test_cases) {
     const cases = review.test_cases;
@@ -246,6 +251,57 @@ export async function validate(root = defaultRoot, { submission = false, quiet =
   }
   if (!quiet) console.log(`Validated Seed Demo ${portable.version}: ${files.length} package files, ${(total / 1024).toFixed(1)} KiB. ${submission ? 'Submission fields and recorded readiness passed.' : 'Package validation does not imply marketplace approval or submission readiness.'}`);
   return { root, files, manifest: portable, bytes: total };
+}
+
+export async function validateLivePackage(root = defaultRoot) {
+  const liveRoot = resolve(root, 'plugins/seed-live');
+  const files = await walk(liveRoot);
+  const portable = await json(liveRoot, 'plugin.json');
+  const codex = await json(liveRoot, '.codex-plugin/plugin.json');
+  const claude = await json(liveRoot, '.claude-plugin/plugin.json');
+  const mcp = await json(liveRoot, 'mcp.json');
+  const legacy = await json(liveRoot, '.mcp.json');
+  const ajv = new Ajv2020({ allErrors: true, strict: true });
+  const checkPlugin = ajv.compile(await json(root, 'schemas/plugin.schema.json'));
+  assert.ok(checkPlugin(portable), `Live manifest schema: ${ajv.errorsText(checkPlugin.errors)}`);
+  for (const manifest of [portable, codex, claude]) {
+    noAppBindings(manifest);
+    assert.equal(manifest.name, 'seed-live');
+    assert.equal(manifest.version, portable.version, 'Live package version drift');
+  }
+  assert.match(portable.version, /^\d+\.\d+\.\d+$/);
+  const ui = portable.extensions['com.openai'].interface;
+  assert.equal(ui.displayName, 'SEED');
+  assert.ok(ui.shortDescription.length <= 30);
+  assert.deepEqual(codex.interface, ui);
+  assert.equal(claude.displayName, 'SEED');
+  assert.equal(codex.mcpServers, './.mcp.json');
+  assert.ok(!codex.skills && !files.some(path => path.startsWith('skills/')), 'Live package must not inherit guest simulation skills');
+  for (const key of ['logo', 'composerIcon']) {
+    assert.ok(files.includes(relative(liveRoot, safePath(liveRoot, ui[key])).split(sep).join('/')), `Live icon missing: ${key}`);
+  }
+  assert.deepEqual(Object.keys(mcp.mcpServers), ['seed_live']);
+  assert.deepEqual(Object.keys(legacy.mcpServers), ['seed_live']);
+  const server = mcp.mcpServers.seed_live;
+  assert.equal(server.url, 'https://mcp.flaxa.app/live/mcp', 'Live package must use the proxy canonical URL');
+  assert.deepEqual(legacy.mcpServers.seed_live, { type: 'http', url: server.url });
+  // Agent Plugins core schema excludes vendor extensions. Check the transport
+  // against the core schema and validate the documented OpenAI auth separately.
+  const coreMcp = structuredClone(mcp);
+  delete coreMcp.mcpServers.seed_live.extensions;
+  const checkMcp = ajv.compile(await json(root, 'schemas/mcp.schema.json'));
+  assert.ok(checkMcp(coreMcp), `Live MCP schema: ${ajv.errorsText(checkMcp.errors)}`);
+  assert.equal(server.type, 'streamable-http');
+  assert.deepEqual(server.extensions, { 'com.openai': { auth: {
+    type: 'oauth', client: { mode: 'dcr' }, resource: server.url,
+    baseScopes: ['seed:profile:read', 'seed:character-information:read', 'seed:societies:read', 'seed:wallet:read', 'seed:staticdata:read', 'seed:developer', 'offline_access'],
+  } } });
+  for (const path of files) {
+    const data = await readFile(resolve(liveRoot, path));
+    assert.ok(data.length <= 5 * 1024 * 1024);
+    if (!/\.(?:png|jpe?g|webp|gif|ico)$/i.test(path)) scanPublicText(data.toString('utf8'), path);
+  }
+  return { root: liveRoot, files, manifest: portable };
 }
 
 export async function validateDocumentation(root, files) {

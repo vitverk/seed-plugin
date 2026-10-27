@@ -1,6 +1,6 @@
 {
   "name": "seed",
-  "version": "1.6.2",
+  "version": "1.6.3",
   "description": "A temporary Seedling simulation with activities, resources, goals, and a game calendar.",
   "author": {
     "name": "Vitverk",

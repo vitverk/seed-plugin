@@ -1,4 +1,15 @@
-# SEED Demo plugin
+# SEED plugins
+
+This marketplace includes two separate plugins:
+
+| Install | Connection | Sign-in |
+| --- | --- | --- |
+| **SEED** (`seed-live`) | `https://mcp.flaxa.app/live/mcp` — real SEED staging account | OAuth; game license required |
+| **SEED Demo** (`seed`) | `https://mcp.flaxa.app/demo/mcp` — temporary mock world | None |
+
+For your first Codex setup, follow the [colleague quickstart](docs/colleague-quickstart.md). Existing demo installs keep their `seed` identity. The direct upstream diagnostic connection is separate from both packages.
+
+The rest of this README describes the **SEED Demo** package and its submission materials. The live plugin has its own [README](plugins/seed-live/README.md).
 
 SEED Demo is a temporary Seedling companion simulation with an interactive calendar, activities, resources, needs, and ordered goals. Open a populated guest, plan its day, and inspect the results of simulated work. It uses an anonymous hosted MCP server; you do not need a SEED account, API key, or local server.
 
@@ -37,7 +48,7 @@ In Claude Code, check `/mcp` after installation. Use a recent CLI: the additiona
 codex plugin marketplace add vitverk/seed-plugin
 ```
 
-Use a supported desktop host's Plugins Directory to select **SEED Demo by Vitverk** and install SEED Demo. Repository marketplace availability varies by client. Public ChatGPT/Codex distribution requires the OpenAI submission flow; see the [OpenAI publishing guide](https://github.com/vitverk/seed-plugin/blob/main/docs/openai-publishing.md).
+Use a supported desktop host's Plugins Directory to select **SEED by Vitverk** and install SEED or SEED Demo. Repository marketplace availability varies by client. Public ChatGPT/Codex distribution requires the OpenAI submission flow; see the [OpenAI publishing guide](https://github.com/vitverk/seed-plugin/blob/main/docs/openai-publishing.md).
 
 ## Try it
 
@@ -75,7 +86,7 @@ npm run check:submission
 | `skills/` | Two guest workflows and one game guide with topic resources |
 | `submission/` | Readiness, review evidence plan, and demo walkthrough |
 
-The ZIP contains one plugin and excludes marketplace catalogs, source deployment files, private app bindings, credentials, and repository history. This package connects to the existing hosted app; it does not deploy the service or replace its private development installation. Public package version **1.6.1**, SEED Demo server runtime **0.13.2**, and App-backed plugin version **1.7.2** are separate version lines. See [documentation resources](docs/help-center.md) for their shared three-skill layout.
+The ZIP contains one plugin and excludes marketplace catalogs, source deployment files, private app bindings, credentials, and repository history. This package connects to the existing hosted app; it does not deploy the service or replace its private development installation. Public demo package version **1.6.3**, SEED live package version **1.0.0**, SEED Demo server runtime **0.13.3**, and App-backed demo source version **1.7.3** are separate version lines. See [documentation resources](docs/help-center.md) for their shared three-skill layout.
 
 See [release maintenance](https://github.com/vitverk/seed-plugin/blob/main/docs/releasing.md) and [platform support](https://github.com/vitverk/seed-plugin/blob/main/docs/platform-support.md). Use [GitHub Issues](https://github.com/vitverk/seed-plugin/issues) for package support.
 

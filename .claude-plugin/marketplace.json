@@ -9,7 +9,12 @@
       "name": "seed",
       "source": "./",
       "description": "SEED Demo: a temporary Seedling simulation with activities, resources, goals, and a game calendar."
+    },
+    {
+      "name": "seed-live",
+      "source": "./plugins/seed-live",
+      "description": "The authenticated SEED companion through the Flaxa proxy, currently connected to SEED staging."
     }
   ],
-  "description": "The SEED Demo guest companion plugin from Vitverk."
+  "description": "SEED and SEED Demo companions from Vitverk."
 }

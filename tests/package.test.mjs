@@ -80,6 +80,24 @@ test('version drift across clients fails validation', async t => {
   await alter(root, '.claude-plugin/plugin.json', data => { data.version = '99.0.0'; });
   await assert.rejects(validate(root, { quiet: true }), /version drift/);
 });
+test('marketplace live connection cannot silently point at the guest or direct upstream', async t => {
+  const root = await fixture(t);
+  const path = 'plugins/seed-live/mcp.json';
+  const original = await readFile(join(root, path), 'utf8');
+  for (const url of ['https://mcp.flaxa.app/demo/mcp', 'https://api.seed-universe.com/seed-api/staging-mcp-dev/mcp']) {
+    await alter(root, path, data => { data.mcpServers.seed_live.url = url; });
+    await assert.rejects(validate(root, { quiet: true }), /proxy canonical URL/);
+    await writeFile(join(root, path), original);
+  }
+});
+test('marketplace keeps both installed identities and self-contained live assets', async t => {
+  const root = await fixture(t);
+  await alter(root, '.agents/plugins/marketplace.json', data => { data.plugins.pop(); });
+  await assert.rejects(validate(root, { quiet: true }), /preserve the demo/);
+  const live = JSON.parse(await readFile(join(root, 'plugins/seed-live/plugin.json'), 'utf8'));
+  assert.equal(live.extensions['com.openai'].interface.displayName, 'SEED');
+  assert.ok((await readFile(join(root, 'plugins/seed-live/assets/icon.png'))).length > 0);
+});
 test('lockfile root versions stay aligned with the released package', async t => {
   const root = await fixture(t);
   const original = await readFile(join(root, 'package-lock.json'), 'utf8');
