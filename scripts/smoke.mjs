@@ -35,7 +35,7 @@ let serverInfo;
 try {
   const health = await (await request(new URL('/health', endpoint))).json();
   assert.equal(health.mode, 'guest');
-  assert.equal(health.version, '0.14.2', 'This package requires the SEED Demo runtime');
+  assert.equal(health.version, '0.14.3', 'This package requires the SEED Demo runtime');
   assert.equal(health.service, 'SEED Demo');
   assert.equal(health.mcp, endpoint);
   for (const key of ['saved', 'authentication']) assert.equal(health[key], false, `health.${key}`);
