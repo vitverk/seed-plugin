@@ -1,6 +1,6 @@
 # SEED documentation resources
 
-Public plugin **1.5.0** packages **121 source documents** in two collections. The hosted search interface requires runtime **0.12.0**. The separate App-backed plugin uses version **1.6.0**; these version lines do not change the public package's direct MCP connection.
+Public plugin **1.6.0** packages **121 source documents** in two collections. The hosted search interface requires runtime **0.13.0**. The separate App-backed plugin uses version **1.7.0**; these version lines do not change the public package's direct MCP connection.
 
 | Collection | Contents | Provenance |
 | --- | --- | --- |
@@ -11,9 +11,9 @@ The repository owner confirmed full-text redistribution authorization on 27 Octo
 
 ## Organization
 
-Six topic skills organize the help center: `seed-game-guide`, `seedling-care`, `seed-building`, `seed-economy`, `seed-society` and `seed-support`. Their [source catalog](../skills/seed-game-guide/references/catalog.md) links all 81 help-center pages. The `seed-reference-library` skill provides an [index of all 40 imported documents](../skills/seed-reference-library/references/index.md), retaining their manual, concept, API, project and collection-index classifications.
+[Seed Game Guide](../skills/seed-game-guide/SKILL.md) is the single documentation skill. Its `resources/` folder contains topic indexes for getting started, care, building, economy, society, support and supplemental references. The [complete catalog](../skills/seed-game-guide/resources/catalog.md) links all 121 source documents. The [supplemental index](../skills/seed-game-guide/resources/supplemental/index.md) separates manual, developer concept, local API, project and collection-index documents and links both sides of known conflicts.
 
-The companion and calendar skills remain the two action workflows for the independent guest simulator. The resulting package has **nine skills and 139 Markdown files**: nine `SKILL.md` instructions, 121 source references, eight generated navigation indexes and the existing guest calendar reference. The two imported project documents, including the source `CLAUDE.md`, are inert references inside the library. They do not become repository instructions or authorize tools described in their contents.
+Companion and calendar remain the two guest action workflows. The package has **three skills and 133 Markdown files**: three `SKILL.md` instructions, 121 sources, eight generated navigation indexes and the guest calendar reference. Imported project documents are reference text, not repository instructions or permission to execute their commands. Source bodies and metadata are unchanged by the move; search and resource manifests advertise `skill://seed-game-guide/resources/...` URIs. Refresh resource discovery after updating.
 
 ## Consistent metadata
 
@@ -40,9 +40,9 @@ Use `search_seed_docs({query, limit?, category?, sourceCollection?, sourceType?,
 {"query":"Memoria","sourceCollection":"seed-agent-play-pr34377","sourceType":"in_game_manual"}
 ```
 
-Then call `read_seed_doc({uri, offset?, limit?})` with an exact returned URI. Read defaults to 12,000 UTF-16 code units and permits up to 24,000; continue using `nextOffset` until null when the entire document is needed. Resources return full Markdown at the same `skill://<skill-name>/<path>` URI. Read `seed://docs/index` to discover collections and topics. The MCP Skills extension exposes all nine skills and complete file manifests with byte sizes and digests; individual documents are not additional tools.
+Then call `read_seed_doc({uri, offset?, limit?})` with an exact returned URI. Read defaults to 12,000 UTF-16 code units and permits up to 24,000; continue using `nextOffset` until null when the entire document is needed. Resources return full Markdown at the same `skill://<skill-name>/<path>` URI. Read `seed://docs/index` to discover collections and topics. The MCP Skills extension exposes all three skills and complete file manifests with byte sizes and digests; individual documents are not additional tools.
 
-Connection manifests continue to target the existing anonymous endpoint. Resources are registered by the server, so `mcp.json` has no invented `resources` property. Packaged references can also be read offline. The release smoke check expects 15 tools and nine skills, tests an original help-center article and imported Memoria guidance, and checks null-URL citations and symmetric conflicts. It is a live check, separate from package validation.
+Connection manifests continue to target the existing anonymous endpoint. Resources are registered by the server, so `mcp.json` has no invented `resources` property. Packaged references can also be read offline. The release smoke check expects 15 tools and three skills, tests an original help-center article and imported Memoria guidance, and checks null-URL citations and symmetric conflicts. It is a live check, separate from package validation.
 
 References explain their own source systems. They do not establish guest state, account access or simulator capabilities. In particular, imported local API workflows describe another tool surface and may use different units or command contracts. Use the guest's current capability tool and observed state for its executable behavior. Current game behavior, prices, policies and server availability may require a fresh source check.
 

@@ -160,7 +160,7 @@ export async function validate(root = defaultRoot, { submission = false, quiet =
   assert.ok(!legacy.mcpServers.seed.headers && !mcp.mcpServers.seed.headers, 'Anonymous endpoint must not include credential headers');
   assert.equal(codex.mcpServers, './.mcp.json');
   const skillFiles = files.filter(x => /^skills\/[^/]+\/SKILL\.md$/.test(x));
-  assert.deepEqual(skillFiles.map(path => path.split('/')[1]).sort(), ['manage-calendar', 'seed-building', 'seed-economy', 'seed-game-guide', 'seed-reference-library', 'seed-society', 'seed-support', 'seedling-care', 'seedling-companion'], 'Package both guest skills, six help-center skills and the supplemental reference library');
+  assert.deepEqual(skillFiles.map(path => path.split('/')[1]).sort(), ['manage-calendar', 'seed-game-guide', 'seedling-companion'], 'Package both guest skills and one game guide');
   for (const path of skillFiles) {
     const content = await readFile(resolve(root, path), 'utf8');
     const frontmatter = content.match(/^---\r?\n([\s\S]*?)\r?\n---(?:\r?\n|$)/);
@@ -253,8 +253,8 @@ export async function validateDocumentation(root, files) {
   const inventory = await json(root, 'sources/documentation-inventory.json');
   assert.equal(inventory.schemaVersion, 1, 'Unsupported documentation inventory version');
   assert.ok(Array.isArray(inventory.documents) && inventory.documents.length > 0, 'Documentation inventory must enumerate source files');
-  const referencePaths = files.filter(path => /^skills\/[^/]+\/references\/.+\.md$/.test(path));
-  assert.ok(files.filter(path => path.startsWith('skills/')).every(path => /^skills\/[^/]+\/(?:SKILL\.md|references\/.+\.md)$/.test(path)), 'Skills may package only Markdown instructions and references; no archive code or configuration');
+  const referencePaths = files.filter(path => /^skills\/[^/]+\/(?:references|resources)\/.+\.md$/.test(path));
+  assert.ok(files.filter(path => path.startsWith('skills/')).every(path => /^skills\/[^/]+\/(?:SKILL\.md|(?:references|resources)\/.+\.md)$/.test(path)), 'Skills may package only Markdown instructions and references; no archive code or configuration');
   const documents = new Map();
   const byPath = new Map();
   const linkedResources = new Map();
@@ -296,7 +296,7 @@ export async function validateDocumentation(root, files) {
           : ['CLAUDE.md', 'DECISIONS.md'].includes(sourcePath) ? ['project_reference', 'project'] : null;
         assert.ok(kind && sourcePath.endsWith('.md'), `Only reviewed archive Markdown is allowed: ${path}`);
         assert.deepEqual([metadata.source_type, metadata.document_type], kind, `Archive provenance kind: ${path}`);
-        assert.ok(path.startsWith('skills/seed-reference-library/references/'), `Archive documents must stay in their reference skill: ${path}`);
+        assert.ok(path.startsWith('skills/seed-game-guide/resources/supplemental/'), `Archive documents must stay in the supplemental resource folder: ${path}`);
       } else assert.fail(`Unreviewed source collection: ${metadata.source_collection}`);
     }
     // Generated navigation has package-local links. Imported source prose is
@@ -334,8 +334,8 @@ export async function validateDocumentation(root, files) {
   for (const path of actualSources) {
     const metadata = byPath.get(path).metadata;
     const indexPath = metadata.source_collection === 'seed-help-center'
-      ? 'skills/seed-game-guide/references/catalog.md'
-      : 'skills/seed-reference-library/references/index.md';
+      ? 'skills/seed-game-guide/resources/catalog.md'
+      : 'skills/seed-game-guide/resources/supplemental/index.md';
     assert.ok(linkedResources.get(indexPath)?.has(path), `Source document missing from collection catalog: ${path}`);
   }
   for (const { metadata } of documents.values()) {
