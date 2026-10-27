@@ -35,7 +35,7 @@ let serverInfo;
 try {
   const health = await (await request(new URL('/health', endpoint))).json();
   assert.equal(health.mode, 'guest');
-  assert.equal(health.version, '0.12.0', 'This package requires the unified documentation runtime');
+  assert.equal(health.version, '0.13.0', 'This package requires the consolidated game-guide runtime');
   for (const key of ['saved', 'authentication']) assert.equal(health[key], false, `health.${key}`);
   assert.equal(typeof health.backgroundEvents, 'boolean');
   if (health.backgroundEvents) assert.equal(health.backgroundSimulation, false, 'Synthetic notifications cannot imply background game simulation.');
@@ -66,7 +66,7 @@ try {
   assert.equal(doc.text, article.contents[0].text);
   assert.equal(doc.sourceUrl, guide.sourceUrl);
   assert.equal(doc.nextOffset, null);
-  check('Nine documentation/gameplay skills and sourced search/read tools without guest state');
+  check('Three skills and sourced game-guide search/read tools without guest state');
   const imported = await tool('search_seed_docs', { query: 'Memoria', sourceCollection: 'seed-agent-play-pr34377', sourceType: 'in_game_manual', limit: 10 });
   assert.ok(imported.results.length > 0);
   assert.ok(imported.results.every(result => result.sourceCollection === 'seed-agent-play-pr34377' && result.sourceType === 'in_game_manual'));
