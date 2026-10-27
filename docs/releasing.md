@@ -1,6 +1,6 @@
 # Release maintenance
 
-The root `plugin.json` is the public package identity. Keep its name and version synchronized with `.codex-plugin/plugin.json`, `.claude-plugin/plugin.json`, and `package.json`. Both MCP configurations must point at the same hosted endpoint; `streamable-http` is the portable transport spelling and `http` is Claude's spelling. Marketplace entries resolve the plugin at the repository root and do not override its version.
+The root `plugin.json` is the public package identity. Keep its name and version synchronized with `.codex-plugin/plugin.json`, `.claude-plugin/plugin.json`, `package.json`, and both root version fields in `package-lock.json`. Both MCP configurations must point at the same hosted endpoint; `streamable-http` is the portable transport spelling and `http` is Claude's spelling. Marketplace entries resolve the plugin at the repository root and do not override its version.
 
 When publisher information is supplied, update each platform's actual manifest. OpenAI's interface is also duplicated in the Codex compatibility manifest; a root portable field does not populate Claude's listing automatically.
 
@@ -23,3 +23,5 @@ The submission gate checks both platforms independently and requires matching pr
 7. After readiness, tag the reviewed commit and publish its verified ZIP/checksum as a GitHub release if desired. Submit or update each directory listing through its own portal; Git pushes and tags do not automatically confer directory approval.
 
 The ZIP is generated from an explicit file allowlist and is not committed. Repository marketplace catalogs are excluded from plugin uploads. Never use `zip -r .` or upload the entire repository as a plugin. No lifecycle hooks, stdio wrappers, local servers, or secret headers are required.
+
+The skill allowlist in `scripts/validate.mjs` includes only the two guest workflows and their guest calendar reference. Review any future additions explicitly. The package guard rejects archived native-game research and app-control instructions inside those files as well as unexpected supporting files. Host distribution and acceptance-testing documentation remain in `docs/`.

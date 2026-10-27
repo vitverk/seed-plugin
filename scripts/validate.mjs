@@ -9,6 +9,11 @@ export const defaultRoot = fileURLToPath(new URL('../', import.meta.url));
 export const endpoint = 'https://mcp.flaxa.app/mcp';
 const schemaBase = 'https://agent-plugins.org/schemas/1.0.0/';
 const ignored = new Set(['.git', 'node_modules', 'dist']);
+const guestSkillFiles = [
+  'skills/manage-calendar/SKILL.md',
+  'skills/manage-calendar/references/seed-calendar.md',
+  'skills/seedling-companion/SKILL.md',
+];
 const categories = ['Business & Operations', 'Communication', 'Creativity', 'Data & Analytics', 'Developer Tools', 'Education & Research', 'Entertainment', 'Finance', 'Healthcare', 'Other', 'Productivity', 'Scientific Research', 'Security', 'Travel'];
 export async function exists(path) { try { await access(path); return true; } catch { return false; } }
 export async function json(root, path) { return JSON.parse(await readFile(resolve(root, path), 'utf8')); }
@@ -49,6 +54,13 @@ function scanPublicText(content, path) {
   assert.ok(!/-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----|(?:gh[pousr]_[A-Za-z0-9]{30,}|github_pat_[A-Za-z0-9_]{40,}|sk-proj-[A-Za-z0-9_-]{30,})/.test(content), `Potential credential in ${path}`);
   assert.ok(!/plugin_asdk_app_[a-f0-9]{20,}|asdk_app_[a-f0-9]{20,}/.test(content), `Private app binding identifier in package: ${path}`);
 }
+async function validateGuestSkills(root, files) {
+  assert.deepEqual(files.filter(path => path.startsWith('skills/')), guestSkillFiles, 'Packaged skills must contain only the guest workflows and calendar reference');
+  for (const path of guestSkillFiles) {
+    const content = await readFile(resolve(root, path), 'utf8');
+    assert.ok(!/com\.klang\.seed|cua\.getApp|\bmacOS\b|computer[- ]use|desktop[- ]extension|native[- ]game research|klang-games\.eu\.theymes\.com/i.test(content), `Native app control or archived research must not be packaged in guest skills: ${path}`);
+  }
+}
 export async function packageFiles(root = defaultRoot) {
   const required = ['plugin.json', 'mcp.json', '.mcp.json', '.codex-plugin/plugin.json', '.claude-plugin/plugin.json', 'README.md', 'SUPPORT.md'];
   const selected = [...required];
@@ -65,6 +77,7 @@ export async function validate(root = defaultRoot, { submission = false, quiet =
   const all = await walk(root);
   assert.ok(!all.includes('.app.json'), 'Public source must not contain .app.json');
   const files = await packageFiles(root);
+  await validateGuestSkills(root, files);
   assert.ok(files.length <= 512, 'Plugin must contain at most 512 files');
   let total = 0;
   for (const path of files) {
@@ -103,6 +116,9 @@ export async function validate(root = defaultRoot, { submission = false, quiet =
     if (manifest.repository) https(manifest.repository, `${label}.repository`);
   }
   assert.equal(npm.version, portable.version, 'package.json version drift');
+  const lock = await json(root, 'package-lock.json');
+  assert.equal(lock.version, portable.version, 'package-lock.json version drift');
+  assert.equal(lock.packages?.['']?.version, portable.version, 'package-lock.json root package version drift');
   for (const key of ['skills', 'mcpServers', 'apps', 'interface']) assert.ok(!(key in portable), `Portable manifest cannot declare root ${key}`);
   const openai = portable.extensions?.['com.openai'];
   object(openai, 'extensions.com.openai');

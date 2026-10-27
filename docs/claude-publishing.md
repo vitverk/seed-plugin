@@ -6,7 +6,7 @@ This repository prepares Seed for distribution. Publishing the GitHub repository
 
 ## Package and marketplace
 
-The plugin lives at this repository's root. Its identity is `seed`, version `1.3.1`. Claude reads `.claude-plugin/plugin.json`, the remote server in `.mcp.json`, and the root `skills/` directory. The MCP endpoint is `https://mcp.flaxa.app/mcp`; its Claude transport is `http`. No API key, account credential, local server, or MCPB bundle is required for this anonymous guest simulation. See [plugin structure and testing](https://claude.com/docs/plugins/build).
+The plugin lives at this repository's root. Its identity is `seed`, version `1.3.3`. Claude reads `.claude-plugin/plugin.json`, the remote server in `.mcp.json`, and the root `skills/` directory. The MCP endpoint is `https://mcp.flaxa.app/mcp`; its Claude transport is `http`. No API key, account credential, local server, or MCPB bundle is required for this anonymous guest simulation. See [plugin structure and testing](https://claude.com/docs/plugins/build).
 
 The repository's `.claude-plugin/marketplace.json` declares marketplace `vitverk-seed`, with plugin source `./`. Users can install the repository catalog with:
 

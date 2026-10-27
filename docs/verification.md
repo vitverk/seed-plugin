@@ -1,6 +1,18 @@
 # Package verification
 
-## Current package 1.3.1
+## Current package 1.3.3
+
+Checked on **2026-10-27**. The calendar reference now covers only the guest simulation, with its state, recurrence and fictional-activity boundaries. Skills no longer route requests to native-game research. Package identity, branding, MCP connections and host distribution support are unchanged.
+
+| Check | Result | Scope |
+| --- | --- | --- |
+| `npm run check` | Passed; fourteen regression tests | Existing package checks plus guest skill inventory/content and lockfile version guards |
+| `npm run package` | Passed; 13 files | Deterministic `seed-plugin-1.3.3.zip`, verified inventory and SHA-256 |
+| `npm run smoke` | Passed; ten live checks against runtime 0.10.0 | Direct anonymous MCP and detached synthetic snapshots; no browser channel used |
+| `npm run check:submission` | Expected failure | Existing license/video, portal identity/contact, screenshots and host review evidence remain unfinished |
+| Installed-host review | Not rerun | No new ChatGPT/Claude UI or prompt-routing acceptance claim |
+
+## Earlier package 1.3.1
 
 Metadata and package checks observed on **2026-10-26**. This update selects **Vitverk** as publisher, preserves the owner's **Iceland** audience and **no payments or purchases** decisions, and configures the new Seed-specific policy URLs in both platform manifests and the OpenAI compatibility manifest:
 
@@ -23,7 +35,7 @@ The owner will provide the demo recording later. The actual video URL remains ab
 
 ## Earlier package 1.3.0 and runtime 0.9.0
 
-The following evidence was observed on **2026-10-26** for Seed package **1.3.0** and server runtime **0.9.0**. Its missing-policy warning describes that earlier package, not the current 1.3.1 fields.
+The following evidence was observed on **2026-10-26** for Seed package **1.3.0** and server runtime **0.9.0**. Its missing-policy warning describes that earlier package, before the 1.3.1 metadata update.
 
 | Check | Result | Scope |
 | --- | --- | --- |
