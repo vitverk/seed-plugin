@@ -55,8 +55,8 @@ try {
   }
   check('Fifteen expected tools, titles, boolean annotations, and anonymous security metadata');
   const skills = await rpc('skills/list');
-  assert.equal(skills.skills.length, 9);
-  assert.ok(skills.skills.some(skill => skill.frontmatter.name === 'seed-reference-library'));
+  assert.equal(skills.skills.length, 3);
+  assert.deepEqual(skills.skills.map(skill => skill.frontmatter.name).sort(), ['manage-calendar', 'seed-game-guide', 'seedling-companion']);
   const docs = await tool('search_seed_docs', { query: 'access rights', sourceCollection: 'seed-help-center', limit: 1 });
   const guide = docs.results[0];
   assert.equal(guide.title, 'Access Rights');

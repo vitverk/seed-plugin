@@ -43,7 +43,7 @@ Use a supported desktop host's Plugins Directory to select **Seed by Vitverk** a
 - “What can my Seedling do?”
 - “Schedule an hour of harvesting in my open Seed companion.”
 
-The nine bundled skills include the two guest workflows (`seedling-companion` and `manage-calendar`), six help-center workflows, and `seed-reference-library`. The documentation contains 121 source files: the 73 English help-center articles, seven category pages and home page, plus 40 supplied manual, developer-concept, local API and project documents. All 130 reference files use one metadata schema; together with nine skill instructions, the package contains 139 Markdown files. Each reference records provenance and a body hash. Imported archive material remains labeled unverified, and conflicting sources are linked without choosing which is current. Guest workflows distinguish edits acknowledged by the current visible guest from detached snapshot edits; a read question reuses current state and never resets the demo.
+The three bundled skills are `seed-game-guide`, `seedling-companion` and `manage-calendar`. The [game guide](skills/seed-game-guide/SKILL.md) links to topic indexes under `resources/` for getting started, care, building, economy, society, support and supplemental references. All 121 source documents are retained: 81 help-center pages plus 40 supplied manual, developer, local API and project documents. The package contains 133 Markdown files: three skill instructions, 121 sources, eight navigation indexes and one guest calendar reference. Source metadata, body hashes, citations and conflict links remain intact. The two guest workflows handle current simulation state and actions.
 
 Use “How does farming work in the real SEED game?” or “What does the supplied manual say about Memoria?” to try documentation discovery. The hosted documentation interface uses `search_seed_docs`, `read_seed_doc`, MCP resources, and the MCP Skills extension to load relevant guides on demand. See [documentation resources](docs/help-center.md) for the catalog, source refresh process, and verification boundaries.
 
@@ -70,7 +70,7 @@ npm run check:submission
 | `.mcp.json` | Claude/legacy HTTP connection configuration |
 | `.agents/plugins/marketplace.json` | OpenAI repository marketplace |
 | `.claude-plugin/marketplace.json` | Claude repository marketplace |
-| `skills/` | Guest workflows, help-center workflows and the supplemental reference library |
+| `skills/` | Two guest workflows and one game guide with topic resources |
 | `submission/` | Readiness, review evidence plan, and demo walkthrough |
 
 The ZIP contains one plugin and excludes marketplace catalogs, source deployment files, private app bindings, credentials, and repository history. This package connects to the existing hosted app; it does not deploy the service or replace its private development installation. Package version **1.5.0** and unified-documentation server runtime **0.12.0** are separate version lines.

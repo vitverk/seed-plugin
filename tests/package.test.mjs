@@ -177,12 +177,12 @@ test('referenced paths cannot escape the package root', () => {
 });
 test('documentation inventory rejects an omitted source article', async t => {
   const root = await fixture(t);
-  await rm(join(root, 'skills/seed-building/references/access-rights-317.md'));
+  await rm(join(root, 'skills/seed-game-guide/resources/building/access-rights-317.md'));
   await assert.rejects(validate(root, { quiet: true }), /coverage differs|not packaged/);
 });
 test('documentation content remains tied to its source digest', async t => {
   const root = await fixture(t);
-  const path = join(root, 'skills/seed-building/references/access-rights-317.md');
+  const path = join(root, 'skills/seed-game-guide/resources/building/access-rights-317.md');
   await writeFile(path, `${await readFile(path, 'utf8')}\nA changed rule without refreshed provenance.\n`);
   await assert.rejects(validate(root, { quiet: true }), /content hash mismatch/);
 });
@@ -207,7 +207,7 @@ async function alterDocument(root, path, modify, { mirrorInventory = false } = {
     entry.metadata = metadata;
   });
 }
-const importedManualPath = 'skills/seed-reference-library/references/library/manual-farming-and-crops.md';
+const importedManualPath = 'skills/seed-game-guide/resources/supplemental/library/manual-farming-and-crops.md';
 test('all references use the shared schema and canonical body hashing', async () => {
   const schema = JSON.parse(await readFile(join(defaultRoot, 'schemas/document-metadata.schema.json'), 'utf8'));
   const check = createMetadataValidator(schema);
@@ -260,12 +260,12 @@ test('known source conflicts remain resolvable and symmetric', async t => {
   const root = await fixture(t);
   await alterDocument(root, importedManualPath, metadata => { metadata.conflicts_with = []; }, { mirrorInventory: true });
   await assert.rejects(validate(root, { quiet: true }), /conflict must be symmetric/);
-  await alterDocument(root, 'skills/seed-building/references/farming-310.md', metadata => { metadata.conflicts_with = []; }, { mirrorInventory: true });
+  await alterDocument(root, 'skills/seed-game-guide/resources/building/farming-310.md', metadata => { metadata.conflicts_with = []; }, { mirrorInventory: true });
   await assert.rejects(validate(root, { quiet: true }), /Known source conflict must remain recorded/);
 });
 test('archive code cannot enter the packaged reference skill', async t => {
   const root = await fixture(t);
-  await writeFile(join(root, 'skills/seed-reference-library/references/AgentPlayApi.cs'), '// Not part of the documentation corpus.\n');
+  await writeFile(join(root, 'skills/seed-game-guide/resources/supplemental/AgentPlayApi.cs'), '// Not part of the documentation corpus.\n');
   await assert.rejects(buildPackage(root, { quiet: true }), /no archive code or configuration/);
 });
 test('source paths stay relative and source conflicts cannot reference themselves', async t => {
