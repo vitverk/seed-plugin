@@ -1,14 +1,25 @@
 ---
+schema_version: 1
+id: seed-help-center:article:323
 title: Inbox, Outbox & Deliveries
-description: 'Inbox & Outbox Inbox: a building''s main input container. Seedlings
-  deposit harvested resources, crafted items, and delivered goods here; completed
-  production...'
-source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/inbox-outbox-and-deliveries-323
+description: 'Inbox & Outbox Inbox: a building''s main input container. Seedlings deposit harvested resources, crafted items, and delivered goods here; completed production...'
+document_type: article
+source_type: help_center
+source_collection: seed-help-center
 source_id: '323'
-category: Work & Economy
+source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/inbox-outbox-and-deliveries-323
+source_path: articles/inbox-outbox-and-deliveries-323.md
+source_version: null
 language: en
+category: Work & Economy
+topics:
+- inbox, outbox & deliveries
+- work & economy
 retrieved_at: '2026-10-27T14:26:25Z'
-content_hash: sha256:ee3e778177db5a128159faa0289c5e55e070db89e4d420a2fc348f3e2b558859
+imported_at: null
+verification_status: source_snapshot
+content_hash: sha256:a2ddf6d891254542ac27fae6d99166de7280697644977b73c5bd491062dca63a
+conflicts_with: []
 ---
 
 # Inbox, Outbox & Deliveries

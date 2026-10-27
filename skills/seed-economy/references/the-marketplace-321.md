@@ -1,13 +1,25 @@
 ---
+schema_version: 1
+id: seed-help-center:article:321
 title: The Marketplace
-description: 'The Marketplace Panel (Management Hub, right sidebar) gives a full overview
-  of all trade activity in your society. It has two modes: Sell Orders (Supply) sho...'
-source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/the-marketplace-321
+description: 'The Marketplace Panel (Management Hub, right sidebar) gives a full overview of all trade activity in your society. It has two modes: Sell Orders (Supply) sho...'
+document_type: article
+source_type: help_center
+source_collection: seed-help-center
 source_id: '321'
-category: Work & Economy
+source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/the-marketplace-321
+source_path: articles/the-marketplace-321.md
+source_version: null
 language: en
+category: Work & Economy
+topics:
+- the marketplace
+- work & economy
 retrieved_at: '2026-10-27T14:26:25Z'
-content_hash: sha256:d1026daab07a269da4b82ad5a9dc855d3efdd43603158a0725c0e609db678fb7
+imported_at: null
+verification_status: source_snapshot
+content_hash: sha256:2abcbaeda824d4ef5b998bf77daa832adaa78dc8e5a9130f53e48d98ac1a9063
+conflicts_with: []
 ---
 
 # The Marketplace

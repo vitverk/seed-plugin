@@ -1,14 +1,25 @@
 ---
+schema_version: 1
+id: seed-help-center:article:306
 title: Mood
-description: A Seedling's mood is influenced by need fulfillment and their current
-  environment. Check their Thoughts on the Seedling Card to understand it. Depressed
-  Seed...
-source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/mood-306
+description: A Seedling's mood is influenced by need fulfillment and their current environment. Check their Thoughts on the Seedling Card to understand it. Depressed Seed...
+document_type: article
+source_type: help_center
+source_collection: seed-help-center
 source_id: '306'
-category: Craing For Your Seedling
+source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/mood-306
+source_path: articles/mood-306.md
+source_version: null
 language: en
+category: Craing For Your Seedling
+topics:
+- mood
+- craing for your seedling
 retrieved_at: '2026-10-27T14:26:25Z'
-content_hash: sha256:42dd2c17d5dbe914530c0a6093c4dce997f018b61a3ac611f8afa9c91aa47add
+imported_at: null
+verification_status: source_snapshot
+content_hash: sha256:a8475b0e1b4ec457745d28176edcd551320a653755a6d9ed376b2a25259e2b45
+conflicts_with: []
 ---
 
 # Mood

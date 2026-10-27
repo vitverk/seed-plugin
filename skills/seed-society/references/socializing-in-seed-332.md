@@ -1,13 +1,25 @@
 ---
+schema_version: 1
+id: seed-help-center:article:332
 title: Socializing in SEED
-description: 'The easiest way to help your Seedling socialize is through Direct Control:
-  move your camera around, find another Seedling, click them and choose an activity,...'
-source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/socializing-in-seed-332
+description: 'The easiest way to help your Seedling socialize is through Direct Control: move your camera around, find another Seedling, click them and choose an activity,...'
+document_type: article
+source_type: help_center
+source_collection: seed-help-center
 source_id: '332'
-category: Community & Social
+source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/socializing-in-seed-332
+source_path: articles/socializing-in-seed-332.md
+source_version: null
 language: en
+category: Community & Social
+topics:
+- socializing in seed
+- community & social
 retrieved_at: '2026-10-27T14:26:25Z'
-content_hash: sha256:c10922f02a3dd8c156712ae1538e15a88e48769e500756c2c9634d3c72b4740b
+imported_at: null
+verification_status: source_snapshot
+content_hash: sha256:041453f307f41c1b83500993342a8eb0f12e7c11a6bd3b5f83a29cccbd6a308f
+conflicts_with: []
 ---
 
 # Socializing in SEED

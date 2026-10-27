@@ -1,14 +1,25 @@
 ---
+schema_version: 1
+id: seed-help-center:article:354
 title: Why does my game keep crashing?
-description: 'Fully drafted in the doc; system-requirements link to be wired once
-  live. Restart the game client. Verify your game files. On Steam: right-click SEED
-  → Prope...'
-source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/why-does-my-game-keep-crashing-354
+description: 'Fully drafted in the doc; system-requirements link to be wired once live. Restart the game client. Verify your game files. On Steam: right-click SEED → Prope...'
+document_type: article
+source_type: help_center
+source_collection: seed-help-center
 source_id: '354'
-category: Community & Support
+source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/why-does-my-game-keep-crashing-354
+source_path: articles/why-does-my-game-keep-crashing-354.md
+source_version: null
 language: en
+category: Community & Support
+topics:
+- why does my game keep crashing?
+- community & support
 retrieved_at: '2026-10-27T14:26:25Z'
-content_hash: sha256:f7cf49e2a3044a8320966070f90cfb75084531f8168eed783cfab20e45a54c15
+imported_at: null
+verification_status: source_snapshot
+content_hash: sha256:2a19cf68f9597732a257a8f6bdaa20ecf520c56f8ac7c606a297cd2627d4f1e9
+conflicts_with: []
 ---
 
 # Why does my game keep crashing?

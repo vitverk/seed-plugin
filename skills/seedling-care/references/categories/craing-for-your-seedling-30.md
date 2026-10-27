@@ -1,12 +1,24 @@
 ---
+schema_version: 1
+id: seed-help-center:category:30
 title: Craing For Your Seedling
-description: ''
-source_url: https://klang-games.eu.theymes.com/hc/en/seed/categories/craing-for-your-seedling-30
+description: Craing For Your Seedling
+document_type: navigation
+source_type: help_center
+source_collection: seed-help-center
 source_id: '30'
-category: Craing For Your Seedling
+source_url: https://klang-games.eu.theymes.com/hc/en/seed/categories/craing-for-your-seedling-30
+source_path: categories/craing-for-your-seedling-30.md
+source_version: null
 language: en
+category: Craing For Your Seedling
+topics:
+- craing for your seedling
 retrieved_at: '2026-10-27T14:26:25Z'
-content_hash: sha256:17878239bc267826e74e714275b2d07fb65976a07fbe112a4c8e5a65a06992bb
+imported_at: null
+verification_status: source_snapshot
+content_hash: sha256:1b79e195566785f14256d9a127ad02ef8164fe6419f3640777163c8223a952d1
+conflicts_with: []
 ---
 
 # Craing For Your Seedling

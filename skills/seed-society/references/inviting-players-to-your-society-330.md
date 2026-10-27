@@ -1,14 +1,25 @@
 ---
+schema_version: 1
+id: seed-help-center:article:330
 title: Inviting Players to Your Society
-description: 'There is no direct invite button in the game, but there are a few good
-  ways to bring players in: Found together: create a private lobby with a password
-  and s...'
-source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/inviting-players-to-your-society-330
+description: 'There is no direct invite button in the game, but there are a few good ways to bring players in: Found together: create a private lobby with a password and s...'
+document_type: article
+source_type: help_center
+source_collection: seed-help-center
 source_id: '330'
-category: Society & Governance
+source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/inviting-players-to-your-society-330
+source_path: articles/inviting-players-to-your-society-330.md
+source_version: null
 language: en
+category: Society & Governance
+topics:
+- inviting players to your society
+- society & governance
 retrieved_at: '2026-10-27T14:26:25Z'
-content_hash: sha256:17df6099eb0d6bfa2246a40a7ac31833891106b6df67f5b081bd1bb2b1ac2368
+imported_at: null
+verification_status: source_snapshot
+content_hash: sha256:3a662e51758df461dee4bb21e7728046735b6a643019b1cfbd61304ae277bf2a
+conflicts_with: []
 ---
 
 # Inviting Players to Your Society

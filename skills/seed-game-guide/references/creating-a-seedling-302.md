@@ -1,13 +1,25 @@
 ---
+schema_version: 1
+id: seed-help-center:article:302
 title: Creating a Seedling
-description: 'Here you will be given the choice to edit your Seedlings name, appearance,
-  personality and stats. PLEASE NOTE: ONCE A NAME HAS BEEN CHOSEN IT CANT BE CHANGED...'
-source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/creating-a-seedling-302
+description: 'Here you will be given the choice to edit your Seedlings name, appearance, personality and stats. PLEASE NOTE: ONCE A NAME HAS BEEN CHOSEN IT CANT BE CHANGED...'
+document_type: article
+source_type: help_center
+source_collection: seed-help-center
 source_id: '302'
-category: Beginner's Guide
+source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/creating-a-seedling-302
+source_path: articles/creating-a-seedling-302.md
+source_version: null
 language: en
+category: Beginner's Guide
+topics:
+- creating a seedling
+- beginner's guide
 retrieved_at: '2026-10-27T14:26:25Z'
-content_hash: sha256:da72b8c6aad0f2bec770dc898983b21670c297add386f1e69b917697c2e81648
+imported_at: null
+verification_status: source_snapshot
+content_hash: sha256:7ff9b803627b0fcb1d7b0c5d187ba1399b2451e98f84be7cc38a493fc5639607
+conflicts_with: []
 ---
 
 # Creating a Seedling

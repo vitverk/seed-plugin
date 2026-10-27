@@ -1,14 +1,25 @@
 ---
+schema_version: 1
+id: seed-help-center:article:300
 title: Society Selection & Creation
-description: Now comes your first big choice! Do you want to start your own society,
-  or join one that already exists? For most new Cultivators, I'd suggest joining one
-  of...
-source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/society-selection-and-creation-300
+description: Now comes your first big choice! Do you want to start your own society, or join one that already exists? For most new Cultivators, I'd suggest joining one of...
+document_type: article
+source_type: help_center
+source_collection: seed-help-center
 source_id: '300'
-category: Beginner's Guide
+source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/society-selection-and-creation-300
+source_path: articles/society-selection-and-creation-300.md
+source_version: null
 language: en
+category: Beginner's Guide
+topics:
+- society selection & creation
+- beginner's guide
 retrieved_at: '2026-10-27T14:26:25Z'
-content_hash: sha256:6be8d4370500d849e7f63a788d1a2fee209ee2f0adf3a7ab533c07a639acf3d3
+imported_at: null
+verification_status: source_snapshot
+content_hash: sha256:3c8299c56ba943ab4cae5a9952185755ac14ac04d93ccb031e132d34dd9fffc8
+conflicts_with: []
 ---
 
 # Society Selection & Creation

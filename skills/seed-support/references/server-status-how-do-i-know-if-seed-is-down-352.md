@@ -1,14 +1,25 @@
 ---
+schema_version: 1
+id: seed-help-center:article:352
 title: Server status / how do I know if SEED is down?
-description: If SEED won't load, it might be us, not you. Before troubleshooting,
-  check our Discord for service updates, we post maintenance windows and any outages
-  there...
-source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/server-status-how-do-i-know-if-seed-is-down-352
+description: If SEED won't load, it might be us, not you. Before troubleshooting, check our Discord for service updates, we post maintenance windows and any outages there...
+document_type: article
+source_type: help_center
+source_collection: seed-help-center
 source_id: '352'
-category: Community & Support
+source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/server-status-how-do-i-know-if-seed-is-down-352
+source_path: articles/server-status-how-do-i-know-if-seed-is-down-352.md
+source_version: null
 language: en
+category: Community & Support
+topics:
+- server status / how do i know if seed is down?
+- community & support
 retrieved_at: '2026-10-27T14:26:25Z'
-content_hash: sha256:b7d8055d3c8d75580b277bac6bf5d31484d9f9bdf9fc3d19dade4d8b00da8715
+imported_at: null
+verification_status: source_snapshot
+content_hash: sha256:30662f1b3eb468b6bdf3fdd7802adc0ae5ece3baf5df16a4d2ab7c022a650810
+conflicts_with: []
 ---
 
 # Server status / how do I know if SEED is down?

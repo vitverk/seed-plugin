@@ -1,13 +1,25 @@
 ---
+schema_version: 1
+id: seed-help-center:article:318
 title: Employment
-description: Finding a Job (Employee Side) Use the Jobs app on your Seedling's mobile
-  device to browse and apply for available jobs. Check the wage per hour, the working...
-source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/employment-318
+description: Finding a Job (Employee Side) Use the Jobs app on your Seedling's mobile device to browse and apply for available jobs. Check the wage per hour, the working...
+document_type: article
+source_type: help_center
+source_collection: seed-help-center
 source_id: '318'
-category: Work & Economy
+source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/employment-318
+source_path: articles/employment-318.md
+source_version: null
 language: en
+category: Work & Economy
+topics:
+- employment
+- work & economy
 retrieved_at: '2026-10-27T14:26:25Z'
-content_hash: sha256:ecaefb394f3b1cc32edb1b528e93754d984595f49a511e4cd2f661e627c566d7
+imported_at: null
+verification_status: source_snapshot
+content_hash: sha256:cd2044a41c1bcd1caf77c304b3582bc03f77cbf1ed2650ae2a5ecfa07f5654f5
+conflicts_with: []
 ---
 
 # Employment

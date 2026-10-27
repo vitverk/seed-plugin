@@ -1,13 +1,25 @@
 ---
+schema_version: 1
+id: seed-help-center:article:320
 title: Production Chains
-description: To optimize production, think through every step a Seedling must take
-  from raw material to finished product. You design the system and set up tasks; Seedling...
-source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/production-chains-320
+description: To optimize production, think through every step a Seedling must take from raw material to finished product. You design the system and set up tasks; Seedling...
+document_type: article
+source_type: help_center
+source_collection: seed-help-center
 source_id: '320'
-category: Work & Economy
+source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/production-chains-320
+source_path: articles/production-chains-320.md
+source_version: null
 language: en
+category: Work & Economy
+topics:
+- production chains
+- work & economy
 retrieved_at: '2026-10-27T14:26:25Z'
-content_hash: sha256:ec1a117e98ad157752f5a78bf3f188096530f97b23ce157c9d3b517b30d11302
+imported_at: null
+verification_status: source_snapshot
+content_hash: sha256:5e8709a6366479570eae5c2d9c321b87f6cf14a6176398652719746ce32b2875
+conflicts_with: []
 ---
 
 # Production Chains

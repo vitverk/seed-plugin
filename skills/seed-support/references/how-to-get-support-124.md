@@ -1,14 +1,25 @@
 ---
+schema_version: 1
+id: seed-help-center:article:124
 title: How to Get Support
-description: Need help with SEED? You have options! Whether you need a quick answer
-  about gameplay or help with a complex technical issue, there are three ways to get
-  sup...
-source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/how-to-get-support-124
+description: Need help with SEED? You have options! Whether you need a quick answer about gameplay or help with a complex technical issue, there are three ways to get sup...
+document_type: article
+source_type: help_center
+source_collection: seed-help-center
 source_id: '124'
-category: Community & Support
+source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/how-to-get-support-124
+source_path: articles/how-to-get-support-124.md
+source_version: null
 language: en
+category: Community & Support
+topics:
+- how to get support
+- community & support
 retrieved_at: '2026-10-27T14:26:25Z'
-content_hash: sha256:3580acd64ae9cad6ba2e0753b4d274fb5be905d202ee7af7f3565aabcaa4b0eb
+imported_at: null
+verification_status: source_snapshot
+content_hash: sha256:5020a5482835939819d86b09501dda56b7aa3db0773a0416670dbdea2af598c6
+conflicts_with: []
 ---
 
 # How to Get Support

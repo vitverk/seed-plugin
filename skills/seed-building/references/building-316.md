@@ -1,14 +1,25 @@
 ---
+schema_version: 1
+id: seed-help-center:article:316
 title: Building
-description: Build Mode lets you construct entirely new buildings on empty plots or
-  modify existing ones. As Cultivator you design the layout and structure; Seedlings
-  do...
-source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/building-316
+description: Build Mode lets you construct entirely new buildings on empty plots or modify existing ones. As Cultivator you design the layout and structure; Seedlings do...
+document_type: article
+source_type: help_center
+source_collection: seed-help-center
 source_id: '316'
-category: Building & The World
+source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/building-316
+source_path: articles/building-316.md
+source_version: null
 language: en
+category: Building & The World
+topics:
+- building
+- building & the world
 retrieved_at: '2026-10-27T14:26:25Z'
-content_hash: sha256:2a755f994e5f9b72c96d725f3b033635090d8c6442afbce6d8d6b8ab977b40cc
+imported_at: null
+verification_status: source_snapshot
+content_hash: sha256:85f53fc01b0f772bcea7aa7985b351a1e5a10d1499451984fea53c3248be2e2f
+conflicts_with: []
 ---
 
 # Building

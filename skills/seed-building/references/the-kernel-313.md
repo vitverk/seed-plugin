@@ -1,14 +1,25 @@
 ---
+schema_version: 1
+id: seed-help-center:article:313
 title: The Kernel
-description: The Society Kernel is a central building where new Seedlings arrive when
-  they are sent to the planet or migrate from another society. It also serves as a
-  com...
-source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/the-kernel-313
+description: The Society Kernel is a central building where new Seedlings arrive when they are sent to the planet or migrate from another society. It also serves as a com...
+document_type: article
+source_type: help_center
+source_collection: seed-help-center
 source_id: '313'
-category: Building & The World
+source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/the-kernel-313
+source_path: articles/the-kernel-313.md
+source_version: null
 language: en
+category: Building & The World
+topics:
+- the kernel
+- building & the world
 retrieved_at: '2026-10-27T14:26:25Z'
-content_hash: sha256:7f916c7495264fb6ea70e67fce7097b9c1191313471a674b51c25e2fda2dc198
+imported_at: null
+verification_status: source_snapshot
+content_hash: sha256:13915ce186aa3e44eaacc273278c9824a1e8c50c98eae8131b131182d3c53f62
+conflicts_with: []
 ---
 
 # The Kernel

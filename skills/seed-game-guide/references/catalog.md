@@ -1,11 +1,24 @@
 ---
+schema_version: 1
+id: seed-plugin:skills/seed-game-guide/references/catalog
 title: SEED help-center catalog
-description: Find every archived help-center article and source category across the SEED documentation skills.
-source_type: derived_index
-article_count: 73
-page_count: 81
+description: Navigate the source documents for SEED game guide.
+document_type: index
+source_type: derived
+source_collection: seed-plugin
+source_id: skills/seed-game-guide/references/catalog.md
+source_url: null
+source_path: skills/seed-game-guide/references/catalog.md
+source_version: null
 language: en
-retrieved_at: "2026-10-27T14:26:25Z"
+category: Documentation navigation
+topics:
+  - seed-game-guide
+retrieved_at: null
+imported_at: null
+verification_status: derived
+conflicts_with: []
+content_hash: sha256:62fcd53fdec34ec34fbb0122328041845e9efc88e9e0d5a42a1850f59dc39a96
 ---
 
 # SEED help-center catalog

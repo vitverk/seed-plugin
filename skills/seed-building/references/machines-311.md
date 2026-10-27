@@ -1,13 +1,25 @@
 ---
+schema_version: 1
+id: seed-help-center:article:311
 title: Machines
-description: Machines Machines are placeable objects that Seedlings operate to produce,
-  process, and extract. There are far too many to list them all, but the Catalog (to...
-source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/machines-311
+description: Machines Machines are placeable objects that Seedlings operate to produce, process, and extract. There are far too many to list them all, but the Catalog (to...
+document_type: article
+source_type: help_center
+source_collection: seed-help-center
 source_id: '311'
-category: Building & The World
+source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/machines-311
+source_path: articles/machines-311.md
+source_version: null
 language: en
+category: Building & The World
+topics:
+- machines
+- building & the world
 retrieved_at: '2026-10-27T14:26:25Z'
-content_hash: sha256:981770d58dbad1c0d5186a0f8a88fcde5a5f35004e3251d3013c6f71edf286e3
+imported_at: null
+verification_status: source_snapshot
+content_hash: sha256:e25b99760a24d5b228cf2430689e7baea4faade886decbc399b741ea7998e44d
+conflicts_with: []
 ---
 
 # Machines

@@ -1,9 +1,24 @@
 ---
-title: "SEED work and economy article index"
-description: "Find the 7 source articles for SEED work and economy."
-source_type: derived_index
+schema_version: 1
+id: seed-plugin:skills/seed-economy/references/index
+title: SEED work and economy article index
+description: Navigate the source documents for SEED work and economy.
+document_type: index
+source_type: derived
+source_collection: seed-plugin
+source_id: skills/seed-economy/references/index.md
+source_url: null
+source_path: skills/seed-economy/references/index.md
+source_version: null
 language: en
-retrieved_at: "2026-10-27T14:26:25Z"
+category: Documentation navigation
+topics:
+  - seed-economy
+retrieved_at: null
+imported_at: null
+verification_status: derived
+conflicts_with: []
+content_hash: sha256:ce4aa808f0220190797c4da8ffd2b45680a8db9e1d46f6820dbb14691684b539
 ---
 
 # SEED work and economy article index

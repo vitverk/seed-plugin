@@ -1,14 +1,25 @@
 ---
+schema_version: 1
+id: seed-help-center:article:344
 title: How do I create or log into my account?
-description: 'To play SEED you''ll need a SEED account from seed. game (https://seed.
-  game) From the sign-in screen, you can get in a few ways: Email and password - enter
-  y...'
-source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/how-do-i-create-or-log-into-my-account-344
+description: 'To play SEED you''ll need a SEED account from seed. game (https://seed. game) From the sign-in screen, you can get in a few ways: Email and password - enter y...'
+document_type: article
+source_type: help_center
+source_collection: seed-help-center
 source_id: '344'
-category: Community & Support
+source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/how-do-i-create-or-log-into-my-account-344
+source_path: articles/how-do-i-create-or-log-into-my-account-344.md
+source_version: null
 language: en
+category: Community & Support
+topics:
+- how do i create or log into my account?
+- community & support
 retrieved_at: '2026-10-27T14:26:25Z'
-content_hash: sha256:af76d69c9b70225676439e9b386df11d20c9d7b9d5eb989d5da33ab91df7cb5e
+imported_at: null
+verification_status: source_snapshot
+content_hash: sha256:468be16f54371a9d98e82b6e0e33f7124c9f79939a83781243ee83ae60b7487d
+conflicts_with: []
 ---
 
 # How do I create or log into my account?

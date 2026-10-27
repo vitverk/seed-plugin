@@ -1,14 +1,25 @@
 ---
+schema_version: 1
+id: seed-help-center:article:324
 title: Contracts
-description: Contracts allow businesses to form structured trade agreements. They
-  are not made between individuals but between two business entities or government
-  departm...
-source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/contracts-324
+description: Contracts allow businesses to form structured trade agreements. They are not made between individuals but between two business entities or government departm...
+document_type: article
+source_type: help_center
+source_collection: seed-help-center
 source_id: '324'
-category: Work & Economy
+source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/contracts-324
+source_path: articles/contracts-324.md
+source_version: null
 language: en
+category: Work & Economy
+topics:
+- contracts
+- work & economy
 retrieved_at: '2026-10-27T14:26:25Z'
-content_hash: sha256:282b5b72cd80a743a15f0960f11ab5a309398e42f8f848fa8d20e8056a03a055
+imported_at: null
+verification_status: source_snapshot
+content_hash: sha256:8cf7496a3fbb85d36df2336f01f908ac06b9066c11492ed359d171e895a34161
+conflicts_with: []
 ---
 
 # Contracts

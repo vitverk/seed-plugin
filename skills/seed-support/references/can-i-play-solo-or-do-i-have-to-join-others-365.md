@@ -1,13 +1,25 @@
 ---
+schema_version: 1
+id: seed-help-center:article:365
 title: Can I play solo, or do I have to join others?
-description: You don't need to bring anyone with you to get started. Most new Cultivators
-  simply join one of our recommended societies, which have plenty of space and res...
-source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/can-i-play-solo-or-do-i-have-to-join-others-365
+description: You don't need to bring anyone with you to get started. Most new Cultivators simply join one of our recommended societies, which have plenty of space and res...
+document_type: article
+source_type: help_center
+source_collection: seed-help-center
 source_id: '365'
-category: Community & Support
+source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/can-i-play-solo-or-do-i-have-to-join-others-365
+source_path: articles/can-i-play-solo-or-do-i-have-to-join-others-365.md
+source_version: null
 language: en
+category: Community & Support
+topics:
+- can i play solo, or do i have to join others?
+- community & support
 retrieved_at: '2026-10-27T14:26:25Z'
-content_hash: sha256:bfe724f1d4879670b8e4302febf77d71c91fa80d953a9c1610c36cde0a2b9aba
+imported_at: null
+verification_status: source_snapshot
+content_hash: sha256:8ac3f384c9af84c4b4da188093c7751963facc11db848a0a8bd677c33db577e1
+conflicts_with: []
 ---
 
 # Can I play solo, or do I have to join others?

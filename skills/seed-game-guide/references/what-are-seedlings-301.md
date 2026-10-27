@@ -1,13 +1,25 @@
 ---
+schema_version: 1
+id: seed-help-center:article:301
 title: What Are Seedlings?
-description: Seedlings the characters in the game,they have their own agency and autonomy.
-  They are living, breathing organisms that grow, age, work, socialize, and event...
-source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/what-are-seedlings-301
+description: Seedlings the characters in the game,they have their own agency and autonomy. They are living, breathing organisms that grow, age, work, socialize, and event...
+document_type: article
+source_type: help_center
+source_collection: seed-help-center
 source_id: '301'
-category: Beginner's Guide
+source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/what-are-seedlings-301
+source_path: articles/what-are-seedlings-301.md
+source_version: null
 language: en
+category: Beginner's Guide
+topics:
+- what are seedlings?
+- beginner's guide
 retrieved_at: '2026-10-27T14:26:25Z'
-content_hash: sha256:77ee632519d2b95126e0047dca743b177a762900836e401e18f99b7847e8238d
+imported_at: null
+verification_status: source_snapshot
+content_hash: sha256:32d93bffe8442b1f2a1754757291991ca0a95d3464094df16dbc877d36ceb56e
+conflicts_with: []
 ---
 
 # What Are Seedlings?

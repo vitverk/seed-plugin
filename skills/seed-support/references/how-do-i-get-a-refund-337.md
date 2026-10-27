@@ -1,13 +1,25 @@
 ---
+schema_version: 1
+id: seed-help-center:article:337
 title: How do I get a refund?
-description: When you buy SEED, you're agreeing to our Terms of Use, which don't provide
-  for a refund simply because you've changed your mind or aren't enjoying the game.
-source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/how-do-i-get-a-refund-337
+description: When you buy SEED, you're agreeing to our Terms of Use, which don't provide for a refund simply because you've changed your mind or aren't enjoying the game.
+document_type: article
+source_type: help_center
+source_collection: seed-help-center
 source_id: '337'
-category: Community & Support
+source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/how-do-i-get-a-refund-337
+source_path: articles/how-do-i-get-a-refund-337.md
+source_version: null
 language: en
+category: Community & Support
+topics:
+- how do i get a refund?
+- community & support
 retrieved_at: '2026-10-27T14:26:25Z'
-content_hash: sha256:0a1d3fedd6fb7f6cabb8d3c578ecebd4004f18d332fed199e225fcaa20485c34
+imported_at: null
+verification_status: source_snapshot
+content_hash: sha256:d94b46089c9294ef0f1e648d2f9ec481e9a4afbadc331eb93731e22290257984
+conflicts_with: []
 ---
 
 # How do I get a refund?

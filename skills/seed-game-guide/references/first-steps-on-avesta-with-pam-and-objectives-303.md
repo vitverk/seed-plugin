@@ -1,14 +1,25 @@
 ---
+schema_version: 1
+id: seed-help-center:article:303
 title: First Steps on Avesta with PAM & Objectives
-description: First things first, you are going to want to speak to PAM a lot, you
-  can find her little icon in the top right of your screen. She will guide you if
-  you get...
-source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/first-steps-on-avesta-with-pam-and-objectives-303
+description: First things first, you are going to want to speak to PAM a lot, you can find her little icon in the top right of your screen. She will guide you if you get...
+document_type: article
+source_type: help_center
+source_collection: seed-help-center
 source_id: '303'
-category: Beginner's Guide
+source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/first-steps-on-avesta-with-pam-and-objectives-303
+source_path: articles/first-steps-on-avesta-with-pam-and-objectives-303.md
+source_version: null
 language: en
+category: Beginner's Guide
+topics:
+- first steps on avesta with pam & objectives
+- beginner's guide
 retrieved_at: '2026-10-27T14:26:25Z'
-content_hash: sha256:4b64921f9c1f6c1760ebd5e85486c91efbfa960265cf689f6d2eb5e078139e79
+imported_at: null
+verification_status: source_snapshot
+content_hash: sha256:c91b16c9b906ae756192fb5c1144c5962636e2b08b93f85a22be1e5d39ebcfb8
+conflicts_with: []
 ---
 
 # First Steps on Avesta with PAM & Objectives

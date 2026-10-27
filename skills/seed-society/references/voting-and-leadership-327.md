@@ -1,14 +1,25 @@
 ---
+schema_version: 1
+id: seed-help-center:article:327
 title: Voting & Leadership
-description: 'Societies are governed and managed through roles and permissions: find
-  the available roles and their permissions in the Societies Panel > Roles tab. There
-  ar...'
-source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/voting-and-leadership-327
+description: 'Societies are governed and managed through roles and permissions: find the available roles and their permissions in the Societies Panel > Roles tab. There ar...'
+document_type: article
+source_type: help_center
+source_collection: seed-help-center
 source_id: '327'
-category: Society & Governance
+source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/voting-and-leadership-327
+source_path: articles/voting-and-leadership-327.md
+source_version: null
 language: en
+category: Society & Governance
+topics:
+- voting & leadership
+- society & governance
 retrieved_at: '2026-10-27T14:26:25Z'
-content_hash: sha256:1ae4f7e0907b1d8687a83ac8a68021c3bd2ce8cca9639c874c7395c59ffc2a73
+imported_at: null
+verification_status: source_snapshot
+content_hash: sha256:7ae84ac7de132084aff22d1e5adb95439d6d97cdea03038e0ece87fb328e5c91
+conflicts_with: []
 ---
 
 # Voting & Leadership

@@ -1,14 +1,25 @@
 ---
+schema_version: 1
+id: seed-help-center:article:336
 title: Spark - SEED's Social App
-description: Spark is SEED's in-game social network, currently in preview. It's a
-  shared feed of short posts from Cultivators, Seedlings, societies and businesses,
-  and a...
-source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/spark-seeds-social-app-336
+description: Spark is SEED's in-game social network, currently in preview. It's a shared feed of short posts from Cultivators, Seedlings, societies and businesses, and a...
+document_type: article
+source_type: help_center
+source_collection: seed-help-center
 source_id: '336'
-category: Community & Social
+source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/spark-seeds-social-app-336
+source_path: articles/spark-seeds-social-app-336.md
+source_version: null
 language: en
+category: Community & Social
+topics:
+- spark - seed's social app
+- community & social
 retrieved_at: '2026-10-27T14:26:25Z'
-content_hash: sha256:39550bb7e2b89b7705cbfb1e1e835eaff637e573a88247eff00bfc4d86cc7247
+imported_at: null
+verification_status: source_snapshot
+content_hash: sha256:151796676283196a09a71b8c2a1ff944f47578c751e146b0287fb167b45db243
+conflicts_with: []
 ---
 
 # Spark - SEED's Social App

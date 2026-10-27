@@ -1,13 +1,25 @@
 ---
+schema_version: 1
+id: seed-help-center:article:322
 title: Buy & Sell Orders
-description: Every building you own or manage has a Market tab in its Management Panel;
-  orders are delivered to or dispatched from that building. You can also manage ever...
-source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/buy-and-sell-orders-322
+description: Every building you own or manage has a Market tab in its Management Panel; orders are delivered to or dispatched from that building. You can also manage ever...
+document_type: article
+source_type: help_center
+source_collection: seed-help-center
 source_id: '322'
-category: Work & Economy
+source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/buy-and-sell-orders-322
+source_path: articles/buy-and-sell-orders-322.md
+source_version: null
 language: en
+category: Work & Economy
+topics:
+- buy & sell orders
+- work & economy
 retrieved_at: '2026-10-27T14:26:25Z'
-content_hash: sha256:837c974fe6ef790885b652af3121eb98902d4e1e1012e71de901531495ef0274
+imported_at: null
+verification_status: source_snapshot
+content_hash: sha256:f15d5fb34e3fd659fc181816b2bb2f6f1d7ee9755ae69d8e19012bc403c7afc1
+conflicts_with: []
 ---
 
 # Buy & Sell Orders

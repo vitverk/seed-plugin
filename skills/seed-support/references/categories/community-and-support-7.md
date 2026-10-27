@@ -1,12 +1,24 @@
 ---
+schema_version: 1
+id: seed-help-center:category:7
 title: Community & Support
-description: ''
-source_url: https://klang-games.eu.theymes.com/hc/en/seed/categories/community-and-support-7
+description: Community & Support
+document_type: navigation
+source_type: help_center
+source_collection: seed-help-center
 source_id: '7'
-category: Community & Support
+source_url: https://klang-games.eu.theymes.com/hc/en/seed/categories/community-and-support-7
+source_path: categories/community-and-support-7.md
+source_version: null
 language: en
+category: Community & Support
+topics:
+- community & support
 retrieved_at: '2026-10-27T14:26:25Z'
-content_hash: sha256:edcb8b88160c7f1441007727fa01f728f6d8345434ae979c00225778311110bf
+imported_at: null
+verification_status: source_snapshot
+content_hash: sha256:872c5707dcc4e0c05e363a6d816874d258bc32cd548a370e8d35e167b177de8b
+conflicts_with: []
 ---
 
 # Community & Support

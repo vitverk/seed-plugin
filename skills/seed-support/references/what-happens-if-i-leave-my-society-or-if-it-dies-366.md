@@ -1,13 +1,25 @@
 ---
+schema_version: 1
+id: seed-help-center:article:366
 title: What happens if I leave my society, or if it dies?
-description: If you leave your society, it carries on without you; the other Cultivators
-  living there keep building and running it as usual. Societies don't really "die"...
-source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/what-happens-if-i-leave-my-society-or-if-it-dies-366
+description: If you leave your society, it carries on without you; the other Cultivators living there keep building and running it as usual. Societies don't really "die"...
+document_type: article
+source_type: help_center
+source_collection: seed-help-center
 source_id: '366'
-category: Community & Support
+source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/what-happens-if-i-leave-my-society-or-if-it-dies-366
+source_path: articles/what-happens-if-i-leave-my-society-or-if-it-dies-366.md
+source_version: null
 language: en
+category: Community & Support
+topics:
+- what happens if i leave my society, or if it dies?
+- community & support
 retrieved_at: '2026-10-27T14:26:25Z'
-content_hash: sha256:24834a4808d425fb9ba7035db6958e2ca82393d2f798e1aed01ceb5c3c91488a
+imported_at: null
+verification_status: source_snapshot
+content_hash: sha256:c77cecfdc7bb839b26cd7e50921f76e6d59a67411bfb5359b6a88bcc8f78a9cb
+conflicts_with: []
 ---
 
 # What happens if I leave my society, or if it dies?

@@ -1,14 +1,25 @@
 ---
+schema_version: 1
+id: seed-help-center:article:309
 title: Harvesting
-description: Harvesting is the best way to gather resources for survival. Send your
-  Seedling to harvest through Direct Control by clicking on natural resources in the
-  wor...
-source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/harvesting-309
+description: Harvesting is the best way to gather resources for survival. Send your Seedling to harvest through Direct Control by clicking on natural resources in the wor...
+document_type: article
+source_type: help_center
+source_collection: seed-help-center
 source_id: '309'
-category: Building & The World
+source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/harvesting-309
+source_path: articles/harvesting-309.md
+source_version: null
 language: en
+category: Building & The World
+topics:
+- harvesting
+- building & the world
 retrieved_at: '2026-10-27T14:26:25Z'
-content_hash: sha256:cfb9c56edccc218e825952c89060f93961345b2aefe7731264f63a2694c40b66
+imported_at: null
+verification_status: source_snapshot
+content_hash: sha256:44cdac5ce1d4d092d35fd3cd3459689f22d0e2fc70b0bfe36e64e01adce93dc3
+conflicts_with: []
 ---
 
 # Harvesting

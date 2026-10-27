@@ -1,12 +1,24 @@
 ---
+schema_version: 1
+id: seed-help-center:category:34
 title: Community & Social
-description: ''
-source_url: https://klang-games.eu.theymes.com/hc/en/seed/categories/community-and-social-34
+description: Community & Social
+document_type: navigation
+source_type: help_center
+source_collection: seed-help-center
 source_id: '34'
-category: Community & Social
+source_url: https://klang-games.eu.theymes.com/hc/en/seed/categories/community-and-social-34
+source_path: categories/community-and-social-34.md
+source_version: null
 language: en
+category: Community & Social
+topics:
+- community & social
 retrieved_at: '2026-10-27T14:26:25Z'
-content_hash: sha256:7f1f96adabeae385508440485214ea8f206006ff16a52586b95c97072b595299
+imported_at: null
+verification_status: source_snapshot
+content_hash: sha256:6b5a234d139614f645f2d1bb262ecc1d61e85a56fedb89c767a084628a984406
+conflicts_with: []
 ---
 
 # Community & Social

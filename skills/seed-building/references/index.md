@@ -1,9 +1,24 @@
 ---
-title: "SEED building and world article index"
-description: "Find the 10 source articles for SEED building and world."
-source_type: derived_index
+schema_version: 1
+id: seed-plugin:skills/seed-building/references/index
+title: SEED building and world article index
+description: Navigate the source documents for SEED building and world.
+document_type: index
+source_type: derived
+source_collection: seed-plugin
+source_id: skills/seed-building/references/index.md
+source_url: null
+source_path: skills/seed-building/references/index.md
+source_version: null
 language: en
-retrieved_at: "2026-10-27T14:26:25Z"
+category: Documentation navigation
+topics:
+  - seed-building
+retrieved_at: null
+imported_at: null
+verification_status: derived
+conflicts_with: []
+content_hash: sha256:85b32418e8615c4b4bbbc495a144252b400826e025c6da90010880007635103f
 ---
 
 # SEED building and world article index

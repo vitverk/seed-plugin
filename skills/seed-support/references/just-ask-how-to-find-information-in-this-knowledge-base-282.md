@@ -1,14 +1,25 @@
 ---
+schema_version: 1
+id: seed-help-center:article:282
 title: Just Ask! – How to find information in this knowledge base
-description: Stop scrolling and start asking! To give you the fastest help possible
-  during our Open Beta, we’ve moved away from traditional lists of articles. Instead,
-  ou...
-source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/just-ask-how-to-find-information-in-this-knowledge-base-282
+description: Stop scrolling and start asking! To give you the fastest help possible during our Open Beta, we’ve moved away from traditional lists of articles. Instead, ou...
+document_type: article
+source_type: help_center
+source_collection: seed-help-center
 source_id: '282'
-category: Community & Support
+source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/just-ask-how-to-find-information-in-this-knowledge-base-282
+source_path: articles/just-ask-how-to-find-information-in-this-knowledge-base-282.md
+source_version: null
 language: en
+category: Community & Support
+topics:
+- just ask! – how to find information in this knowledge base
+- community & support
 retrieved_at: '2026-10-27T14:26:25Z'
-content_hash: sha256:580f62fc023fc5a1194a66a30da4f74bf1df3cd94abc478ca0001b1614da1345
+imported_at: null
+verification_status: source_snapshot
+content_hash: sha256:0b1bf53063e1ee72d527b8dbdc95d45a0dfa97263d857d52707ce8406816f3ef
+conflicts_with: []
 ---
 
 # Just Ask! – How to find information in this knowledge base
