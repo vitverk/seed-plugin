@@ -1,14 +1,25 @@
 ---
+schema_version: 1
+id: seed-help-center:article:353
 title: Is there controller support? Can I play across devices?
-description: SEED plays on PC and Mac, with a mobile Companion App for iOS and Android
-  to check in on your Seedlings wherever you are. Because SEED is one shared world
-  th...
-source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/is-there-controller-support-can-i-play-across-devices-353
+description: SEED plays on PC and Mac, with a mobile Companion App for iOS and Android to check in on your Seedlings wherever you are. Because SEED is one shared world th...
+document_type: article
+source_type: help_center
+source_collection: seed-help-center
 source_id: '353'
-category: Community & Support
+source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/is-there-controller-support-can-i-play-across-devices-353
+source_path: articles/is-there-controller-support-can-i-play-across-devices-353.md
+source_version: null
 language: en
+category: Community & Support
+topics:
+- is there controller support? can i play across devices?
+- community & support
 retrieved_at: '2026-10-27T14:26:25Z'
-content_hash: sha256:a915ac0053bd53a80dfff960e4b4676f5a3f882a849b08de364d4f8ee1efc691
+imported_at: null
+verification_status: source_snapshot
+content_hash: sha256:a504770b34ffe27862734321ac339d44e80a0a6df53d0456f325765961d17bda
+conflicts_with: []
 ---
 
 # Is there controller support? Can I play across devices?

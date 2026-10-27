@@ -1,12 +1,24 @@
 ---
+schema_version: 1
+id: seed-help-center:category:28
 title: Beginner's Guide
-description: ''
-source_url: https://klang-games.eu.theymes.com/hc/en/seed/categories/beginners-guide-28
+description: Beginner's Guide
+document_type: navigation
+source_type: help_center
+source_collection: seed-help-center
 source_id: '28'
-category: Beginner's Guide
+source_url: https://klang-games.eu.theymes.com/hc/en/seed/categories/beginners-guide-28
+source_path: categories/beginners-guide-28.md
+source_version: null
 language: en
+category: Beginner's Guide
+topics:
+- beginner's guide
 retrieved_at: '2026-10-27T14:26:25Z'
-content_hash: sha256:13a8466d84f54829148b3139d5b061f890a0467a06c23f7f9785d5f5f65b5142
+imported_at: null
+verification_status: source_snapshot
+content_hash: sha256:f6ce7bd81f60e9f005f3c2b4c55c2c2c7abf71dbd8c66c419990579a48c2e474
+conflicts_with: []
 ---
 
 # Beginner's Guide

@@ -1,14 +1,25 @@
 ---
+schema_version: 1
+id: seed-help-center:article:315
 title: Land Planner
-description: 'The Land Planner (right sidebar) is the spatial planning app for land.
-  From it you can edit any plot you have permission over: a plot you own, or one your
-  ro...'
-source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/land-planner-315
+description: 'The Land Planner (right sidebar) is the spatial planning app for land. From it you can edit any plot you have permission over: a plot you own, or one your ro...'
+document_type: article
+source_type: help_center
+source_collection: seed-help-center
 source_id: '315'
-category: Building & The World
+source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/land-planner-315
+source_path: articles/land-planner-315.md
+source_version: null
 language: en
+category: Building & The World
+topics:
+- land planner
+- building & the world
 retrieved_at: '2026-10-27T14:26:25Z'
-content_hash: sha256:a8162531cca605c6229e861541b7bb178b4231848794b8e4b6414bb6130b3068
+imported_at: null
+verification_status: source_snapshot
+content_hash: sha256:32e1e0bd345ed6e907b4ab67e94b027e9c1e9efd1cab73c6843f3a44a52e209f
+conflicts_with: []
 ---
 
 # Land Planner

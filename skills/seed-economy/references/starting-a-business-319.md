@@ -1,14 +1,25 @@
 ---
+schema_version: 1
+id: seed-help-center:article:319
 title: Starting a Business
-description: Creating a business requires holding a role that grants the right to
-  own a business, typically the default Adult role, or a custom role the Mayor has
-  granted...
-source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/starting-a-business-319
+description: Creating a business requires holding a role that grants the right to own a business, typically the default Adult role, or a custom role the Mayor has granted...
+document_type: article
+source_type: help_center
+source_collection: seed-help-center
 source_id: '319'
-category: Work & Economy
+source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/starting-a-business-319
+source_path: articles/starting-a-business-319.md
+source_version: null
 language: en
+category: Work & Economy
+topics:
+- starting a business
+- work & economy
 retrieved_at: '2026-10-27T14:26:25Z'
-content_hash: sha256:1f65541f8b75f807915ea85210c37a27cbdc85e717468b8b4d6232b1a17e5da7
+imported_at: null
+verification_status: source_snapshot
+content_hash: sha256:8800e82a08ca8c8c9b66a71d0769932a600dd6305ec22f4ff10c656ecd553ca9
+conflicts_with: []
 ---
 
 # Starting a Business

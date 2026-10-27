@@ -1,14 +1,25 @@
 ---
+schema_version: 1
+id: seed-help-center:article:364
 title: How do I get players into my society? Can I invite them directly?
-description: When you start a society, you'll create a lobby. Set it to private with
-  a password and share that password with the friends you want to build with (you
-  need...
-source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/how-do-i-get-players-into-my-society-can-i-invite-them-directly-364
+description: When you start a society, you'll create a lobby. Set it to private with a password and share that password with the friends you want to build with (you need...
+document_type: article
+source_type: help_center
+source_collection: seed-help-center
 source_id: '364'
-category: Community & Support
+source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/how-do-i-get-players-into-my-society-can-i-invite-them-directly-364
+source_path: articles/how-do-i-get-players-into-my-society-can-i-invite-them-directly-364.md
+source_version: null
 language: en
+category: Community & Support
+topics:
+- how do i get players into my society? can i invite them directly?
+- community & support
 retrieved_at: '2026-10-27T14:26:25Z'
-content_hash: sha256:4fb5ae31bf4ce54cb5549ebff3b0df1f6148a6b5db14896dc1ae7f7d717f8274
+imported_at: null
+verification_status: source_snapshot
+content_hash: sha256:e0abda8b8e5946745260b88bda1254c8d378d93bce1e15e23bffbd1934594225
+conflicts_with: []
 ---
 
 # How do I get players into my society? Can I invite them directly?

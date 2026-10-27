@@ -1,14 +1,25 @@
 ---
+schema_version: 1
+id: seed-help-center:article:325
 title: Society Goals & Tiers
-description: 'Your society''s development is guided by a structured progression system.
-  You progress through tiers by completing Society Goals: collective objectives all
-  me...'
-source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/society-goals-and-tiers-325
+description: 'Your society''s development is guided by a structured progression system. You progress through tiers by completing Society Goals: collective objectives all me...'
+document_type: article
+source_type: help_center
+source_collection: seed-help-center
 source_id: '325'
-category: Society & Governance
+source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/society-goals-and-tiers-325
+source_path: articles/society-goals-and-tiers-325.md
+source_version: null
 language: en
+category: Society & Governance
+topics:
+- society goals & tiers
+- society & governance
 retrieved_at: '2026-10-27T14:26:25Z'
-content_hash: sha256:d5fccb47e8f33725a0576f013d88bef2877f48e9628475409e493d57d5b9e81f
+imported_at: null
+verification_status: source_snapshot
+content_hash: sha256:0cdff294d76f5f11aa79faf6287f5571a161fb1e1ae1c2447bc9858cf2bee6ee
+conflicts_with: []
 ---
 
 # Society Goals & Tiers

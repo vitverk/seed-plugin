@@ -1,14 +1,25 @@
 ---
+schema_version: 1
+id: seed-help-center:article:111
 title: SEED Discord Rules & Guidelines
-description: SEED Discord Server Rules & Information Welcome to the SEED community!
-  Our goal is to build a fun, inclusive, and respectful space for everyone on Discord,
-  i...
-source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/seed-discord-rules-and-guidelines-111
+description: SEED Discord Server Rules & Information Welcome to the SEED community! Our goal is to build a fun, inclusive, and respectful space for everyone on Discord, i...
+document_type: article
+source_type: help_center
+source_collection: seed-help-center
 source_id: '111'
-category: Community & Support
+source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/seed-discord-rules-and-guidelines-111
+source_path: articles/seed-discord-rules-and-guidelines-111.md
+source_version: null
 language: en
+category: Community & Support
+topics:
+- seed discord rules & guidelines
+- community & support
 retrieved_at: '2026-10-27T14:26:25Z'
-content_hash: sha256:592a8a18933e96c2ebeb0b23f6126bc54fbbd8b4412f92c7f8eb8afc110a337e
+imported_at: null
+verification_status: source_snapshot
+content_hash: sha256:e8b0b7c41971734845daef897ddeb3a0096335207d41912eeecaae3b3564d95a
+conflicts_with: []
 ---
 
 # SEED Discord Rules & Guidelines

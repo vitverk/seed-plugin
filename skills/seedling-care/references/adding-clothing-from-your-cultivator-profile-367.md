@@ -1,14 +1,25 @@
 ---
+schema_version: 1
+id: seed-help-center:article:367
 title: Adding clothing from your Cultivator Profile
-description: Some SEED packs come with perks like limited clothing items. These are
-  actually added to your Cultivator profile, which you can access on the top left
-  of the...
-source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/adding-clothing-from-your-cultivator-profile-367
+description: Some SEED packs come with perks like limited clothing items. These are actually added to your Cultivator profile, which you can access on the top left of the...
+document_type: article
+source_type: help_center
+source_collection: seed-help-center
 source_id: '367'
-category: Craing For Your Seedling
+source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/adding-clothing-from-your-cultivator-profile-367
+source_path: articles/adding-clothing-from-your-cultivator-profile-367.md
+source_version: null
 language: en
+category: Craing For Your Seedling
+topics:
+- adding clothing from your cultivator profile
+- craing for your seedling
 retrieved_at: '2026-10-27T14:26:25Z'
-content_hash: sha256:f639192ca8e045ed1b76e531f4c77fed3608ca04a843ff2ef58ffb2fc119be66
+imported_at: null
+verification_status: source_snapshot
+content_hash: sha256:a5b5cc05fe82c753038bbce21c978e50b45b320d5ace2c7caa3814ce842361ea
+conflicts_with: []
 ---
 
 # Adding clothing from your Cultivator Profile

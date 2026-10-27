@@ -1,14 +1,25 @@
 ---
+schema_version: 1
+id: seed-help-center:article:307
 title: Health Conditions
-description: A health condition is a negative state affecting your Seedling's body
-  and abilities. Injuries (burns, cuts, strains) make a Seedling Injured; illnesses
-  (stom...
-source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/health-conditions-307
+description: A health condition is a negative state affecting your Seedling's body and abilities. Injuries (burns, cuts, strains) make a Seedling Injured; illnesses (stom...
+document_type: article
+source_type: help_center
+source_collection: seed-help-center
 source_id: '307'
-category: Craing For Your Seedling
+source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/health-conditions-307
+source_path: articles/health-conditions-307.md
+source_version: null
 language: en
+category: Craing For Your Seedling
+topics:
+- health conditions
+- craing for your seedling
 retrieved_at: '2026-10-27T14:26:25Z'
-content_hash: sha256:2c99a6ef8868308a8a5eeec8326f70a783abcee2bbd9679ccfeb48987cbc4826
+imported_at: null
+verification_status: source_snapshot
+content_hash: sha256:98bb5a70c657320d5bd147703d953cb84ce79cf4663b185ffc2b8109478d98e5
+conflicts_with: []
 ---
 
 # Health Conditions

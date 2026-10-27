@@ -1,14 +1,25 @@
 ---
+schema_version: 1
+id: seed-help-center:article:122
 title: How to Join Our Discord Community
-description: 'Get more out of the game and join us on Discord! Meet other players
-  and get to know our wonderful community managers. Joining Discord Discord Link:
-  https://d...'
-source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/how-to-join-our-discord-community-122
+description: 'Get more out of the game and join us on Discord! Meet other players and get to know our wonderful community managers. Joining Discord Discord Link: https://d...'
+document_type: article
+source_type: help_center
+source_collection: seed-help-center
 source_id: '122'
-category: Community & Support
+source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/how-to-join-our-discord-community-122
+source_path: articles/how-to-join-our-discord-community-122.md
+source_version: null
 language: en
+category: Community & Support
+topics:
+- how to join our discord community
+- community & support
 retrieved_at: '2026-10-27T14:26:25Z'
-content_hash: sha256:c08d7dabc5948431c8efbeff50ee3a4098dab320c99c0042d4301a5cfd19908f
+imported_at: null
+verification_status: source_snapshot
+content_hash: sha256:b0bfacb9d0eb61e305d867e2c4e9eb0072a522d3bc575cb39a6c9f6a4f2c082b
+conflicts_with: []
 ---
 
 # How to Join Our Discord Community

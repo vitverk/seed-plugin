@@ -1,9 +1,24 @@
 ---
-title: "SEED game guide article index"
-description: "Find the 5 source articles for SEED game guide."
-source_type: derived_index
+schema_version: 1
+id: seed-plugin:skills/seed-game-guide/references/index
+title: SEED game guide article index
+description: Navigate the source documents for SEED game guide.
+document_type: index
+source_type: derived
+source_collection: seed-plugin
+source_id: skills/seed-game-guide/references/index.md
+source_url: null
+source_path: skills/seed-game-guide/references/index.md
+source_version: null
 language: en
-retrieved_at: "2026-10-27T14:26:25Z"
+category: Documentation navigation
+topics:
+  - seed-game-guide
+retrieved_at: null
+imported_at: null
+verification_status: derived
+conflicts_with: []
+content_hash: sha256:ee747adffdfb150838e15a00579acf9bb5224c88fbd456f187243b8c28611069
 ---
 
 # SEED game guide article index

@@ -1,13 +1,25 @@
 ---
+schema_version: 1
+id: seed-help-center:article:331
 title: Migration
-description: Seedlings can physically walk to a nearby society, but they cannot interact
-  with that society's Seedlings or objects. To participate in another society, a Se...
-source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/migration-331
+description: Seedlings can physically walk to a nearby society, but they cannot interact with that society's Seedlings or objects. To participate in another society, a Se...
+document_type: article
+source_type: help_center
+source_collection: seed-help-center
 source_id: '331'
-category: Society & Governance
+source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/migration-331
+source_path: articles/migration-331.md
+source_version: null
 language: en
+category: Society & Governance
+topics:
+- migration
+- society & governance
 retrieved_at: '2026-10-27T14:26:25Z'
-content_hash: sha256:9519069e24403364e25e19bb9ce3816813bd72379d5f3258ee67b88f5177558e
+imported_at: null
+verification_status: source_snapshot
+content_hash: sha256:ec6b040ab8a5808cad8aac4025e2e9912eecfe2d5987fd15a02136861694726b
+conflicts_with: []
 ---
 
 # Migration

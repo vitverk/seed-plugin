@@ -1,12 +1,24 @@
 ---
+schema_version: 1
+id: seed-help-center:category:32
 title: Work & Economy
-description: ''
-source_url: https://klang-games.eu.theymes.com/hc/en/seed/categories/work-and-economy-32
+description: Work & Economy
+document_type: navigation
+source_type: help_center
+source_collection: seed-help-center
 source_id: '32'
-category: Work & Economy
+source_url: https://klang-games.eu.theymes.com/hc/en/seed/categories/work-and-economy-32
+source_path: categories/work-and-economy-32.md
+source_version: null
 language: en
+category: Work & Economy
+topics:
+- work & economy
 retrieved_at: '2026-10-27T14:26:25Z'
-content_hash: sha256:ca46fb2911114d9f1523041a079d2bbf72657d9ea10451594eb66f9dba3f27c7
+imported_at: null
+verification_status: source_snapshot
+content_hash: sha256:2bf5ce318494006eb10e4b7b6395f8ff2c07db4801f8d87faa3c2f6d79c944df
+conflicts_with: []
 ---
 
 # Work & Economy

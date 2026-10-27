@@ -1,14 +1,25 @@
 ---
+schema_version: 1
+id: seed-help-center:article:343
 title: What's the difference between Early Access and full launch?
-description: 'Early Access is a way of releasing a game while it''s still being built.
-  Rather than waiting until everything''s finished, we''ve opened SEED up earlier:
-  you bu...'
-source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/whats-the-difference-between-early-access-and-full-launch-343
+description: 'Early Access is a way of releasing a game while it''s still being built. Rather than waiting until everything''s finished, we''ve opened SEED up earlier: you bu...'
+document_type: article
+source_type: help_center
+source_collection: seed-help-center
 source_id: '343'
-category: Community & Support
+source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/whats-the-difference-between-early-access-and-full-launch-343
+source_path: articles/whats-the-difference-between-early-access-and-full-launch-343.md
+source_version: null
 language: en
+category: Community & Support
+topics:
+- what's the difference between early access and full launch?
+- community & support
 retrieved_at: '2026-10-27T14:26:25Z'
-content_hash: sha256:a34cdef850aa6c92229340574d1afad7396891ab49dd16776274e4c487c062e1
+imported_at: null
+verification_status: source_snapshot
+content_hash: sha256:13431a49e871c9a807d3e8768f96cfa64b2c2940c9accfae3d9c34fce51fb662
+conflicts_with: []
 ---
 
 # What's the difference between Early Access and full launch?

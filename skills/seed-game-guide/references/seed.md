@@ -1,12 +1,24 @@
 ---
+schema_version: 1
+id: seed-help-center:home:seed
 title: Ask us anything
-description: ''
-source_url: https://klang-games.eu.theymes.com/hc/en/seed
+description: Ask us anything
+document_type: navigation
+source_type: help_center
+source_collection: seed-help-center
 source_id: seed
-category: ''
+source_url: https://klang-games.eu.theymes.com/hc/en/seed
+source_path: seed.md
+source_version: null
 language: en
+category: ''
+topics:
+- ask us anything
 retrieved_at: '2026-10-27T14:26:25Z'
-content_hash: sha256:5be5537319b9e19c451d2ad6f1a7adf358946cf0a2d112e5e4a5d11b714f63d7
+imported_at: null
+verification_status: source_snapshot
+content_hash: sha256:3cce59356dbfba626aa271499a2618804f5b526f33b85b3c58737d63830b51d2
+conflicts_with: []
 ---
 
 # Ask us anything

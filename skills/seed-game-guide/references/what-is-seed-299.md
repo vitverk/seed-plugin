@@ -1,14 +1,25 @@
 ---
+schema_version: 1
+id: seed-help-center:article:299
 title: What is SEED?
-description: SEED is a society simulation where you, the Cultivator, guide the lives
-  of your Seedlings in a massive, persistent world called Avesta. Your actions have
-  a s...
-source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/what-is-seed-299
+description: SEED is a society simulation where you, the Cultivator, guide the lives of your Seedlings in a massive, persistent world called Avesta. Your actions have a s...
+document_type: article
+source_type: help_center
+source_collection: seed-help-center
 source_id: '299'
-category: Beginner's Guide
+source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/what-is-seed-299
+source_path: articles/what-is-seed-299.md
+source_version: null
 language: en
+category: Beginner's Guide
+topics:
+- what is seed?
+- beginner's guide
 retrieved_at: '2026-10-27T14:26:25Z'
-content_hash: sha256:d62430e61cb19648bd960aa8a01caf233674e9767d03be322d79a36ac703c690
+imported_at: null
+verification_status: source_snapshot
+content_hash: sha256:7a3a78e55ae3c6c958cf2bdde87387386084c5482ac20664b675b2d761b18eee
+conflicts_with: []
 ---
 
 # What is SEED?

@@ -1,14 +1,25 @@
 ---
+schema_version: 1
+id: seed-help-center:article:326
 title: How to Progress
-description: 'Progression in SEED happens on three levels: you (the Cultivator), your
-  Seedlings, and your society. Cultivator Level Your Cultivator Level reflects your
-  ove...'
-source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/how-to-progress-326
+description: 'Progression in SEED happens on three levels: you (the Cultivator), your Seedlings, and your society. Cultivator Level Your Cultivator Level reflects your ove...'
+document_type: article
+source_type: help_center
+source_collection: seed-help-center
 source_id: '326'
-category: Society & Governance
+source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/how-to-progress-326
+source_path: articles/how-to-progress-326.md
+source_version: null
 language: en
+category: Society & Governance
+topics:
+- how to progress
+- society & governance
 retrieved_at: '2026-10-27T14:26:25Z'
-content_hash: sha256:08ee5c722cb1817ba050b3f783f5604af783655ab08c67681e779e0acf7d06cf
+imported_at: null
+verification_status: source_snapshot
+content_hash: sha256:ad42e5a68a43db55ea89ce6908cf6f0abf1f80661d00795e27d3a1c86be76017
+conflicts_with: []
 ---
 
 # How to Progress

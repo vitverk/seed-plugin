@@ -1,14 +1,25 @@
 ---
+schema_version: 1
+id: seed-help-center:article:338
 title: Where do I buy SEED, and what editions are there?
-description: SEED is bought directly from seed. game (http://seed. game) and played
-  through the standalone SEED Launcher on PC and Mac, with a mobile Companion App
-  also a...
-source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/where-do-i-buy-seed-and-what-editions-are-there-338
+description: SEED is bought directly from seed. game (http://seed. game) and played through the standalone SEED Launcher on PC and Mac, with a mobile Companion App also a...
+document_type: article
+source_type: help_center
+source_collection: seed-help-center
 source_id: '338'
-category: Community & Support
+source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/where-do-i-buy-seed-and-what-editions-are-there-338
+source_path: articles/where-do-i-buy-seed-and-what-editions-are-there-338.md
+source_version: null
 language: en
+category: Community & Support
+topics:
+- where do i buy seed, and what editions are there?
+- community & support
 retrieved_at: '2026-10-27T14:26:25Z'
-content_hash: sha256:f76468cbe9143a1b6550107185013c63b053deef5903a204fd7fdac2b079f517
+imported_at: null
+verification_status: source_snapshot
+content_hash: sha256:f99a2c40bd749e5ae79a0dbd799b12ac5d5ca04ac963560b715b51f07bcd6a6a
+conflicts_with: []
 ---
 
 # Where do I buy SEED, and what editions are there?

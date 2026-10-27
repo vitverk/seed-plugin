@@ -1,14 +1,25 @@
 ---
+schema_version: 1
+id: seed-help-center:article:329
 title: Password Protection in a Society
-description: 'There are two layers to society passwords: Lobby passwords: when founding
-  a society, you can set your lobby to private with a password, so only Cultivators
-  w...'
-source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/password-protection-in-a-society-329
+description: 'There are two layers to society passwords: Lobby passwords: when founding a society, you can set your lobby to private with a password, so only Cultivators w...'
+document_type: article
+source_type: help_center
+source_collection: seed-help-center
 source_id: '329'
-category: Society & Governance
+source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/password-protection-in-a-society-329
+source_path: articles/password-protection-in-a-society-329.md
+source_version: null
 language: en
+category: Society & Governance
+topics:
+- password protection in a society
+- society & governance
 retrieved_at: '2026-10-27T14:26:25Z'
-content_hash: sha256:81d934c9472dd7b44ed8d18ceb44577b4b30ac75e39f030f4915ea5cc42e7efe
+imported_at: null
+verification_status: source_snapshot
+content_hash: sha256:6401502706ae1bbfdad2f63059ddf0e5e6f884a5addec62bba3a9420ba7dd1e7
+conflicts_with: []
 ---
 
 # Password Protection in a Society

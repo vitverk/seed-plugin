@@ -1,12 +1,24 @@
 ---
+schema_version: 1
+id: seed-help-center:category:33
 title: Society & Governance
-description: ''
-source_url: https://klang-games.eu.theymes.com/hc/en/seed/categories/society-and-governance-33
+description: Society & Governance
+document_type: navigation
+source_type: help_center
+source_collection: seed-help-center
 source_id: '33'
-category: Society & Governance
+source_url: https://klang-games.eu.theymes.com/hc/en/seed/categories/society-and-governance-33
+source_path: categories/society-and-governance-33.md
+source_version: null
 language: en
+category: Society & Governance
+topics:
+- society & governance
 retrieved_at: '2026-10-27T14:26:25Z'
-content_hash: sha256:26a882bac13b10f70b7c1f5ee11e92290bfb9447db5b331edbeb0b5258d4bad8
+imported_at: null
+verification_status: source_snapshot
+content_hash: sha256:7e952f5851008b1fb10e558cefbe8609fb51507b778675c52fda044e479ec82a
+conflicts_with: []
 ---
 
 # Society & Governance

@@ -1,13 +1,25 @@
 ---
+schema_version: 1
+id: seed-help-center:article:357
 title: General fixes worth trying for any display or performance issue
-description: Lower your in-game graphics settings (resolution, texture quality, shadows).
-  Update Windows through Settings → Windows Update, along with DirectX and Visual...
-source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/general-fixes-worth-trying-for-any-display-or-performance-issue-357
+description: Lower your in-game graphics settings (resolution, texture quality, shadows). Update Windows through Settings → Windows Update, along with DirectX and Visual...
+document_type: article
+source_type: help_center
+source_collection: seed-help-center
 source_id: '357'
-category: Community & Support
+source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/general-fixes-worth-trying-for-any-display-or-performance-issue-357
+source_path: articles/general-fixes-worth-trying-for-any-display-or-performance-issue-357.md
+source_version: null
 language: en
+category: Community & Support
+topics:
+- general fixes worth trying for any display or performance issue
+- community & support
 retrieved_at: '2026-10-27T14:26:25Z'
-content_hash: sha256:c912409dbebdcb84817fd01e44d3571181fb4aa5aefcdbf96266f6af530fadb5
+imported_at: null
+verification_status: source_snapshot
+content_hash: sha256:3d2b509c363256a9095d5c4e8e4f5eb5b6dcdd6d30ba8f7c2d0599c1c0dcc37a
+conflicts_with: []
 ---
 
 # General fixes worth trying for any display or performance issue

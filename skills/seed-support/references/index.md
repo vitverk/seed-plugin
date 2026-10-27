@@ -1,9 +1,24 @@
 ---
-title: "SEED support and troubleshooting article index"
-description: "Find the 34 source articles for SEED support and troubleshooting."
-source_type: derived_index
+schema_version: 1
+id: seed-plugin:skills/seed-support/references/index
+title: SEED support and troubleshooting article index
+description: Navigate the source documents for SEED support and troubleshooting.
+document_type: index
+source_type: derived
+source_collection: seed-plugin
+source_id: skills/seed-support/references/index.md
+source_url: null
+source_path: skills/seed-support/references/index.md
+source_version: null
 language: en
-retrieved_at: "2026-10-27T14:26:25Z"
+category: Documentation navigation
+topics:
+  - seed-support
+retrieved_at: null
+imported_at: null
+verification_status: derived
+conflicts_with: []
+content_hash: sha256:ab12fa12da4421dafd5559b7973e88380427f60cb411198966e5e82ae45a2bd3
 ---
 
 # SEED support and troubleshooting article index

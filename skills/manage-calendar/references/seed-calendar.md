@@ -1,3 +1,27 @@
+---
+schema_version: 1
+id: seed-plugin:skills/manage-calendar/references/seed-calendar
+title: Seed guest calendar reference
+description: Explain the guest simulation calendar, state scope and recurrence contracts.
+document_type: reference
+source_type: derived
+source_collection: seed-plugin
+source_id: skills/manage-calendar/references/seed-calendar.md
+source_url: null
+source_path: skills/manage-calendar/references/seed-calendar.md
+source_version: null
+language: en
+category: Documentation navigation
+topics:
+  - guest-simulation
+  - calendar
+retrieved_at: null
+imported_at: null
+verification_status: derived
+conflicts_with: []
+content_hash: sha256:27bf637fa9ab54b3e3b10de1b3c293f72c8196f42f0b427842c8597cfa939efb
+---
+
 # Seed guest calendar reference
 
 This reference describes the temporary Seedling guest simulation. The current tool schemas, `get_companion_capabilities`, and observed guest state define its supported behavior. Progress lives in the open view and resets on reload or close; the calendar does not connect to an external account or personal calendar.

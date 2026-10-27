@@ -43,9 +43,9 @@ Use a supported desktop host's Plugins Directory to select **Seed by Vitverk** a
 - “What can my Seedling do?”
 - “Schedule an hour of harvesting in my open Seed companion.”
 
-The eight bundled skills include the two guest workflows (`seedling-companion` and `manage-calendar`) plus six documentation workflows: `seed-game-guide`, `seedling-care`, `seed-building`, `seed-economy`, `seed-society`, and `seed-support`. The documentation skills contain all 73 English help-center articles across seven categories, with the source home and category pages. Each Markdown reference retains provenance and a content hash. Guest workflows distinguish edits acknowledged by the current visible guest from detached snapshot edits; a read question reuses current state and never resets the demo.
+The nine bundled skills include the two guest workflows (`seedling-companion` and `manage-calendar`), six help-center workflows, and `seed-reference-library`. The documentation contains 121 source files: the 73 English help-center articles, seven category pages and home page, plus 40 supplied manual, developer-concept, local API and project documents. All 130 reference files use one metadata schema; together with nine skill instructions, the package contains 139 Markdown files. Each reference records provenance and a body hash. Imported archive material remains labeled unverified, and conflicting sources are linked without choosing which is current. Guest workflows distinguish edits acknowledged by the current visible guest from detached snapshot edits; a read question reuses current state and never resets the demo.
 
-Use “How does farming work in the real SEED game?” to try documentation discovery. The hosted documentation interface uses `search_seed_docs`, `read_seed_doc`, MCP resources, and the MCP Skills extension to load relevant guides on demand. See [documentation resources](docs/help-center.md) for the catalog, source refresh process, and verification boundaries.
+Use “How does farming work in the real SEED game?” or “What does the supplied manual say about Memoria?” to try documentation discovery. The hosted documentation interface uses `search_seed_docs`, `read_seed_doc`, MCP resources, and the MCP Skills extension to load relevant guides on demand. See [documentation resources](docs/help-center.md) for the catalog, source refresh process, and verification boundaries.
 
 ## Maintain and package
 
@@ -70,10 +70,10 @@ npm run check:submission
 | `.mcp.json` | Claude/legacy HTTP connection configuration |
 | `.agents/plugins/marketplace.json` | OpenAI repository marketplace |
 | `.claude-plugin/marketplace.json` | Claude repository marketplace |
-| `skills/` | Guest workflows, six documentation workflows and full source Markdown references |
+| `skills/` | Guest workflows, help-center workflows and the supplemental reference library |
 | `submission/` | Readiness, review evidence plan, and demo walkthrough |
 
-The ZIP contains one plugin and excludes marketplace catalogs, source deployment files, private app bindings, credentials, and repository history. This package connects to the existing hosted app; it does not deploy the service or replace its private development installation. Package version **1.4.0** and documentation-capable server runtime **0.11.0** are separate version lines.
+The ZIP contains one plugin and excludes marketplace catalogs, source deployment files, private app bindings, credentials, and repository history. This package connects to the existing hosted app; it does not deploy the service or replace its private development installation. Package version **1.5.0** and unified-documentation server runtime **0.12.0** are separate version lines.
 
 See [release maintenance](https://github.com/vitverk/seed-plugin/blob/main/docs/releasing.md) and [platform support](https://github.com/vitverk/seed-plugin/blob/main/docs/platform-support.md). Use [GitHub Issues](https://github.com/vitverk/seed-plugin/issues) for package support.
 

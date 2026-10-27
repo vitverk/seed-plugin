@@ -1,6 +1,6 @@
 {
   "name": "seed-plugin-packaging",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "private": true,
   "description": "Validation and release packaging for the Seed MCP plugin",
   "type": "module",

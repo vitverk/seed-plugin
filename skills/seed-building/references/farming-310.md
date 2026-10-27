@@ -1,13 +1,26 @@
 ---
+schema_version: 1
+id: seed-help-center:article:310
 title: Farming
-description: Farming is the best way to secure food for your society. You act as the
-  planner while your Seedlings do the physical work. Farm fields can be placed anywhere...
-source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/farming-310
+description: Farming is the best way to secure food for your society. You act as the planner while your Seedlings do the physical work. Farm fields can be placed anywhere...
+document_type: article
+source_type: help_center
+source_collection: seed-help-center
 source_id: '310'
-category: Building & The World
+source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/farming-310
+source_path: articles/farming-310.md
+source_version: null
 language: en
+category: Building & The World
+topics:
+- farming
+- building & the world
 retrieved_at: '2026-10-27T14:26:25Z'
-content_hash: sha256:9edbf8b2dbf950ba147d574486f7669e5c6e365b260f3017acbb7bff0d80a492
+imported_at: null
+verification_status: source_snapshot
+content_hash: sha256:c007ee53e2f4c4537bf8e398b9141604160cedd7b60bfd413b2faff8679cc22d
+conflicts_with:
+- seed-agent-play-pr34377:library/manual-farming-and-crops
 ---
 
 # Farming

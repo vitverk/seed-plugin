@@ -1,14 +1,25 @@
 ---
+schema_version: 1
+id: seed-help-center:article:363
 title: What happens to my society or character when I'm offline?
-description: 'SEED is one living world that never stops. When you log off, Avesta
-  keeps running, time passes and life goes on. Your Seedling carries on with their
-  day: wor...'
-source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/what-happens-to-my-society-or-character-when-i-m-offline-363
+description: 'SEED is one living world that never stops. When you log off, Avesta keeps running, time passes and life goes on. Your Seedling carries on with their day: wor...'
+document_type: article
+source_type: help_center
+source_collection: seed-help-center
 source_id: '363'
-category: Community & Support
+source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/what-happens-to-my-society-or-character-when-i-m-offline-363
+source_path: articles/what-happens-to-my-society-or-character-when-i-m-offline-363.md
+source_version: null
 language: en
+category: Community & Support
+topics:
+- what happens to my society or character when i'm offline?
+- community & support
 retrieved_at: '2026-10-27T14:26:25Z'
-content_hash: sha256:185f7f34a53c5751d37d4e8cf0c2c700c89f37f9d776cfae2d139f94fdb15463
+imported_at: null
+verification_status: source_snapshot
+content_hash: sha256:452bc1635042f37493ee60179890ac147f4bf716db1d58612f6f7dbc8105fe22
+conflicts_with: []
 ---
 
 # What happens to my society or character when I'm offline?

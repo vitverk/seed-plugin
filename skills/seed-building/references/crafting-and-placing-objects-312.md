@@ -1,13 +1,25 @@
 ---
+schema_version: 1
+id: seed-help-center:article:312
 title: Crafting & Placing Objects
-description: Crafting items is a key way to progress. Seedlings can craft using Direct
-  Control, but they must have access to a compatible crafting machine (like a Craftin...
-source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/crafting-and-placing-objects-312
+description: Crafting items is a key way to progress. Seedlings can craft using Direct Control, but they must have access to a compatible crafting machine (like a Craftin...
+document_type: article
+source_type: help_center
+source_collection: seed-help-center
 source_id: '312'
-category: Building & The World
+source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/crafting-and-placing-objects-312
+source_path: articles/crafting-and-placing-objects-312.md
+source_version: null
 language: en
+category: Building & The World
+topics:
+- crafting & placing objects
+- building & the world
 retrieved_at: '2026-10-27T14:26:25Z'
-content_hash: sha256:067e1611f0579a2246d2d66421b359f84ad70b791cd60457441c99682dcbeb1d
+imported_at: null
+verification_status: source_snapshot
+content_hash: sha256:f2fe05f478ddb781d2000daf235e74c4d9d1e6e82ac486cbfde7e12aebafdff5
+conflicts_with: []
 ---
 
 # Crafting & Placing Objects

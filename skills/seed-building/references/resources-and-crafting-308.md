@@ -1,14 +1,25 @@
 ---
+schema_version: 1
+id: seed-help-center:article:308
 title: Resources & Crafting
-description: 'Inanimate things in the world come in three main types, each with its
-  own way of interacting: World Resources, Container Items, and Placeable Objects.
-  Natura...'
-source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/resources-and-crafting-308
+description: 'Inanimate things in the world come in three main types, each with its own way of interacting: World Resources, Container Items, and Placeable Objects. Natura...'
+document_type: article
+source_type: help_center
+source_collection: seed-help-center
 source_id: '308'
-category: Building & The World
+source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/resources-and-crafting-308
+source_path: articles/resources-and-crafting-308.md
+source_version: null
 language: en
+category: Building & The World
+topics:
+- resources & crafting
+- building & the world
 retrieved_at: '2026-10-27T14:26:25Z'
-content_hash: sha256:fca1c9630ada9aab126cd27dd440bf2889216e9af7a817201a8d48eae7efa3a5
+imported_at: null
+verification_status: source_snapshot
+content_hash: sha256:e8404615be90b2a953c5ef000e8713064032b561b9c3ef64e69ca49e737f2773
+conflicts_with: []
 ---
 
 # Resources & Crafting

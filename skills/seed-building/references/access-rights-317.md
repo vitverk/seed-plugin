@@ -1,14 +1,25 @@
 ---
+schema_version: 1
+id: seed-help-center:article:317
 title: Access Rights
-description: Ownership vs Access In Avesta, owning something means your Seedling can
-  edit or transfer ownership of it, like a building or plot you placed; others can't
-  ch...
-source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/access-rights-317
+description: Ownership vs Access In Avesta, owning something means your Seedling can edit or transfer ownership of it, like a building or plot you placed; others can't ch...
+document_type: article
+source_type: help_center
+source_collection: seed-help-center
 source_id: '317'
-category: Building & The World
+source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/access-rights-317
+source_path: articles/access-rights-317.md
+source_version: null
 language: en
+category: Building & The World
+topics:
+- access rights
+- building & the world
 retrieved_at: '2026-10-27T14:26:25Z'
-content_hash: sha256:d1d81e25831757bc09a2b1ddffa34375c8584735a8971c0fd6a9c055d910c080
+imported_at: null
+verification_status: source_snapshot
+content_hash: sha256:76be580e2c47893ce2152ac0a8570497691b78bd5ae2d3a83b5e356a1bbeb893
+conflicts_with: []
 ---
 
 # Access Rights

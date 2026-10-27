@@ -2,9 +2,9 @@ import assert from 'node:assert/strict';
 import { readFile, readdir, lstat, access } from 'node:fs/promises';
 import { resolve, relative, dirname, sep } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
-import { createHash } from 'node:crypto';
 import YAML from 'yaml';
 import Ajv2020 from 'ajv/dist/2020.js';
+import { createMetadataValidator, decodeDocument } from './document-metadata.mjs';
 
 export const defaultRoot = fileURLToPath(new URL('../', import.meta.url));
 export const endpoint = 'https://mcp.flaxa.app/mcp';
@@ -160,7 +160,7 @@ export async function validate(root = defaultRoot, { submission = false, quiet =
   assert.ok(!legacy.mcpServers.seed.headers && !mcp.mcpServers.seed.headers, 'Anonymous endpoint must not include credential headers');
   assert.equal(codex.mcpServers, './.mcp.json');
   const skillFiles = files.filter(x => /^skills\/[^/]+\/SKILL\.md$/.test(x));
-  assert.deepEqual(skillFiles.map(path => path.split('/')[1]).sort(), ['manage-calendar', 'seed-building', 'seed-economy', 'seed-game-guide', 'seed-society', 'seed-support', 'seedling-care', 'seedling-companion'], 'Package both guest skills and all six documentation skills');
+  assert.deepEqual(skillFiles.map(path => path.split('/')[1]).sort(), ['manage-calendar', 'seed-building', 'seed-economy', 'seed-game-guide', 'seed-reference-library', 'seed-society', 'seed-support', 'seedling-care', 'seedling-companion'], 'Package both guest skills, six help-center skills and the supplemental reference library');
   for (const path of skillFiles) {
     const content = await readFile(resolve(root, path), 'utf8');
     const frontmatter = content.match(/^---\r?\n([\s\S]*?)\r?\n---(?:\r?\n|$)/);
@@ -178,7 +178,7 @@ export async function validate(root = defaultRoot, { submission = false, quiet =
     }
   }
   for (const path of files.filter(x => /agents\/openai\.yaml$/.test(x))) object(YAML.parse(await readFile(resolve(root, path), 'utf8'), { uniqueKeys: true }), path);
-  await validateHelpCenter(root, files);
+  await validateDocumentation(root, files);
   if (openai.onboardingSkill) assert.ok(files.includes(relative(root, safePath(root, openai.onboardingSkill)).split(sep).join('/')), 'Onboarding skill must be packaged');
   const aiMarket = await json(root, '.agents/plugins/marketplace.json');
   const claudeMarket = await json(root, '.claude-plugin/marketplace.json');
@@ -248,43 +248,113 @@ export async function validate(root = defaultRoot, { submission = false, quiet =
   return { root, files, manifest: portable, bytes: total };
 }
 
-async function validateHelpCenter(root, files) {
-  const catalogPath = 'skills/seed-game-guide/references/catalog.md';
-  const parse = (content, path) => {
-    const match = content.match(/^---\n([\s\S]*?)\n---\n\n/);
-    assert.ok(match, `Missing documentation frontmatter: ${path}`);
-    return { metadata: YAML.parse(match[1], { uniqueKeys: true }), body: content.slice(match[0].length) };
-  };
-  const catalog = await readFile(resolve(root, catalogPath), 'utf8');
-  const { metadata: inventory } = parse(catalog, catalogPath);
-  const sources = new Set();
-  let articleCount = 0;
-  for (const path of files.filter(path => /^skills\/(?:seed-game-guide|seedling-care|seed-building|seed-economy|seed-society|seed-support)\/references\/.+\.md$/.test(path))) {
-    const content = await readFile(resolve(root, path), 'utf8');
-    const { metadata, body } = parse(content, path);
-    if (metadata.source_type === 'derived_index') continue;
-    text(metadata.title, `Article title: ${path}`);
-    if (metadata.source_url?.includes('/articles/')) text(metadata.description, `Article description: ${path}`);
-    assert.equal(metadata.language, 'en', `Article language: ${path}`);
-    assert.ok(!Number.isNaN(Date.parse(metadata.retrieved_at)), `Article retrieval date: ${path}`);
-    assert.match(metadata.source_url, /^https:\/\/klang-games\.eu\.theymes\.com\/hc\/en\/seed(?:\/(?:articles|categories)\/[a-z0-9-]+)?$/, `Canonical source URL: ${path}`);
-    assert.ok(!sources.has(metadata.source_url), `Duplicate help-center source: ${metadata.source_url}`);
-    sources.add(metadata.source_url);
-    if (metadata.source_url.includes('/articles/')) articleCount++;
-    assert.ok(body.startsWith(`# ${metadata.title}\n\n`), `Article heading: ${path}`);
-    const original = body.slice(`# ${metadata.title}\n\n`.length);
-    assert.equal(`sha256:${createHash('sha256').update(original).digest('hex')}`, metadata.content_hash, `Article content hash mismatch: ${path}`);
-    const link = `../../${path.slice('skills/'.length)}`;
-    assert.ok(catalog.includes(`](${link})`), `Source article missing from catalog: ${path}`);
+export async function validateDocumentation(root, files) {
+  const validateMetadata = createMetadataValidator(await json(root, 'schemas/document-metadata.schema.json'));
+  const inventory = await json(root, 'sources/documentation-inventory.json');
+  assert.equal(inventory.schemaVersion, 1, 'Unsupported documentation inventory version');
+  assert.ok(Array.isArray(inventory.documents) && inventory.documents.length > 0, 'Documentation inventory must enumerate source files');
+  const referencePaths = files.filter(path => /^skills\/[^/]+\/references\/.+\.md$/.test(path));
+  assert.ok(files.filter(path => path.startsWith('skills/')).every(path => /^skills\/[^/]+\/(?:SKILL\.md|references\/.+\.md)$/.test(path)), 'Skills may package only Markdown instructions and references; no archive code or configuration');
+  const documents = new Map();
+  const byPath = new Map();
+  const linkedResources = new Map();
+  const helpUrls = new Set();
+  const collections = new Set();
+  for (const path of referencePaths) {
+    const document = decodeDocument(await readFile(resolve(root, path), 'utf8'), path, validateMetadata);
+    const { metadata, body } = document;
+    assert.ok(!documents.has(metadata.id), `Duplicate documentation ID: ${metadata.id}`);
+    documents.set(metadata.id, { ...document, path });
+    byPath.set(path, document);
+    assert.equal(metadata.language, 'en', `Document language: ${path}`);
+    if (metadata.source_type === 'derived') {
+      assert.equal(metadata.verification_status, 'derived', `Derived document verification: ${path}`);
+      assert.equal(metadata.source_collection, 'seed-plugin', `Derived document collection: ${path}`);
+      assert.equal(metadata.source_path, path, `Derived document path: ${path}`);
+      assert.equal(metadata.source_url, null, `Derived documents cannot invent source URLs: ${path}`);
+    } else {
+      collections.add(metadata.source_collection);
+      if (metadata.source_collection === 'seed-help-center') {
+        assert.equal(metadata.source_type, 'help_center', `Help-center provenance: ${path}`);
+        assert.ok(['article', 'navigation'].includes(metadata.document_type), `Help-center document type: ${path}`);
+        assert.equal(metadata.verification_status, 'source_snapshot', `Help-center verification: ${path}`);
+        assert.ok(metadata.retrieved_at, `Help-center retrieval date: ${path}`);
+        assert.match(metadata.source_url, /^https:\/\/klang-games\.eu\.theymes\.com\/hc\/en\/seed(?:\/(?:articles|categories)\/[a-z0-9-]+)?$/, `Canonical help-center URL: ${path}`);
+        assert.ok(!helpUrls.has(metadata.source_url), `Duplicate help-center source: ${metadata.source_url}`);
+        helpUrls.add(metadata.source_url);
+      } else if (metadata.source_collection === 'seed-agent-play-pr34377') {
+        assert.equal(metadata.source_url, null, `Archive documents have no public source URL: ${path}`);
+        assert.equal(metadata.retrieved_at, null, `Archive import must not invent a retrieval date: ${path}`);
+        assert.ok(metadata.imported_at, `Archive import date: ${path}`);
+        assert.equal(metadata.verification_status, 'unverified_reference', `Archive verification: ${path}`);
+        const sourcePath = metadata.source_path.replace(/^tools\/agent-play-api\//, '');
+        assert.notEqual(sourcePath, metadata.source_path, `Archive source path: ${path}`);
+        const kind = sourcePath.startsWith('library/manual-') ? ['in_game_manual', 'manual']
+          : sourcePath.startsWith('library/concept-') ? ['developer_reference', 'concept']
+          : sourcePath === 'library/index.md' ? ['collection_index', 'index']
+          : sourcePath.startsWith('docs/') ? ['local_api_reference', 'workflow']
+          : ['CLAUDE.md', 'DECISIONS.md'].includes(sourcePath) ? ['project_reference', 'project'] : null;
+        assert.ok(kind && sourcePath.endsWith('.md'), `Only reviewed archive Markdown is allowed: ${path}`);
+        assert.deepEqual([metadata.source_type, metadata.document_type], kind, `Archive provenance kind: ${path}`);
+        assert.ok(path.startsWith('skills/seed-reference-library/references/'), `Archive documents must stay in their reference skill: ${path}`);
+      } else assert.fail(`Unreviewed source collection: ${metadata.source_collection}`);
+    }
+    // Generated navigation has package-local links. Imported source prose is
+    // preserved as data, including its unresolved original client references.
+    if (metadata.source_type === 'derived') {
+      const links = new Set();
+      linkedResources.set(path, links);
+      for (const match of body.matchAll(/\[[^\]]*\]\(([^\s)]+)\)/g)) {
+        if (/^https?:/.test(match[1])) continue;
+        const target = match[1].split('#')[0];
+        if (!target) continue;
+        const absolute = resolve(root, dirname(path), decodeURIComponent(target));
+        const packagedPath = relative(root, absolute).split(sep).join('/');
+        assert.ok(files.includes(packagedPath), `Catalog resource is not packaged: ${path}: ${target}`);
+        links.add(packagedPath);
+      }
+    }
   }
-  assert.equal(sources.size, inventory.page_count, 'Help-center page coverage differs from catalog');
-  assert.equal(articleCount, inventory.article_count, 'Help-center article coverage differs from catalog');
-  for (const match of catalog.matchAll(/\[[^\]]*\]\(([^\s)]+)\)/g)) {
-    if (/^https?:/.test(match[1])) continue;
-    const target = resolve(root, dirname(catalogPath), match[1]);
-    assert.ok(files.includes(relative(root, target).split(sep).join('/')), `Catalog resource is not packaged: ${match[1]}`);
+  assert.deepEqual([...collections].sort(), ['seed-agent-play-pr34377', 'seed-help-center'], 'Both source collections must be packaged');
+  const inventoryPaths = [];
+  const inventoryIds = new Set();
+  for (const entry of inventory.documents) {
+    assert.ok(entry && typeof entry.path === 'string' && entry.metadata, 'Malformed documentation inventory entry');
+    assert.ok(!inventoryPaths.includes(entry.path), `Duplicate inventory path: ${entry.path}`);
+    validateMetadata(entry.metadata, `inventory:${entry.path}`);
+    assert.ok(!inventoryIds.has(entry.metadata.id), `Duplicate inventory ID: ${entry.metadata.id}`);
+    inventoryIds.add(entry.metadata.id);
+    inventoryPaths.push(entry.path);
+    assert.notEqual(entry.metadata.source_type, 'derived', 'Source inventory must not count generated navigation');
+    assert.ok(byPath.has(entry.path), `Source inventory resource is not packaged: ${entry.path}`);
+    assert.deepEqual(byPath.get(entry.path).metadata, entry.metadata, `Source metadata differs from canonical inventory: ${entry.path}`);
   }
+  const actualSources = [...byPath].filter(([, document]) => document.metadata.source_type !== 'derived').map(([path]) => path).sort();
+  assert.deepEqual(actualSources, inventoryPaths.sort(), 'Documentation source coverage differs from canonical inventory');
+  for (const path of actualSources) {
+    const metadata = byPath.get(path).metadata;
+    const indexPath = metadata.source_collection === 'seed-help-center'
+      ? 'skills/seed-game-guide/references/catalog.md'
+      : 'skills/seed-reference-library/references/index.md';
+    assert.ok(linkedResources.get(indexPath)?.has(path), `Source document missing from collection catalog: ${path}`);
+  }
+  for (const { metadata } of documents.values()) {
+    for (const otherId of metadata.conflicts_with) {
+      const other = documents.get(otherId);
+      assert.ok(other && otherId !== metadata.id, `Unresolved or self-referencing source conflict: ${metadata.id} -> ${otherId}`);
+      assert.ok(other.metadata.conflicts_with.includes(metadata.id), `Source conflict must be symmetric: ${metadata.id} -> ${otherId}`);
+    }
+  }
+  for (const [helpId, archiveId] of [
+    ['seed-help-center:article:310', 'seed-agent-play-pr34377:library/manual-farming-and-crops'],
+    ['seed-help-center:article:368', 'seed-agent-play-pr34377:library/manual-seasonal-events'],
+  ]) assert.ok(documents.get(helpId)?.metadata.conflicts_with.includes(archiveId) && documents.get(archiveId)?.metadata.conflicts_with.includes(helpId), `Known source conflict must remain recorded: ${helpId}`);
+  const guestReference = byPath.get('skills/manage-calendar/references/seed-calendar.md');
+  assert.ok(guestReference.body.startsWith('# Seed guest calendar reference\n'), 'Guest calendar reference body must remain scoped to the guest');
+  assert.doesNotMatch(guestReference.body, /https?:\/\//, 'The guest calendar reference must remain self-contained');
+  return { sourceCount: actualSources.length, referenceCount: referencePaths.length, collections: [...collections].sort() };
 }
+
 if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1])).href) {
   try { await validate(defaultRoot, { submission: process.argv.includes('--submission') }); }
   catch (error) { console.error(error.message); process.exitCode = 1; }

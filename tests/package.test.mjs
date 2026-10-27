@@ -6,6 +6,8 @@ import { tmpdir } from 'node:os';
 import { defaultRoot, validate, safePath } from '../scripts/validate.mjs';
 import { buildPackage } from '../scripts/package.mjs';
 import { parseRpcResponse } from '../scripts/rpc.mjs';
+import YAML from 'yaml';
+import { createMetadataValidator, decodeDocument, canonicalBody, bodyHash } from '../scripts/document-metadata.mjs';
 
 async function fixture(t) {
   const root = await mkdtemp(join(tmpdir(), 'seed-plugin-test-'));
@@ -61,7 +63,7 @@ test('release archive is deterministic and contains only allowlisted plugin file
   const second = await buildPackage(root, { quiet: true });
   assert.equal(first.sha256, second.sha256);
   assert.ok(first.files.includes('.claude-plugin/plugin.json'));
-  assert.ok(!first.files.some(path => /marketplace\.json|^submission\/|^scripts\/|^tests\/|^\.github\//.test(path)));
+  assert.ok(!first.files.some(path => /marketplace\.json|^submission\/|^scripts\/|^tests\/|^schemas\/|^sources\/|^\.github\//.test(path)));
 });
 test('private app binding in a shadowed compatibility manifest is rejected', async t => {
   const root = await fixture(t);
@@ -189,4 +191,98 @@ test('transport parser handles JSON and SSE while selecting the correct request'
   assert.deepEqual(parseRpcResponse(JSON.stringify(reply), 'application/json', 2), reply);
   assert.deepEqual(parseRpcResponse(`: heartbeat\r\n\r\ndata: {"jsonrpc":"2.0","method":"notice"}\r\n\r\nevent: message\r\ndata: ${JSON.stringify(reply)}\r\n\r\n`, 'text/event-stream', 2), reply);
   assert.throws(() => parseRpcResponse(JSON.stringify(reply), 'application/json', 3), /No JSON-RPC response/);
+});
+
+async function alterDocument(root, path, modify, { mirrorInventory = false } = {}) {
+  const fullPath = join(root, path);
+  const source = await readFile(fullPath, 'utf8');
+  const match = source.match(/^---\n([\s\S]*?)\n---\n/);
+  assert.ok(match);
+  const metadata = YAML.parse(match[1]);
+  modify(metadata);
+  await writeFile(fullPath, `---\n${YAML.stringify(metadata)}---\n${source.slice(match[0].length)}`);
+  if (mirrorInventory) await alter(root, 'sources/documentation-inventory.json', inventory => {
+    const entry = inventory.documents.find(item => item.path === path);
+    assert.ok(entry);
+    entry.metadata = metadata;
+  });
+}
+const importedManualPath = 'skills/seed-reference-library/references/library/manual-farming-and-crops.md';
+test('all references use the shared schema and canonical body hashing', async () => {
+  const schema = JSON.parse(await readFile(join(defaultRoot, 'schemas/document-metadata.schema.json'), 'utf8'));
+  const check = createMetadataValidator(schema);
+  const text = await readFile(join(defaultRoot, importedManualPath), 'utf8');
+  const parsed = decodeDocument(text, importedManualPath, check);
+  assert.equal(parsed.metadata.source_url, null);
+  assert.equal(parsed.metadata.verification_status, 'unverified_reference');
+  assert.equal(parsed.metadata.content_hash, bodyHash(parsed.body));
+  assert.equal(canonicalBody('\r\n  \r\n# Topic\r\n\r\nBody.\r\n\r\n'), '# Topic\n\nBody.\n');
+  assert.deepEqual(decodeDocument(text.replaceAll('\n', '\r\n'), importedManualPath, check), parsed);
+});
+test('missing imported source document cannot pass inventory coverage', async t => {
+  const root = await fixture(t);
+  await rm(join(root, importedManualPath));
+  await assert.rejects(validate(root, { quiet: true }), /not packaged/);
+});
+test('archive metadata cannot invent source URLs or current-game verification', async t => {
+  const root = await fixture(t);
+  const original = await readFile(join(root, importedManualPath), 'utf8');
+  for (const [modify, expected] of [
+    [metadata => { metadata.source_url = 'https://example.com/fake-source'; }, /no public source URL/],
+    [metadata => { metadata.retrieved_at = '2026-10-27T00:00:00Z'; }, /must not invent a retrieval date/],
+    [metadata => { metadata.verification_status = 'source_snapshot'; }, /Archive verification/],
+    [metadata => { metadata.source_type = 'help_center'; }, /Archive provenance kind/],
+  ]) {
+    await alterDocument(root, importedManualPath, modify);
+    await assert.rejects(validate(root, { quiet: true }), expected);
+    await writeFile(join(root, importedManualPath), original);
+  }
+});
+test('shared metadata schema rejects unknown fields and missing provenance', async t => {
+  const root = await fixture(t);
+  const original = await readFile(join(root, importedManualPath), 'utf8');
+  for (const modify of [metadata => { metadata.unknown_metadata = 'unreviewed'; }, metadata => { delete metadata.source_path; }, metadata => { metadata.imported_at = 'not-a-timestamp'; }]) {
+    await alterDocument(root, importedManualPath, modify);
+    await assert.rejects(validate(root, { quiet: true }), /invalid document metadata/);
+    await writeFile(join(root, importedManualPath), original);
+  }
+});
+test('document identities and canonical source metadata cannot drift silently', async t => {
+  const root = await fixture(t);
+  const original = await readFile(join(root, importedManualPath), 'utf8');
+  await alterDocument(root, importedManualPath, metadata => { metadata.id = 'seed-help-center:article:317'; });
+  await assert.rejects(validate(root, { quiet: true }), /Duplicate documentation ID/);
+  await writeFile(join(root, importedManualPath), original);
+  await alterDocument(root, importedManualPath, metadata => { metadata.title = 'Changed source title'; });
+  await assert.rejects(validate(root, { quiet: true }), /differs from canonical inventory/);
+});
+test('known source conflicts remain resolvable and symmetric', async t => {
+  const root = await fixture(t);
+  await alterDocument(root, importedManualPath, metadata => { metadata.conflicts_with = []; }, { mirrorInventory: true });
+  await assert.rejects(validate(root, { quiet: true }), /conflict must be symmetric/);
+  await alterDocument(root, 'skills/seed-building/references/farming-310.md', metadata => { metadata.conflicts_with = []; }, { mirrorInventory: true });
+  await assert.rejects(validate(root, { quiet: true }), /Known source conflict must remain recorded/);
+});
+test('archive code cannot enter the packaged reference skill', async t => {
+  const root = await fixture(t);
+  await writeFile(join(root, 'skills/seed-reference-library/references/AgentPlayApi.cs'), '// Not part of the documentation corpus.\n');
+  await assert.rejects(buildPackage(root, { quiet: true }), /no archive code or configuration/);
+});
+test('source paths stay relative and source conflicts cannot reference themselves', async t => {
+  const root = await fixture(t);
+  const original = await readFile(join(root, importedManualPath), 'utf8');
+  const inventoryPath = join(root, 'sources/documentation-inventory.json');
+  const originalInventory = await readFile(inventoryPath, 'utf8');
+  for (const sourcePath of ['/tmp/external.md', 'tools/agent-play-api/../../external.md', 'tools\\agent-play-api\\library\\manual.md']) {
+    await alterDocument(root, importedManualPath, metadata => { metadata.source_path = sourcePath; }, { mirrorInventory: true });
+    await assert.rejects(validate(root, { quiet: true }), /source[_ ]?path|relative|traversal/i);
+    await writeFile(join(root, importedManualPath), original);
+    await writeFile(inventoryPath, originalInventory);
+  }
+  await alterDocument(root, importedManualPath, metadata => { metadata.imported_at = '2026-02-30T00:00:00Z'; }, { mirrorInventory: true });
+  await assert.rejects(validate(root, { quiet: true }), /invalid document metadata/);
+  await writeFile(join(root, importedManualPath), original);
+  await writeFile(inventoryPath, originalInventory);
+  await alterDocument(root, importedManualPath, metadata => { metadata.conflicts_with.push(metadata.id); }, { mirrorInventory: true });
+  await assert.rejects(validate(root, { quiet: true }), /self|own.*conflict/i);
 });

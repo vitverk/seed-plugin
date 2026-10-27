@@ -1,0 +1,3272 @@
+{
+  "schemaVersion": 1,
+  "documents": [
+    {
+      "path": "skills/seed-building/references/access-rights-317.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-help-center:article:317",
+        "title": "Access Rights",
+        "description": "Ownership vs Access In Avesta, owning something means your Seedling can edit or transfer ownership of it, like a building or plot you placed; others can't ch...",
+        "document_type": "article",
+        "source_type": "help_center",
+        "source_collection": "seed-help-center",
+        "source_id": "317",
+        "source_url": "https://klang-games.eu.theymes.com/hc/en/seed/articles/access-rights-317",
+        "source_path": "articles/access-rights-317.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Building & The World",
+        "topics": [
+          "access rights",
+          "building & the world"
+        ],
+        "retrieved_at": "2026-10-27T14:26:25Z",
+        "imported_at": null,
+        "verification_status": "source_snapshot",
+        "content_hash": "sha256:76be580e2c47893ce2152ac0a8570497691b78bd5ae2d3a83b5e356a1bbeb893",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-building/references/building-316.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-help-center:article:316",
+        "title": "Building",
+        "description": "Build Mode lets you construct entirely new buildings on empty plots or modify existing ones. As Cultivator you design the layout and structure; Seedlings do...",
+        "document_type": "article",
+        "source_type": "help_center",
+        "source_collection": "seed-help-center",
+        "source_id": "316",
+        "source_url": "https://klang-games.eu.theymes.com/hc/en/seed/articles/building-316",
+        "source_path": "articles/building-316.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Building & The World",
+        "topics": [
+          "building",
+          "building & the world"
+        ],
+        "retrieved_at": "2026-10-27T14:26:25Z",
+        "imported_at": null,
+        "verification_status": "source_snapshot",
+        "content_hash": "sha256:85f53fc01b0f772bcea7aa7985b351a1e5a10d1499451984fea53c3248be2e2f",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-building/references/categories/building-and-the-world-31.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-help-center:category:31",
+        "title": "Building & The World",
+        "description": "Building & The World",
+        "document_type": "navigation",
+        "source_type": "help_center",
+        "source_collection": "seed-help-center",
+        "source_id": "31",
+        "source_url": "https://klang-games.eu.theymes.com/hc/en/seed/categories/building-and-the-world-31",
+        "source_path": "categories/building-and-the-world-31.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Building & The World",
+        "topics": [
+          "building & the world"
+        ],
+        "retrieved_at": "2026-10-27T14:26:25Z",
+        "imported_at": null,
+        "verification_status": "source_snapshot",
+        "content_hash": "sha256:807c28830b3713f8b9ae7224e5a42acfadfa7edf5665e6f009b8deaadc9ce00a",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-building/references/crafting-and-placing-objects-312.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-help-center:article:312",
+        "title": "Crafting & Placing Objects",
+        "description": "Crafting items is a key way to progress. Seedlings can craft using Direct Control, but they must have access to a compatible crafting machine (like a Craftin...",
+        "document_type": "article",
+        "source_type": "help_center",
+        "source_collection": "seed-help-center",
+        "source_id": "312",
+        "source_url": "https://klang-games.eu.theymes.com/hc/en/seed/articles/crafting-and-placing-objects-312",
+        "source_path": "articles/crafting-and-placing-objects-312.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Building & The World",
+        "topics": [
+          "crafting & placing objects",
+          "building & the world"
+        ],
+        "retrieved_at": "2026-10-27T14:26:25Z",
+        "imported_at": null,
+        "verification_status": "source_snapshot",
+        "content_hash": "sha256:f2fe05f478ddb781d2000daf235e74c4d9d1e6e82ac486cbfde7e12aebafdff5",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-building/references/farming-310.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-help-center:article:310",
+        "title": "Farming",
+        "description": "Farming is the best way to secure food for your society. You act as the planner while your Seedlings do the physical work. Farm fields can be placed anywhere...",
+        "document_type": "article",
+        "source_type": "help_center",
+        "source_collection": "seed-help-center",
+        "source_id": "310",
+        "source_url": "https://klang-games.eu.theymes.com/hc/en/seed/articles/farming-310",
+        "source_path": "articles/farming-310.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Building & The World",
+        "topics": [
+          "farming",
+          "building & the world"
+        ],
+        "retrieved_at": "2026-10-27T14:26:25Z",
+        "imported_at": null,
+        "verification_status": "source_snapshot",
+        "content_hash": "sha256:c007ee53e2f4c4537bf8e398b9141604160cedd7b60bfd413b2faff8679cc22d",
+        "conflicts_with": [
+          "seed-agent-play-pr34377:library/manual-farming-and-crops"
+        ]
+      }
+    },
+    {
+      "path": "skills/seed-building/references/frontier-tent-and-plot-claiming-314.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-help-center:article:314",
+        "title": "Frontier Tent & Plot Claiming",
+        "description": "Your Seedling starts with a Tent in their inventory. Placing and building it is how you claim your first plot of land: Open the Seedling Inventory (backpack...",
+        "document_type": "article",
+        "source_type": "help_center",
+        "source_collection": "seed-help-center",
+        "source_id": "314",
+        "source_url": "https://klang-games.eu.theymes.com/hc/en/seed/articles/frontier-tent-and-plot-claiming-314",
+        "source_path": "articles/frontier-tent-and-plot-claiming-314.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Building & The World",
+        "topics": [
+          "frontier tent & plot claiming",
+          "building & the world"
+        ],
+        "retrieved_at": "2026-10-27T14:26:25Z",
+        "imported_at": null,
+        "verification_status": "source_snapshot",
+        "content_hash": "sha256:e2e0abd765da83a37a909459f91ab39083e9a2be50d6a776e76428c5080bbc7e",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-building/references/harvesting-309.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-help-center:article:309",
+        "title": "Harvesting",
+        "description": "Harvesting is the best way to gather resources for survival. Send your Seedling to harvest through Direct Control by clicking on natural resources in the wor...",
+        "document_type": "article",
+        "source_type": "help_center",
+        "source_collection": "seed-help-center",
+        "source_id": "309",
+        "source_url": "https://klang-games.eu.theymes.com/hc/en/seed/articles/harvesting-309",
+        "source_path": "articles/harvesting-309.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Building & The World",
+        "topics": [
+          "harvesting",
+          "building & the world"
+        ],
+        "retrieved_at": "2026-10-27T14:26:25Z",
+        "imported_at": null,
+        "verification_status": "source_snapshot",
+        "content_hash": "sha256:44cdac5ce1d4d092d35fd3cd3459689f22d0e2fc70b0bfe36e64e01adce93dc3",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-building/references/land-planner-315.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-help-center:article:315",
+        "title": "Land Planner",
+        "description": "The Land Planner (right sidebar) is the spatial planning app for land. From it you can edit any plot you have permission over: a plot you own, or one your ro...",
+        "document_type": "article",
+        "source_type": "help_center",
+        "source_collection": "seed-help-center",
+        "source_id": "315",
+        "source_url": "https://klang-games.eu.theymes.com/hc/en/seed/articles/land-planner-315",
+        "source_path": "articles/land-planner-315.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Building & The World",
+        "topics": [
+          "land planner",
+          "building & the world"
+        ],
+        "retrieved_at": "2026-10-27T14:26:25Z",
+        "imported_at": null,
+        "verification_status": "source_snapshot",
+        "content_hash": "sha256:32e1e0bd345ed6e907b4ab67e94b027e9c1e9efd1cab73c6843f3a44a52e209f",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-building/references/machines-311.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-help-center:article:311",
+        "title": "Machines",
+        "description": "Machines Machines are placeable objects that Seedlings operate to produce, process, and extract. There are far too many to list them all, but the Catalog (to...",
+        "document_type": "article",
+        "source_type": "help_center",
+        "source_collection": "seed-help-center",
+        "source_id": "311",
+        "source_url": "https://klang-games.eu.theymes.com/hc/en/seed/articles/machines-311",
+        "source_path": "articles/machines-311.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Building & The World",
+        "topics": [
+          "machines",
+          "building & the world"
+        ],
+        "retrieved_at": "2026-10-27T14:26:25Z",
+        "imported_at": null,
+        "verification_status": "source_snapshot",
+        "content_hash": "sha256:e25b99760a24d5b228cf2430689e7baea4faade886decbc399b741ea7998e44d",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-building/references/resources-and-crafting-308.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-help-center:article:308",
+        "title": "Resources & Crafting",
+        "description": "Inanimate things in the world come in three main types, each with its own way of interacting: World Resources, Container Items, and Placeable Objects. Natura...",
+        "document_type": "article",
+        "source_type": "help_center",
+        "source_collection": "seed-help-center",
+        "source_id": "308",
+        "source_url": "https://klang-games.eu.theymes.com/hc/en/seed/articles/resources-and-crafting-308",
+        "source_path": "articles/resources-and-crafting-308.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Building & The World",
+        "topics": [
+          "resources & crafting",
+          "building & the world"
+        ],
+        "retrieved_at": "2026-10-27T14:26:25Z",
+        "imported_at": null,
+        "verification_status": "source_snapshot",
+        "content_hash": "sha256:e8404615be90b2a953c5ef000e8713064032b561b9c3ef64e69ca49e737f2773",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-building/references/the-kernel-313.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-help-center:article:313",
+        "title": "The Kernel",
+        "description": "The Society Kernel is a central building where new Seedlings arrive when they are sent to the planet or migrate from another society. It also serves as a com...",
+        "document_type": "article",
+        "source_type": "help_center",
+        "source_collection": "seed-help-center",
+        "source_id": "313",
+        "source_url": "https://klang-games.eu.theymes.com/hc/en/seed/articles/the-kernel-313",
+        "source_path": "articles/the-kernel-313.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Building & The World",
+        "topics": [
+          "the kernel",
+          "building & the world"
+        ],
+        "retrieved_at": "2026-10-27T14:26:25Z",
+        "imported_at": null,
+        "verification_status": "source_snapshot",
+        "content_hash": "sha256:13915ce186aa3e44eaacc273278c9824a1e8c50c98eae8131b131182d3c53f62",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-economy/references/buy-and-sell-orders-322.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-help-center:article:322",
+        "title": "Buy & Sell Orders",
+        "description": "Every building you own or manage has a Market tab in its Management Panel; orders are delivered to or dispatched from that building. You can also manage ever...",
+        "document_type": "article",
+        "source_type": "help_center",
+        "source_collection": "seed-help-center",
+        "source_id": "322",
+        "source_url": "https://klang-games.eu.theymes.com/hc/en/seed/articles/buy-and-sell-orders-322",
+        "source_path": "articles/buy-and-sell-orders-322.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Work & Economy",
+        "topics": [
+          "buy & sell orders",
+          "work & economy"
+        ],
+        "retrieved_at": "2026-10-27T14:26:25Z",
+        "imported_at": null,
+        "verification_status": "source_snapshot",
+        "content_hash": "sha256:f15d5fb34e3fd659fc181816b2bb2f6f1d7ee9755ae69d8e19012bc403c7afc1",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-economy/references/categories/work-and-economy-32.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-help-center:category:32",
+        "title": "Work & Economy",
+        "description": "Work & Economy",
+        "document_type": "navigation",
+        "source_type": "help_center",
+        "source_collection": "seed-help-center",
+        "source_id": "32",
+        "source_url": "https://klang-games.eu.theymes.com/hc/en/seed/categories/work-and-economy-32",
+        "source_path": "categories/work-and-economy-32.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Work & Economy",
+        "topics": [
+          "work & economy"
+        ],
+        "retrieved_at": "2026-10-27T14:26:25Z",
+        "imported_at": null,
+        "verification_status": "source_snapshot",
+        "content_hash": "sha256:2bf5ce318494006eb10e4b7b6395f8ff2c07db4801f8d87faa3c2f6d79c944df",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-economy/references/contracts-324.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-help-center:article:324",
+        "title": "Contracts",
+        "description": "Contracts allow businesses to form structured trade agreements. They are not made between individuals but between two business entities or government departm...",
+        "document_type": "article",
+        "source_type": "help_center",
+        "source_collection": "seed-help-center",
+        "source_id": "324",
+        "source_url": "https://klang-games.eu.theymes.com/hc/en/seed/articles/contracts-324",
+        "source_path": "articles/contracts-324.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Work & Economy",
+        "topics": [
+          "contracts",
+          "work & economy"
+        ],
+        "retrieved_at": "2026-10-27T14:26:25Z",
+        "imported_at": null,
+        "verification_status": "source_snapshot",
+        "content_hash": "sha256:8cf7496a3fbb85d36df2336f01f908ac06b9066c11492ed359d171e895a34161",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-economy/references/employment-318.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-help-center:article:318",
+        "title": "Employment",
+        "description": "Finding a Job (Employee Side) Use the Jobs app on your Seedling's mobile device to browse and apply for available jobs. Check the wage per hour, the working...",
+        "document_type": "article",
+        "source_type": "help_center",
+        "source_collection": "seed-help-center",
+        "source_id": "318",
+        "source_url": "https://klang-games.eu.theymes.com/hc/en/seed/articles/employment-318",
+        "source_path": "articles/employment-318.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Work & Economy",
+        "topics": [
+          "employment",
+          "work & economy"
+        ],
+        "retrieved_at": "2026-10-27T14:26:25Z",
+        "imported_at": null,
+        "verification_status": "source_snapshot",
+        "content_hash": "sha256:cd2044a41c1bcd1caf77c304b3582bc03f77cbf1ed2650ae2a5ecfa07f5654f5",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-economy/references/inbox-outbox-and-deliveries-323.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-help-center:article:323",
+        "title": "Inbox, Outbox & Deliveries",
+        "description": "Inbox & Outbox Inbox: a building's main input container. Seedlings deposit harvested resources, crafted items, and delivered goods here; completed production...",
+        "document_type": "article",
+        "source_type": "help_center",
+        "source_collection": "seed-help-center",
+        "source_id": "323",
+        "source_url": "https://klang-games.eu.theymes.com/hc/en/seed/articles/inbox-outbox-and-deliveries-323",
+        "source_path": "articles/inbox-outbox-and-deliveries-323.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Work & Economy",
+        "topics": [
+          "inbox, outbox & deliveries",
+          "work & economy"
+        ],
+        "retrieved_at": "2026-10-27T14:26:25Z",
+        "imported_at": null,
+        "verification_status": "source_snapshot",
+        "content_hash": "sha256:a2ddf6d891254542ac27fae6d99166de7280697644977b73c5bd491062dca63a",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-economy/references/production-chains-320.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-help-center:article:320",
+        "title": "Production Chains",
+        "description": "To optimize production, think through every step a Seedling must take from raw material to finished product. You design the system and set up tasks; Seedling...",
+        "document_type": "article",
+        "source_type": "help_center",
+        "source_collection": "seed-help-center",
+        "source_id": "320",
+        "source_url": "https://klang-games.eu.theymes.com/hc/en/seed/articles/production-chains-320",
+        "source_path": "articles/production-chains-320.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Work & Economy",
+        "topics": [
+          "production chains",
+          "work & economy"
+        ],
+        "retrieved_at": "2026-10-27T14:26:25Z",
+        "imported_at": null,
+        "verification_status": "source_snapshot",
+        "content_hash": "sha256:5e8709a6366479570eae5c2d9c321b87f6cf14a6176398652719746ce32b2875",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-economy/references/starting-a-business-319.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-help-center:article:319",
+        "title": "Starting a Business",
+        "description": "Creating a business requires holding a role that grants the right to own a business, typically the default Adult role, or a custom role the Mayor has granted...",
+        "document_type": "article",
+        "source_type": "help_center",
+        "source_collection": "seed-help-center",
+        "source_id": "319",
+        "source_url": "https://klang-games.eu.theymes.com/hc/en/seed/articles/starting-a-business-319",
+        "source_path": "articles/starting-a-business-319.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Work & Economy",
+        "topics": [
+          "starting a business",
+          "work & economy"
+        ],
+        "retrieved_at": "2026-10-27T14:26:25Z",
+        "imported_at": null,
+        "verification_status": "source_snapshot",
+        "content_hash": "sha256:8800e82a08ca8c8c9b66a71d0769932a600dd6305ec22f4ff10c656ecd553ca9",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-economy/references/the-marketplace-321.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-help-center:article:321",
+        "title": "The Marketplace",
+        "description": "The Marketplace Panel (Management Hub, right sidebar) gives a full overview of all trade activity in your society. It has two modes: Sell Orders (Supply) sho...",
+        "document_type": "article",
+        "source_type": "help_center",
+        "source_collection": "seed-help-center",
+        "source_id": "321",
+        "source_url": "https://klang-games.eu.theymes.com/hc/en/seed/articles/the-marketplace-321",
+        "source_path": "articles/the-marketplace-321.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Work & Economy",
+        "topics": [
+          "the marketplace",
+          "work & economy"
+        ],
+        "retrieved_at": "2026-10-27T14:26:25Z",
+        "imported_at": null,
+        "verification_status": "source_snapshot",
+        "content_hash": "sha256:2abcbaeda824d4ef5b998bf77daa832adaa78dc8e5a9130f53e48d98ac1a9063",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-game-guide/references/categories/beginners-guide-28.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-help-center:category:28",
+        "title": "Beginner's Guide",
+        "description": "Beginner's Guide",
+        "document_type": "navigation",
+        "source_type": "help_center",
+        "source_collection": "seed-help-center",
+        "source_id": "28",
+        "source_url": "https://klang-games.eu.theymes.com/hc/en/seed/categories/beginners-guide-28",
+        "source_path": "categories/beginners-guide-28.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Beginner's Guide",
+        "topics": [
+          "beginner's guide"
+        ],
+        "retrieved_at": "2026-10-27T14:26:25Z",
+        "imported_at": null,
+        "verification_status": "source_snapshot",
+        "content_hash": "sha256:f6ce7bd81f60e9f005f3c2b4c55c2c2c7abf71dbd8c66c419990579a48c2e474",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-game-guide/references/creating-a-seedling-302.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-help-center:article:302",
+        "title": "Creating a Seedling",
+        "description": "Here you will be given the choice to edit your Seedlings name, appearance, personality and stats. PLEASE NOTE: ONCE A NAME HAS BEEN CHOSEN IT CANT BE CHANGED...",
+        "document_type": "article",
+        "source_type": "help_center",
+        "source_collection": "seed-help-center",
+        "source_id": "302",
+        "source_url": "https://klang-games.eu.theymes.com/hc/en/seed/articles/creating-a-seedling-302",
+        "source_path": "articles/creating-a-seedling-302.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Beginner's Guide",
+        "topics": [
+          "creating a seedling",
+          "beginner's guide"
+        ],
+        "retrieved_at": "2026-10-27T14:26:25Z",
+        "imported_at": null,
+        "verification_status": "source_snapshot",
+        "content_hash": "sha256:7ff9b803627b0fcb1d7b0c5d187ba1399b2451e98f84be7cc38a493fc5639607",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-game-guide/references/first-steps-on-avesta-with-pam-and-objectives-303.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-help-center:article:303",
+        "title": "First Steps on Avesta with PAM & Objectives",
+        "description": "First things first, you are going to want to speak to PAM a lot, you can find her little icon in the top right of your screen. She will guide you if you get...",
+        "document_type": "article",
+        "source_type": "help_center",
+        "source_collection": "seed-help-center",
+        "source_id": "303",
+        "source_url": "https://klang-games.eu.theymes.com/hc/en/seed/articles/first-steps-on-avesta-with-pam-and-objectives-303",
+        "source_path": "articles/first-steps-on-avesta-with-pam-and-objectives-303.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Beginner's Guide",
+        "topics": [
+          "first steps on avesta with pam & objectives",
+          "beginner's guide"
+        ],
+        "retrieved_at": "2026-10-27T14:26:25Z",
+        "imported_at": null,
+        "verification_status": "source_snapshot",
+        "content_hash": "sha256:c91b16c9b906ae756192fb5c1144c5962636e2b08b93f85a22be1e5d39ebcfb8",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-game-guide/references/seed.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-help-center:home:seed",
+        "title": "Ask us anything",
+        "description": "Ask us anything",
+        "document_type": "navigation",
+        "source_type": "help_center",
+        "source_collection": "seed-help-center",
+        "source_id": "seed",
+        "source_url": "https://klang-games.eu.theymes.com/hc/en/seed",
+        "source_path": "seed.md",
+        "source_version": null,
+        "language": "en",
+        "category": "",
+        "topics": [
+          "ask us anything"
+        ],
+        "retrieved_at": "2026-10-27T14:26:25Z",
+        "imported_at": null,
+        "verification_status": "source_snapshot",
+        "content_hash": "sha256:3cce59356dbfba626aa271499a2618804f5b526f33b85b3c58737d63830b51d2",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-game-guide/references/society-selection-and-creation-300.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-help-center:article:300",
+        "title": "Society Selection & Creation",
+        "description": "Now comes your first big choice! Do you want to start your own society, or join one that already exists? For most new Cultivators, I'd suggest joining one of...",
+        "document_type": "article",
+        "source_type": "help_center",
+        "source_collection": "seed-help-center",
+        "source_id": "300",
+        "source_url": "https://klang-games.eu.theymes.com/hc/en/seed/articles/society-selection-and-creation-300",
+        "source_path": "articles/society-selection-and-creation-300.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Beginner's Guide",
+        "topics": [
+          "society selection & creation",
+          "beginner's guide"
+        ],
+        "retrieved_at": "2026-10-27T14:26:25Z",
+        "imported_at": null,
+        "verification_status": "source_snapshot",
+        "content_hash": "sha256:3c8299c56ba943ab4cae5a9952185755ac14ac04d93ccb031e132d34dd9fffc8",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-game-guide/references/what-are-seedlings-301.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-help-center:article:301",
+        "title": "What Are Seedlings?",
+        "description": "Seedlings the characters in the game,they have their own agency and autonomy. They are living, breathing organisms that grow, age, work, socialize, and event...",
+        "document_type": "article",
+        "source_type": "help_center",
+        "source_collection": "seed-help-center",
+        "source_id": "301",
+        "source_url": "https://klang-games.eu.theymes.com/hc/en/seed/articles/what-are-seedlings-301",
+        "source_path": "articles/what-are-seedlings-301.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Beginner's Guide",
+        "topics": [
+          "what are seedlings?",
+          "beginner's guide"
+        ],
+        "retrieved_at": "2026-10-27T14:26:25Z",
+        "imported_at": null,
+        "verification_status": "source_snapshot",
+        "content_hash": "sha256:32d93bffe8442b1f2a1754757291991ca0a95d3464094df16dbc877d36ceb56e",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-game-guide/references/what-is-seed-299.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-help-center:article:299",
+        "title": "What is SEED?",
+        "description": "SEED is a society simulation where you, the Cultivator, guide the lives of your Seedlings in a massive, persistent world called Avesta. Your actions have a s...",
+        "document_type": "article",
+        "source_type": "help_center",
+        "source_collection": "seed-help-center",
+        "source_id": "299",
+        "source_url": "https://klang-games.eu.theymes.com/hc/en/seed/articles/what-is-seed-299",
+        "source_path": "articles/what-is-seed-299.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Beginner's Guide",
+        "topics": [
+          "what is seed?",
+          "beginner's guide"
+        ],
+        "retrieved_at": "2026-10-27T14:26:25Z",
+        "imported_at": null,
+        "verification_status": "source_snapshot",
+        "content_hash": "sha256:7a3a78e55ae3c6c958cf2bdde87387386084c5482ac20664b675b2d761b18eee",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-reference-library/references/docs/elections.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-agent-play-pr34377:docs/elections",
+        "title": "Elections",
+        "description": "Inspect ballots and vote in elections.",
+        "document_type": "workflow",
+        "source_type": "local_api_reference",
+        "source_collection": "seed-agent-play-pr34377",
+        "source_id": "docs/elections",
+        "source_url": null,
+        "source_path": "tools/agent-play-api/docs/elections.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Local API workflows",
+        "topics": [
+          "elections",
+          "local api workflows"
+        ],
+        "retrieved_at": null,
+        "imported_at": "2026-10-27T15:35:13Z",
+        "verification_status": "unverified_reference",
+        "content_hash": "sha256:aa8d3de7b6e9566ea6011fd54ac34fc126c003f9301da09b41b60a53137fa7e3",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-reference-library/references/docs/market.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-agent-play-pr34377:docs/market",
+        "title": "Market",
+        "description": "Inspect local market orders and verify deliveries.",
+        "document_type": "workflow",
+        "source_type": "local_api_reference",
+        "source_collection": "seed-agent-play-pr34377",
+        "source_id": "docs/market",
+        "source_url": null,
+        "source_path": "tools/agent-play-api/docs/market.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Local API workflows",
+        "topics": [
+          "market",
+          "local api workflows"
+        ],
+        "retrieved_at": null,
+        "imported_at": "2026-10-27T15:35:13Z",
+        "verification_status": "unverified_reference",
+        "content_hash": "sha256:8d43fff9c2424ac0fbff0735f6ca5f2b34aae7cc2e472a9325c6435b8335db81",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-reference-library/references/docs/onboarding.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-agent-play-pr34377:docs/onboarding",
+        "title": "Onboarding",
+        "description": "Inspect onboarding prerequisites and distinguish progress reports from client actions.",
+        "document_type": "workflow",
+        "source_type": "local_api_reference",
+        "source_collection": "seed-agent-play-pr34377",
+        "source_id": "docs/onboarding",
+        "source_url": null,
+        "source_path": "tools/agent-play-api/docs/onboarding.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Local API workflows",
+        "topics": [
+          "onboarding",
+          "local api workflows"
+        ],
+        "retrieved_at": null,
+        "imported_at": "2026-10-27T15:35:13Z",
+        "verification_status": "unverified_reference",
+        "content_hash": "sha256:b4c7052446aa5bd299677196672dcf17b259d3198c324c45761d3974abdc61c0",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-reference-library/references/docs/plots-and-claims.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-agent-play-pr34377:docs/plots-and-claims",
+        "title": "Plots and claims",
+        "description": "Claim a plot using a seedling’s plot-claiming object.",
+        "document_type": "workflow",
+        "source_type": "local_api_reference",
+        "source_collection": "seed-agent-play-pr34377",
+        "source_id": "docs/plots-and-claims",
+        "source_url": null,
+        "source_path": "tools/agent-play-api/docs/plots-and-claims.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Local API workflows",
+        "topics": [
+          "plots and claims",
+          "local api workflows"
+        ],
+        "retrieved_at": null,
+        "imported_at": "2026-10-27T15:35:13Z",
+        "verification_status": "unverified_reference",
+        "content_hash": "sha256:fe5dc1ef9b54440de3cd6d3e58bc7b42e13502864613da722660d61abe89fc37",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-reference-library/references/docs/start-here.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-agent-play-pr34377:docs/start-here",
+        "title": "Start here",
+        "description": "Start playing: identity, actions and verification.",
+        "document_type": "workflow",
+        "source_type": "local_api_reference",
+        "source_collection": "seed-agent-play-pr34377",
+        "source_id": "docs/start-here",
+        "source_url": null,
+        "source_path": "tools/agent-play-api/docs/start-here.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Local API workflows",
+        "topics": [
+          "start here",
+          "local api workflows"
+        ],
+        "retrieved_at": null,
+        "imported_at": "2026-10-27T15:35:13Z",
+        "verification_status": "unverified_reference",
+        "content_hash": "sha256:ad58c2ee4850b0301939d29ded9a44bee27a70ae713066749f52fdcd830a0539",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-reference-library/references/library/concept-activities-and-schedules.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-agent-play-pr34377:library/concept-activities-and-schedules",
+        "title": "Activities and schedules",
+        "description": "This page explains activities and schedules.",
+        "document_type": "concept",
+        "source_type": "developer_reference",
+        "source_collection": "seed-agent-play-pr34377",
+        "source_id": "library/concept-activities-and-schedules",
+        "source_url": null,
+        "source_path": "tools/agent-play-api/library/concept-activities-and-schedules.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Developer concepts",
+        "topics": [
+          "activities and schedules",
+          "developer concepts"
+        ],
+        "retrieved_at": null,
+        "imported_at": "2026-10-27T15:35:13Z",
+        "verification_status": "unverified_reference",
+        "content_hash": "sha256:ca11a58ed8310408aec7afb597705746d720c7540024a1c781e0fde190a943f3",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-reference-library/references/library/concept-caretaking-and-home.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-agent-play-pr34377:library/concept-caretaking-and-home",
+        "title": "Caretaking and home",
+        "description": "This page explains caretaking and home.",
+        "document_type": "concept",
+        "source_type": "developer_reference",
+        "source_collection": "seed-agent-play-pr34377",
+        "source_id": "library/concept-caretaking-and-home",
+        "source_url": null,
+        "source_path": "tools/agent-play-api/library/concept-caretaking-and-home.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Developer concepts",
+        "topics": [
+          "caretaking and home",
+          "developer concepts"
+        ],
+        "retrieved_at": null,
+        "imported_at": "2026-10-27T15:35:13Z",
+        "verification_status": "unverified_reference",
+        "content_hash": "sha256:250e17b4a9bf45e139b3560a87e23ba22f6d1892753d7d9d7df0cdcecfdd60a8",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-reference-library/references/library/concept-locations-and-buildings.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-agent-play-pr34377:library/concept-locations-and-buildings",
+        "title": "Locations, plots and buildings",
+        "description": "This page explains locations, plots and buildings.",
+        "document_type": "concept",
+        "source_type": "developer_reference",
+        "source_collection": "seed-agent-play-pr34377",
+        "source_id": "library/concept-locations-and-buildings",
+        "source_url": null,
+        "source_path": "tools/agent-play-api/library/concept-locations-and-buildings.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Developer concepts",
+        "topics": [
+          "locations, plots and buildings",
+          "developer concepts"
+        ],
+        "retrieved_at": null,
+        "imported_at": "2026-10-27T15:35:13Z",
+        "verification_status": "unverified_reference",
+        "content_hash": "sha256:10b4270ae2b782e364b4aac7f6f8d6a825d185e97b1ff430b23d9a0de4c1b7fa",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-reference-library/references/library/concept-logistics-and-storage.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-agent-play-pr34377:library/concept-logistics-and-storage",
+        "title": "Storage, hauling and deliveries",
+        "description": "This page explains storage, hauling and deliveries.",
+        "document_type": "concept",
+        "source_type": "developer_reference",
+        "source_collection": "seed-agent-play-pr34377",
+        "source_id": "library/concept-logistics-and-storage",
+        "source_url": null,
+        "source_path": "tools/agent-play-api/library/concept-logistics-and-storage.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Developer concepts",
+        "topics": [
+          "storage, hauling and deliveries",
+          "developer concepts"
+        ],
+        "retrieved_at": null,
+        "imported_at": "2026-10-27T15:35:13Z",
+        "verification_status": "unverified_reference",
+        "content_hash": "sha256:78598ebf88f42061457a9b667d3141f765addc20faf726cf832f667f065d1d3f",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-reference-library/references/library/concept-market.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-agent-play-pr34377:library/concept-market",
+        "title": "Market and trade",
+        "description": "This page explains market and trade.",
+        "document_type": "concept",
+        "source_type": "developer_reference",
+        "source_collection": "seed-agent-play-pr34377",
+        "source_id": "library/concept-market",
+        "source_url": null,
+        "source_path": "tools/agent-play-api/library/concept-market.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Developer concepts",
+        "topics": [
+          "market and trade",
+          "developer concepts"
+        ],
+        "retrieved_at": null,
+        "imported_at": "2026-10-27T15:35:13Z",
+        "verification_status": "unverified_reference",
+        "content_hash": "sha256:6d2accfb6e9411f3ec44a2218a6261d02d0d65c95660d17ba6c347a537f427bb",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-reference-library/references/library/concept-nature-and-farming.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-agent-play-pr34377:library/concept-nature-and-farming",
+        "title": "Nature and farming",
+        "description": "This page explains nature and farming.",
+        "document_type": "concept",
+        "source_type": "developer_reference",
+        "source_collection": "seed-agent-play-pr34377",
+        "source_id": "library/concept-nature-and-farming",
+        "source_url": null,
+        "source_path": "tools/agent-play-api/library/concept-nature-and-farming.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Developer concepts",
+        "topics": [
+          "nature and farming",
+          "developer concepts"
+        ],
+        "retrieved_at": null,
+        "imported_at": "2026-10-27T15:35:13Z",
+        "verification_status": "unverified_reference",
+        "content_hash": "sha256:5fca35607baa23e42c753c01f90addf035e795bfe24d26ff4bff4bc0d65fa023",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-reference-library/references/library/concept-objects-and-construction.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-agent-play-pr34377:library/concept-objects-and-construction",
+        "title": "Objects and construction",
+        "description": "This page explains objects and construction.",
+        "document_type": "concept",
+        "source_type": "developer_reference",
+        "source_collection": "seed-agent-play-pr34377",
+        "source_id": "library/concept-objects-and-construction",
+        "source_url": null,
+        "source_path": "tools/agent-play-api/library/concept-objects-and-construction.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Developer concepts",
+        "topics": [
+          "objects and construction",
+          "developer concepts"
+        ],
+        "retrieved_at": null,
+        "imported_at": "2026-10-27T15:35:13Z",
+        "verification_status": "unverified_reference",
+        "content_hash": "sha256:ffde42e688289b0f6d426a11071ff77f3d8cef143372ecefb621120839ec2eb3",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-reference-library/references/library/concept-organizations-and-jobs.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-agent-play-pr34377:library/concept-organizations-and-jobs",
+        "title": "Organizations, roles and jobs",
+        "description": "This page explains organizations, roles and jobs.",
+        "document_type": "concept",
+        "source_type": "developer_reference",
+        "source_collection": "seed-agent-play-pr34377",
+        "source_id": "library/concept-organizations-and-jobs",
+        "source_url": null,
+        "source_path": "tools/agent-play-api/library/concept-organizations-and-jobs.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Developer concepts",
+        "topics": [
+          "organizations, roles and jobs",
+          "developer concepts"
+        ],
+        "retrieved_at": null,
+        "imported_at": "2026-10-27T15:35:13Z",
+        "verification_status": "unverified_reference",
+        "content_hash": "sha256:352be923e6a0810e94d858ce41798681915a048b25c5620e60f13940d2d9a46e",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-reference-library/references/library/concept-ownership-and-permissions.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-agent-play-pr34377:library/concept-ownership-and-permissions",
+        "title": "Ownership, control and permissions",
+        "description": "This page explains ownership, control and permissions.",
+        "document_type": "concept",
+        "source_type": "developer_reference",
+        "source_collection": "seed-agent-play-pr34377",
+        "source_id": "library/concept-ownership-and-permissions",
+        "source_url": null,
+        "source_path": "tools/agent-play-api/library/concept-ownership-and-permissions.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Developer concepts",
+        "topics": [
+          "ownership, control and permissions",
+          "developer concepts"
+        ],
+        "retrieved_at": null,
+        "imported_at": "2026-10-27T15:35:13Z",
+        "verification_status": "unverified_reference",
+        "content_hash": "sha256:4e5ff57e103a78657407173b6cb16e65de78cec965bcf260e33e3465a99fc61e",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-reference-library/references/library/concept-players-and-societies.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-agent-play-pr34377:library/concept-players-and-societies",
+        "title": "Players, seedlings and societies",
+        "description": "This page explains players, seedlings and societies.",
+        "document_type": "concept",
+        "source_type": "developer_reference",
+        "source_collection": "seed-agent-play-pr34377",
+        "source_id": "library/concept-players-and-societies",
+        "source_url": null,
+        "source_path": "tools/agent-play-api/library/concept-players-and-societies.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Developer concepts",
+        "topics": [
+          "players, seedlings and societies",
+          "developer concepts"
+        ],
+        "retrieved_at": null,
+        "imported_at": "2026-10-27T15:35:13Z",
+        "verification_status": "unverified_reference",
+        "content_hash": "sha256:1e80efffda080f24c090612e3a2c81bb78c48791120c841fb589663604c71d97",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-reference-library/references/library/index.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-agent-play-pr34377:library/index",
+        "title": "Agent Play reference library",
+        "description": "Index of in-game manual chapters and developer concept guides; background reference unverified against the live game.",
+        "document_type": "index",
+        "source_type": "collection_index",
+        "source_collection": "seed-agent-play-pr34377",
+        "source_id": "library/index",
+        "source_url": null,
+        "source_path": "tools/agent-play-api/library/index.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Reference library",
+        "topics": [
+          "agent play reference library",
+          "reference library"
+        ],
+        "retrieved_at": null,
+        "imported_at": "2026-10-27T15:35:13Z",
+        "verification_status": "unverified_reference",
+        "content_hash": "sha256:64a3a83a0a5fc9ebd05477eb8916ed126843727ef7c45102bc8b8cff974a0693",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-reference-library/references/library/manual-buildings-building-management.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-agent-play-pr34377:library/manual-buildings-building-management",
+        "title": "Buildings & Building Management",
+        "description": "This section covers buildings & building management.",
+        "document_type": "manual",
+        "source_type": "in_game_manual",
+        "source_collection": "seed-agent-play-pr34377",
+        "source_id": "library/manual-buildings-building-management",
+        "source_url": null,
+        "source_path": "tools/agent-play-api/library/manual-buildings-building-management.md",
+        "source_version": null,
+        "language": "en",
+        "category": "In-game manual",
+        "topics": [
+          "buildings & building management",
+          "in-game manual"
+        ],
+        "retrieved_at": null,
+        "imported_at": "2026-10-27T15:35:13Z",
+        "verification_status": "unverified_reference",
+        "content_hash": "sha256:972c92753c025aea0d4097d9457a4e76cd8dad02c668c8af8def69fb182a3a55",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-reference-library/references/library/manual-catalog.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-agent-play-pr34377:library/manual-catalog",
+        "title": "Catalog",
+        "description": "This section covers catalog.",
+        "document_type": "manual",
+        "source_type": "in_game_manual",
+        "source_collection": "seed-agent-play-pr34377",
+        "source_id": "library/manual-catalog",
+        "source_url": null,
+        "source_path": "tools/agent-play-api/library/manual-catalog.md",
+        "source_version": null,
+        "language": "en",
+        "category": "In-game manual",
+        "topics": [
+          "catalog",
+          "in-game manual"
+        ],
+        "retrieved_at": null,
+        "imported_at": "2026-10-27T15:35:13Z",
+        "verification_status": "unverified_reference",
+        "content_hash": "sha256:40f70f3a663a553dc654257fc71290a3f3f58a718198a8da0f4cc4ddd9bc3339",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-reference-library/references/library/manual-controls.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-agent-play-pr34377:library/manual-controls",
+        "title": "Controls",
+        "description": "This section covers controls.",
+        "document_type": "manual",
+        "source_type": "in_game_manual",
+        "source_collection": "seed-agent-play-pr34377",
+        "source_id": "library/manual-controls",
+        "source_url": null,
+        "source_path": "tools/agent-play-api/library/manual-controls.md",
+        "source_version": null,
+        "language": "en",
+        "category": "In-game manual",
+        "topics": [
+          "controls",
+          "in-game manual"
+        ],
+        "retrieved_at": null,
+        "imported_at": "2026-10-27T15:35:13Z",
+        "verification_status": "unverified_reference",
+        "content_hash": "sha256:07efce00ec4d872d68af1456ca3f1563182b8182c6b191111b2fadef9d849c79",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-reference-library/references/library/manual-farming-and-crops.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-agent-play-pr34377:library/manual-farming-and-crops",
+        "title": "Farming and Crops",
+        "description": "This section covers farming and crops.",
+        "document_type": "manual",
+        "source_type": "in_game_manual",
+        "source_collection": "seed-agent-play-pr34377",
+        "source_id": "library/manual-farming-and-crops",
+        "source_url": null,
+        "source_path": "tools/agent-play-api/library/manual-farming-and-crops.md",
+        "source_version": null,
+        "language": "en",
+        "category": "In-game manual",
+        "topics": [
+          "farming and crops",
+          "in-game manual"
+        ],
+        "retrieved_at": null,
+        "imported_at": "2026-10-27T15:35:13Z",
+        "verification_status": "unverified_reference",
+        "content_hash": "sha256:5a31afe81fe5b6cd7e3338ca418bdcd82dbb0a289af442f4761e20c01f6be0cd",
+        "conflicts_with": [
+          "seed-help-center:article:310"
+        ]
+      }
+    },
+    {
+      "path": "skills/seed-reference-library/references/library/manual-first-steps.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-agent-play-pr34377:library/manual-first-steps",
+        "title": "First Steps",
+        "description": "This section covers first steps.",
+        "document_type": "manual",
+        "source_type": "in_game_manual",
+        "source_collection": "seed-agent-play-pr34377",
+        "source_id": "library/manual-first-steps",
+        "source_url": null,
+        "source_path": "tools/agent-play-api/library/manual-first-steps.md",
+        "source_version": null,
+        "language": "en",
+        "category": "In-game manual",
+        "topics": [
+          "first steps",
+          "in-game manual"
+        ],
+        "retrieved_at": null,
+        "imported_at": "2026-10-27T15:35:13Z",
+        "verification_status": "unverified_reference",
+        "content_hash": "sha256:755d911c22dbf29eb5fdeb999142965ed0e23ad38cb3453e8dc1150b1ccf2ea2",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-reference-library/references/library/manual-game-overview-player-purpose.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-agent-play-pr34377:library/manual-game-overview-player-purpose",
+        "title": "Game Overview & Player Purpose",
+        "description": "This section covers game overview & player purpose.",
+        "document_type": "manual",
+        "source_type": "in_game_manual",
+        "source_collection": "seed-agent-play-pr34377",
+        "source_id": "library/manual-game-overview-player-purpose",
+        "source_url": null,
+        "source_path": "tools/agent-play-api/library/manual-game-overview-player-purpose.md",
+        "source_version": null,
+        "language": "en",
+        "category": "In-game manual",
+        "topics": [
+          "game overview & player purpose",
+          "in-game manual"
+        ],
+        "retrieved_at": null,
+        "imported_at": "2026-10-27T15:35:13Z",
+        "verification_status": "unverified_reference",
+        "content_hash": "sha256:c0019fe70f57bae5f730752e32d3368d892395cb48a115bccc7da013e9c29bf1",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-reference-library/references/library/manual-marketplace.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-agent-play-pr34377:library/manual-marketplace",
+        "title": "Marketplace",
+        "description": "This section covers marketplace.",
+        "document_type": "manual",
+        "source_type": "in_game_manual",
+        "source_collection": "seed-agent-play-pr34377",
+        "source_id": "library/manual-marketplace",
+        "source_url": null,
+        "source_path": "tools/agent-play-api/library/manual-marketplace.md",
+        "source_version": null,
+        "language": "en",
+        "category": "In-game manual",
+        "topics": [
+          "marketplace",
+          "in-game manual"
+        ],
+        "retrieved_at": null,
+        "imported_at": "2026-10-27T15:35:13Z",
+        "verification_status": "unverified_reference",
+        "content_hash": "sha256:eb1afabdfcf7163038d332d5ce167d88f2603aa02fd830e77559274bc5d76e1f",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-reference-library/references/library/manual-mining-and-ore-processing.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-agent-play-pr34377:library/manual-mining-and-ore-processing",
+        "title": "Mining and Ore Processing",
+        "description": "This section covers mining and ore processing.",
+        "document_type": "manual",
+        "source_type": "in_game_manual",
+        "source_collection": "seed-agent-play-pr34377",
+        "source_id": "library/manual-mining-and-ore-processing",
+        "source_url": null,
+        "source_path": "tools/agent-play-api/library/manual-mining-and-ore-processing.md",
+        "source_version": null,
+        "language": "en",
+        "category": "In-game manual",
+        "topics": [
+          "mining and ore processing",
+          "in-game manual"
+        ],
+        "retrieved_at": null,
+        "imported_at": "2026-10-27T15:35:13Z",
+        "verification_status": "unverified_reference",
+        "content_hash": "sha256:9e1d7085c797521ccf3c2a03b44c8c2a39ddad566ea7f01a1ea7c64001adf840",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-reference-library/references/library/manual-onboarding-objectives-walkthrough.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-agent-play-pr34377:library/manual-onboarding-objectives-walkthrough",
+        "title": "Onboarding Objectives Walkthrough",
+        "description": "This section covers onboarding objectives walkthrough.",
+        "document_type": "manual",
+        "source_type": "in_game_manual",
+        "source_collection": "seed-agent-play-pr34377",
+        "source_id": "library/manual-onboarding-objectives-walkthrough",
+        "source_url": null,
+        "source_path": "tools/agent-play-api/library/manual-onboarding-objectives-walkthrough.md",
+        "source_version": null,
+        "language": "en",
+        "category": "In-game manual",
+        "topics": [
+          "onboarding objectives walkthrough",
+          "in-game manual"
+        ],
+        "retrieved_at": null,
+        "imported_at": "2026-10-27T15:35:13Z",
+        "verification_status": "unverified_reference",
+        "content_hash": "sha256:49946c35aa5611542493ec0ed6fbc570825cfea8939f8aeec381c7021a81b3ff",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-reference-library/references/library/manual-player-cultivator.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-agent-play-pr34377:library/manual-player-cultivator",
+        "title": "Player/Cultivator",
+        "description": "This section covers player/cultivator.",
+        "document_type": "manual",
+        "source_type": "in_game_manual",
+        "source_collection": "seed-agent-play-pr34377",
+        "source_id": "library/manual-player-cultivator",
+        "source_url": null,
+        "source_path": "tools/agent-play-api/library/manual-player-cultivator.md",
+        "source_version": null,
+        "language": "en",
+        "category": "In-game manual",
+        "topics": [
+          "player/cultivator",
+          "in-game manual"
+        ],
+        "retrieved_at": null,
+        "imported_at": "2026-10-27T15:35:13Z",
+        "verification_status": "unverified_reference",
+        "content_hash": "sha256:683e89a31bbd4032ecb2cadf035f7c835497d438c271943d4864fbf01d883a96",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-reference-library/references/library/manual-plots-and-territory.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-agent-play-pr34377:library/manual-plots-and-territory",
+        "title": "Plots and Territory",
+        "description": "This section covers plots and territory.",
+        "document_type": "manual",
+        "source_type": "in_game_manual",
+        "source_collection": "seed-agent-play-pr34377",
+        "source_id": "library/manual-plots-and-territory",
+        "source_url": null,
+        "source_path": "tools/agent-play-api/library/manual-plots-and-territory.md",
+        "source_version": null,
+        "language": "en",
+        "category": "In-game manual",
+        "topics": [
+          "plots and territory",
+          "in-game manual"
+        ],
+        "retrieved_at": null,
+        "imported_at": "2026-10-27T15:35:13Z",
+        "verification_status": "unverified_reference",
+        "content_hash": "sha256:5aad9edcce387c8373dd1babadaef43bad8a4a5603d2a8d457b00d9000998f32",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-reference-library/references/library/manual-report-players.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-agent-play-pr34377:library/manual-report-players",
+        "title": "Report Players",
+        "description": "This section covers report players.",
+        "document_type": "manual",
+        "source_type": "in_game_manual",
+        "source_collection": "seed-agent-play-pr34377",
+        "source_id": "library/manual-report-players",
+        "source_url": null,
+        "source_path": "tools/agent-play-api/library/manual-report-players.md",
+        "source_version": null,
+        "language": "en",
+        "category": "In-game manual",
+        "topics": [
+          "report players",
+          "in-game manual"
+        ],
+        "retrieved_at": null,
+        "imported_at": "2026-10-27T15:35:13Z",
+        "verification_status": "unverified_reference",
+        "content_hash": "sha256:8a44bdf0047e02725b9791bda60f7c9ae5307683d5d19af7f583e07e7234afb4",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-reference-library/references/library/manual-seasonal-events.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-agent-play-pr34377:library/manual-seasonal-events",
+        "title": "Seasonal Events",
+        "description": "This section covers seasonal events.",
+        "document_type": "manual",
+        "source_type": "in_game_manual",
+        "source_collection": "seed-agent-play-pr34377",
+        "source_id": "library/manual-seasonal-events",
+        "source_url": null,
+        "source_path": "tools/agent-play-api/library/manual-seasonal-events.md",
+        "source_version": null,
+        "language": "en",
+        "category": "In-game manual",
+        "topics": [
+          "seasonal events",
+          "in-game manual"
+        ],
+        "retrieved_at": null,
+        "imported_at": "2026-10-27T15:35:13Z",
+        "verification_status": "unverified_reference",
+        "content_hash": "sha256:8caa22553cec4a5abfe309771ad4a2f45841d7abc427fcd35c9ffd484a55f0ab",
+        "conflicts_with": [
+          "seed-help-center:article:368"
+        ]
+      }
+    },
+    {
+      "path": "skills/seed-reference-library/references/library/manual-seed-store.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-agent-play-pr34377:library/manual-seed-store",
+        "title": "Seed Store",
+        "description": "This section covers seed store.",
+        "document_type": "manual",
+        "source_type": "in_game_manual",
+        "source_collection": "seed-agent-play-pr34377",
+        "source_id": "library/manual-seed-store",
+        "source_url": null,
+        "source_path": "tools/agent-play-api/library/manual-seed-store.md",
+        "source_version": null,
+        "language": "en",
+        "category": "In-game manual",
+        "topics": [
+          "seed store",
+          "in-game manual"
+        ],
+        "retrieved_at": null,
+        "imported_at": "2026-10-27T15:35:13Z",
+        "verification_status": "unverified_reference",
+        "content_hash": "sha256:f19fcd08adefef6baaf7f1ebe9a634d2bb4792f6241c14fed9d558bef094ef4e",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-reference-library/references/library/manual-seedlings.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-agent-play-pr34377:library/manual-seedlings",
+        "title": "Seedlings",
+        "description": "This section covers seedlings.",
+        "document_type": "manual",
+        "source_type": "in_game_manual",
+        "source_collection": "seed-agent-play-pr34377",
+        "source_id": "library/manual-seedlings",
+        "source_url": null,
+        "source_path": "tools/agent-play-api/library/manual-seedlings.md",
+        "source_version": null,
+        "language": "en",
+        "category": "In-game manual",
+        "topics": [
+          "seedlings",
+          "in-game manual"
+        ],
+        "retrieved_at": null,
+        "imported_at": "2026-10-27T15:35:13Z",
+        "verification_status": "unverified_reference",
+        "content_hash": "sha256:e9b06b6941f029390e7440e44a6338ef367eecb0fd68afb8e3cc0af713976184",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-reference-library/references/library/manual-society-structures.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-agent-play-pr34377:library/manual-society-structures",
+        "title": "Society Structures",
+        "description": "This section covers society structures.",
+        "document_type": "manual",
+        "source_type": "in_game_manual",
+        "source_collection": "seed-agent-play-pr34377",
+        "source_id": "library/manual-society-structures",
+        "source_url": null,
+        "source_path": "tools/agent-play-api/library/manual-society-structures.md",
+        "source_version": null,
+        "language": "en",
+        "category": "In-game manual",
+        "topics": [
+          "society structures",
+          "in-game manual"
+        ],
+        "retrieved_at": null,
+        "imported_at": "2026-10-27T15:35:13Z",
+        "verification_status": "unverified_reference",
+        "content_hash": "sha256:b0c2eb6ad557c05e0475e66efdc0c8bdd4e057aad9f09170686cc0bfeaa94c5a",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-reference-library/references/library/manual-society.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-agent-play-pr34377:library/manual-society",
+        "title": "Society",
+        "description": "This section covers society.",
+        "document_type": "manual",
+        "source_type": "in_game_manual",
+        "source_collection": "seed-agent-play-pr34377",
+        "source_id": "library/manual-society",
+        "source_url": null,
+        "source_path": "tools/agent-play-api/library/manual-society.md",
+        "source_version": null,
+        "language": "en",
+        "category": "In-game manual",
+        "topics": [
+          "society",
+          "in-game manual"
+        ],
+        "retrieved_at": null,
+        "imported_at": "2026-10-27T15:35:13Z",
+        "verification_status": "unverified_reference",
+        "content_hash": "sha256:ab431614703b9e337aa370788c69658f05b6f337de051163c1f5c69ed7521412",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-reference-library/references/library/manual-spark.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-agent-play-pr34377:library/manual-spark",
+        "title": "Spark",
+        "description": "This section covers spark.",
+        "document_type": "manual",
+        "source_type": "in_game_manual",
+        "source_collection": "seed-agent-play-pr34377",
+        "source_id": "library/manual-spark",
+        "source_url": null,
+        "source_path": "tools/agent-play-api/library/manual-spark.md",
+        "source_version": null,
+        "language": "en",
+        "category": "In-game manual",
+        "topics": [
+          "spark",
+          "in-game manual"
+        ],
+        "retrieved_at": null,
+        "imported_at": "2026-10-27T15:35:13Z",
+        "verification_status": "unverified_reference",
+        "content_hash": "sha256:e8b2124f9f1592575e8fb6e36e5767140b8205270ed1b53a7edae2f694df00aa",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-reference-library/references/library/manual-special-building-attachments.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-agent-play-pr34377:library/manual-special-building-attachments",
+        "title": "Special Building Attachments",
+        "description": "This section covers special building attachments.",
+        "document_type": "manual",
+        "source_type": "in_game_manual",
+        "source_collection": "seed-agent-play-pr34377",
+        "source_id": "library/manual-special-building-attachments",
+        "source_url": null,
+        "source_path": "tools/agent-play-api/library/manual-special-building-attachments.md",
+        "source_version": null,
+        "language": "en",
+        "category": "In-game manual",
+        "topics": [
+          "special building attachments",
+          "in-game manual"
+        ],
+        "retrieved_at": null,
+        "imported_at": "2026-10-27T15:35:13Z",
+        "verification_status": "unverified_reference",
+        "content_hash": "sha256:c5bdf442ca51e9c164df9a9c9373e190a33bebbc02c2fec3e0aa0c1c5b89035a",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-reference-library/references/library/manual-things.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-agent-play-pr34377:library/manual-things",
+        "title": "Things",
+        "description": "This section covers things.",
+        "document_type": "manual",
+        "source_type": "in_game_manual",
+        "source_collection": "seed-agent-play-pr34377",
+        "source_id": "library/manual-things",
+        "source_url": null,
+        "source_path": "tools/agent-play-api/library/manual-things.md",
+        "source_version": null,
+        "language": "en",
+        "category": "In-game manual",
+        "topics": [
+          "things",
+          "in-game manual"
+        ],
+        "retrieved_at": null,
+        "imported_at": "2026-10-27T15:35:13Z",
+        "verification_status": "unverified_reference",
+        "content_hash": "sha256:7023ea3a6c5e9787d6279fca68d958a18eef08ddf8aff84c7b4d8161d0844182",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-reference-library/references/library/manual-time-on-avesta-and-earth.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-agent-play-pr34377:library/manual-time-on-avesta-and-earth",
+        "title": "Time on Avesta and Earth",
+        "description": "This section covers time on avesta and earth.",
+        "document_type": "manual",
+        "source_type": "in_game_manual",
+        "source_collection": "seed-agent-play-pr34377",
+        "source_id": "library/manual-time-on-avesta-and-earth",
+        "source_url": null,
+        "source_path": "tools/agent-play-api/library/manual-time-on-avesta-and-earth.md",
+        "source_version": null,
+        "language": "en",
+        "category": "In-game manual",
+        "topics": [
+          "time on avesta and earth",
+          "in-game manual"
+        ],
+        "retrieved_at": null,
+        "imported_at": "2026-10-27T15:35:13Z",
+        "verification_status": "unverified_reference",
+        "content_hash": "sha256:3a1cdabaa6c9596b65703979bab14d44b06bd01df1f2cc4f07458798e51d546b",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-reference-library/references/library/manual-world-lore.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-agent-play-pr34377:library/manual-world-lore",
+        "title": "World & Lore",
+        "description": "This section covers world & lore.",
+        "document_type": "manual",
+        "source_type": "in_game_manual",
+        "source_collection": "seed-agent-play-pr34377",
+        "source_id": "library/manual-world-lore",
+        "source_url": null,
+        "source_path": "tools/agent-play-api/library/manual-world-lore.md",
+        "source_version": null,
+        "language": "en",
+        "category": "In-game manual",
+        "topics": [
+          "world & lore",
+          "in-game manual"
+        ],
+        "retrieved_at": null,
+        "imported_at": "2026-10-27T15:35:13Z",
+        "verification_status": "unverified_reference",
+        "content_hash": "sha256:9f350b36c720fe00734c0658de25f46e083eb565f723642907046d1d1d3746b3",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-reference-library/references/project/claude.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-agent-play-pr34377:project/claude",
+        "title": "Agent Play API project instructions",
+        "description": "Instructions for the separate Agent Play API project, retained as source reference rather than instructions for this repository or its tools.",
+        "document_type": "project",
+        "source_type": "project_reference",
+        "source_collection": "seed-agent-play-pr34377",
+        "source_id": "project/claude",
+        "source_url": null,
+        "source_path": "tools/agent-play-api/CLAUDE.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Project reference",
+        "topics": [
+          "agent play api project instructions",
+          "project reference"
+        ],
+        "retrieved_at": null,
+        "imported_at": "2026-10-27T15:35:13Z",
+        "verification_status": "unverified_reference",
+        "content_hash": "sha256:1ab7b8401694be8c5e31620e2e973071ea1e209e51a22c1a868557ad1a3ebc04",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-reference-library/references/project/decisions.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-agent-play-pr34377:project/decisions",
+        "title": "Agent Play API decisions",
+        "description": "Recorded design decisions and experiments for the separate Agent Play API project.",
+        "document_type": "project",
+        "source_type": "project_reference",
+        "source_collection": "seed-agent-play-pr34377",
+        "source_id": "project/decisions",
+        "source_url": null,
+        "source_path": "tools/agent-play-api/DECISIONS.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Project reference",
+        "topics": [
+          "agent play api decisions",
+          "project reference"
+        ],
+        "retrieved_at": null,
+        "imported_at": "2026-10-27T15:35:13Z",
+        "verification_status": "unverified_reference",
+        "content_hash": "sha256:b3342ea719532feafd7f6731e12caabde9f80a863dd3dcd19fe0e10cf585ce06",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-society/references/being-a-governor-328.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-help-center:article:328",
+        "title": "Being a Governor",
+        "description": "Leading a society means holding a governance role, starting as the elected Camp Manager, renamed Mayor once the society reaches the Camp tier, or one of the...",
+        "document_type": "article",
+        "source_type": "help_center",
+        "source_collection": "seed-help-center",
+        "source_id": "328",
+        "source_url": "https://klang-games.eu.theymes.com/hc/en/seed/articles/being-a-governor-328",
+        "source_path": "articles/being-a-governor-328.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Society & Governance",
+        "topics": [
+          "being a governor",
+          "society & governance"
+        ],
+        "retrieved_at": "2026-10-27T14:26:25Z",
+        "imported_at": null,
+        "verification_status": "source_snapshot",
+        "content_hash": "sha256:7ad74563fa28fabe5c10384f2cdb88a3ff4f5cedb17eca318de6c8943a3c5aa4",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-society/references/categories/community-and-social-34.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-help-center:category:34",
+        "title": "Community & Social",
+        "description": "Community & Social",
+        "document_type": "navigation",
+        "source_type": "help_center",
+        "source_collection": "seed-help-center",
+        "source_id": "34",
+        "source_url": "https://klang-games.eu.theymes.com/hc/en/seed/categories/community-and-social-34",
+        "source_path": "categories/community-and-social-34.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Community & Social",
+        "topics": [
+          "community & social"
+        ],
+        "retrieved_at": "2026-10-27T14:26:25Z",
+        "imported_at": null,
+        "verification_status": "source_snapshot",
+        "content_hash": "sha256:6b5a234d139614f645f2d1bb262ecc1d61e85a56fedb89c767a084628a984406",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-society/references/categories/society-and-governance-33.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-help-center:category:33",
+        "title": "Society & Governance",
+        "description": "Society & Governance",
+        "document_type": "navigation",
+        "source_type": "help_center",
+        "source_collection": "seed-help-center",
+        "source_id": "33",
+        "source_url": "https://klang-games.eu.theymes.com/hc/en/seed/categories/society-and-governance-33",
+        "source_path": "categories/society-and-governance-33.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Society & Governance",
+        "topics": [
+          "society & governance"
+        ],
+        "retrieved_at": "2026-10-27T14:26:25Z",
+        "imported_at": null,
+        "verification_status": "source_snapshot",
+        "content_hash": "sha256:7e952f5851008b1fb10e558cefbe8609fb51507b778675c52fda044e479ec82a",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-society/references/dezima-donations-368.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-help-center:article:368",
+        "title": "Dezima Donations",
+        "description": "Dezima Donations The space station Dezima, the Cultivators' home above Avesta, has suffered a series of damaging incidents, and Seed Industries is collecting...",
+        "document_type": "article",
+        "source_type": "help_center",
+        "source_collection": "seed-help-center",
+        "source_id": "368",
+        "source_url": "https://klang-games.eu.theymes.com/hc/en/seed/articles/dezima-donations-368",
+        "source_path": "articles/dezima-donations-368.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Community & Social",
+        "topics": [
+          "dezima donations",
+          "community & social"
+        ],
+        "retrieved_at": "2026-10-27T14:26:25Z",
+        "imported_at": null,
+        "verification_status": "source_snapshot",
+        "content_hash": "sha256:4c87d2b3f422d468f990b75f948df908ede979cab8f228ca3b7f66ff4dd2a1c4",
+        "conflicts_with": [
+          "seed-agent-play-pr34377:library/manual-seasonal-events"
+        ]
+      }
+    },
+    {
+      "path": "skills/seed-society/references/having-a-baby-in-seed-334.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-help-center:article:334",
+        "title": "Having a Baby in SEED",
+        "description": "Having children extends your legacy: children continue your line and inherit the properties when your Seedling dies. Here is what having a baby requires: A r...",
+        "document_type": "article",
+        "source_type": "help_center",
+        "source_collection": "seed-help-center",
+        "source_id": "334",
+        "source_url": "https://klang-games.eu.theymes.com/hc/en/seed/articles/having-a-baby-in-seed-334",
+        "source_path": "articles/having-a-baby-in-seed-334.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Community & Social",
+        "topics": [
+          "having a baby in seed",
+          "community & social"
+        ],
+        "retrieved_at": "2026-10-27T14:26:25Z",
+        "imported_at": null,
+        "verification_status": "source_snapshot",
+        "content_hash": "sha256:7117c9c13363bb9dee572829ae0e3da9b2da68dc6ff8a8a7c2b539d0b653d0d9",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-society/references/how-to-progress-326.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-help-center:article:326",
+        "title": "How to Progress",
+        "description": "Progression in SEED happens on three levels: you (the Cultivator), your Seedlings, and your society. Cultivator Level Your Cultivator Level reflects your ove...",
+        "document_type": "article",
+        "source_type": "help_center",
+        "source_collection": "seed-help-center",
+        "source_id": "326",
+        "source_url": "https://klang-games.eu.theymes.com/hc/en/seed/articles/how-to-progress-326",
+        "source_path": "articles/how-to-progress-326.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Society & Governance",
+        "topics": [
+          "how to progress",
+          "society & governance"
+        ],
+        "retrieved_at": "2026-10-27T14:26:25Z",
+        "imported_at": null,
+        "verification_status": "source_snapshot",
+        "content_hash": "sha256:ad42e5a68a43db55ea89ce6908cf6f0abf1f80661d00795e27d3a1c86be76017",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-society/references/inviting-players-to-your-society-330.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-help-center:article:330",
+        "title": "Inviting Players to Your Society",
+        "description": "There is no direct invite button in the game, but there are a few good ways to bring players in: Found together: create a private lobby with a password and s...",
+        "document_type": "article",
+        "source_type": "help_center",
+        "source_collection": "seed-help-center",
+        "source_id": "330",
+        "source_url": "https://klang-games.eu.theymes.com/hc/en/seed/articles/inviting-players-to-your-society-330",
+        "source_path": "articles/inviting-players-to-your-society-330.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Society & Governance",
+        "topics": [
+          "inviting players to your society",
+          "society & governance"
+        ],
+        "retrieved_at": "2026-10-27T14:26:25Z",
+        "imported_at": null,
+        "verification_status": "source_snapshot",
+        "content_hash": "sha256:3a662e51758df461dee4bb21e7728046735b6a643019b1cfbd61304ae277bf2a",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-society/references/migration-331.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-help-center:article:331",
+        "title": "Migration",
+        "description": "Seedlings can physically walk to a nearby society, but they cannot interact with that society's Seedlings or objects. To participate in another society, a Se...",
+        "document_type": "article",
+        "source_type": "help_center",
+        "source_collection": "seed-help-center",
+        "source_id": "331",
+        "source_url": "https://klang-games.eu.theymes.com/hc/en/seed/articles/migration-331",
+        "source_path": "articles/migration-331.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Society & Governance",
+        "topics": [
+          "migration",
+          "society & governance"
+        ],
+        "retrieved_at": "2026-10-27T14:26:25Z",
+        "imported_at": null,
+        "verification_status": "source_snapshot",
+        "content_hash": "sha256:ec6b040ab8a5808cad8aac4025e2e9912eecfe2d5987fd15a02136861694726b",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-society/references/password-protection-in-a-society-329.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-help-center:article:329",
+        "title": "Password Protection in a Society",
+        "description": "There are two layers to society passwords: Lobby passwords: when founding a society, you can set your lobby to private with a password, so only Cultivators w...",
+        "document_type": "article",
+        "source_type": "help_center",
+        "source_collection": "seed-help-center",
+        "source_id": "329",
+        "source_url": "https://klang-games.eu.theymes.com/hc/en/seed/articles/password-protection-in-a-society-329",
+        "source_path": "articles/password-protection-in-a-society-329.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Society & Governance",
+        "topics": [
+          "password protection in a society",
+          "society & governance"
+        ],
+        "retrieved_at": "2026-10-27T14:26:25Z",
+        "imported_at": null,
+        "verification_status": "source_snapshot",
+        "content_hash": "sha256:6401502706ae1bbfdad2f63059ddf0e5e6f884a5addec62bba3a9420ba7dd1e7",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-society/references/romance-in-seed-333.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-help-center:article:333",
+        "title": "Romance in SEED",
+        "description": "Romance builds on the same relationship system as friendship. Seedlings develop crushes on their own: a Crush can grow into Dating or even a full Partner rel...",
+        "document_type": "article",
+        "source_type": "help_center",
+        "source_collection": "seed-help-center",
+        "source_id": "333",
+        "source_url": "https://klang-games.eu.theymes.com/hc/en/seed/articles/romance-in-seed-333",
+        "source_path": "articles/romance-in-seed-333.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Community & Social",
+        "topics": [
+          "romance in seed",
+          "community & social"
+        ],
+        "retrieved_at": "2026-10-27T14:26:25Z",
+        "imported_at": null,
+        "verification_status": "source_snapshot",
+        "content_hash": "sha256:70e5a0641586af58ceeca77854159c89796904bf66a156bf82685997669d1da9",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-society/references/socializing-in-seed-332.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-help-center:article:332",
+        "title": "Socializing in SEED",
+        "description": "The easiest way to help your Seedling socialize is through Direct Control: move your camera around, find another Seedling, click them and choose an activity,...",
+        "document_type": "article",
+        "source_type": "help_center",
+        "source_collection": "seed-help-center",
+        "source_id": "332",
+        "source_url": "https://klang-games.eu.theymes.com/hc/en/seed/articles/socializing-in-seed-332",
+        "source_path": "articles/socializing-in-seed-332.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Community & Social",
+        "topics": [
+          "socializing in seed",
+          "community & social"
+        ],
+        "retrieved_at": "2026-10-27T14:26:25Z",
+        "imported_at": null,
+        "verification_status": "source_snapshot",
+        "content_hash": "sha256:041453f307f41c1b83500993342a8eb0f12e7c11a6bd3b5f83a29cccbd6a308f",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-society/references/society-goals-and-tiers-325.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-help-center:article:325",
+        "title": "Society Goals & Tiers",
+        "description": "Your society's development is guided by a structured progression system. You progress through tiers by completing Society Goals: collective objectives all me...",
+        "document_type": "article",
+        "source_type": "help_center",
+        "source_collection": "seed-help-center",
+        "source_id": "325",
+        "source_url": "https://klang-games.eu.theymes.com/hc/en/seed/articles/society-goals-and-tiers-325",
+        "source_path": "articles/society-goals-and-tiers-325.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Society & Governance",
+        "topics": [
+          "society goals & tiers",
+          "society & governance"
+        ],
+        "retrieved_at": "2026-10-27T14:26:25Z",
+        "imported_at": null,
+        "verification_status": "source_snapshot",
+        "content_hash": "sha256:0cdff294d76f5f11aa79faf6287f5571a161fb1e1ae1c2447bc9858cf2bee6ee",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-society/references/spark-seeds-social-app-336.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-help-center:article:336",
+        "title": "Spark - SEED's Social App",
+        "description": "Spark is SEED's in-game social network, currently in preview. It's a shared feed of short posts from Cultivators, Seedlings, societies and businesses, and a...",
+        "document_type": "article",
+        "source_type": "help_center",
+        "source_collection": "seed-help-center",
+        "source_id": "336",
+        "source_url": "https://klang-games.eu.theymes.com/hc/en/seed/articles/spark-seeds-social-app-336",
+        "source_path": "articles/spark-seeds-social-app-336.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Community & Social",
+        "topics": [
+          "spark - seed's social app",
+          "community & social"
+        ],
+        "retrieved_at": "2026-10-27T14:26:25Z",
+        "imported_at": null,
+        "verification_status": "source_snapshot",
+        "content_hash": "sha256:151796676283196a09a71b8c2a1ff944f47578c751e146b0287fb167b45db243",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-society/references/voting-and-leadership-327.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-help-center:article:327",
+        "title": "Voting & Leadership",
+        "description": "Societies are governed and managed through roles and permissions: find the available roles and their permissions in the Societies Panel > Roles tab. There ar...",
+        "document_type": "article",
+        "source_type": "help_center",
+        "source_collection": "seed-help-center",
+        "source_id": "327",
+        "source_url": "https://klang-games.eu.theymes.com/hc/en/seed/articles/voting-and-leadership-327",
+        "source_path": "articles/voting-and-leadership-327.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Society & Governance",
+        "topics": [
+          "voting & leadership",
+          "society & governance"
+        ],
+        "retrieved_at": "2026-10-27T14:26:25Z",
+        "imported_at": null,
+        "verification_status": "source_snapshot",
+        "content_hash": "sha256:7ae84ac7de132084aff22d1e5adb95439d6d97cdea03038e0ece87fb328e5c91",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-support/references/can-i-change-my-seedling-or-display-name-346.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-help-center:article:346",
+        "title": "Can I change my Seedling or display name?",
+        "description": "Your Seedling's name can't be changed once your character is created, so choose it carefully during character creation. Your display name is your username, a...",
+        "document_type": "article",
+        "source_type": "help_center",
+        "source_collection": "seed-help-center",
+        "source_id": "346",
+        "source_url": "https://klang-games.eu.theymes.com/hc/en/seed/articles/can-i-change-my-seedling-or-display-name-346",
+        "source_path": "articles/can-i-change-my-seedling-or-display-name-346.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Community & Support",
+        "topics": [
+          "can i change my seedling or display name?",
+          "community & support"
+        ],
+        "retrieved_at": "2026-10-27T14:26:25Z",
+        "imported_at": null,
+        "verification_status": "source_snapshot",
+        "content_hash": "sha256:efee83b7dfbbd1829307b6f8a1a9a1c652de20160586d869727e1473e23d8b1d",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-support/references/can-i-play-solo-or-do-i-have-to-join-others-365.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-help-center:article:365",
+        "title": "Can I play solo, or do I have to join others?",
+        "description": "You don't need to bring anyone with you to get started. Most new Cultivators simply join one of our recommended societies, which have plenty of space and res...",
+        "document_type": "article",
+        "source_type": "help_center",
+        "source_collection": "seed-help-center",
+        "source_id": "365",
+        "source_url": "https://klang-games.eu.theymes.com/hc/en/seed/articles/can-i-play-solo-or-do-i-have-to-join-others-365",
+        "source_path": "articles/can-i-play-solo-or-do-i-have-to-join-others-365.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Community & Support",
+        "topics": [
+          "can i play solo, or do i have to join others?",
+          "community & support"
+        ],
+        "retrieved_at": "2026-10-27T14:26:25Z",
+        "imported_at": null,
+        "verification_status": "source_snapshot",
+        "content_hash": "sha256:8ac3f384c9af84c4b4da188093c7751963facc11db848a0a8bd677c33db577e1",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-support/references/can-i-transfer-or-gift-a-copy-to-someone-342.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-help-center:article:342",
+        "title": "Can I transfer or gift a copy to someone?",
+        "description": "As licenses are attached to the purchase account, you can’t buy a gift copy for someone else using your login. We will be providing a buy 3 get 1 free option...",
+        "document_type": "article",
+        "source_type": "help_center",
+        "source_collection": "seed-help-center",
+        "source_id": "342",
+        "source_url": "https://klang-games.eu.theymes.com/hc/en/seed/articles/can-i-transfer-or-gift-a-copy-to-someone-342",
+        "source_path": "articles/can-i-transfer-or-gift-a-copy-to-someone-342.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Community & Support",
+        "topics": [
+          "can i transfer or gift a copy to someone?",
+          "community & support"
+        ],
+        "retrieved_at": "2026-10-27T14:26:25Z",
+        "imported_at": null,
+        "verification_status": "source_snapshot",
+        "content_hash": "sha256:77e855a320ef201b68abbe5f8eee4f8115934af69c1e50bf7a0e3a51d4db4319",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-support/references/categories/community-and-support-7.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-help-center:category:7",
+        "title": "Community & Support",
+        "description": "Community & Support",
+        "document_type": "navigation",
+        "source_type": "help_center",
+        "source_collection": "seed-help-center",
+        "source_id": "7",
+        "source_url": "https://klang-games.eu.theymes.com/hc/en/seed/categories/community-and-support-7",
+        "source_path": "categories/community-and-support-7.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Community & Support",
+        "topics": [
+          "community & support"
+        ],
+        "retrieved_at": "2026-10-27T14:26:25Z",
+        "imported_at": null,
+        "verification_status": "source_snapshot",
+        "content_hash": "sha256:872c5707dcc4e0c05e363a6d816874d258bc32cd548a370e8d35e167b177de8b",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-support/references/general-fixes-worth-trying-for-any-display-or-performance-issue-357.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-help-center:article:357",
+        "title": "General fixes worth trying for any display or performance issue",
+        "description": "Lower your in-game graphics settings (resolution, texture quality, shadows). Update Windows through Settings → Windows Update, along with DirectX and Visual...",
+        "document_type": "article",
+        "source_type": "help_center",
+        "source_collection": "seed-help-center",
+        "source_id": "357",
+        "source_url": "https://klang-games.eu.theymes.com/hc/en/seed/articles/general-fixes-worth-trying-for-any-display-or-performance-issue-357",
+        "source_path": "articles/general-fixes-worth-trying-for-any-display-or-performance-issue-357.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Community & Support",
+        "topics": [
+          "general fixes worth trying for any display or performance issue",
+          "community & support"
+        ],
+        "retrieved_at": "2026-10-27T14:26:25Z",
+        "imported_at": null,
+        "verification_status": "source_snapshot",
+        "content_hash": "sha256:3d2b509c363256a9095d5c4e8e4f5eb5b6dcdd6d30ba8f7c2d0599c1c0dcc37a",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-support/references/how-do-i-contact-support-report-something-348.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-help-center:article:348",
+        "title": "How do I contact support / report something?",
+        "description": "You can reach us through the SEED Community Portal ticket system at https://klang-games. eu. theymes. com/hc/en/seed/contact-us (https://klang-games. eu. the...",
+        "document_type": "article",
+        "source_type": "help_center",
+        "source_collection": "seed-help-center",
+        "source_id": "348",
+        "source_url": "https://klang-games.eu.theymes.com/hc/en/seed/articles/how-do-i-contact-support-report-something-348",
+        "source_path": "articles/how-do-i-contact-support-report-something-348.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Community & Support",
+        "topics": [
+          "how do i contact support / report something?",
+          "community & support"
+        ],
+        "retrieved_at": "2026-10-27T14:26:25Z",
+        "imported_at": null,
+        "verification_status": "source_snapshot",
+        "content_hash": "sha256:c000a19f7d9fb8a4a7f5ef42682e1d16af4ed0f766e3da872703bc033edc10ba",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-support/references/how-do-i-create-or-log-into-my-account-344.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-help-center:article:344",
+        "title": "How do I create or log into my account?",
+        "description": "To play SEED you'll need a SEED account from seed. game (https://seed. game) From the sign-in screen, you can get in a few ways: Email and password - enter y...",
+        "document_type": "article",
+        "source_type": "help_center",
+        "source_collection": "seed-help-center",
+        "source_id": "344",
+        "source_url": "https://klang-games.eu.theymes.com/hc/en/seed/articles/how-do-i-create-or-log-into-my-account-344",
+        "source_path": "articles/how-do-i-create-or-log-into-my-account-344.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Community & Support",
+        "topics": [
+          "how do i create or log into my account?",
+          "community & support"
+        ],
+        "retrieved_at": "2026-10-27T14:26:25Z",
+        "imported_at": null,
+        "verification_status": "source_snapshot",
+        "content_hash": "sha256:468be16f54371a9d98e82b6e0e33f7124c9f79939a83781243ee83ae60b7487d",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-support/references/how-do-i-get-a-refund-337.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-help-center:article:337",
+        "title": "How do I get a refund?",
+        "description": "When you buy SEED, you're agreeing to our Terms of Use, which don't provide for a refund simply because you've changed your mind or aren't enjoying the game.",
+        "document_type": "article",
+        "source_type": "help_center",
+        "source_collection": "seed-help-center",
+        "source_id": "337",
+        "source_url": "https://klang-games.eu.theymes.com/hc/en/seed/articles/how-do-i-get-a-refund-337",
+        "source_path": "articles/how-do-i-get-a-refund-337.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Community & Support",
+        "topics": [
+          "how do i get a refund?",
+          "community & support"
+        ],
+        "retrieved_at": "2026-10-27T14:26:25Z",
+        "imported_at": null,
+        "verification_status": "source_snapshot",
+        "content_hash": "sha256:d94b46089c9294ef0f1e648d2f9ec481e9a4afbadc331eb93731e22290257984",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-support/references/how-do-i-get-players-into-my-society-can-i-invite-them-directly-364.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-help-center:article:364",
+        "title": "How do I get players into my society? Can I invite them directly?",
+        "description": "When you start a society, you'll create a lobby. Set it to private with a password and share that password with the friends you want to build with (you need...",
+        "document_type": "article",
+        "source_type": "help_center",
+        "source_collection": "seed-help-center",
+        "source_id": "364",
+        "source_url": "https://klang-games.eu.theymes.com/hc/en/seed/articles/how-do-i-get-players-into-my-society-can-i-invite-them-directly-364",
+        "source_path": "articles/how-do-i-get-players-into-my-society-can-i-invite-them-directly-364.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Community & Support",
+        "topics": [
+          "how do i get players into my society? can i invite them directly?",
+          "community & support"
+        ],
+        "retrieved_at": "2026-10-27T14:26:25Z",
+        "imported_at": null,
+        "verification_status": "source_snapshot",
+        "content_hash": "sha256:e0abda8b8e5946745260b88bda1254c8d378d93bce1e15e23bffbd1934594225",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-support/references/how-do-i-report-a-player-349.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-help-center:article:349",
+        "title": "How do I report a player?",
+        "description": "If someone's breaking the rules, report them in-game using Report Players, this covers harassment, discrimination, cheating, and other misconduct. You can al...",
+        "document_type": "article",
+        "source_type": "help_center",
+        "source_collection": "seed-help-center",
+        "source_id": "349",
+        "source_url": "https://klang-games.eu.theymes.com/hc/en/seed/articles/how-do-i-report-a-player-349",
+        "source_path": "articles/how-do-i-report-a-player-349.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Community & Support",
+        "topics": [
+          "how do i report a player?",
+          "community & support"
+        ],
+        "retrieved_at": "2026-10-27T14:26:25Z",
+        "imported_at": null,
+        "verification_status": "source_snapshot",
+        "content_hash": "sha256:a6817b2ca5d24a1779eeaae6c71a837f8818b2a7354fc09fb1506672e127ad6a",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-support/references/how-to-get-support-124.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-help-center:article:124",
+        "title": "How to Get Support",
+        "description": "Need help with SEED? You have options! Whether you need a quick answer about gameplay or help with a complex technical issue, there are three ways to get sup...",
+        "document_type": "article",
+        "source_type": "help_center",
+        "source_collection": "seed-help-center",
+        "source_id": "124",
+        "source_url": "https://klang-games.eu.theymes.com/hc/en/seed/articles/how-to-get-support-124",
+        "source_path": "articles/how-to-get-support-124.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Community & Support",
+        "topics": [
+          "how to get support",
+          "community & support"
+        ],
+        "retrieved_at": "2026-10-27T14:26:25Z",
+        "imported_at": null,
+        "verification_status": "source_snapshot",
+        "content_hash": "sha256:5020a5482835939819d86b09501dda56b7aa3db0773a0416670dbdea2af598c6",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-support/references/how-to-join-our-discord-community-122.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-help-center:article:122",
+        "title": "How to Join Our Discord Community",
+        "description": "Get more out of the game and join us on Discord! Meet other players and get to know our wonderful community managers. Joining Discord Discord Link: https://d...",
+        "document_type": "article",
+        "source_type": "help_center",
+        "source_collection": "seed-help-center",
+        "source_id": "122",
+        "source_url": "https://klang-games.eu.theymes.com/hc/en/seed/articles/how-to-join-our-discord-community-122",
+        "source_path": "articles/how-to-join-our-discord-community-122.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Community & Support",
+        "topics": [
+          "how to join our discord community",
+          "community & support"
+        ],
+        "retrieved_at": "2026-10-27T14:26:25Z",
+        "imported_at": null,
+        "verification_status": "source_snapshot",
+        "content_hash": "sha256:b0bfacb9d0eb61e305d867e2c4e9eb0072a522d3bc575cb39a6c9f6a4f2c082b",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-support/references/i-cant-switch-to-a-different-account-362.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-help-center:article:362",
+        "title": "I can't switch to a different account",
+        "description": "Log out from Settings in the game or launcher, closing the window alone won't do it. Make sure it's fully closed in the background, not just off screen. Befo...",
+        "document_type": "article",
+        "source_type": "help_center",
+        "source_collection": "seed-help-center",
+        "source_id": "362",
+        "source_url": "https://klang-games.eu.theymes.com/hc/en/seed/articles/i-cant-switch-to-a-different-account-362",
+        "source_path": "articles/i-cant-switch-to-a-different-account-362.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Community & Support",
+        "topics": [
+          "i can't switch to a different account",
+          "community & support"
+        ],
+        "retrieved_at": "2026-10-27T14:26:25Z",
+        "imported_at": null,
+        "verification_status": "source_snapshot",
+        "content_hash": "sha256:ce5b32a26b5a02f0edc6e47403d24287eaa08cf346d6d779937d14473fc689f7",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-support/references/i-forgot-my-password-cant-log-in-345.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-help-center:article:345",
+        "title": "I forgot my password / can't log in",
+        "description": "No problem. Use the \"Forgot password\" link on the sign-in screen to reset it by email. If you've lost access to that email address or still can't get in, con...",
+        "document_type": "article",
+        "source_type": "help_center",
+        "source_collection": "seed-help-center",
+        "source_id": "345",
+        "source_url": "https://klang-games.eu.theymes.com/hc/en/seed/articles/i-forgot-my-password-cant-log-in-345",
+        "source_path": "articles/i-forgot-my-password-cant-log-in-345.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Community & Support",
+        "topics": [
+          "i forgot my password / can't log in",
+          "community & support"
+        ],
+        "retrieved_at": "2026-10-27T14:26:25Z",
+        "imported_at": null,
+        "verification_status": "source_snapshot",
+        "content_hash": "sha256:5907405c7dddeaa118fe8d9c0f76c7cbca3ad53e130f8953c5ba6c8519e3fd37",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-support/references/i-m-stuck-on-a-black-screen-360.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-help-center:article:360",
+        "title": "I'm stuck on a black screen",
+        "description": "Give it a minute, the game can take longer to load right after an update. Alt+Tab out and back in. Switch between fullscreen, windowed, and borderless in you...",
+        "document_type": "article",
+        "source_type": "help_center",
+        "source_collection": "seed-help-center",
+        "source_id": "360",
+        "source_url": "https://klang-games.eu.theymes.com/hc/en/seed/articles/i-m-stuck-on-a-black-screen-360",
+        "source_path": "articles/i-m-stuck-on-a-black-screen-360.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Community & Support",
+        "topics": [
+          "i'm stuck on a black screen",
+          "community & support"
+        ],
+        "retrieved_at": "2026-10-27T14:26:25Z",
+        "imported_at": null,
+        "verification_status": "source_snapshot",
+        "content_hash": "sha256:63ad31ac05de6b330263e76cedc557912b33e330317db20c66d0e8fd163ff47c",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-support/references/i-was-charged-but-didnt-get-my-game-code-340.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-help-center:article:340",
+        "title": "I was charged but didn't get my game/code",
+        "description": "If your payment went through but you can't access SEED, first check you're signed in with the same account you purchased on. If it's still missing, contact s...",
+        "document_type": "article",
+        "source_type": "help_center",
+        "source_collection": "seed-help-center",
+        "source_id": "340",
+        "source_url": "https://klang-games.eu.theymes.com/hc/en/seed/articles/i-was-charged-but-didnt-get-my-game-code-340",
+        "source_path": "articles/i-was-charged-but-didnt-get-my-game-code-340.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Community & Support",
+        "topics": [
+          "i was charged but didn't get my game/code",
+          "community & support"
+        ],
+        "retrieved_at": "2026-10-27T14:26:25Z",
+        "imported_at": null,
+        "verification_status": "source_snapshot",
+        "content_hash": "sha256:d097a536ef76bda36f0b0a56ed31c865238640bed50f0cccce3d7c22c1975ea0",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-support/references/is-there-a-minimum-age-to-play-347.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-help-center:article:347",
+        "title": "Is there a minimum age to play?",
+        "description": "SEED currently has a provisional PEGI 16 rating (the official licence is still pending confirmation from PEGI), so it's intended for players aged 16 and over.",
+        "document_type": "article",
+        "source_type": "help_center",
+        "source_collection": "seed-help-center",
+        "source_id": "347",
+        "source_url": "https://klang-games.eu.theymes.com/hc/en/seed/articles/is-there-a-minimum-age-to-play-347",
+        "source_path": "articles/is-there-a-minimum-age-to-play-347.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Community & Support",
+        "topics": [
+          "is there a minimum age to play?",
+          "community & support"
+        ],
+        "retrieved_at": "2026-10-27T14:26:25Z",
+        "imported_at": null,
+        "verification_status": "source_snapshot",
+        "content_hash": "sha256:06fd02a2af68d24eb5e93b863fb395f942b7d5cea950085d18d24405b6926366",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-support/references/is-there-controller-support-can-i-play-across-devices-353.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-help-center:article:353",
+        "title": "Is there controller support? Can I play across devices?",
+        "description": "SEED plays on PC and Mac, with a mobile Companion App for iOS and Android to check in on your Seedlings wherever you are. Because SEED is one shared world th...",
+        "document_type": "article",
+        "source_type": "help_center",
+        "source_collection": "seed-help-center",
+        "source_id": "353",
+        "source_url": "https://klang-games.eu.theymes.com/hc/en/seed/articles/is-there-controller-support-can-i-play-across-devices-353",
+        "source_path": "articles/is-there-controller-support-can-i-play-across-devices-353.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Community & Support",
+        "topics": [
+          "is there controller support? can i play across devices?",
+          "community & support"
+        ],
+        "retrieved_at": "2026-10-27T14:26:25Z",
+        "imported_at": null,
+        "verification_status": "source_snapshot",
+        "content_hash": "sha256:a504770b34ffe27862734321ac339d44e80a0a6df53d0456f325765961d17bda",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-support/references/just-ask-how-to-find-information-in-this-knowledge-base-282.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-help-center:article:282",
+        "title": "Just Ask! – How to find information in this knowledge base",
+        "description": "Stop scrolling and start asking! To give you the fastest help possible during our Open Beta, we’ve moved away from traditional lists of articles. Instead, ou...",
+        "document_type": "article",
+        "source_type": "help_center",
+        "source_collection": "seed-help-center",
+        "source_id": "282",
+        "source_url": "https://klang-games.eu.theymes.com/hc/en/seed/articles/just-ask-how-to-find-information-in-this-knowledge-base-282",
+        "source_path": "articles/just-ask-how-to-find-information-in-this-knowledge-base-282.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Community & Support",
+        "topics": [
+          "just ask! – how to find information in this knowledge base",
+          "community & support"
+        ],
+        "retrieved_at": "2026-10-27T14:26:25Z",
+        "imported_at": null,
+        "verification_status": "source_snapshot",
+        "content_hash": "sha256:0b1bf53063e1ee72d527b8dbdc95d45a0dfa97263d857d52707ce8406816f3ef",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-support/references/my-screen-is-flickering-or-the-graphics-look-wrong-361.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-help-center:article:361",
+        "title": "My screen is flickering, or the graphics look wrong",
+        "description": "Update your graphics driver. Turn off V-Sync, or try a different display mode. Close anything that overlays your screen: Discord, GeForce Experience or Adren...",
+        "document_type": "article",
+        "source_type": "help_center",
+        "source_collection": "seed-help-center",
+        "source_id": "361",
+        "source_url": "https://klang-games.eu.theymes.com/hc/en/seed/articles/my-screen-is-flickering-or-the-graphics-look-wrong-361",
+        "source_path": "articles/my-screen-is-flickering-or-the-graphics-look-wrong-361.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Community & Support",
+        "topics": [
+          "my screen is flickering, or the graphics look wrong",
+          "community & support"
+        ],
+        "retrieved_at": "2026-10-27T14:26:25Z",
+        "imported_at": null,
+        "verification_status": "source_snapshot",
+        "content_hash": "sha256:2ccc6ce234b174360b44ae017d2b5106bd0abbf9ff2b5a5f6aae646a77084075",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-support/references/parental-controls-and-safety-for-younger-players-351.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-help-center:article:351",
+        "title": "Parental controls and safety for younger players",
+        "description": "SEED is a world of real people interacting in real time, and it carries a provisional PEGI 16 rating. There are currently no dedicated parental control setti...",
+        "document_type": "article",
+        "source_type": "help_center",
+        "source_collection": "seed-help-center",
+        "source_id": "351",
+        "source_url": "https://klang-games.eu.theymes.com/hc/en/seed/articles/parental-controls-and-safety-for-younger-players-351",
+        "source_path": "articles/parental-controls-and-safety-for-younger-players-351.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Community & Support",
+        "topics": [
+          "parental controls and safety for younger players",
+          "community & support"
+        ],
+        "retrieved_at": "2026-10-27T14:26:25Z",
+        "imported_at": null,
+        "verification_status": "source_snapshot",
+        "content_hash": "sha256:569a9acf668b27eab13afaaa051994148b28fe0cdd303c9cf73abd8027ea19ae",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-support/references/seed-discord-rules-and-guidelines-111.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-help-center:article:111",
+        "title": "SEED Discord Rules & Guidelines",
+        "description": "SEED Discord Server Rules & Information Welcome to the SEED community! Our goal is to build a fun, inclusive, and respectful space for everyone on Discord, i...",
+        "document_type": "article",
+        "source_type": "help_center",
+        "source_collection": "seed-help-center",
+        "source_id": "111",
+        "source_url": "https://klang-games.eu.theymes.com/hc/en/seed/articles/seed-discord-rules-and-guidelines-111",
+        "source_path": "articles/seed-discord-rules-and-guidelines-111.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Community & Support",
+        "topics": [
+          "seed discord rules & guidelines",
+          "community & support"
+        ],
+        "retrieved_at": "2026-10-27T14:26:25Z",
+        "imported_at": null,
+        "verification_status": "source_snapshot",
+        "content_hash": "sha256:e8b0b7c41971734845daef897ddeb3a0096335207d41912eeecaae3b3564d95a",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-support/references/server-status-how-do-i-know-if-seed-is-down-352.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-help-center:article:352",
+        "title": "Server status / how do I know if SEED is down?",
+        "description": "If SEED won't load, it might be us, not you. Before troubleshooting, check our Discord for service updates, we post maintenance windows and any outages there...",
+        "document_type": "article",
+        "source_type": "help_center",
+        "source_collection": "seed-help-center",
+        "source_id": "352",
+        "source_url": "https://klang-games.eu.theymes.com/hc/en/seed/articles/server-status-how-do-i-know-if-seed-is-down-352",
+        "source_path": "articles/server-status-how-do-i-know-if-seed-is-down-352.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Community & Support",
+        "topics": [
+          "server status / how do i know if seed is down?",
+          "community & support"
+        ],
+        "retrieved_at": "2026-10-27T14:26:25Z",
+        "imported_at": null,
+        "verification_status": "source_snapshot",
+        "content_hash": "sha256:30662f1b3eb468b6bdf3fdd7802adc0ae5ece3baf5df16a4d2ab7c022a650810",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-support/references/system-requirements-278.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-help-center:article:278",
+        "title": "System requirements",
+        "description": "Windows requirements: | Minimum | Recommended | | -----------------------------------------------------------------------------------------------------------...",
+        "document_type": "article",
+        "source_type": "help_center",
+        "source_collection": "seed-help-center",
+        "source_id": "278",
+        "source_url": "https://klang-games.eu.theymes.com/hc/en/seed/articles/system-requirements-278",
+        "source_path": "articles/system-requirements-278.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Community & Support",
+        "topics": [
+          "system requirements",
+          "community & support"
+        ],
+        "retrieved_at": "2026-10-27T14:26:25Z",
+        "imported_at": null,
+        "verification_status": "source_snapshot",
+        "content_hash": "sha256:a9ad9d2f29c1531946913931672a6e8f73f0b093ce42f2f591d87081df3cd4fb",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-support/references/the-game-wont-start-359.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-help-center:article:359",
+        "title": "The game won't start",
+        "description": "Restart your PC. Verify your game files (Steam: right-click SEED → Properties → Installed Files → Verify integrity of game files). Update your graphics driver.",
+        "document_type": "article",
+        "source_type": "help_center",
+        "source_collection": "seed-help-center",
+        "source_id": "359",
+        "source_url": "https://klang-games.eu.theymes.com/hc/en/seed/articles/the-game-wont-start-359",
+        "source_path": "articles/the-game-wont-start-359.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Community & Support",
+        "topics": [
+          "the game won't start",
+          "community & support"
+        ],
+        "retrieved_at": "2026-10-27T14:26:25Z",
+        "imported_at": null,
+        "verification_status": "source_snapshot",
+        "content_hash": "sha256:1370468a5f35dea26dbff9cae4cee73535667d7dc5ed4fbd5a8637c3b79b4ce9",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-support/references/what-happens-if-i-buy-more-than-one-copy-341.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-help-center:article:341",
+        "title": "What happens if I buy more than one copy?",
+        "description": "We would recommend buying one copy per account. SEED licenses are granted directly to the purchasing account. If you buy multiple copies of the same thing, y...",
+        "document_type": "article",
+        "source_type": "help_center",
+        "source_collection": "seed-help-center",
+        "source_id": "341",
+        "source_url": "https://klang-games.eu.theymes.com/hc/en/seed/articles/what-happens-if-i-buy-more-than-one-copy-341",
+        "source_path": "articles/what-happens-if-i-buy-more-than-one-copy-341.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Community & Support",
+        "topics": [
+          "what happens if i buy more than one copy?",
+          "community & support"
+        ],
+        "retrieved_at": "2026-10-27T14:26:25Z",
+        "imported_at": null,
+        "verification_status": "source_snapshot",
+        "content_hash": "sha256:629e8b40633c0ec8a460e5baef3c6f36792efcda12eed312c36e7ed0728fd597",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-support/references/what-happens-if-i-leave-my-society-or-if-it-dies-366.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-help-center:article:366",
+        "title": "What happens if I leave my society, or if it dies?",
+        "description": "If you leave your society, it carries on without you; the other Cultivators living there keep building and running it as usual. Societies don't really \"die\"...",
+        "document_type": "article",
+        "source_type": "help_center",
+        "source_collection": "seed-help-center",
+        "source_id": "366",
+        "source_url": "https://klang-games.eu.theymes.com/hc/en/seed/articles/what-happens-if-i-leave-my-society-or-if-it-dies-366",
+        "source_path": "articles/what-happens-if-i-leave-my-society-or-if-it-dies-366.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Community & Support",
+        "topics": [
+          "what happens if i leave my society, or if it dies?",
+          "community & support"
+        ],
+        "retrieved_at": "2026-10-27T14:26:25Z",
+        "imported_at": null,
+        "verification_status": "source_snapshot",
+        "content_hash": "sha256:c77cecfdc7bb839b26cd7e50921f76e6d59a67411bfb5359b6a88bcc8f78a9cb",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-support/references/what-happens-to-my-society-or-character-when-i-m-offline-363.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-help-center:article:363",
+        "title": "What happens to my society or character when I'm offline?",
+        "description": "SEED is one living world that never stops. When you log off, Avesta keeps running, time passes and life goes on. Your Seedling carries on with their day: wor...",
+        "document_type": "article",
+        "source_type": "help_center",
+        "source_collection": "seed-help-center",
+        "source_id": "363",
+        "source_url": "https://klang-games.eu.theymes.com/hc/en/seed/articles/what-happens-to-my-society-or-character-when-i-m-offline-363",
+        "source_path": "articles/what-happens-to-my-society-or-character-when-i-m-offline-363.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Community & Support",
+        "topics": [
+          "what happens to my society or character when i'm offline?",
+          "community & support"
+        ],
+        "retrieved_at": "2026-10-27T14:26:25Z",
+        "imported_at": null,
+        "verification_status": "source_snapshot",
+        "content_hash": "sha256:452bc1635042f37493ee60179890ac147f4bf716db1d58612f6f7dbc8105fe22",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-support/references/what-payment-methods-can-i-use-339.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-help-center:article:339",
+        "title": "What payment methods can I use?",
+        "description": "On seed.game (http://seed.game) we accept Apple Pay, PayPal, Google Pay, and bank cards.",
+        "document_type": "article",
+        "source_type": "help_center",
+        "source_collection": "seed-help-center",
+        "source_id": "339",
+        "source_url": "https://klang-games.eu.theymes.com/hc/en/seed/articles/what-payment-methods-can-i-use-339",
+        "source_path": "articles/what-payment-methods-can-i-use-339.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Community & Support",
+        "topics": [
+          "what payment methods can i use?",
+          "community & support"
+        ],
+        "retrieved_at": "2026-10-27T14:26:25Z",
+        "imported_at": null,
+        "verification_status": "source_snapshot",
+        "content_hash": "sha256:ec1070eeb3df1c8a07b917e6be4f410dafe3c5e9f15ef3b6754a9a67e7f3ac6a",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-support/references/whats-the-difference-between-early-access-and-full-launch-343.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-help-center:article:343",
+        "title": "What's the difference between Early Access and full launch?",
+        "description": "Early Access is a way of releasing a game while it's still being built. Rather than waiting until everything's finished, we've opened SEED up earlier: you bu...",
+        "document_type": "article",
+        "source_type": "help_center",
+        "source_collection": "seed-help-center",
+        "source_id": "343",
+        "source_url": "https://klang-games.eu.theymes.com/hc/en/seed/articles/whats-the-difference-between-early-access-and-full-launch-343",
+        "source_path": "articles/whats-the-difference-between-early-access-and-full-launch-343.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Community & Support",
+        "topics": [
+          "what's the difference between early access and full launch?",
+          "community & support"
+        ],
+        "retrieved_at": "2026-10-27T14:26:25Z",
+        "imported_at": null,
+        "verification_status": "source_snapshot",
+        "content_hash": "sha256:13431a49e871c9a807d3e8768f96cfa64b2c2940c9accfae3d9c34fce51fb662",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-support/references/where-do-i-buy-seed-and-what-editions-are-there-338.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-help-center:article:338",
+        "title": "Where do I buy SEED, and what editions are there?",
+        "description": "SEED is bought directly from seed. game (http://seed. game) and played through the standalone SEED Launcher on PC and Mac, with a mobile Companion App also a...",
+        "document_type": "article",
+        "source_type": "help_center",
+        "source_collection": "seed-help-center",
+        "source_id": "338",
+        "source_url": "https://klang-games.eu.theymes.com/hc/en/seed/articles/where-do-i-buy-seed-and-what-editions-are-there-338",
+        "source_path": "articles/where-do-i-buy-seed-and-what-editions-are-there-338.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Community & Support",
+        "topics": [
+          "where do i buy seed, and what editions are there?",
+          "community & support"
+        ],
+        "retrieved_at": "2026-10-27T14:26:25Z",
+        "imported_at": null,
+        "verification_status": "source_snapshot",
+        "content_hash": "sha256:f99a2c40bd749e5ae79a0dbd799b12ac5d5ca04ac963560b715b51f07bcd6a6a",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-support/references/why-cant-i-connect-or-why-do-i-keep-getting-disconnected-355.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-help-center:article:355",
+        "title": "Why can't I connect, or why do I keep getting disconnected?",
+        "description": "Restart your router or modem. Switch to a wired connection if you're on Wi-Fi. Turn off any VPN. Make sure your firewall or antivirus isn't blocking SEED.",
+        "document_type": "article",
+        "source_type": "help_center",
+        "source_collection": "seed-help-center",
+        "source_id": "355",
+        "source_url": "https://klang-games.eu.theymes.com/hc/en/seed/articles/why-cant-i-connect-or-why-do-i-keep-getting-disconnected-355",
+        "source_path": "articles/why-cant-i-connect-or-why-do-i-keep-getting-disconnected-355.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Community & Support",
+        "topics": [
+          "why can't i connect, or why do i keep getting disconnected?",
+          "community & support"
+        ],
+        "retrieved_at": "2026-10-27T14:26:25Z",
+        "imported_at": null,
+        "verification_status": "source_snapshot",
+        "content_hash": "sha256:bbee7b88c3864a17eff74ba4a690fe152d8b2f3984384f619228d833ba919618",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-support/references/why-does-my-game-keep-crashing-354.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-help-center:article:354",
+        "title": "Why does my game keep crashing?",
+        "description": "Fully drafted in the doc; system-requirements link to be wired once live. Restart the game client. Verify your game files. On Steam: right-click SEED → Prope...",
+        "document_type": "article",
+        "source_type": "help_center",
+        "source_collection": "seed-help-center",
+        "source_id": "354",
+        "source_url": "https://klang-games.eu.theymes.com/hc/en/seed/articles/why-does-my-game-keep-crashing-354",
+        "source_path": "articles/why-does-my-game-keep-crashing-354.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Community & Support",
+        "topics": [
+          "why does my game keep crashing?",
+          "community & support"
+        ],
+        "retrieved_at": "2026-10-27T14:26:25Z",
+        "imported_at": null,
+        "verification_status": "source_snapshot",
+        "content_hash": "sha256:2a19cf68f9597732a257a8f6bdaa20ecf520c56f8ac7c606a297cd2627d4f1e9",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-support/references/why-is-my-fps-low-or-why-is-the-game-stuttering-356.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-help-center:article:356",
+        "title": "Why is my FPS low, or why is the game stuttering?",
+        "description": "Lower your in-game graphics settings. Update your graphics driver (see above). On a laptop, make sure SEED runs on your dedicated GPU, not the integrated one...",
+        "document_type": "article",
+        "source_type": "help_center",
+        "source_collection": "seed-help-center",
+        "source_id": "356",
+        "source_url": "https://klang-games.eu.theymes.com/hc/en/seed/articles/why-is-my-fps-low-or-why-is-the-game-stuttering-356",
+        "source_path": "articles/why-is-my-fps-low-or-why-is-the-game-stuttering-356.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Community & Support",
+        "topics": [
+          "why is my fps low, or why is the game stuttering?",
+          "community & support"
+        ],
+        "retrieved_at": "2026-10-27T14:26:25Z",
+        "imported_at": null,
+        "verification_status": "source_snapshot",
+        "content_hash": "sha256:3839ec63f823b1e296633bf294b3d1529abec7c4567978f314c4e1e3005bfccd",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seed-support/references/why-wont-the-launcher-open-358.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-help-center:article:358",
+        "title": "Why won't the launcher open?",
+        "description": "Fully close the launcher and reopen it. If it seems stuck, check Task Manager (Windows) or Activity Monitor (Mac) to be sure it isn't still running in the ba...",
+        "document_type": "article",
+        "source_type": "help_center",
+        "source_collection": "seed-help-center",
+        "source_id": "358",
+        "source_url": "https://klang-games.eu.theymes.com/hc/en/seed/articles/why-wont-the-launcher-open-358",
+        "source_path": "articles/why-wont-the-launcher-open-358.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Community & Support",
+        "topics": [
+          "why won't the launcher open?",
+          "community & support"
+        ],
+        "retrieved_at": "2026-10-27T14:26:25Z",
+        "imported_at": null,
+        "verification_status": "source_snapshot",
+        "content_hash": "sha256:913e0be271c68cbd55c9149da0ca9281355ad22edee8931e6014ba69f38a2c38",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seedling-care/references/adding-clothing-from-your-cultivator-profile-367.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-help-center:article:367",
+        "title": "Adding clothing from your Cultivator Profile",
+        "description": "Some SEED packs come with perks like limited clothing items. These are actually added to your Cultivator profile, which you can access on the top left of the...",
+        "document_type": "article",
+        "source_type": "help_center",
+        "source_collection": "seed-help-center",
+        "source_id": "367",
+        "source_url": "https://klang-games.eu.theymes.com/hc/en/seed/articles/adding-clothing-from-your-cultivator-profile-367",
+        "source_path": "articles/adding-clothing-from-your-cultivator-profile-367.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Craing For Your Seedling",
+        "topics": [
+          "adding clothing from your cultivator profile",
+          "craing for your seedling"
+        ],
+        "retrieved_at": "2026-10-27T14:26:25Z",
+        "imported_at": null,
+        "verification_status": "source_snapshot",
+        "content_hash": "sha256:a5b5cc05fe82c753038bbce21c978e50b45b320d5ace2c7caa3814ce842361ea",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seedling-care/references/categories/craing-for-your-seedling-30.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-help-center:category:30",
+        "title": "Craing For Your Seedling",
+        "description": "Craing For Your Seedling",
+        "document_type": "navigation",
+        "source_type": "help_center",
+        "source_collection": "seed-help-center",
+        "source_id": "30",
+        "source_url": "https://klang-games.eu.theymes.com/hc/en/seed/categories/craing-for-your-seedling-30",
+        "source_path": "categories/craing-for-your-seedling-30.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Craing For Your Seedling",
+        "topics": [
+          "craing for your seedling"
+        ],
+        "retrieved_at": "2026-10-27T14:26:25Z",
+        "imported_at": null,
+        "verification_status": "source_snapshot",
+        "content_hash": "sha256:1b79e195566785f14256d9a127ad02ef8164fe6419f3640777163c8223a952d1",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seedling-care/references/collapse-and-revival-305.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-help-center:article:305",
+        "title": "Collapse and Revival",
+        "description": "Health problems, starvation and dehydration don't kill a Seedling outright. Instead, the Seedling collapses unconscious and another Seedling must revive them...",
+        "document_type": "article",
+        "source_type": "help_center",
+        "source_collection": "seed-help-center",
+        "source_id": "305",
+        "source_url": "https://klang-games.eu.theymes.com/hc/en/seed/articles/collapse-and-revival-305",
+        "source_path": "articles/collapse-and-revival-305.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Craing For Your Seedling",
+        "topics": [
+          "collapse and revival",
+          "craing for your seedling"
+        ],
+        "retrieved_at": "2026-10-27T14:26:25Z",
+        "imported_at": null,
+        "verification_status": "source_snapshot",
+        "content_hash": "sha256:a52a7585da6b2e3023d69bea1c2f83181bfa7a761b76571e03c913db214946be",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seedling-care/references/health-conditions-307.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-help-center:article:307",
+        "title": "Health Conditions",
+        "description": "A health condition is a negative state affecting your Seedling's body and abilities. Injuries (burns, cuts, strains) make a Seedling Injured; illnesses (stom...",
+        "document_type": "article",
+        "source_type": "help_center",
+        "source_collection": "seed-help-center",
+        "source_id": "307",
+        "source_url": "https://klang-games.eu.theymes.com/hc/en/seed/articles/health-conditions-307",
+        "source_path": "articles/health-conditions-307.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Craing For Your Seedling",
+        "topics": [
+          "health conditions",
+          "craing for your seedling"
+        ],
+        "retrieved_at": "2026-10-27T14:26:25Z",
+        "imported_at": null,
+        "verification_status": "source_snapshot",
+        "content_hash": "sha256:98bb5a70c657320d5bd147703d953cb84ce79cf4663b185ffc2b8109478d98e5",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seedling-care/references/mood-306.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-help-center:article:306",
+        "title": "Mood",
+        "description": "A Seedling's mood is influenced by need fulfillment and their current environment. Check their Thoughts on the Seedling Card to understand it. Depressed Seed...",
+        "document_type": "article",
+        "source_type": "help_center",
+        "source_collection": "seed-help-center",
+        "source_id": "306",
+        "source_url": "https://klang-games.eu.theymes.com/hc/en/seed/articles/mood-306",
+        "source_path": "articles/mood-306.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Craing For Your Seedling",
+        "topics": [
+          "mood",
+          "craing for your seedling"
+        ],
+        "retrieved_at": "2026-10-27T14:26:25Z",
+        "imported_at": null,
+        "verification_status": "source_snapshot",
+        "content_hash": "sha256:a8475b0e1b4ec457745d28176edcd551320a653755a6d9ed376b2a25259e2b45",
+        "conflicts_with": []
+      }
+    },
+    {
+      "path": "skills/seedling-care/references/needs-304.md",
+      "metadata": {
+        "schema_version": 1,
+        "id": "seed-help-center:article:304",
+        "title": "Needs",
+        "description": "Needs are the basic requirements your Seedling must meet to live a happy life. Keeping them in the green is the sign of a good Cultivator. Seedlings always t...",
+        "document_type": "article",
+        "source_type": "help_center",
+        "source_collection": "seed-help-center",
+        "source_id": "304",
+        "source_url": "https://klang-games.eu.theymes.com/hc/en/seed/articles/needs-304",
+        "source_path": "articles/needs-304.md",
+        "source_version": null,
+        "language": "en",
+        "category": "Craing For Your Seedling",
+        "topics": [
+          "needs",
+          "craing for your seedling"
+        ],
+        "retrieved_at": "2026-10-27T14:26:25Z",
+        "imported_at": null,
+        "verification_status": "source_snapshot",
+        "content_hash": "sha256:7cebae4f86ed1a00643c022f57831114665e965e9776b8c4d4067f54b3a2b4e5",
+        "conflicts_with": []
+      }
+    }
+  ]
+}

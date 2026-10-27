@@ -1,12 +1,25 @@
 ---
+schema_version: 1
+id: seed-help-center:article:278
 title: System requirements
 description: 'Windows requirements: | Minimum | Recommended | | -----------------------------------------------------------------------------------------------------------...'
-source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/system-requirements-278
+document_type: article
+source_type: help_center
+source_collection: seed-help-center
 source_id: '278'
-category: Community & Support
+source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/system-requirements-278
+source_path: articles/system-requirements-278.md
+source_version: null
 language: en
+category: Community & Support
+topics:
+- system requirements
+- community & support
 retrieved_at: '2026-10-27T14:26:25Z'
-content_hash: sha256:e9804d1855c165db027bd3f724ad3f0a5008f648b82e93c1dc460b72962565f2
+imported_at: null
+verification_status: source_snapshot
+content_hash: sha256:a9ad9d2f29c1531946913931672a6e8f73f0b093ce42f2f591d87081df3cd4fb
+conflicts_with: []
 ---
 
 # System requirements

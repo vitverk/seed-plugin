@@ -1,14 +1,25 @@
 ---
+schema_version: 1
+id: seed-help-center:article:304
 title: Needs
-description: Needs are the basic requirements your Seedling must meet to live a happy
-  life. Keeping them in the green is the sign of a good Cultivator. Seedlings always
-  t...
-source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/needs-304
+description: Needs are the basic requirements your Seedling must meet to live a happy life. Keeping them in the green is the sign of a good Cultivator. Seedlings always t...
+document_type: article
+source_type: help_center
+source_collection: seed-help-center
 source_id: '304'
-category: Craing For Your Seedling
+source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/needs-304
+source_path: articles/needs-304.md
+source_version: null
 language: en
+category: Craing For Your Seedling
+topics:
+- needs
+- craing for your seedling
 retrieved_at: '2026-10-27T14:26:25Z'
-content_hash: sha256:dc59952b6642d05f9dbace317fa12c060402e2620b8d1785b9c9c49347270cad
+imported_at: null
+verification_status: source_snapshot
+content_hash: sha256:7cebae4f86ed1a00643c022f57831114665e965e9776b8c4d4067f54b3a2b4e5
+conflicts_with: []
 ---
 
 # Needs

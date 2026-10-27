@@ -1,9 +1,24 @@
 ---
-title: "SEED societies and social life article index"
-description: "Find the 12 source articles for SEED societies and social life."
-source_type: derived_index
+schema_version: 1
+id: seed-plugin:skills/seed-society/references/index
+title: SEED societies and social life article index
+description: Navigate the source documents for SEED societies and social life.
+document_type: index
+source_type: derived
+source_collection: seed-plugin
+source_id: skills/seed-society/references/index.md
+source_url: null
+source_path: skills/seed-society/references/index.md
+source_version: null
 language: en
-retrieved_at: "2026-10-27T14:26:25Z"
+category: Documentation navigation
+topics:
+  - seed-society
+retrieved_at: null
+imported_at: null
+verification_status: derived
+conflicts_with: []
+content_hash: sha256:5c130c6813045f240ac4742896a0a5e19275638f210d7aeb60f1990d283459b7
 ---
 
 # SEED societies and social life article index

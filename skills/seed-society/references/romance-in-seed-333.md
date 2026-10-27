@@ -1,14 +1,25 @@
 ---
+schema_version: 1
+id: seed-help-center:article:333
 title: Romance in SEED
-description: 'Romance builds on the same relationship system as friendship. Seedlings
-  develop crushes on their own: a Crush can grow into Dating or even a full Partner
-  rel...'
-source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/romance-in-seed-333
+description: 'Romance builds on the same relationship system as friendship. Seedlings develop crushes on their own: a Crush can grow into Dating or even a full Partner rel...'
+document_type: article
+source_type: help_center
+source_collection: seed-help-center
 source_id: '333'
-category: Community & Social
+source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/romance-in-seed-333
+source_path: articles/romance-in-seed-333.md
+source_version: null
 language: en
+category: Community & Social
+topics:
+- romance in seed
+- community & social
 retrieved_at: '2026-10-27T14:26:25Z'
-content_hash: sha256:4c298efbf515e93ba3e0ade3130833a48d6ab0b0813d365851598da2634d68c0
+imported_at: null
+verification_status: source_snapshot
+content_hash: sha256:70e5a0641586af58ceeca77854159c89796904bf66a156bf82685997669d1da9
+conflicts_with: []
 ---
 
 # Romance in SEED

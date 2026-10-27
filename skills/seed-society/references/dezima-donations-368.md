@@ -1,13 +1,26 @@
 ---
+schema_version: 1
+id: seed-help-center:article:368
 title: Dezima Donations
-description: Dezima Donations The space station Dezima, the Cultivators' home above
-  Avesta, has suffered a series of damaging incidents, and Seed Industries is collecting...
-source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/dezima-donations-368
+description: Dezima Donations The space station Dezima, the Cultivators' home above Avesta, has suffered a series of damaging incidents, and Seed Industries is collecting...
+document_type: article
+source_type: help_center
+source_collection: seed-help-center
 source_id: '368'
-category: Community & Social
+source_url: https://klang-games.eu.theymes.com/hc/en/seed/articles/dezima-donations-368
+source_path: articles/dezima-donations-368.md
+source_version: null
 language: en
+category: Community & Social
+topics:
+- dezima donations
+- community & social
 retrieved_at: '2026-10-27T14:26:25Z'
-content_hash: sha256:4116e30a644f63df16c813fed638a3fdbc99d93e482cab126eb1a2d540862993
+imported_at: null
+verification_status: source_snapshot
+content_hash: sha256:4c87d2b3f422d468f990b75f948df908ede979cab8f228ca3b7f66ff4dd2a1c4
+conflicts_with:
+- seed-agent-play-pr34377:library/manual-seasonal-events
 ---
 
 # Dezima Donations
