@@ -44,14 +44,15 @@ try {
   serverInfo = { name: initialized.serverInfo.name, version: initialized.serverInfo.version };
   check('MCP initialization');
   const discovered = await rpc('tools/list');
-  const expected = ['open_seedling', 'browse_seedling', 'get_companion_capabilities', 'get_seedling_state', 'schedule_activity', 'update_schedule', 'queue_action', 'cancel_action', 'advance_demo_time', 'set_clock', 'create_goal', 'cancel_goal', 'search_seed_docs', 'read_seed_doc'];
+  const expected = ['open_seedling', 'browse_seedling', 'show_seedling_calendar', 'get_companion_capabilities', 'get_seedling_state', 'schedule_activity', 'update_schedule', 'queue_action', 'cancel_action', 'advance_demo_time', 'set_clock', 'create_goal', 'cancel_goal', 'search_seed_docs', 'read_seed_doc'];
+  assert.equal(discovered.tools.length, expected.length, 'Expected fifteen advertised tools');
   for (const name of expected) assert.ok(discovered.tools.some(tool => tool.name === name), `Missing tool: ${name}`);
   for (const entry of discovered.tools) {
     assert.ok(entry.title && entry.description, `Tool needs a title and description: ${entry.name}`);
     for (const hint of ['readOnlyHint', 'destructiveHint', 'openWorldHint']) assert.equal(typeof entry.annotations?.[hint], 'boolean', `${entry.name}.${hint}`);
     assert.deepEqual(entry._meta?.securitySchemes, [{ type: 'noauth' }]);
   }
-  check('Fourteen expected tools, titles, boolean annotations, and anonymous security metadata');
+  check('Fifteen expected tools, titles, boolean annotations, and anonymous security metadata');
   const skills = await rpc('skills/list');
   assert.equal(skills.skills.length, 8);
   const docs = await tool('search_seed_docs', { query: 'access rights', limit: 1 });

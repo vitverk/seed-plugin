@@ -25,7 +25,7 @@ Clients with MCP resource support can read a full document at `skill://<skill-na
 
 The plugin's portable and compatibility MCP configurations continue to connect to the existing anonymous hosted endpoint. Resource registration belongs to that server, so no unrecognized `resources` property is added to `mcp.json`. Local clients can read the same packaged files without the server. A local package check does not establish that a particular host has refreshed its remote metadata or supports the Skills extension.
 
-Hosted documentation requires runtime 0.10.0 or later to be deployed. The release smoke check requires all 14 tools and eight skills and verifies a sourced article through both resource and tool reads. Until that runtime is deployed, the packaged Markdown remains usable offline but a hosted smoke check will report the missing documentation surface.
+Hosted documentation requires runtime 0.11.0 or later to be deployed. The release smoke check requires all 15 tools and eight skills and verifies a sourced article through both resource and tool reads. Until that runtime is deployed, the packaged Markdown remains usable offline but a hosted smoke check will report the missing documentation surface.
 
 The guides explain native SEED behavior. They do not grant live-game account access or prove that a mechanic is implemented by the guest simulator. Use the current capability tool and observed state for executable behavior. A retrieval timestamp identifies the archived snapshot; current prices, support policies, server availability or patch behavior may need a fresh source check.
 
