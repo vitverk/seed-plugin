@@ -25,7 +25,7 @@ Open a **new chat** and try:
 - “Using SEED, find workbench in the game catalog in English. Do not change anything.”
 - With developer access: “Using SEED, show simulation time and list available commands. Do not send any commands.”
 
-Only explicit open/browse requests render the account UI. A developer connection exposes 17 proxy tools; a player connection exposes 11. The `send_command` tool can change the staging world. The demo plugin's calendar and fictional activities do not control your real account.
+Only explicit open/browse requests render the account UI. A developer connection exposes 24 proxy tools (17 data/action tools plus seven presentation tools); a player connection exposes 18 (11 data tools plus seven presentation tools). The `send_command` tool can change the staging world. The demo plugin's calendar and fictional activities do not control your real account.
 
 ## Direct MCP fallback
 

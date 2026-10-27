@@ -35,7 +35,7 @@ let serverInfo;
 try {
   const health = await (await request(new URL('/health', endpoint))).json();
   assert.equal(health.mode, 'guest');
-  assert.equal(health.version, '0.13.3', 'This package requires the SEED Demo runtime');
+  assert.equal(health.version, '0.14.0', 'This package requires the SEED Demo runtime');
   assert.equal(health.service, 'SEED Demo');
   assert.equal(health.mcp, endpoint);
   for (const key of ['saved', 'authentication']) assert.equal(health[key], false, `health.${key}`);
@@ -48,15 +48,15 @@ try {
   serverInfo = { name: initialized.serverInfo.name, title: initialized.serverInfo.title, version: initialized.serverInfo.version };
   check('MCP initialization');
   const discovered = await rpc('tools/list');
-  const expected = ['open_seedling', 'browse_seedling', 'show_seedling_calendar', 'get_companion_capabilities', 'get_seedling_state', 'schedule_activity', 'update_schedule', 'queue_action', 'cancel_action', 'advance_demo_time', 'set_clock', 'create_goal', 'cancel_goal', 'search_seed_docs', 'read_seed_doc', 'open_character_creator'];
-  assert.equal(discovered.tools.length, expected.length, 'Expected sixteen advertised tools');
+  const expected = ['open_seedling', 'browse_seedling', 'show_seedling_calendar', 'get_companion_capabilities', 'get_seedling_state', 'schedule_activity', 'update_schedule', 'queue_action', 'cancel_action', 'advance_demo_time', 'set_clock', 'create_goal', 'cancel_goal', 'search_seed_docs', 'read_seed_doc', 'open_character_creator', 'show_seedling_status', 'show_seedling_agenda', 'show_activity_detail', 'show_seedling_inventory', 'show_seedling_goals', 'show_seedling_health'];
+  assert.equal(discovered.tools.length, expected.length, 'Expected twenty-two advertised tools');
   for (const name of expected) assert.ok(discovered.tools.some(tool => tool.name === name), `Missing tool: ${name}`);
   for (const entry of discovered.tools) {
     assert.ok(entry.title && entry.description, `Tool needs a title and description: ${entry.name}`);
     for (const hint of ['readOnlyHint', 'destructiveHint', 'openWorldHint']) assert.equal(typeof entry.annotations?.[hint], 'boolean', `${entry.name}.${hint}`);
     assert.deepEqual(entry._meta?.securitySchemes, [{ type: 'noauth' }]);
   }
-  check('Sixteen expected tools, titles, boolean annotations, and anonymous security metadata');
+  check('Twenty-two expected tools, titles, boolean annotations, and anonymous security metadata');
   const skills = await rpc('skills/list');
   assert.equal(skills.skills.length, 3);
   assert.deepEqual(skills.skills.map(skill => skill.frontmatter.name).sort(), ['manage-calendar', 'seed-game-guide', 'seedling-companion']);

@@ -1,11 +1,15 @@
 ---
 name: seedling-companion
-description: Open and play the Seed Demo guest companion; plan goals with stacked activities, manage modeled activities, create fictional adventures, or answer Bowen’s activity, needs, skills and resource status. Use for Seed Demo gameplay, creative game requests and brief status follow-ups. For calendar questions and edits use manage-calendar.
+description: Open and play the Seed Demo companion; plan goals with stacked activities, manage modeled activities, create fictional adventures, or answer Bowen’s activity, needs, skills and resource status. Use for Seed gameplay, creative game requests and brief status follow-ups. For calendar questions and edits use manage-calendar.
 ---
 
-# Seed Demo guest companion
+# Seed Demo companion
 
 Seed Demo is a login-free simulation, with no live SEED account connection. Progress lives in the open document and resets on reload or close. No worlds are saved and no background game simulation runs. Separately, users may opt in to synthetic MCP event notifications for delivery tests.
+
+## Presentation
+
+Answer routine questions and action confirmations in text. Open the full companion or render one focused card only when the user explicitly requests a visual view, card, panel or calendar, or clicks its Refresh control. Do not append a card after every read, plan or change. Preserve the same subject and guest; refreshing a card never starts a replacement demo.
 
 ## Open or reuse
 
@@ -21,13 +25,13 @@ For an open companion, prefer its document-local tools exposed through the MCP A
 
 Fresh guests start as Bowen. For an already open guest or supplied snapshot, use its actual Seedling name and state; do not rename it, reset it or open a fresh guest just to match the default.
 
-“What is my Seedling doing?”, “What is Bowen up to?”, “Activity?” and similar follow-ups refer to this guest. A typo such as “seeding” does not require clarification when Seed Demo context is clear.
+“What is my Seedling doing?”, “What is Bowen up to?”, “Activity?” and similar follow-ups refer to this guest. A typo such as “seeding” does not require clarification when Seed context is clear.
 
 Use the latest successful browser read, or the latest context published by the embedded companion through MCP Apps. Browser context identifies its source, browser session, capture time and world version, and includes an answer summary. A full state is included only when `snapshotAvailable` is true; size-limited context identifies omitted data. Never invent omitted entries or pass a summary as full state. Use context from the relevant open session; never combine worlds from different sessions or treat a detached remote snapshot as a newer browser observation. Context is a captured observation, not a promise of continuous access. When only context or an explicitly shared snapshot is available, say “In the latest shared state…” and include the game day/time when it matters. An opening result is a fresh demo fixture; it is not evidence about another already-open guest.
 
 Answer the question directly from that evidence. The running action describes what Bowen is doing; future calendar blocks and queued actions describe plans. If there is no running action, say he is idle. Mention a paused clock, even when an action is marked running: it cannot progress until time resumes or is advanced. Starting an action does not unpause time. For today's schedule, follow [manage-calendar](../manage-calendar/SKILL.md#answer-calendar-questions).
 
-If browser discovery is unavailable, check supplied companion context and explicit shared state before saying the state is inaccessible. A known host limitation needs no repeated tab discovery. If there is no usable state and no UI access, explain the missing observation once and ask the user to use **Share with chat** in the existing companion. Do not open a fresh guest to manufacture an answer, require an additional host or browser integration, or repeat the same fallback after each short follow-up.
+If browser discovery is unavailable, check supplied companion context and explicit shared state before saying the state is inaccessible. A known host limitation needs no repeated tab discovery. If there is no usable state and no UI access, explain the missing observation once and ask the user to use **Share with chat** in the existing companion. Do not open a fresh guest to manufacture an answer, ask for a browser integration, or repeat the same fallback after each short follow-up.
 
 For available features, `get_companion_capabilities({})` needs no state. Read discovery for the current activity catalog, five production recipes, inputs, outputs, compatible locations, recurrence modes and cooperative fiction action settings. Mining, hauling, farming, crafting, cooking, filtering water, maintenance, paid work and treatment are implemented simplified simulations; their quantities, timing and progression are demo balancing, not external game guarantees. Other game requests can become custom fictional activities.
 
@@ -89,7 +93,7 @@ Selecting an activity, location or recipe does not queue work. Appearance, calen
 
 ## Explicit snapshots
 
-A host with an installed Seed Demo connector and MCP Apps support may render the companion. Availability varies by host, including mobile; do not assume a registered private app or browser WebMCP access. Use only tools actually available in the current conversation. If the host reports missing browser context or no open tabs, do not keep retrying browser discovery or require an additional host or browser integration to open the mobile companion. Use its current guestChannel before browser discovery or UI automation; if that route is unavailable too, explain the limit and follow the explicit-snapshot fallback below. Never claim a detached snapshot changed the visible calendar.
+The registered Seed Demo app can open on mobile; this does not guarantee browser WebMCP access in every host. Use only tools actually available in the current conversation. If the host reports missing browser context or no open tabs, do not keep retrying browser discovery or require a browser integration to open the mobile companion. Use its current guestChannel before browser discovery or UI automation; if that route is unavailable too, explain the limit and follow the explicit-snapshot fallback below. Never claim a detached snapshot changed the visible calendar.
 
 Without guestChannel, remote MCP tools without the `flaxa_` prefix transform a supplied **full** `state` snapshot. This detached mode cannot read the open browser; compact browser results are not full snapshots. Full state may come from current companion context, an explicitly shared snapshot, or a fresh opening result for that new demo. Carry each returned state forward for that detached snapshot. A successful detached snapshot command does not confirm a visible-browser change; say which snapshot changed and do not promise synchronization. Prefer App-side tools, browser WebMCP or visible controls for changes to the open guest.
 
