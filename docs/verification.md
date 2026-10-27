@@ -1,6 +1,14 @@
 # Package verification
 
-## Current package 1.6.1: Seed Demo
+## Current endpoint policy
+
+Runtime **0.13.2** serves the guest MCP exclusively at
+`https://mcp.flaxa.app/demo/mcp`. The `/mcp` compatibility alias is removed.
+Both package connection manifests already use `/demo/mcp`; the App-backed
+connection remains version **1.7.2**. The dated checks below record their
+original runtime versions and do not establish verification of 0.13.2.
+
+## Initial package 1.6.1 verification: Seed Demo
 
 Checked on **2026-10-27**. All three plugin manifests display **Seed Demo**, and both connection manifests use `https://mcp.flaxa.app/demo/mcp`. The OpenAI repository marketplace is labeled **Seed Demo by Vitverk**; Claude's listing description uses Seed Demo. Stable plugin identifier `seed` and marketplace identifier `vitverk-seed` are preserved. Existing `/mcp` connections retain a compatibility alias.
 

@@ -16,7 +16,7 @@ Seed Demo is an independent prototype, with no Klang Games API connection or con
 
 Remote MCP endpoint: **`https://mcp.flaxa.app/demo/mcp`**
 
-The existing plugin identifier `seed` and marketplace identifier `vitverk-seed` stay unchanged, so installed copies can update in place. The former `/mcp` endpoint remains a compatibility alias.
+The existing plugin identifier `seed` and marketplace identifier `vitverk-seed` stay unchanged, so installed copies can update in place. The former `/mcp` endpoint is removed. Existing clients must use `/demo/mcp`, as both connection manifests in this package do.
 
 Transport: Streamable HTTP. Authentication: **None**.
 
@@ -75,7 +75,7 @@ npm run check:submission
 | `skills/` | Two guest workflows and one game guide with topic resources |
 | `submission/` | Readiness, review evidence plan, and demo walkthrough |
 
-The ZIP contains one plugin and excludes marketplace catalogs, source deployment files, private app bindings, credentials, and repository history. This package connects to the existing hosted app; it does not deploy the service or replace its private development installation. Public package version **1.6.1**, Seed Demo server runtime **0.13.1**, and App-backed plugin version **1.7.2** are separate version lines. See [documentation resources](docs/help-center.md) for their shared three-skill layout.
+The ZIP contains one plugin and excludes marketplace catalogs, source deployment files, private app bindings, credentials, and repository history. This package connects to the existing hosted app; it does not deploy the service or replace its private development installation. Public package version **1.6.1**, Seed Demo server runtime **0.13.2**, and App-backed plugin version **1.7.2** are separate version lines. See [documentation resources](docs/help-center.md) for their shared three-skill layout.
 
 See [release maintenance](https://github.com/vitverk/seed-plugin/blob/main/docs/releasing.md) and [platform support](https://github.com/vitverk/seed-plugin/blob/main/docs/platform-support.md). Use [GitHub Issues](https://github.com/vitverk/seed-plugin/issues) for package support.
 
