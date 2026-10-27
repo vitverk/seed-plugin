@@ -35,8 +35,8 @@ let serverInfo;
 try {
   const health = await (await request(new URL('/health', endpoint))).json();
   assert.equal(health.mode, 'guest');
-  assert.equal(health.version, '0.13.2', 'This package requires the Seed Demo runtime');
-  assert.equal(health.service, 'Seed Demo');
+  assert.equal(health.version, '0.13.3', 'This package requires the SEED Demo runtime');
+  assert.equal(health.service, 'SEED Demo');
   assert.equal(health.mcp, endpoint);
   for (const key of ['saved', 'authentication']) assert.equal(health[key], false, `health.${key}`);
   assert.equal(typeof health.backgroundEvents, 'boolean');
@@ -44,7 +44,7 @@ try {
   check('Anonymous guest health, no persistence or background simulation');
   const initialized = await rpc('initialize', { protocolVersion: version, clientInfo: { name: 'seed-plugin-release-smoke', version: (await json(defaultRoot, 'package.json')).version }, capabilities: {} });
   assert.equal(initialized.protocolVersion, version);
-  assert.equal(initialized.serverInfo.title, 'Seed Demo');
+  assert.equal(initialized.serverInfo.title, 'SEED Demo');
   serverInfo = { name: initialized.serverInfo.name, title: initialized.serverInfo.title, version: initialized.serverInfo.version };
   check('MCP initialization');
   const discovered = await rpc('tools/list');
