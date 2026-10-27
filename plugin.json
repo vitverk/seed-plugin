@@ -98,7 +98,7 @@
         "commerce": false
       },
       "publication": {
-        "release_notes": "Rename the guest companion to Seed Demo and move its canonical anonymous MCP endpoint to https://mcp.flaxa.app/demo/mcp. Existing plugin and marketplace identifiers are preserved. The earlier /mcp endpoint remains a compatibility alias.",
+        "release_notes": "Rename the guest companion to Seed Demo and move its canonical anonymous MCP endpoint to https://mcp.flaxa.app/demo/mcp. Existing plugin and marketplace identifiers are preserved. The guest MCP is available only at /demo/mcp; the earlier /mcp endpoint is removed.",
         "countries": [
           "IS"
         ]
