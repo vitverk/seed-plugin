@@ -71,10 +71,16 @@ npm run check:submission
 | `skills/` | Companion and calendar workflows |
 | `submission/` | Readiness, review evidence plan, and demo walkthrough |
 
-The ZIP contains one plugin and excludes marketplace catalogs, source deployment files, private app bindings, credentials, and repository history. This package connects to the existing hosted app; it does not deploy the service or replace its private development installation. Package version **1.3.1** and server runtime **0.9.0** are separate version lines.
+The ZIP contains one plugin and excludes marketplace catalogs, source deployment files, private app bindings, credentials, and repository history. This package connects to the existing hosted app; it does not deploy the service or replace its private development installation. Package version **1.3.2** and server runtime **0.9.0** are separate version lines.
 
 See [release maintenance](https://github.com/vitverk/seed-plugin/blob/main/docs/releasing.md) and [platform support](https://github.com/vitverk/seed-plugin/blob/main/docs/platform-support.md). Use [GitHub Issues](https://github.com/vitverk/seed-plugin/issues) for package support.
 
 ## License and branding
 
 The owner has deferred selection of a distribution license. Public repository access does not grant an open-source license. The existing SEED mark and app artwork are not relicensed by this package; rights clearance is a release requirement. See [asset provenance](https://github.com/vitverk/seed-plugin/blob/main/assets/README.md). Do not treat this prototype as an official Klang Games product.
+
+## Optional MCP event experiment
+
+Supporting Cloud Work hosts can discover `seed.demo.notification` on the same hosted endpoint. It emits clearly synthetic notifications independently of any open guest. `interval_minutes` defaults to 15; optional `until` is an absolute ISO 8601 stop time enforced by the server, including across subscription refreshes. Create a native event-triggered task and specify the response to each notification. Timer-based polling is a separate mechanism.
+
+For example: “Create an event-triggered task for Seed’s seed.demo.notification every minute, with until set to ten minutes from now. When one arrives, say Seed event received, its sequence, and the fictional message.” Refresh the custom MCP connection’s metadata if the event is missing. This does not require re-uploading a skills ZIP. The public marketplace package’s direct MCP declaration remains desktop-only under current OpenAI import rules; web/Cloud Work needs its own eligible hosted connection. See [data behavior](docs/data-behavior.md) for retained subscription data.

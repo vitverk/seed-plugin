@@ -5,7 +5,7 @@ description: Open and play the Seed guest companion; plan goals with stacked act
 
 # Seed guest companion
 
-Seed is a login-free simulation, with no live SEED account connection. Progress lives in the open document and resets on reload or close. No worlds are saved and no background notifications run.
+Seed is a login-free simulation, with no live SEED account connection. Progress lives in the open document and resets on reload or close. No worlds are saved and no background game simulation runs. Separately, users may opt in to synthetic MCP event notifications for delivery tests.
 
 ## Open or reuse
 
@@ -102,3 +102,9 @@ Keep tool execution and screenshot capture in separate calls, returning the tool
 After an uncertain command, inspect the same view before retrying. Reuse the original `commandId` and identical arguments if a retry is needed; a new ID can duplicate a successful change.
 
 If discovery says **“WebMCP tool registration is stale”**, refresh discovery once. If it repeats, use the existing view's visible controls to preserve its guest state. The tested host can retain stale registration across a browser-runner restart; repeated discovery or resetting the runner did not repair it. Opening a fresh companion worked, but starts a separate guest world. Use that recovery only when the user wants a fresh demo or when verifying a disposable test view. Do not claim the old world was recovered, silently reload it, or edit host caches/private globals.
+
+## Test MCP events
+
+`seed.demo.notification` is an opt-in webhook event for testing delivery and the chat response. It emits synthetic messages about Bowen at the requested `interval_minutes` (1–1440; default 15). These messages do not observe an open guest or establish its actual state. Do not change a guest based on a test payload unless the user separately requests that action and supplies a usable guest target. Follow the user’s response instructions when a test event arrives.
+
+Use the host’s event subscription mechanism in a supported Cloud Work chat or dot. A normal tool call, browser context update or calendar routine does not create an MCP event subscription. For bounded tests, pass `until` as the absolute ISO 8601 stop time; it cannot be extended by subscription refresh. Without `until`, default subscription lifetime is one hour. Stop through the host’s unsubscribe mechanism when appropriate. Native event-triggered tasks are allowed; do not substitute timer-based polling. Do not claim delivery, a subscription or a model response succeeded without host evidence.

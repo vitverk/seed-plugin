@@ -35,9 +35,11 @@ let serverInfo;
 try {
   const health = await (await request(new URL('/health', endpoint))).json();
   assert.equal(health.mode, 'guest');
-  for (const key of ['saved', 'authentication', 'backgroundEvents']) assert.equal(health[key], false, `health.${key}`);
+  for (const key of ['saved', 'authentication']) assert.equal(health[key], false, `health.${key}`);
+  assert.equal(typeof health.backgroundEvents, 'boolean');
+  if (health.backgroundEvents) assert.equal(health.backgroundSimulation, false, 'Synthetic notifications cannot imply background game simulation.');
   check('Anonymous guest health, no persistence or background simulation');
-  const initialized = await rpc('initialize', { protocolVersion: version, clientInfo: { name: 'seed-plugin-release-smoke', version: '1.3.1' }, capabilities: {} });
+  const initialized = await rpc('initialize', { protocolVersion: version, clientInfo: { name: 'seed-plugin-release-smoke', version: '1.3.2' }, capabilities: {} });
   assert.equal(initialized.protocolVersion, version);
   serverInfo = { name: initialized.serverInfo.name, version: initialized.serverInfo.version };
   check('MCP initialization');
