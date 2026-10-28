@@ -9,7 +9,7 @@ export const defaultRoot = fileURLToPath(new URL('../', import.meta.url));
 export const endpoint = 'https://mcp.flaxa.app/demo/mcp';
 const schemaBase = 'https://agent-plugins.org/schemas/1.0.0/';
 const ignored = new Set(['.git', 'node_modules', 'dist']);
-const apiSkillFiles = ['skills/seed-api/SKILL.md', 'skills/seed-api/references/tools.md'];
+const apiSkillFiles = ['skills/seed-api/SKILL.md', 'skills/seed-api/references/events.md', 'skills/seed-api/references/tools.md'];
 const categories = ['Business & Operations', 'Communication', 'Creativity', 'Data & Analytics', 'Developer Tools', 'Education & Research', 'Entertainment', 'Finance', 'Healthcare', 'Other', 'Productivity', 'Scientific Research', 'Security', 'Travel'];
 export async function exists(path) { try { await access(path); return true; } catch { return false; } }
 export async function json(root, path) { return JSON.parse(await readFile(resolve(root, path), 'utf8')); }
@@ -328,7 +328,7 @@ export async function validateApiPackage(root = defaultRoot) {
   }
   assert.deepEqual(Object.keys(mcp.mcpServers), ['seed-api']);
   const server = mcp.mcpServers['seed-api'];
-  assert.equal(server.url, 'https://api.seed-universe.com/seed-api/staging-mcp-dev/mcp', 'API package must use the direct staging URL');
+  assert.equal(server.url, 'https://api.seed-universe.com/seed-api/staging-mcp-dev2/mcp', 'API package must use the direct staging URL');
   assert.equal(server.type, 'streamable-http');
   assert.deepEqual(server.extensions, { 'com.openai': { auth: { type: 'oauth' } } });
   assert.deepEqual(legacy, { mcpServers: { 'seed-api': { type: 'http', url: server.url } } });

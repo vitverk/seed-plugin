@@ -1,7 +1,7 @@
 {
   "name": "seed-api",
-  "version": "0.1.2",
-  "description": "Connect to Klang Games’ SEED staging world mcp-dev. Read seedlings, account data, schematics and societies; developer tools require the SEED MCP developer role.",
+  "version": "0.2.0",
+  "description": "Connect to Klang Games’ SEED staging world mcp-dev2. Read seedlings, schematics, societies and the Global Market; developer tools can change the game.",
   "author": {
     "name": "Vitverk",
     "url": "https://github.com/vitverk"

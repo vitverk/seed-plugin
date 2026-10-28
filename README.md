@@ -7,7 +7,7 @@ This marketplace includes three separate plugins:
 | Install | Connection | Sign-in |
 | --- | --- | --- |
 | **SEED Live** (`seed-live`) | `https://mcp.flaxa.app/mcp` — real SEED staging account | OAuth; game license required |
-| **SEED API** (`seed-api`) | `https://api.seed-universe.com/seed-api/staging-mcp-dev/mcp` — direct Klang SEED staging API | SEED OAuth; developer tools need a role |
+| **SEED API** (`seed-api`) | `https://api.seed-universe.com/seed-api/staging-mcp-dev2/mcp` — direct Klang SEED staging API | SEED OAuth; developer tools need a role |
 | **SEED Demo** (`seed`) | `https://mcp.flaxa.app/demo/mcp` — intentionally offline | None |
 
 For your first Codex setup, follow the [colleague quickstart](docs/colleague-quickstart.md). Existing demo installs keep their `seed` identity. The `seed-api` plugin connects directly to Klang’s staging MCP, while `seed-live` uses the Flaxa proxy.

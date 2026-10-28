@@ -1,82 +1,57 @@
 # SEED API
 
-Connect to Klang Games’ SEED API in the staging world `mcp-dev`, using your
-seed-universe.com account. This is a live staging game connection, separate
-from the SEED Live Flaxa proxy (`seed-live`) and SEED Demo (`seed`). Game commands affect
-staging state.
+Connect directly to Klang Games’ SEED staging world **`mcp-dev2`** with your
+seed-universe.com account. This world is separate from `mcp-dev`: rediscover
+your society and seedlings instead of reusing old-world IDs or campaign notes.
+SEED API (`seed-api`), the Flaxa proxy (`seed-live`) and the guest Demo (`seed`)
+are separate connections. Game writes affect real staging state.
 
 ## Install and connect
-
-From the SEED by Vitverk marketplace:
 
 ```sh
 codex plugin marketplace add vitverk/seed-plugin
 codex plugin add seed-api@vitverk-seed
 ```
 
-For Claude Code:
+For Claude Code, use `claude plugin marketplace add vitverk/seed-plugin` and
+`claude plugin install seed-api@vitverk-seed`. Refresh/reinstall an existing
+API package to version **0.2.0**, refresh connection metadata, and sign in again.
+On the consent screen, include **`seed:market:read`** for Global Market access.
+Installing or updating the package does not grant a developer role.
 
-```sh
-claude plugin marketplace add vitverk/seed-plugin
-claude plugin install seed-api@vitverk-seed
-```
-
-Sign in with your SEED account and choose the permissions to grant on the
-consent screen. The server determines which tools your account can use.
-
-To connect directly without the marketplace:
-
-```sh
-claude mcp add --transport http seed-dev https://api.seed-universe.com/seed-api/staging-mcp-dev/mcp
-```
-
-Then open `/mcp` and sign in. Use either the plugin or the direct connection
-to avoid duplicate tools. In clients that support custom remote MCP connectors,
-use this endpoint:
+For a direct connector, add this as a new connection and sign in:
 
 ```text
-https://api.seed-universe.com/seed-api/staging-mcp-dev/mcp
+https://api.seed-universe.com/seed-api/staging-mcp-dev2/mcp
 ```
 
-## Available tools
+Claude Code also supports:
 
-Oddur’s 27 October 2026 staging announcement describes eight read-only player
-tools and eight additional developer tools. Player tools cover seedlings,
-account data, game data, schematics, the game manual, societies, wallets and
-public player profiles. `my_seedlings` includes a live seedling card in supported
-ChatGPT and Claude clients.
+```sh
+claude mcp add --transport http seed-dev2 https://api.seed-universe.com/seed-api/staging-mcp-dev2/mcp
+```
 
-Developer tools require the SEED MCP `mcp_developer` role and a token containing
-`seed:developer`. Ask Oddur for the role. If it is granted after connecting,
-sign out and sign in again; in Claude Code, use `/mcp` to clear authentication.
-Installing the plugin does not grant the role.
+Use either the plugin or a direct connection in a chat to avoid duplicate tools.
+Retain an old-world connection only when intentionally working in that world.
 
-`send_command` changes the live staging game and is limited to one request per
-second per developer. The other announced tools read state or discover actions.
-See the [tool reference](skills/seed-api/references/tools.md) for all 16 tools
-and the [connection record](CONNECTION.md) for the configured environment.
+## Tools and events
 
-`user_events` (previously `list_events`) supports cursor-based polling. Use the
-name advertised by the connected server; the 28 October naming pass was still
-pending in the catalog inspected for this review. MCP Events push delivery was
-announced as planned work later that evening; this package does not claim
-that push delivery or background automation is available.
+The 28 October 2026 developer update announces the renamed `find_schematics`,
+`query_zones`, `seedling_chat_history` and `user_events` tools, the read-only
+`market` tool, and developer-only `create_seedling`. Use the currently advertised
+schemas. See the [tool reference](skills/seed-api/references/tools.md).
 
-## Evidence and validation
+MCP Events is included upstream but **remains off until Klang configures the
+callback host**. `user_events` is a polling tool and does not prove push delivery.
+The [Events test guide](skills/seed-api/references/events.md) covers discovery,
+signed callback verification, delivery into ChatGPT and unsubscribe. The Flaxa
+proxy currently does not forward the Events protocol; test the direct connector.
 
-Connection and tool information is based on Oddur’s
-[staging announcement](https://vitverk.slack.com/archives/C0835FED87P/p1793143018303469)
-and [tool-reference reply](https://vitverk.slack.com/archives/C0835FED87P/p1793143081402939)
-on 27 October 2026, reviewed on 28 October. These source links require Slack access. Oddur
-reported end-to-end testing of all 16 tools. This package has not independently
-completed authenticated installation or tool testing in each client.
+## Verification boundary
 
-The 28 October review also inspected the authenticated upstream catalog through
-the Flaxa proxy and the developer naming-pass note supplied by the user.
-The [tool reference](skills/seed-api/references/tools.md) records both the observed
-names and the announced replacements, including their associated field changes.
-
-The endpoint responded with HTTP 401 and OAuth resource discovery on
-28 October 2026. That confirms an authentication challenge, not successful
-sign-in or tool access. Inspect the connected server’s current schemas before
-use; names and capabilities can change during staging.
+Source: the developer’s 28 October 2026 `mcp-dev2` announcement supplied by the
+user, following the 27 October staging announcement. An anonymous request to the
+new endpoint on 28 October returned HTTP 401 with OAuth resource discovery for
+`staging-mcp-dev2`. This verifies the public endpoint and authentication challenge,
+not sign-in, tool schemas or live event delivery. Refresh the connected catalog
+before use. The package's offline checks do not establish authenticated access.

@@ -82,7 +82,7 @@ test('marketplace live connection cannot silently point at the guest or direct u
   const root = await fixture(t);
   const path = 'plugins/seed-live/mcp.json';
   const original = await readFile(join(root, path), 'utf8');
-  for (const url of ['https://mcp.flaxa.app/demo/mcp', 'https://mcp.flaxa.app/live/mcp', 'https://mcp.flaxa.app/staging/mcp', 'https://api.seed-universe.com/seed-api/staging-mcp-dev/mcp']) {
+  for (const url of ['https://mcp.flaxa.app/demo/mcp', 'https://mcp.flaxa.app/live/mcp', 'https://mcp.flaxa.app/staging/mcp', 'https://api.seed-universe.com/seed-api/staging-mcp-dev2/mcp']) {
     await alter(root, path, data => { data.mcpServers.seed_live.url = url; });
     await assert.rejects(validate(root, { quiet: true }), /proxy canonical URL/);
     await writeFile(join(root, path), original);
@@ -251,7 +251,7 @@ test('direct API rejects proxy endpoints and produces an isolated archive', asyn
   const root = await fixture(t);
   const path = 'plugins/seed-api/mcp.json';
   const original = await readFile(join(root, path), 'utf8');
-  for (const url of ['https://mcp.flaxa.app/live/mcp', 'https://mcp.flaxa.app/demo/mcp']) {
+  for (const url of ['https://mcp.flaxa.app/live/mcp', 'https://mcp.flaxa.app/demo/mcp', 'https://api.seed-universe.com/seed-api/staging-mcp-dev/mcp']) {
     await alter(root, path, data => { data.mcpServers['seed-api'].url = url; });
     await assert.rejects(validate(root, { quiet: true }), /direct staging URL/);
     await writeFile(join(root, path), original);
@@ -261,7 +261,7 @@ test('direct API rejects proxy endpoints and produces an isolated archive', asyn
   assert.ok(archive.output.endsWith(`seed-api-plugin-${manifest.version}.zip`));
   assert.ok(archive.files.includes('mcp.json'));
   assert.deepEqual(archive.files.filter(path => path.startsWith('skills/')), [
-    'skills/seed-api/SKILL.md', 'skills/seed-api/references/tools.md',
+    'skills/seed-api/SKILL.md', 'skills/seed-api/references/events.md', 'skills/seed-api/references/tools.md',
   ]);
   assert.ok(!archive.files.some(path => /marketplace|seed-live|seedling-companion/.test(path)));
 });

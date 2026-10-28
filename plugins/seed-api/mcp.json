@@ -3,7 +3,7 @@
   "mcpServers": {
     "seed-api": {
       "type": "streamable-http",
-      "url": "https://api.seed-universe.com/seed-api/staging-mcp-dev/mcp",
+      "url": "https://api.seed-universe.com/seed-api/staging-mcp-dev2/mcp",
       "extensions": {
         "com.openai": {
           "auth": {

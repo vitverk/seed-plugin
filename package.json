@@ -12,7 +12,8 @@
     "check:submission": "node scripts/validate.mjs --submission",
     "package": "node scripts/package.mjs",
     "smoke": "node scripts/smoke.mjs",
-    "smoke:docs": "node scripts/smoke.mjs --docs-only"
+    "smoke:docs": "node scripts/smoke.mjs --docs-only",
+    "probe:api-events": "node scripts/seed-api-events.mjs"
   },
   "devDependencies": {
     "ajv": "8.20.0",

@@ -1,11 +1,9 @@
 # SEED staging tools and naming transition
 
-Evidence reviewed 2026-10-28: the authenticated upstream catalog returned through
-the Flaxa proxy still advertised the older names below; a SEED developer's
-naming-pass note supplied by the user announces the new names. This establishes
-the migration plan, not its deployment. Discover the current connection's
-schemas and use the advertised tool and parameter names together. A stale chat
-catalog may need refreshing. Do not blindly retry a failed tool under an alias.
+The developer’s 28 October 2026 update announces deployment to `mcp-dev2`.
+Earlier authenticated catalog observations came from `mcp-dev` and do not verify
+the new world. Discover current schemas and use advertised names/fields together.
+Refresh a stale chat catalog; do not blindly retry a failed tool under an alias.
 
 ## Names during the transition
 
@@ -32,7 +30,7 @@ event type names by replacing substrings.
 
 ## Player tools
 
-Eight tools, with permissions selected at consent; all read-only:
+Player tools use permissions selected at consent; all are read-only:
 
 | Tool | Purpose |
 | --- | --- |
@@ -44,21 +42,23 @@ Eight tools, with permissions selected at consent; all read-only:
 | `societies` | Visible societies, statistics and graveyards. |
 | `wallets` | Permitted balances, entries, history and wills; dates/durations are game time where specified. |
 | `players` | Public player and seedling profiles and ownership. |
+| `market` | Global Market as visible to your society; requires `seed:market:read`. See below. |
 
 Use a schematic's numeric `uniqueId` for `schematic_id` only when actually
 returned with usable provenance. The naming change does not promise missing
-IDs are fixed. On 2026-10-28 the proxy still added a missing Splint ID from its
-installed-client fallback; direct upstream supply was not established. Never
+IDs are fixed. The proxy’s installed-client fallback was validated only in the old `mcp-dev`
+world; do not apply it to `mcp-dev2` without new evidence. Never
 derive an ID from a name or mistake an item ID for a schematic ID.
 
 ## Developer tools
 
 Require `mcp_developer` and token scope `seed:developer`; reauthenticate after a
-role change. Only `send_command` changes game state. Event reads also establish
+role change. `send_command` and `create_seedling` change game state. Event reads also establish
 and maintain temporary observation state.
 
 | Tool | Purpose and limits |
 | --- | --- |
+| `create_seedling` | Creates from character-creator `BasicCharacterData` (name, visuals, traits, stats, clothes). If needed it first creates a society and player on a free territory. The game validates name, visuals, personality and free slots. `complete_progression: true` unlocks every progression quest. Creation and that progression effect require user authorization. Verify with `my_seedlings`; never blindly retry. |
 | `sim_time` | Current world time and speed; do not assume a fixed real-time conversion. |
 | `commands` | ECO names, required roles and read-only status; exact request/response schemas. Filter a truncated name listing before drawing conclusions. |
 | `entities` | Read explicit IDs/components in a sector, or nearby candidates on world X/Z. Preserve truncation/skipped sectors. Landscape pages are a separate mode; restart pagination after landscape changes. Candidates do not establish access. |
@@ -78,6 +78,29 @@ or an explicit reason. Before enqueueing, verify the returned header matches the
 intended controlled Seedling/player, read `ActivitySelection.enqueue_activity`
 schema and preserve the returned request. Verify actual work afterward.
 
+## Global Market
+
+`market` is available to players with `seed:market:read` and only reads:
+
+- `goods`: buyable goods for your society, searchable by name/category and sort.
+- `good`: a product with societies’ offers, bids and distances.
+- `price_history`: prices per tau or per sim year.
+- `quote`: buy cost including VAT, import tax and shipping; a separate small
+  budget applies, so quote only a resolved good and intended quantity.
+- `my_orders` / `my_trades`: your own offers, bids and trades.
+
+The same data is exposed at `/v1/market/*` and `/v1/me/market/*` below the new
+world’s API prefix. Follow returned schemas/routes; do not invent argument names.
+A quote or market read does not place an order or authorize spending.
+
+## Command failures and portraits
+
+`send_command` now returns a tool error for game-level `SeedStatusCode` failures,
+including the code and reason. Preserve it and inspect state where necessary;
+never infer success just because transport succeeded. Game-icon Seedling
+portraits now have full URLs in replies. Preserve those URLs; do not prepend
+another API origin. The client may still normalize older relative icons.
+
 ## Event observations
 
 The first cursorless call starts watching and returns a cursor, no history.
@@ -95,3 +118,7 @@ reviews. Poll only during authorized observation at the agreed cadence; a
 After expiry, establish a new baseline and refresh state; do not assume replay
 of missed changes. MCP Events push delivery and unattended monitoring require
 separate evidence of server and host support.
+
+MCP Events push delivery is included in the new server but disabled pending
+callback-host setup. Follow the [Events test guide](events.md); successful
+`user_events` polling is not evidence for any webhook or host delivery stage.

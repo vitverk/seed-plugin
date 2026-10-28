@@ -18,7 +18,7 @@
     {
       "name": "seed-api",
       "source": "./plugins/seed-api",
-      "description": "Connect to Klang Games’ SEED staging world mcp-dev. Read seedlings, account data, schematics and societies; developer tools require the SEED MCP developer role."
+      "description": "Connect to Klang Games’ SEED staging world mcp-dev2. Read seedlings, account data, schematics and societies; developer tools require the SEED MCP developer role."
     }
   ],
   "description": "SEED Demo, SEED Live and SEED API from Vitverk."
