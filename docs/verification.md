@@ -1,5 +1,25 @@
 # Package verification
 
+## Live 2.1.0: direct MCP connection
+
+Published on 28 October 2026 after verifying runtime 2.1.0 at `/mcp`, with
+`/live/mcp` and `/staging/mcp` retained. Live owns the hostname and branding;
+Demo remains offline. A plugin is optional. A fresh catalog-only SDK client
+completed OAuth, discovered tools/resources, retrieved the five new guides,
+verified manual pagination/digest, exercised both protocol generations and
+rotated its refresh token. No gameplay commands or note writes were sent.
+
+All 187 server tests and 21 package tests passed. The
+[Live release](https://github.com/vitverk/seed-plugin/releases/tag/seed-live-v2.1.0)
+contains a nine-file archive, checksum and inventory, downloaded and verified
+after publication. The archive contains zero skills and uses `/mcp` as its OAuth
+resource. API source and package are unchanged. See the
+[publication receipt](../submission/seed-live-release-2.1.0.json) and the
+[server verification](https://github.com/vitverk/seed/blob/main/mcp-app/docs/standalone-mcp-release.md).
+Fresh native-host model routing and UI acceptance remain separate from SDK
+protocol verification. Refresh host metadata and start a new chat after updating.
+
+
 ## Post-release availability
 
 Verified on **2026-10-28 at 14:45:32 UTC**, after service consolidation: Demo is intentionally offline by the owner's choice. `https://mcp.flaxa.app/health` and `https://mcp.flaxa.app/demo/mcp` both return **HTTP 404**. Live and staging health routes return **HTTP 200**, runtime **2.0.0**. Demo source is maintained separately in a private repository; no replacement endpoint is announced.

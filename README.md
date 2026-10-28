@@ -1,6 +1,6 @@
 # SEED plugins
 
-**Availability update — 28 October 2026, 14:45 UTC:** SEED Live **2.0.0** is active. SEED Demo is intentionally offline after service consolidation; its published 2.0.0 ZIP remains available, but `/health` and `/demo/mcp` return HTTP 404. Demo source is maintained separately in a private repository. No replacement Demo endpoint is announced. The successful Demo smoke at 14:21 UTC describes the earlier deployment, not current readiness. See the [availability record](docs/verification.md#post-release-availability).
+**Availability update — 28 October 2026:** SEED Live **2.1.0** is deployed at `https://mcp.flaxa.app/mcp`; the existing `/live/mcp` and `/staging/mcp` URLs remain aliases. Connect directly with OAuth; the plugin is optional. `/health` now reports Live 2.1.0. SEED Demo remains intentionally offline and `/demo/mcp` returns 404. See [Live 2.1.0 verification](docs/verification.md#live-210-direct-mcp-connection).
 
 This marketplace includes three separate plugins:
 
@@ -96,7 +96,7 @@ npm run check:submission
 | `.claude-plugin/marketplace.json` | Claude repository marketplace |
 | `submission/` | Readiness, review evidence plan, and demo walkthrough |
 
-The ZIP contains one plugin and excludes marketplace catalogs, source deployment files, private app bindings, credentials, and repository history. This package connects to the existing hosted app; it does not deploy the service or replace its private development installation. Demo and Live package versions are **2.0.0**; the unchanged direct API package is **0.1.2**. The matching documentation contract requires Demo runtime **0.15.0** and Live runtime **2.0.0**. Package validation does not establish deployment or installed-host acceptance. See [documentation resources](docs/help-center.md) for the shared MCP contract.
+The ZIP contains one plugin and excludes marketplace catalogs, source deployment files, private app bindings, credentials, and repository history. This package connects to the existing hosted app; it does not deploy the service or replace its private development installation. Demo package version is **2.0.0** and Live is **2.1.0**; the unchanged direct API package is **0.1.2**. The matching documentation contract requires Demo runtime **0.15.0** and Live runtime **2.1.0**. Package validation does not establish deployment or installed-host acceptance. See [documentation resources](docs/help-center.md) for the shared MCP contract.
 
 See [release maintenance](https://github.com/vitverk/seed-plugin/blob/main/docs/releasing.md) and [platform support](https://github.com/vitverk/seed-plugin/blob/main/docs/platform-support.md). Use [GitHub Issues](https://github.com/vitverk/seed-plugin/issues) for package support.
 
