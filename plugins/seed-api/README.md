@@ -53,5 +53,9 @@ Source: the developer’s 28 October 2026 `mcp-dev2` announcement supplied by th
 user, following the 27 October staging announcement. An anonymous request to the
 new endpoint on 28 October returned HTTP 401 with OAuth resource discovery for
 `staging-mcp-dev2`. This verifies the public endpoint and authentication challenge,
-not sign-in, tool schemas or live event delivery. Refresh the connected catalog
+not sign-in by itself. Subsequent authenticated local verification passed tool
+discovery, a static read and token refresh on server `a846fcb5`. Its catalog
+contains all 18 expected tools. MCP2 Events discovery also passed and lists
+`seedling.chat_reply`, `seedling.need_crisis_started` and `user.notification`.
+No subscription or live delivery was tested. Refresh the connected catalog
 before use. The package's offline checks do not establish authenticated access.

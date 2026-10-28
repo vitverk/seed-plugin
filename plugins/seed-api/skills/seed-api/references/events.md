@@ -3,7 +3,11 @@
 Reviewed 28 October 2026 against the developer’s `mcp-dev2` announcement and
 [OpenAI’s Events contract](https://developers.openai.com/plugins/build/mcp-events).
 The feature is included upstream but disabled pending Klang’s callback-host
-configuration. No authenticated dev2 event catalog or delivery is verified yet.
+configuration. Authenticated dev2 discovery passed on 28 October (server `a846fcb5`), before
+and after token refresh. Delivery remains unverified. The advertised webhook
+events are `seedling.chat_reply` and `seedling.need_crisis_started` (optional
+`seedling_id` filter for your own Seedling), plus `user.notification` (no filters).
+This push catalog differs from the broader sampled polling names.
 
 Use the direct SEED API connection. The Flaxa proxy currently exposes tools and
 resources only; it does not forward Events. `user_events` is a separate sampled

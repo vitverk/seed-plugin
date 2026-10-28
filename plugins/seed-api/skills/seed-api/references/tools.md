@@ -1,8 +1,10 @@
 # SEED staging tools and naming transition
 
 The developer’s 28 October 2026 update announces deployment to `mcp-dev2`.
-Earlier authenticated catalog observations came from `mcp-dev` and do not verify
-the new world. Discover current schemas and use advertised names/fields together.
+Authenticated dev2 discovery on 28 October verified all 18 announced tools on
+server `a846fcb5`, including the new names, market and creation. Static data read
+and token refresh passed; game writes were not tested. Earlier mcp-dev gameplay
+observations still require revalidation in this world. Discover current schemas and use advertised names/fields together.
 Refresh a stale chat catalog; do not blindly retry a failed tool under an alias.
 
 ## Names during the transition
@@ -58,7 +60,7 @@ and maintain temporary observation state.
 
 | Tool | Purpose and limits |
 | --- | --- |
-| `create_seedling` | Creates from character-creator `BasicCharacterData` (name, visuals, traits, stats, clothes). If needed it first creates a society and player on a free territory. The game validates name, visuals, personality and free slots. `complete_progression: true` unlocks every progression quest. Creation and that progression effect require user authorization. Verify with `my_seedlings`; never blindly retry. |
+| `create_seedling` | Accepts `character` as character-creator `BasicCharacterData` (full schema via `commands` for `CharacterOwner.buy_character`) (name, visuals, traits, stats, clothes). If needed it first creates a society and player on a free territory. The game validates name, visuals, personality and free slots. `complete_progression: true` unlocks every progression quest. Creation and that progression effect require user authorization. Verify with `my_seedlings`; never blindly retry. |
 | `sim_time` | Current world time and speed; do not assume a fixed real-time conversion. |
 | `commands` | ECO names, required roles and read-only status; exact request/response schemas. Filter a truncated name listing before drawing conclusions. |
 | `entities` | Read explicit IDs/components in a sector, or nearby candidates on world X/Z. Preserve truncation/skipped sectors. Landscape pages are a separate mode; restart pagination after landscape changes. Candidates do not establish access. |

@@ -1,0 +1,52 @@
+{
+  "checkedAt": "2026-10-28T20:19:18.453Z",
+  "endpoint": "https://api.seed-universe.com/seed-api/staging-mcp-dev2/mcp",
+  "server": {
+    "name": "seed",
+    "title": "SEED",
+    "version": "a846fcb5"
+  },
+  "verificationPath": "Direct local OAuth proof; Flaxa proxy bypassed",
+  "oauth": {
+    "login": "passed",
+    "staticRead": "passed",
+    "refresh": "passed",
+    "marketScopeGranted": true
+  },
+  "toolNames": [
+    "my_account",
+    "my_seedlings",
+    "societies",
+    "wallets",
+    "market",
+    "players",
+    "game_data",
+    "find_schematics",
+    "game_guide",
+    "entities",
+    "query_zones",
+    "commands",
+    "send_command",
+    "create_seedling",
+    "sim_time",
+    "seedling_chat_history",
+    "find_actions",
+    "user_events"
+  ],
+  "events": {
+    "advertised": true,
+    "pushDelivery": "unverified",
+    "subscriptionCreated": false,
+    "names": [
+      "seedling.chat_reply",
+      "seedling.need_crisis_started",
+      "user.notification"
+    ],
+    "hasMore": false,
+    "discovery": "passed",
+    "deliveryBlocker": "Klang callback-host setup and a supported ChatGPT host-created subscription are required"
+  },
+  "gameWrites": 0,
+  "credentialsPersisted": false,
+  "privatePayloadsIncluded": false
+}
