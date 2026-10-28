@@ -1,5 +1,24 @@
 # Package verification
 
+## Demo 2.0.0 and Live 2.0.0: standard MCP documentation
+
+Checked locally on **2026-10-28**. Demo and Live contain zero bundled skills; their identities, endpoints, OAuth configuration, artwork and marketplace entries are preserved. The independent API package remains **0.1.2**, with its complete source tree unchanged. Canonical sources and workflows are maintained by the SEED application repository.
+
+- `npm run check`: passed, **21 offline tests**, including zero-skill archive guards, all manifest variants, API skill allowlist, connection isolation and security checks.
+- `npm run package`: passed; Demo has **11 files / zero skills**, Live has **9 files / zero skills**, API has **12 files / two skill files**. ZIP entries match their generated inventories.
+- Documentation smoke regression: passed against an offline protocol fixture, including canonical document URIs, Demo workflow discovery and a guarantee that documentation-only mode calls no gameplay tools or Skills extension methods.
+- Hosted `npm run smoke:docs` and `npm run smoke`: **not run** for this change. Deployment of Demo runtime **0.15.0** and Live runtime **2.0.0** remains a separate step.
+- `npm run check:submission`: existing readiness requirements remain incomplete, including licensing, recorded demo, publisher/contact confirmation and installed-host/portal evidence.
+- ChatGPT, Codex, Claude and other MCP client acceptance: **pending**. Local tests do not establish installed-plugin cache refresh, rendered UI or model prompt routing.
+
+```text
+4203815afac4a276f78c40fec5e87e4e624a1cb3d419f1b96b2f3b7a061b8a3b  seed-plugin-2.0.0.zip
+62fb6632b019aaf732dabc9f6e3b1d519a367a9218d04f82293e78804b40f6e9  seed-live-plugin-2.0.0.zip
+62ebe8dab6f8479e8153478a78348f9f223e90c4ce21de6bd2d16a77545c0fe0  seed-api-plugin-0.1.2.zip
+```
+
+Earlier observations below retain their original package/runtime scope; references to bundled skills describe those prior releases. Version 2.0.0 requires a package refresh or reinstall, MCP metadata refresh and a new session; removed skill discovery is not preserved by compatibility aliases.
+
 ## Three-plugin marketplace: Demo 1.6.7, Live 1.0.1, API 0.1.1
 
 Checked on **2026-10-28** after integrating the latest `origin/main`. Both repository marketplace catalogs include `seed`, `seed-live`, and `seed-api`. Their display names are **SEED Demo**, **SEED Live**, and **SEED API**; all use the SEED S mark in design-system orange, green, and blue respectively. The existing Demo widget-routing changes and runtime 0.14.5 compatibility are preserved.
@@ -47,7 +66,7 @@ Review these additional prompts in each target host when completing installed-pa
 
 The generated `dist/smoke-results.json` records this release's direct MCP evidence. Earlier committed receipts and dated sections below retain their original version scope.
 
-## Current endpoint policy
+## Earlier endpoint policy (1.6.7)
 
 Verified runtime **0.14.5** serves the guest MCP at `https://mcp.flaxa.app/demo/mcp`; both package connection manifests use that endpoint. The `/mcp` compatibility alias was removed. Public Demo package **1.6.7**, live package **1.0.1**, direct API package **0.1.1**, server runtime **0.14.5** and App-backed Demo source **1.7.5** are independent version lines. This repository update does not deploy the server or update an installed App-backed plugin.
 

@@ -107,6 +107,10 @@ test('Demo and Live archives contain zero skills and reject reintroduced skill f
     await mkdir(skills);
     await assert.rejects(build(root, { quiet: true }), /must not bundle a skills directory/);
     await rm(skills, { recursive: true });
+    const misplaced = join(root, prefix, 'assets/SKILL.md');
+    await writeFile(misplaced, '# Misplaced skill\n');
+    await assert.rejects(build(root, { quiet: true }), /must not bundle skill files in assets/);
+    await rm(misplaced);
   }
 });
 test('Demo and Live manifests reject skill declarations and onboarding bindings', async t => {

@@ -5,8 +5,8 @@ on:
   pull_request:
   workflow_dispatch:
     inputs:
-      live_smoke:
-        description: Run anonymous production MCP smoke on detached synthetic snapshots
+      docs_smoke:
+        description: Run read-only hosted MCP documentation smoke
         type: boolean
         default: false
 
@@ -25,9 +25,9 @@ jobs:
       - run: npm ci --ignore-scripts
       - run: npm run check
       - run: npm run package
-      - name: Optional live MCP smoke
-        if: github.event_name == 'workflow_dispatch' && inputs.live_smoke
-        run: npm run smoke
+      - name: Optional documentation MCP smoke
+        if: github.event_name == 'workflow_dispatch' && inputs.docs_smoke
+        run: npm run smoke:docs
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: seed-plugin-package

@@ -22,7 +22,7 @@ Read `seed://docs/index` through `resources/read` to discover collections, topic
 
 Use `seed-workflows-live` on the Live connection for settlement or checkpoint questions. Use `seed-agent-play-pr34377` with `sourceType: "in_game_manual"` for supplied manual topics such as Memoria.
 
-Call `read_seed_doc({uri, offset?, limit?})` with an exact returned URI. Documents have canonical URIs of the form `seed://docs/<URL-encoded stable document ID>`. Read defaults to 12,000 UTF-16 code units and permits up to 24,000; continue using `nextOffset` until null when a full document is needed. `resources/read` returns the full document at the same URI. No MCP Skills extension, `skills/list`, `skills/get`, or `skill://` compatibility route is part of this contract.
+Call `read_seed_doc({uri, offset?, limit?, expectedDigest?})` with an exact returned URI. Documents have canonical URIs of the form `seed://docs/<URL-encoded stable document ID>`. Read defaults to 12,000 UTF-16 code units and permits up to 24,000; continue using `nextOffset` until null when a full document is needed, passing the returned digest as `expectedDigest` on later pages to detect a deployment change. `resources/read` returns the full document at the same URI. No MCP Skills extension, `skills/list`, `skills/get`, or `skill://` compatibility route is part of this contract.
 
 Connection manifests keep `/demo/mcp` and `/live/mcp`, their existing authentication and their stable identities. Documentation is registered by the server; `mcp.json` does not invent a `resources` property. Demo remains anonymous. Live documentation uses its authenticated connection and existing static-data permission.
 
