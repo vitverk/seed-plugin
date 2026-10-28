@@ -1,12 +1,14 @@
 # SEED plugins
 
+**Availability update — 28 October 2026, 14:45 UTC:** SEED Live **2.0.0** is active. SEED Demo is intentionally offline after service consolidation; its published 2.0.0 ZIP remains available, but `/health` and `/demo/mcp` return HTTP 404. Demo source is maintained separately in a private repository. No replacement Demo endpoint is announced. The successful Demo smoke at 14:21 UTC describes the earlier deployment, not current readiness. See the [availability record](docs/verification.md#post-release-availability).
+
 This marketplace includes three separate plugins:
 
 | Install | Connection | Sign-in |
 | --- | --- | --- |
 | **SEED Live** (`seed-live`) | `https://mcp.flaxa.app/live/mcp` — real SEED staging account | OAuth; game license required |
 | **SEED API** (`seed-api`) | `https://api.seed-universe.com/seed-api/staging-mcp-dev/mcp` — direct Klang SEED staging API | SEED OAuth; developer tools need a role |
-| **SEED Demo** (`seed`) | `https://mcp.flaxa.app/demo/mcp` — temporary mock world | None |
+| **SEED Demo** (`seed`) | `https://mcp.flaxa.app/demo/mcp` — intentionally offline | None |
 
 For your first Codex setup, follow the [colleague quickstart](docs/colleague-quickstart.md). Existing demo installs keep their `seed` identity. The `seed-api` plugin connects directly to Klang’s staging MCP, while `seed-live` uses the Flaxa proxy.
 
@@ -28,13 +30,13 @@ SEED Demo is an independent prototype, with no Klang Games API connection or con
 
 ## Connect or install
 
-Remote MCP endpoint: **`https://mcp.flaxa.app/demo/mcp`**
+Published MCP endpoint: **`https://mcp.flaxa.app/demo/mcp`** — currently offline (HTTP 404). The installation instructions below do not restore the service.
 
 The existing plugin identifier `seed` and marketplace identifier `vitverk-seed` stay unchanged, so installed copies can update in place. The former `/mcp` endpoint is removed. Existing clients must use `/demo/mcp`, as both connection manifests in this package do.
 
 Transport: Streamable HTTP. Authentication: **None**.
 
-For an MCP-compatible chat host, add that endpoint as a custom remote connector. A host with MCP Apps support can render the interactive view. Text-only hosts can use tools with explicit full snapshots; their responses do not automatically update an open browser view.
+When the Demo service is available, an MCP-compatible chat host can use that endpoint as a custom remote connector. A host with MCP Apps support can render the interactive view. Text-only hosts can use tools with explicit full snapshots; their responses do not automatically update an open browser view.
 
 ### Claude marketplace
 

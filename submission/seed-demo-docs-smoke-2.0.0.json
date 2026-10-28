@@ -33,5 +33,31 @@
       "name": "Imported manual search, honest null-URL provenance, and symmetric source conflicts",
       "status": "passed"
     }
-  ]
+  ],
+  "postReleaseAvailability": {
+    "checkedAt": "2026-10-28T14:45:32.634Z",
+    "checks": [
+      {
+        "path": "/health",
+        "status": 404
+      },
+      {
+        "path": "/demo/mcp",
+        "status": 404
+      },
+      {
+        "path": "/live/health",
+        "status": 200,
+        "version": "2.0.0"
+      },
+      {
+        "path": "/staging/health",
+        "status": 200,
+        "version": "2.0.0"
+      }
+    ],
+    "demoStatus": "intentionally_offline",
+    "liveStatus": "active",
+    "note": "Demo remains offline by the owner\u2019s choice after service consolidation. The published Demo artifact is retained, but /health and /demo/mcp intentionally return HTTP 404. Live 2.0.0 remains active. Demo source is maintained separately in a private repository. The earlier six-check Demo smoke result is historical release-time evidence, not current availability. No replacement Demo endpoint is announced."
+  }
 }

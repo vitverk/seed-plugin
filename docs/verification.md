@@ -1,5 +1,11 @@
 # Package verification
 
+## Post-release availability
+
+Verified on **2026-10-28 at 14:45:32 UTC**, after service consolidation: Demo is intentionally offline by the owner's choice. `https://mcp.flaxa.app/health` and `https://mcp.flaxa.app/demo/mcp` both return **HTTP 404**. Live and staging health routes return **HTTP 200**, runtime **2.0.0**. Demo source is maintained separately in a private repository; no replacement endpoint is announced.
+
+The Demo 2.0.0 artifact remains published. Versions, ZIPs, checksums, inventories and the `v2.0.0` tag are unchanged. The six passing Demo smoke checks at **14:21:44 UTC** below are historical observations of the earlier deployment and do not establish current Demo readiness. The [publication receipt](../submission/github-release-2.0.0.json) and [smoke receipt](../submission/seed-demo-docs-smoke-2.0.0.json) retain that evidence and append this availability update.
+
 ## Demo 2.0.0 and Live 2.0.0: standard MCP documentation
 
 Checked locally on **2026-10-28**. Demo and Live contain zero bundled skills; their identities, endpoints, OAuth configuration, artwork and marketplace entries are preserved. The independent API package remains **0.1.2**, with its complete source tree unchanged. Canonical sources and workflows are maintained by the SEED application repository.
@@ -7,7 +13,7 @@ Checked locally on **2026-10-28**. Demo and Live contain zero bundled skills; th
 - `npm run check`: passed, **21 offline tests**, including zero-skill archive guards, all manifest variants, API skill allowlist, connection isolation and security checks.
 - `npm run package`: passed; Demo has **11 files / zero skills**, Live has **9 files / zero skills**, API has **12 files / two skill files**. ZIP entries match their generated inventories.
 - Documentation smoke regression: passed against an offline protocol fixture, including canonical document URIs, Demo workflow discovery and a guarantee that documentation-only mode calls no gameplay tools or Skills extension methods.
-- Hosted `npm run smoke:docs`: **six checks passed** on 2026-10-28 against deployed Demo runtime **0.15.0**. It verified canonical resources, Demo workflow discovery, provenance and conflict links without gameplay calls; see the [read-only smoke receipt](../submission/seed-demo-docs-smoke-2.0.0.json).
+- Historical hosted `npm run smoke:docs`: **six checks passed** on 2026-10-28 at **14:21:44 UTC** against the then-deployed Demo runtime **0.15.0**. Demo was taken offline later that day, as recorded above. It verified canonical resources, Demo workflow discovery, provenance and conflict links without gameplay calls; see the [read-only smoke receipt](../submission/seed-demo-docs-smoke-2.0.0.json).
 - Hosted gameplay `npm run smoke`: **not run**. Live runtime **2.0.0** returned HTTP 200 on Live/staging health routes; anonymous documentation calls returned HTTP 401 with the expected OAuth resource metadata. Authenticated account workflows remain untested by this release check.
 - `npm run check:submission`: existing readiness requirements remain incomplete, including licensing, recorded demo, publisher/contact confirmation and installed-host/portal evidence.
 - ChatGPT, Codex, Claude and other MCP client acceptance: **pending**. Local tests do not establish installed-plugin cache refresh, rendered UI or model prompt routing.

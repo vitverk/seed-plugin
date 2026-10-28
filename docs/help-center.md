@@ -1,5 +1,7 @@
 # SEED documentation resources
 
+**Availability, 28 October 2026:** Live 2.0.0 is active; Demo is intentionally offline and its published `/demo/mcp` endpoint returns HTTP 404. The Demo contract below describes the retained artifact, not current hosted availability. See the [post-release availability record](verification.md#post-release-availability).
+
 SEED Demo **2.0.0** and SEED Live **2.0.0** contain zero bundled skills or source-document copies. ChatGPT, Codex, Claude and other MCP clients discover the same server-owned documentation through ordinary MCP tools and resources. The separate SEED API package is unchanged.
 
 The standard documentation contract requires Demo runtime **0.15.0** and Live runtime **2.0.0**. Preparing these packages does not deploy either runtime or establish hosted acceptance. Refresh or reinstall an earlier package, refresh its MCP metadata, and start a new session so the host drops old skill discovery.
