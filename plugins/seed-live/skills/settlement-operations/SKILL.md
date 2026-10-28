@@ -1,6 +1,6 @@
 ---
 name: settlement-operations
-description: Manage a connected SEED settlement, including Seedling care, production, deliveries, buildings and society goals. Use for live SEED gameplay and sustained settlement planning, not the separate SEED Demo simulation.
+description: Manage a connected SEED settlement, including Seedling care, production, deliveries, modular building plans and construction, and society goals. Use for live SEED gameplay and sustained settlement planning, not the separate SEED Demo simulation.
 ---
 
 # Connected SEED settlement operations
@@ -79,8 +79,9 @@ Read only the reference relevant to the task:
 - [Care and recovery](references/care.md): health, injury, food, water and sleep.
 - [Production and logistics](references/production.md): crafting, supplies,
   deliveries, queues, machine contention and training.
-- [Plots and building](references/building.md): ownership, placement, site
-  clearance and moving equipment.
+- [Plots and building](references/building.md): read for modular building design,
+  the read-only `prepare_building_plan` helper, authorized site creation and
+  construction, as well as ownership, clearance and moving equipment.
 
 For live developer commands, discover the current schema and use the authorized
 player identity; do not use system or developer privileges to bypass game rules.
