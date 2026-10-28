@@ -1,6 +1,6 @@
 {
   "name": "seed-live",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "The authenticated SEED companion through the Flaxa proxy, currently connected to SEED staging.",
   "author": {
     "name": "Vitverk",
@@ -13,6 +13,6 @@
     "game",
     "seedling"
   ],
-  "displayName": "SEED",
+  "displayName": "SEED Live",
   "icon": "./assets/icon.png"
 }

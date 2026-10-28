@@ -276,10 +276,10 @@ export async function validateLivePackage(root = defaultRoot) {
   }
   assert.match(portable.version, /^\d+\.\d+\.\d+$/);
   const ui = portable.extensions['com.openai'].interface;
-  assert.equal(ui.displayName, 'SEED');
+  assert.equal(ui.displayName, 'SEED Live');
   assert.ok(ui.shortDescription.length <= 30);
   assert.deepEqual(codex.interface, ui);
-  assert.equal(claude.displayName, 'SEED');
+  assert.equal(claude.displayName, 'SEED Live');
   assert.equal(codex.mcpServers, './.mcp.json');
   assert.ok(!codex.skills && !files.some(path => path.startsWith('skills/')), 'Live package must not inherit guest simulation skills');
   for (const key of ['logo', 'composerIcon']) {
@@ -327,7 +327,7 @@ export async function validateApiPackage(root = defaultRoot) {
   }
   assert.match(portable.version, /^\d+\.\d+\.\d+$/);
   const ui = portable.extensions['com.openai'].interface;
-  assert.equal(ui.displayName, 'seed-api');
+  assert.equal(ui.displayName, 'SEED API');
   text(ui.shortDescription, 'API subtitle', 30);
   assert.deepEqual(codex.interface, ui);
   assert.equal(claude.displayName, ui.displayName);

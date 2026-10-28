@@ -1,6 +1,6 @@
 {
   "name": "seed",
-  "version": "1.6.5",
+  "version": "1.6.6",
   "description": "A temporary Seedling simulation with activities, resources, goals, and a game calendar.",
   "author": {
     "name": "Vitverk",
@@ -38,7 +38,8 @@
     "logo": "./assets/icon.png",
     "composerIcon": "./assets/composer.png",
     "privacyPolicyURL": "https://flaxa.app/privacy",
-    "termsOfServiceURL": "https://flaxa.app/terms"
+    "termsOfServiceURL": "https://flaxa.app/terms",
+    "brandColor": "#EF6C00"
   },
   "extensions": {
     "com.openai": {

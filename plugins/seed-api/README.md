@@ -1,8 +1,8 @@
-# seed-api
+# SEED API
 
 Connect to Klang Games’ SEED API in the staging world `mcp-dev`, using your
 seed-universe.com account. This is a live staging game connection, separate
-from the SEED Flaxa proxy (`seed-live`) and SEED Demo (`seed`). Game commands affect
+from the SEED Live Flaxa proxy (`seed-live`) and SEED Demo (`seed`). Game commands affect
 staging state.
 
 ## Install and connect

@@ -95,7 +95,7 @@ test('marketplace keeps all installed identities and self-contained live assets'
   await alter(root, '.agents/plugins/marketplace.json', data => { data.plugins.pop(); });
   await assert.rejects(validate(root, { quiet: true }), /preserve the demo/);
   const live = JSON.parse(await readFile(join(root, 'plugins/seed-live/plugin.json'), 'utf8'));
-  assert.equal(live.extensions['com.openai'].interface.displayName, 'SEED');
+  assert.equal(live.extensions['com.openai'].interface.displayName, 'SEED Live');
   assert.ok((await readFile(join(root, 'plugins/seed-live/assets/icon.png'))).length > 0);
 });
 test('lockfile root versions stay aligned with the released package', async t => {
@@ -316,7 +316,7 @@ test('direct API rejects proxy endpoints and produces an isolated archive', asyn
     await writeFile(join(root, path), original);
   }
   const archive = await buildApiPackage(root);
-  assert.ok(archive.output.endsWith('seed-api-plugin-0.1.0.zip'));
+  assert.ok(archive.output.endsWith('seed-api-plugin-0.1.1.zip'));
   assert.ok(archive.files.includes('mcp.json'));
   assert.deepEqual(archive.files.filter(path => path.startsWith('skills/')), [
     'skills/seed-api/SKILL.md', 'skills/seed-api/references/tools.md',

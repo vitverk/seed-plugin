@@ -1,4 +1,4 @@
-# seed-api
+# SEED API
 
 Customer: seed
 Environment: staging

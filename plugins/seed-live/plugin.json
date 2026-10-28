@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "seed-live",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "The authenticated SEED companion through the Flaxa proxy, currently connected to SEED staging.",
   "author": {
     "name": "Vitverk",
@@ -17,7 +17,7 @@
   "extensions": {
     "com.openai": {
       "interface": {
-        "displayName": "SEED",
+        "displayName": "SEED Live",
         "shortDescription": "Your connected SEED companion",
         "longDescription": "Read your SEED account and seedlings, explore game data, and open interactive care views through the Flaxa proxy. Sign in with a licensed SEED account. Developer tools require the SEED MCP developer role; commands can change the real staging world. This connection currently uses SEED staging, separate from the anonymous SEED Demo.",
         "developerName": "Vitverk",
@@ -35,7 +35,8 @@
           "Find workbench in the game catalog without changing anything."
         ],
         "logo": "./assets/icon.png",
-        "composerIcon": "./assets/composer.png"
+        "composerIcon": "./assets/composer.png",
+        "brandColor": "#00A857"
       }
     }
   }
