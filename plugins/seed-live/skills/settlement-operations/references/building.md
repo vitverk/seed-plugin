@@ -1,5 +1,18 @@
 # Plots and building
 
+## Food Processor placement caveat — October 28, 2026
+
+The user reports that the Food Processor cannot be placed outside. For current
+staging play, treat it as indoor-only. This conflicts with the MCP item metadata,
+which currently lists indoor, garden, outdoors and balcony placement areas.
+Do not use outdoor staging as a workaround for a failed indoor placement.
+
+This is a user-reported gameplay restriction; the exact indoor placement
+prerequisite has not been independently isolated. A generic ERROR or
+LOCATION_TYPE response does not establish its cause. Revalidate against corrected
+MCP information or explicit live-game confirmation, and supersede this note if
+the observed behavior changes.
+
 Observed in SEED staging, October 2026. Verify current access and boundaries.
 
 - Group membership and plot ownership are distinct: transferring a plot can
