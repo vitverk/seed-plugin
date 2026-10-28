@@ -207,3 +207,14 @@ note writes occurred. See the [sanitized service release receipt](https://github
 Reconnect existing accounts for dev2. Old-world notes remain stored separately.
 MCP Events delivery still needs Klang's callback-host setup and a supported
 ChatGPT host subscription; the Flaxa proxy does not yet forward Events.
+
+## Live 2.4.1 Codex reconnect repair
+
+Verified 28 October 2026 at 20:47 UTC. Runtime 2.4.1 disables advertisement of
+the CIMD path that returned HTTP 403 when the Worker fetched Codex's public
+metadata. DCR remains available with PKCE S256 and browser binding enforced.
+An actual automatic Codex no-browser request now selects DCR and reaches the
+permissions page with HTTP 200; the earlier request returned HTTP 400. No
+system-browser control, sign-in completion or gameplay was used for this check.
+See the [service diagnosis and receipt](https://github.com/vitverk/seed/blob/main/mcp-app/docs/codex-reconnect.md).
+Close the previous error page and start Reconnect again to generate a new request.
