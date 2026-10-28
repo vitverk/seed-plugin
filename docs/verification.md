@@ -1,5 +1,25 @@
 # Package verification
 
+## Marketplace freshness check — 28 October 2026
+
+Compared both marketplace catalogs and the Live package with Jón's recent source
+changes through the recorded standalone MCP 2.1.0 deployment. Both catalogs resolve
+the current Live 2.1.0 package. The connected server supplies the updated workflow
+guidance; it is not copied into bundled skills.
+
+All 21 package tests and all three archive builds passed. A fresh download of the
+published Live 2.1.0 ZIP matched the rebuilt archive byte for byte and the published
+checksum `32a79480ca60ee1e6c12778194893711ded899ffa86a637201953118d47719e7`.
+The API archive retains its recorded checksum. `/health` returned Live 2.1.0,
+unauthenticated `/mcp` returned 401, and `/demo/mcp` returned 404.
+
+Corrected current setup documentation that still referred to Live 2.0.0, described
+`/mcp` as removed, or suggested installing the offline Demo. Published release
+assets were not replaced; the locally rebuilt Demo ZIP includes README corrections
+and is not a new Demo release. Official-directory submission remains incomplete
+for the previously recorded publisher, licensing and host-review requirements.
+Installed-host refresh and authenticated gameplay were not exercised in this check.
+
 ## Live 2.1.0: direct MCP connection
 
 Published on 28 October 2026 after verifying runtime 2.1.0 at `/mcp`, with

@@ -16,9 +16,9 @@ codex plugin marketplace upgrade vitverk-seed
 
 Restart Codex if the refreshed marketplace is not visible. Open Plugins, choose **SEED by Vitverk**, and install **SEED Live** for the live proxy. Connect it and complete Flaxa and SEED OAuth consent. No client secret, API key or local server is needed.
 
-Use your own licensed SEED account. The connection currently uses the **SEED staging world**. The SEED MCP **developer** role is needed for developer reads and game-changing commands. Install **SEED Demo** separately if you want the anonymous temporary simulation. Existing `seed` installations are the demo; installing the live plugin (`seed-live`) does not replace them.
+Use your own licensed SEED account. The connection currently uses the **SEED staging world**. The SEED MCP **developer** role is needed for developer reads and game-changing commands. **SEED Demo** is intentionally offline; installing it does not restore the anonymous temporary simulation. Existing `seed` installations are the demo; installing the live plugin (`seed-live`) does not replace them.
 
-Demo and Live 2.0.0 load guidance on demand through standard MCP documentation tools and resources and contain zero bundled skills. After upgrading, refresh or reinstall the package, refresh connection metadata and open a **new chat** to discard old skill discovery. The same documentation contract serves ChatGPT, Codex and other MCP clients.
+Demo 2.0.0 and Live 2.1.0 load guidance on demand through standard MCP documentation tools and resources and contain zero bundled skills. After upgrading, refresh or reinstall the package, refresh connection metadata and open a **new chat** to discard old skill discovery. The same documentation contract serves ChatGPT, Codex and other MCP clients.
 
 Try:
 
@@ -27,7 +27,7 @@ Try:
 - “Using SEED Live, find workbench in the game catalog in English. Do not change anything.”
 - With developer access: “Using SEED Live, show simulation time and list available commands. Do not send any commands.”
 
-Only explicit open/browse requests render the account UI. Discover the current tool list after connecting; Live runtime 2.0.0 adds documentation search and reads to both role-specific catalogs. The `send_command` tool can change the staging world. The demo plugin's calendar and fictional activities do not control your real account.
+Only explicit open/browse requests render the account UI. Discover the current tool list after connecting; Live runtime 2.1.0 provides documentation search and reads to both role-specific catalogs, including the connected start guide and focused schedule, market, election and onboarding guidance. The `send_command` tool can change the staging world. The demo plugin's calendar and fictional activities do not control your real account.
 
 ## Direct SEED API plugin
 
