@@ -1,0 +1,45 @@
+{
+  "name": "seed-api",
+  "version": "0.1.1",
+  "description": "Connect to Klang Games’ SEED staging world mcp-dev. Read seedlings, account data, schematics and societies; developer tools require the SEED MCP developer role.",
+  "author": {
+    "name": "Vitverk",
+    "url": "https://github.com/vitverk"
+  },
+  "keywords": [
+    "seed",
+    "seedlings",
+    "klang",
+    "staging",
+    "mcp"
+  ],
+  "homepage": "https://github.com/vitverk/seed-plugin",
+  "repository": "https://github.com/vitverk/seed-plugin",
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "SEED API",
+        "shortDescription": "Direct SEED staging API",
+        "longDescription": "Connect to Klang Games’ SEED staging world mcp-dev. Read seedlings, account data, schematics and societies; developer tools require the SEED MCP developer role.",
+        "developerName": "Vitverk",
+        "category": "Entertainment",
+        "capabilities": [
+          "Read",
+          "Write",
+          "Interactive"
+        ],
+        "defaultPrompt": [
+          "Show my seedlings and what they need right now.",
+          "Find the schematics for an item I want to craft.",
+          "Show my society and its current statistics."
+        ],
+        "websiteURL": "https://github.com/vitverk/seed-plugin",
+        "supportURL": "https://github.com/vitverk/seed-plugin/issues",
+        "logo": "./assets/icon.png",
+        "composerIcon": "./assets/composer.png",
+        "brandColor": "#1284ED"
+      }
+    }
+  }
+}

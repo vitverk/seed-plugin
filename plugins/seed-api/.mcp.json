@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "seed-api": {
+      "type": "http",
+      "url": "https://api.seed-universe.com/seed-api/staging-mcp-dev/mcp"
+    }
+  }
+}

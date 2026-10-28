@@ -1,6 +1,6 @@
 {
   "name": "seed",
-  "version": "1.6.5",
+  "version": "1.6.7",
   "description": "A temporary Seedling simulation with activities, resources, goals, and a game calendar.",
   "author": {
     "name": "Vitverk",
@@ -38,7 +38,8 @@
     "logo": "./assets/icon.png",
     "composerIcon": "./assets/composer.png",
     "privacyPolicyURL": "https://flaxa.app/privacy",
-    "termsOfServiceURL": "https://flaxa.app/terms"
+    "termsOfServiceURL": "https://flaxa.app/terms",
+    "brandColor": "#EF6C00"
   },
   "extensions": {
     "com.openai": {
@@ -99,7 +100,7 @@
         "commerce": false
       },
       "publication": {
-        "release_notes": "Rename the guest companion to Seed Demo and move its canonical anonymous MCP endpoint to https://mcp.flaxa.app/demo/mcp. Existing plugin and marketplace identifiers are preserved. The guest MCP is available only at /demo/mcp; the earlier /mcp endpoint is removed.",
+        "release_notes": "Use the consistent SEED Demo name and orange SEED S icon alongside SEED Live (green) and SEED API (blue) in the three-plugin Vitverk marketplace. Prefer one focused widget for useful SEED Demo status, care, possessions, goals, activities and schedule answers. Use the compact agenda for day/week lists and the calendar for requested navigation controls. Reserve opening the full companion for explicit full-app or fresh-demo requests, preserve the existing guest and source provenance, and keep simple facts and action confirmations in text. Compatible with SEED Demo runtime 0.14.5 at the unchanged anonymous /demo/mcp endpoint.",
         "countries": [
           "IS"
         ]

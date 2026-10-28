@@ -1,15 +1,18 @@
 # SEED plugins
 
-This marketplace includes two separate plugins:
+This marketplace includes three separate plugins:
 
 | Install | Connection | Sign-in |
 | --- | --- | --- |
-| **SEED** (`seed-live`) | `https://mcp.flaxa.app/live/mcp` — real SEED staging account | OAuth; game license required |
+| **SEED Live** (`seed-live`) | `https://mcp.flaxa.app/live/mcp` — real SEED staging account | OAuth; game license required |
+| **SEED API** (`seed-api`) | `https://api.seed-universe.com/seed-api/staging-mcp-dev/mcp` — direct Klang SEED staging API | SEED OAuth; developer tools need a role |
 | **SEED Demo** (`seed`) | `https://mcp.flaxa.app/demo/mcp` — temporary mock world | None |
 
-For your first Codex setup, follow the [colleague quickstart](docs/colleague-quickstart.md). Existing demo installs keep their `seed` identity. The direct upstream diagnostic connection is separate from both packages.
+For your first Codex setup, follow the [colleague quickstart](docs/colleague-quickstart.md). Existing demo installs keep their `seed` identity. The `seed-api` plugin connects directly to Klang’s staging MCP, while `seed-live` uses the Flaxa proxy.
 
-The rest of this README describes the **SEED Demo** package and its submission materials. The live plugin has its own [README](plugins/seed-live/README.md).
+All three use the same SEED “S” mark: Demo in design-system orange (`#EF6C00`), Live in green (`#00A857`), and API in blue (`#1284ED`). Installed identifiers remain `seed`, `seed-live`, and `seed-api`.
+
+The rest of this README describes the **SEED Demo** package and its submission materials. The live plugin has its own [README](plugins/seed-live/README.md); the direct API has a [connection and tool guide](plugins/seed-api/README.md).
 
 SEED Demo is a temporary Seedling companion simulation with an interactive calendar, activities, resources, needs, and ordered goals. Open a populated guest, plan its day, and inspect the results of simulated work. It uses an anonymous hosted MCP server; you do not need a SEED account, API key, or local server.
 
@@ -48,9 +51,11 @@ In Claude Code, check `/mcp` after installation. Use a recent CLI: the additiona
 codex plugin marketplace add vitverk/seed-plugin
 ```
 
-Use a supported desktop host's Plugins Directory to select **SEED by Vitverk** and install SEED or SEED Demo. Repository marketplace availability varies by client. Public ChatGPT/Codex distribution requires the OpenAI submission flow; see the [OpenAI publishing guide](https://github.com/vitverk/seed-plugin/blob/main/docs/openai-publishing.md).
+Use a supported desktop host's Plugins Directory to select **SEED by Vitverk** and install SEED Live, SEED Demo or SEED API. Repository marketplace availability varies by client. Public ChatGPT/Codex distribution requires the OpenAI submission flow; see the [OpenAI publishing guide](https://github.com/vitverk/seed-plugin/blob/main/docs/openai-publishing.md).
 
-Routine answers and action confirmations stay in text. Ask explicitly for a card, calendar or visual view when you want one. Focused cards have local expansion for longer lists and do not follow unrelated background reads. Design changes are served by the MCP endpoint after connection metadata is refreshed; no skills ZIP is needed for appearance changes.
+For useful status, care, inventory, goals and schedule answers, the Demo skills prefer one focused widget from the existing guest. Day/week lists use the compact agenda; calendar navigation requests use the calendar. Simple facts and action confirmations stay in text. The full companion opens only for an explicit full-app or fresh-demo request. These presentation rules apply to SEED Demo, not the separate SEED staging connection.
+
+Focused cards have local expansion for longer lists and do not follow unrelated background reads. Design changes are served by the MCP endpoint after connection metadata is refreshed; no skills ZIP is needed for appearance changes.
 
 ## Try it
 
@@ -74,7 +79,7 @@ npm run smoke
 npm run check:submission
 ```
 
-`check` validates the package and runs offline regression checks. `package` writes a repeatable ZIP and checks its contents. `smoke` exercises the hosted anonymous endpoint using disposable detached sample state; it does not read or edit anyone's open guest. `check:submission` deliberately fails while required publisher information or review materials are missing. A passing local check does not imply directory approval.
+`check` validates the package and runs offline regression checks. `package` writes separate ZIPs for SEED Demo, SEED Live and SEED API and checks their contents. `smoke` exercises the hosted anonymous endpoint using disposable detached sample state; it does not read or edit anyone's open guest. `check:submission` deliberately fails while required publisher information or review materials are missing. A passing local check does not imply directory approval.
 
 | File | Purpose |
 | --- | --- |
@@ -88,7 +93,7 @@ npm run check:submission
 | `skills/` | Two guest workflows and one game guide with topic resources |
 | `submission/` | Readiness, review evidence plan, and demo walkthrough |
 
-The ZIP contains one plugin and excludes marketplace catalogs, source deployment files, private app bindings, credentials, and repository history. This package connects to the existing hosted app; it does not deploy the service or replace its private development installation. Public demo package version **1.6.5**, SEED live package version **1.0.0**, SEED Demo server runtime **0.14.4**, and App-backed demo source version **1.7.4** are separate version lines. See [documentation resources](docs/help-center.md) for their shared three-skill layout.
+The ZIP contains one plugin and excludes marketplace catalogs, source deployment files, private app bindings, credentials, and repository history. This package connects to the existing hosted app; it does not deploy the service or replace its private development installation. Public demo package version **1.6.7**, SEED Live package version **1.0.1**, SEED API package version **0.1.1**, SEED Demo server runtime **0.14.5**, and App-backed demo source version **1.7.5** are separate version lines. See [documentation resources](docs/help-center.md) for their shared three-skill layout.
 
 See [release maintenance](https://github.com/vitverk/seed-plugin/blob/main/docs/releasing.md) and [platform support](https://github.com/vitverk/seed-plugin/blob/main/docs/platform-support.md). Use [GitHub Issues](https://github.com/vitverk/seed-plugin/issues) for package support.
 
