@@ -8,7 +8,7 @@ Checked locally on **2026-10-28**. Demo and Live contain zero bundled skills; th
 - `npm run package`: passed; Demo has **11 files / zero skills**, Live has **9 files / zero skills**, API has **12 files / two skill files**. ZIP entries match their generated inventories.
 - Documentation smoke regression: passed against an offline protocol fixture, including canonical document URIs, Demo workflow discovery and a guarantee that documentation-only mode calls no gameplay tools or Skills extension methods.
 - Hosted `npm run smoke:docs`: **six checks passed** on 2026-10-28 against deployed Demo runtime **0.15.0**. It verified canonical resources, Demo workflow discovery, provenance and conflict links without gameplay calls; see the [read-only smoke receipt](../submission/seed-demo-docs-smoke-2.0.0.json).
-- Hosted gameplay `npm run smoke`: **not run**. Live runtime **2.0.0** deployment and authenticated documentation acceptance are recorded separately when verified.
+- Hosted gameplay `npm run smoke`: **not run**. Live runtime **2.0.0** returned HTTP 200 on Live/staging health routes; anonymous documentation calls returned HTTP 401 with the expected OAuth resource metadata. Authenticated account workflows remain untested by this release check.
 - `npm run check:submission`: existing readiness requirements remain incomplete, including licensing, recorded demo, publisher/contact confirmation and installed-host/portal evidence.
 - ChatGPT, Codex, Claude and other MCP client acceptance: **pending**. Local tests do not establish installed-plugin cache refresh, rendered UI or model prompt routing.
 
@@ -17,6 +17,8 @@ Checked locally on **2026-10-28**. Demo and Live contain zero bundled skills; th
 62fb6632b019aaf732dabc9f6e3b1d519a367a9218d04f82293e78804b40f6e9  seed-live-plugin-2.0.0.zip
 62ebe8dab6f8479e8153478a78348f9f223e90c4ce21de6bd2d16a77545c0fe0  seed-api-plugin-0.1.2.zip
 ```
+
+Published [SEED Demo and Live 2.0.0](https://github.com/vitverk/seed-plugin/releases/tag/v2.0.0) on 2026-10-28 from commit `55d47ac4186cae29c29209c6e615e708160a12a8`. All six attached assets were downloaded after publication and matched byte for byte against the validated artifacts; see the [publication receipt](../submission/github-release-2.0.0.json). The release includes the two ZIPs, two checksum files and two inventories. It includes no new API package or directory approval claim.
 
 Earlier observations below retain their original package/runtime scope; references to bundled skills describe those prior releases. Version 2.0.0 requires a package refresh or reinstall, MCP metadata refresh and a new session; removed skill discovery is not preserved by compatibility aliases.
 

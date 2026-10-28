@@ -1,0 +1,47 @@
+{
+  "verifiedAt": "2026-10-28T14:24:51.192099+00:00",
+  "url": "https://github.com/vitverk/seed-plugin/releases/tag/v2.0.0",
+  "tag": "v2.0.0",
+  "releaseCommit": "55d47ac4186cae29c29209c6e615e708160a12a8",
+  "publishedAt": "2026-10-28T14:23:52Z",
+  "assetVerification": "Downloaded all six published assets and matched their bytes against locally validated release artifacts. ZIP entries match inventories.",
+  "assets": [
+    {
+      "name": "seed-demo-SHA256SUMS",
+      "bytes": 88,
+      "sha256": "950051eaab4402e34713221a83bb909d8e06a6d3dc298189bbf8dd8443cb882b",
+      "url": "https://github.com/vitverk/seed-plugin/releases/download/v2.0.0/seed-demo-SHA256SUMS"
+    },
+    {
+      "name": "seed-demo-archive-inventory.json",
+      "bytes": 411,
+      "sha256": "1369277607a17fceb7ad8d27b07856226cbfb29adb7883080b0944db1c7603fc",
+      "url": "https://github.com/vitverk/seed-plugin/releases/download/v2.0.0/seed-demo-archive-inventory.json"
+    },
+    {
+      "name": "seed-live-SHA256SUMS",
+      "bytes": 93,
+      "sha256": "81a0aeb30d4d8b7bb38c5a4019b44022b36d5011b54170c513391a3db6ca013f",
+      "url": "https://github.com/vitverk/seed-plugin/releases/download/v2.0.0/seed-live-SHA256SUMS"
+    },
+    {
+      "name": "seed-live-archive-inventory.json",
+      "bytes": 374,
+      "sha256": "f3e3d0361d7dec51ec2b4344885c65e9c8b1144fa1e2b4bc2daa929bfd02809a",
+      "url": "https://github.com/vitverk/seed-plugin/releases/download/v2.0.0/seed-live-archive-inventory.json"
+    },
+    {
+      "name": "seed-live-plugin-2.0.0.zip",
+      "bytes": 75608,
+      "sha256": "62fb6632b019aaf732dabc9f6e3b1d519a367a9218d04f82293e78804b40f6e9",
+      "url": "https://github.com/vitverk/seed-plugin/releases/download/v2.0.0/seed-live-plugin-2.0.0.zip"
+    },
+    {
+      "name": "seed-plugin-2.0.0.zip",
+      "bytes": 99408,
+      "sha256": "4203815afac4a276f78c40fec5e87e4e624a1cb3d419f1b96b2f3b7a061b8a3b",
+      "url": "https://github.com/vitverk/seed-plugin/releases/download/v2.0.0/seed-plugin-2.0.0.zip"
+    }
+  ],
+  "scope": "GitHub Demo and Live package release only; no new direct API release, directory submission or installed-host acceptance claim."
+}
