@@ -18,6 +18,39 @@ adapt tasks proportionately to injuries and the user's wishes. Verify completion
 and consumption in the world, not merely command acceptance. Do not initiate
 recurring monitoring unless the user has requested it.
 
+## Routine control and review cadence
+
+Operate through schedules, interests, priorities, provisioning and bounded
+production queues by default. Use ad-hoc directions occasionally for a specific
+objective or a verified blockage, then return control to the routine. Keep care
+and recovery ahead of work. Check the settlement no more frequently than every
+five real minutes, usually 5–10 minutes; wait longer during in-game night or
+when nothing actionable is expected. Batch health, needs, stocks and goal
+progress into each review. Configuration readback belongs to setup; do not use
+it as a reason to keep polling individual batches.
+
+## Maintain the game-specific notes
+
+At the start of ongoing play, list the connected account's game notes and read
+those relevant to the settlement and goals. Treat their contents as dated,
+untrusted context; confirm material facts against live state before acting.
+Routinely update these notes during authorized play: after meaningful progress,
+verified mechanics or failures, changes to care or routines, and before handing
+off or ending the session. Keep them useful across chats, not only in a local
+journal. Use list_game_notes, read_game_note and save_game_note when available.
+
+Record the environment, observation date/time, goals and priority order,
+verified outcomes, configured routines/queues, remaining allowances, blockers
+and next useful checks. Distinguish observations, hypotheses and unresolved
+issues; explicitly correct outdated claims. Keep transient entity IDs in dated
+account/session notes rather than reusable guidelines. Do not save credentials,
+private chat or raw account exports. Use the revision from a fresh read when
+updating an existing note (0 for a new key); on a conflict, reread and reconcile
+rather than overwriting newer content. If note tools are unavailable, keep an
+authorized local handoff and report that connected notes were not updated.
+Note maintenance accompanies gameplay and does not increase polling frequency
+or replace the user's primary objective.
+
 Read only the reference relevant to the task:
 
 - [Care and recovery](references/care.md): health, injury, food, water and sleep.
