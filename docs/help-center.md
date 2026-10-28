@@ -1,6 +1,6 @@
 # SEED documentation resources
 
-Public plugin **1.6.1** packages **121 source documents** in two collections. The hosted search interface uses runtime **0.13.2**. The separate App-backed plugin uses version **1.7.2**; these version lines do not change the public package's direct MCP connection.
+Public plugin **1.6.6** packages **121 source documents** in two collections. The hosted search interface uses runtime **0.14.5**. The separate App-backed plugin uses version **1.7.4**; these version lines do not change the public package's direct MCP connection.
 
 | Collection | Contents | Provenance |
 | --- | --- | --- |
@@ -42,7 +42,7 @@ Use `search_seed_docs({query, limit?, category?, sourceCollection?, sourceType?,
 
 Then call `read_seed_doc({uri, offset?, limit?})` with an exact returned URI. Read defaults to 12,000 UTF-16 code units and permits up to 24,000; continue using `nextOffset` until null when the entire document is needed. Resources return full Markdown at the same `skill://<skill-name>/<path>` URI. Read `seed://docs/index` to discover collections and topics. The MCP Skills extension exposes all three skills and complete file manifests with byte sizes and digests; individual documents are not additional tools.
 
-Connection manifests continue to target the existing anonymous endpoint. Resources are registered by the server, so `mcp.json` has no invented `resources` property. Packaged references can also be read offline. The release smoke check expects 15 tools and three skills, tests an original help-center article and imported Memoria guidance, and checks null-URL citations and symmetric conflicts. It is a live check, separate from package validation.
+Connection manifests continue to target the existing anonymous endpoint. Resources are registered by the server, so `mcp.json` has no invented `resources` property. Packaged references can also be read offline. The release smoke check expects 25 tools and three skills, tests an original help-center article and imported Memoria guidance, and checks null-URL citations and symmetric conflicts. It is a live check, separate from package validation.
 
 References explain their own source systems. They do not establish guest state, account access or simulator capabilities. In particular, imported local API workflows describe another tool surface and may use different units or command contracts. Use the guest's current capability tool and observed state for its executable behavior. Current game behavior, prices, policies and server availability may require a fresh source check.
 

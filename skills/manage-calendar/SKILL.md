@@ -9,7 +9,9 @@ In Seed context, schedule/calendar/harvesting refers to the **Seedling's game ca
 
 ## Presentation
 
-Answer routine questions and action confirmations in text. Open the full companion or render one focused card only when the user explicitly requests a visual view, card, panel or calendar, or clicks its Refresh control. Do not append a card after every read, plan or change. Preserve the same subject and guest; refreshing a card never starts a replacement demo.
+For SEED Demo schedule answers, prefer one compact `show_seedling_agenda` widget when it helps show the requested day or week. The user need not say “card”. Render only returned scheduled events from the same existing guest, with exact source identity and capture time; proposed plans and queued actions are not confirmed calendar entries. Use `show_seedling_calendar` when the user requests its day/week calendar controls or is continuing that calendar workflow. Choose one calendar interface per answer.
+
+Simple facts, missing source data, proposed plans, background reads and action confirmations stay in text. Do not append a card after every read or change. Open the full companion only for an explicit full app, companion, dashboard, sidebar or conversation-panel request; a generic “show my week” request selects a compact widget. Preserve the same subject and guest; refreshing a card never starts a replacement demo. These rules apply to SEED Demo, not connected SEED staging.
 
 ## Answer calendar questions
 
@@ -23,9 +25,9 @@ For an outcome with several dependent activities, use the companion’s [goal wo
 
 ## Show a small calendar in chat
 
-For a visual day/week calendar or an inline calendar request, use `show_seedling_calendar`. Reuse one captured context or successful read from the intended guest; if a fresh view is requested, read that same guest first with its document-local read or `get_seedling_state` and its current `guestChannel`. This display tool only validates and renders supplied data. It does not independently read a guest or prove that a snapshot is current.
+Use `show_seedling_agenda` for a focused day/week list. For a day/week calendar with navigation controls, an inline calendar request or an existing calendar workflow, use `show_seedling_calendar`. Do not render both for one answer. Reuse one captured context or successful read from the intended guest; if a fresh view is requested, read that same guest first with its document-local read or `get_seedling_state` and its current `guestChannel`. These display tools only validate and render supplied data. They do not independently read a guest or prove that a snapshot is current.
 
-Pass `snapshot` with exactly `version`, `clock`, `seedling: { name }`, the complete `schedule`, and `locations` reduced to `{ id, name }`. Choose `view: "day" | "week"` and an optional numbered game `day`. Use `source: "browser_snapshot"` for an actual captured browser read, otherwise `"supplied_snapshot"`. Copy `browserSessionId` and the original `capturedAt` when known; omit an unknown capture time rather than inventing one. Do not pass a full world, `guestChannel`, `commandToken`, `ownerToken`, or other credentials. If a bounded read omitted the schedule or locations, do not turn missing data into an empty calendar; obtain a complete calendar projection or explain the missing data.
+For `show_seedling_calendar`, pass `snapshot` with exactly `version`, `clock`, `seedling: { name }`, the complete `schedule`, and `locations` reduced to `{ id, name }`. Choose `view: "day" | "week"` and an optional numbered game `day`. Use `source: "browser_snapshot"` for an actual captured browser read, otherwise `"supplied_snapshot"`. Copy `browserSessionId` and the original `capturedAt` when known; omit an unknown capture time rather than inventing one. Do not pass a full world, `guestChannel`, `commandToken`, `ownerToken`, or other credentials. If a bounded read omitted the schedule or locations, do not turn missing data into an empty calendar; obtain a complete calendar projection or explain the missing data.
 
 The card is a snapshot. Its navigation and expansion do not change the companion or advance game time. Its Refresh control sends a request to chat: match the supplied browser session to the latest context, read that same guest again, then call `show_seedling_calendar` with the new snapshot and requested day/view. Never call `open_seedling` or `browse_seedling` to refresh, never substitute another guest, and never claim the old card updates live. If the matching guest is unavailable, explain that refresh is unavailable and preserve the displayed snapshot.
 
@@ -67,7 +69,7 @@ Replace `123` with `v`; do not fabricate a version. Defaults select a compatible
 
 ## Prepare or inspect the visible editor
 
-For “show next week”, “open this activity” or “fill the form so I can review it”, use `view` from the current browser result, or read `flaxa_get_view({})` if needed. Use `flaxa_set_view` with `calendarView: "day" | "week"`, a selected `day`, or `navigate: "previous_week" | "next_week" | "today"`. Use `flaxa_edit_activity` for the visible editor:
+When the user asks to navigate an already open full companion or prepare its editor, use `view` from the current browser result, or read `flaxa_get_view({})` if needed. An ordinary chat request such as “show next week” selects a focused widget instead. For requested navigation within the full app, use `flaxa_set_view` with `calendarView: "day" | "week"`, a selected `day`, or `navigate: "previous_week" | "next_week" | "today"`. Use `flaxa_edit_activity` for the visible editor:
 
 | Operation | Effect |
 |---|---|

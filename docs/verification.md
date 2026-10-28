@@ -1,12 +1,34 @@
 # Package verification
 
+## Package 1.6.6: focused Demo widgets
+
+Checked on **2026-10-28**. The two guest skills match the application source and prefer one useful focused widget from the existing guest. An ordinary “show next week” request selects the compact agenda; requested calendar controls select the calendar. Opening the full companion requires an explicit full-app or fresh-demo request. Simple facts, missing data and action confirmations stay in text. These rules do not change the separate SEED staging plugin.
+
+| Check | Result | Scope |
+| --- | --- | --- |
+| `npm ci` | Passed; no reported vulnerabilities | Locked package dependencies |
+| `npm run check` | Passed; 26 tests | Schemas, manifest versions, guest skills, references, archive guards and preserved live-package metadata |
+| `npm run package` | Passed; 143 files | Deterministic `seed-plugin-1.6.6.zip`; inventory and SHA-256 verified |
+| `npm run smoke` | Passed; 12 checks against runtime 0.14.5 | 25 tools, three skills, documentation, app resources and anonymous detached synthetic gameplay; no guest channel or live account |
+| `claude plugin validate . --strict` | Passed | Separate directory-readiness output still flags the missing distribution license |
+| `npm run check:submission` | Existing readiness failures remain | Licensing/brand clearance, demo recording, publisher/contact and portal confirmation, Claude screenshots and installed-host review evidence |
+| Installed-host prompt-routing review | Not rerun for this distribution package | Direct MCP smoke does not prove model routing or rendered UI acceptance in ChatGPT or Claude |
+
+Review these additional prompts in each target host when completing installed-package acceptance:
+
+| Prompt and context | Expected routing |
+| --- | --- |
+| “How is Bowen doing?” with a known existing guest | Read that guest and show one useful status widget; preserve identity and capture time |
+| “Show next week” in ordinary chat | Use one compact agenda from the same guest's returned scheduled events |
+| “Show the calendar with week controls” | Use the calendar widget instead of also rendering an agenda |
+| “Open the full companion” or “Start a fresh demo” | Use the full-app opening route and identify its fresh paused guest |
+| A simple fact, missing data or successful change receipt | Answer in text; do not create a guest or fabricate values for a widget |
+
+The generated `dist/smoke-results.json` records this release's direct MCP evidence. Earlier committed receipts and dated sections below retain their original version scope.
+
 ## Current endpoint policy
 
-Runtime **0.13.2** serves the guest MCP exclusively at
-`https://mcp.flaxa.app/demo/mcp`. The `/mcp` compatibility alias is removed.
-Both package connection manifests already use `/demo/mcp`; the App-backed
-connection remains version **1.7.2**. The dated checks below record their
-original runtime versions and do not establish verification of 0.13.2.
+Verified runtime **0.14.5** serves the guest MCP at `https://mcp.flaxa.app/demo/mcp`; both package connection manifests use that endpoint. The `/mcp` compatibility alias was removed. Public Demo package **1.6.6**, live package **1.0.0**, server runtime **0.14.5** and App-backed Demo source **1.7.4** are independent version lines. This repository update does not deploy the server or update an installed App-backed plugin.
 
 ## Initial package 1.6.1 verification: Seed Demo
 

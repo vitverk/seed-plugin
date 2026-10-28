@@ -9,11 +9,13 @@ Seed Demo is a login-free simulation, with no live SEED account connection. Prog
 
 ## Presentation
 
-Answer routine questions and action confirmations in text. Open the full companion or render one focused card only when the user explicitly requests a visual view, card, panel or calendar, or clicks its Refresh control. Do not append a card after every read, plan or change. Preserve the same subject and guest; refreshing a card never starts a replacement demo.
+For SEED Demo answers, prefer one relevant compact widget when it helps show the requested status, needs, health, inventory, goals or schedule. The user need not say “card” or “widget”. Read the intended existing guest first, then render only returned facts with the same subject, scope and capture time. Use `show_seedling_status` for care priorities, `show_seedling_needs` for need gauges, `show_seedling_mood` for supplied mood coordinates, `show_seedling_radar` for supplied stat axes, `show_seedling_health` for ailments/skills, `show_seedling_inventory` for possessions, `show_seedling_goals` for recorded goals and `show_activity_detail` for one activity. Follow manage-calendar for schedules.
+
+Simple facts, missing source data, proposed plans, background reads and action confirmations stay in text. Do not append a card after every read or change. Open the full companion only for an explicit full app, companion, dashboard, sidebar or conversation-panel request; a generic “show” request selects a focused widget. Preserve the same subject and guest; refreshing a card never starts a replacement demo. These rules apply to SEED Demo, not connected SEED staging.
 
 ## Open or reuse
 
-Use `open_seedling({})` or `browse_seedling({})` to start a **fresh paused** demo. Reuse an existing Seed Demo view for changes to its current state; opening again or reloading resets it.
+Use `open_seedling({})` or `browse_seedling({})` only when the user requests the full app or a fresh demo. They start a **fresh paused** guest. Reuse an existing Seed Demo view for changes to its current state; opening again or reloading resets it. Never open a new guest to obtain data for a focused widget.
 
 When the latest companion context contains `guestChannel`, use the existing remote MCP tools with that channel to control the **same open guest**. Copy the complete `guestChannel` object unchanged and pass it **instead of `state`**. Call `get_seedling_state({guestChannel})` only when a current read is needed. For changes, use the corresponding name without `flaxa_` (`advance_demo_time` for time), a new `commandId` and the latest `state.version` as `expectedVersion`. For example, `create_goal({guestChannel, commandId, expectedVersion, title, steps})` sends the whole plan to the visible guest. No browser discovery, manual share, login or new guest is needed for this route.
 
