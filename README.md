@@ -32,7 +32,7 @@ SEED Demo is an independent prototype, with no Klang Games API connection or con
 
 Published MCP endpoint: **`https://mcp.flaxa.app/demo/mcp`** — currently offline (HTTP 404). The installation instructions below do not restore the service.
 
-The existing plugin identifier `seed` and marketplace identifier `vitverk-seed` stay unchanged, so installed copies can update in place. The former `/mcp` endpoint is removed. Existing clients must use `/demo/mcp`, as both connection manifests in this package do.
+The existing plugin identifier `seed` and marketplace identifier `vitverk-seed` stay unchanged, so installed copies can update in place. `/mcp` now serves authenticated SEED Live. Demo clients retain `/demo/mcp`, as both Demo connection manifests do, but that service is currently offline.
 
 Transport: Streamable HTTP. Authentication: **None**.
 
@@ -69,7 +69,7 @@ SEED Demo and SEED Live contain **zero bundled skills**. ChatGPT, Codex, Claude 
 
 Use “How does farming work in the real SEED game?” or “What does the supplied manual say about Memoria?” to try documentation discovery. Demo workflows cover the companion and calendar; Live workflows cover settlement operations and account checkpoints. See [documentation resources](docs/help-center.md) for provenance and verification boundaries.
 
-Version **2.0.0** removes earlier skill bundles and their compatibility routes. Refresh or reinstall Demo and Live, refresh connection metadata, and start a new session to discard cached skill discovery. Installed identities and endpoints stay unchanged. SEED API remains separate and unchanged.
+Version **2.0.0** removes earlier skill bundles and their compatibility routes. Refresh or reinstall Demo and Live, refresh connection metadata, and start a new session to discard cached skill discovery. Installed identities stay unchanged. Live 2.1.0 now uses `/mcp` for new installations, with `/live/mcp` and `/staging/mcp` retained as aliases. SEED API remains separate and unchanged.
 
 ## Maintain and package
 
