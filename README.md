@@ -1,6 +1,6 @@
 # SEED plugins
 
-**Availability update — 28 October 2026:** SEED Live **2.1.0** is deployed at `https://mcp.flaxa.app/mcp`; the existing `/live/mcp` and `/staging/mcp` URLs remain aliases. Connect directly with OAuth; the plugin is optional. `/health` now reports Live 2.1.0. SEED Demo remains intentionally offline and `/demo/mcp` returns 404. See [Live 2.1.0 verification](docs/verification.md#live-210-direct-mcp-connection).
+**Availability update — 28 October 2026:** SEED Live runtime **2.4.0** is deployed at `https://mcp.flaxa.app/mcp`; the existing `/live/mcp` and `/staging/mcp` URLs remain aliases. Connect directly with OAuth; the plugin is optional. `/health` reports Live 2.4.0. Sign in again for the new `mcp-dev2` world, including `seed:market:read` for market access. SEED Demo remains intentionally offline and `/demo/mcp` returns 404. See [Live 2.4.0 verification](docs/verification.md#live-240-dev2-deployment).
 
 This marketplace includes three separate plugins:
 

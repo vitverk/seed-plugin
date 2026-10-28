@@ -189,3 +189,21 @@ Claude CLI validation was invoked from the official `@anthropic-ai/claude-code` 
 GitHub package CI and the automatic CodeQL setup both passed for the initial public commit `92dd7f44a7f449dbb6a4e04f74086f7a94ec5414`. The submission gate subsequently gained separate Claude metadata/license checks and regression coverage; see the repository Actions tab for checks on each later commit.
 
 CI runs offline validation and packaging on pushes and pull requests. Live endpoint checks can be requested with the manual workflow input. Neither CI nor this record certifies marketplace approval, policy compliance, licensing, or embedded-host behavior.
+
+## Live 2.4.0 dev2 deployment
+
+Verified 28 October 2026 at 20:33 UTC: `https://mcp.flaxa.app/health` reports
+runtime 2.4.0. The canonical `/mcp` route and both aliases remain unchanged.
+The optional Live plugin package stays 2.1.0; its server now targets mcp-dev2.
+API plugin 0.2.0 points directly to the same new upstream world.
+
+A fresh deployed-proxy OAuth login used only catalog, profile and market reads,
+plus offline access. The SEED consent redirect targeted `staging-mcp-dev2`.
+Tool discovery exposed `find_schematics` and `market`; developer tools remained
+absent without developer permission. Token rotation and five documentation
+workflow reads, pagination/digests and both protocol paths passed. No game or
+note writes occurred. See the [sanitized service release receipt](https://github.com/vitverk/seed/blob/main/mcp-app/docs/dev2-release-receipt.json).
+
+Reconnect existing accounts for dev2. Old-world notes remain stored separately.
+MCP Events delivery still needs Klang's callback-host setup and a supported
+ChatGPT host subscription; the Flaxa proxy does not yet forward Events.
