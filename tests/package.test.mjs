@@ -103,6 +103,7 @@ test('live package includes its focused guidance and rejects guest skills', asyn
   const result = await buildLivePackage(root);
   assert.ok(result.files.includes('skills/settlement-operations/SKILL.md'));
   assert.ok(result.files.includes('skills/settlement-operations/references/care.md'));
+  assert.ok(result.files.includes('skills/save-context/SKILL.md'));
   assert.ok(!result.files.some(path => /seedling-companion|manage-calendar/.test(path)));
   const entry = join(root, 'plugins/seed-live/skills/settlement-operations/SKILL.md');
   const original = await readFile(entry, 'utf8');
@@ -110,7 +111,16 @@ test('live package includes its focused guidance and rejects guest skills', asyn
   await assert.rejects(validateLivePackage(root), /reference must be discoverable/);
   await writeFile(entry, original);
   await cp(join(root, 'skills/seedling-companion'), join(root, 'plugins/seed-live/skills/seedling-companion'), { recursive: true });
-  await assert.rejects(validateLivePackage(root), /only the live settlement skill/);
+  await assert.rejects(validateLivePackage(root), /only the live settlement and save-context skills/);
+});
+test('live checkpoint skill must have a valid discoverable identity', async t => {
+  const root = await fixture(t);
+  const entry = join(root, 'plugins/seed-live/skills/save-context/SKILL.md');
+  const original = await readFile(entry, 'utf8');
+  await writeFile(entry, original.replace('name: save-context', 'name: settlement-operations'));
+  await assert.rejects(validateLivePackage(root), /skill name must match its directory/);
+  await writeFile(entry, original.replace(/^---\n[\s\S]*?\n---\n/, ''));
+  await assert.rejects(validateLivePackage(root), /needs YAML frontmatter/);
 });
 test('lockfile root versions stay aligned with the released package', async t => {
   const root = await fixture(t);

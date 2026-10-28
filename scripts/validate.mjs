@@ -283,19 +283,23 @@ export async function validateLivePackage(root = defaultRoot) {
   assert.equal(codex.mcpServers, './.mcp.json');
   assert.ok(!codex.skills, 'Live package uses standard skill discovery');
   const liveSkillFiles = [
+    'skills/save-context/SKILL.md',
     'skills/settlement-operations/SKILL.md',
     'skills/settlement-operations/references/building.md',
     'skills/settlement-operations/references/care.md',
     'skills/settlement-operations/references/mcp.md',
     'skills/settlement-operations/references/production.md',
   ].sort();
-  assert.deepEqual(files.filter(path => path.startsWith('skills/')), liveSkillFiles, 'Live package must contain only the live settlement skill and its references');
-  const skill = await readFile(resolve(liveRoot, liveSkillFiles.find(path => path.endsWith('/SKILL.md'))), 'utf8');
-  const frontmatter = skill.match(/^---\n([\s\S]*?)\n---\n/);
-  assert.ok(frontmatter, 'Live skill needs YAML frontmatter');
-  const metadata = YAML.parse(frontmatter[1]);
-  assert.equal(metadata.name, 'settlement-operations');
-  text(metadata.description, 'Live skill description', 1024);
+  assert.deepEqual(files.filter(path => path.startsWith('skills/')), liveSkillFiles, 'Live package must contain only the live settlement and save-context skills and their references');
+  for (const path of liveSkillFiles.filter(path => path.endsWith('/SKILL.md'))) {
+    const content = await readFile(resolve(liveRoot, path), 'utf8');
+    const frontmatter = content.match(/^---\n([\s\S]*?)\n---\n/);
+    assert.ok(frontmatter, `Live skill needs YAML frontmatter: ${path}`);
+    const metadata = YAML.parse(frontmatter[1]);
+    assert.equal(metadata.name, path.split('/')[1], `Live skill name must match its directory: ${path}`);
+    text(metadata.description, 'Live skill description', 1024);
+  }
+  const skill = await readFile(resolve(liveRoot, 'skills/settlement-operations/SKILL.md'), 'utf8');
   for (const path of liveSkillFiles.filter(path => path.includes('/references/'))) {
     assert.ok(skill.includes(`references/${path.split('/').at(-1)}`), `Live reference must be discoverable: ${path}`);
   }
