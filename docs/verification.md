@@ -28,7 +28,7 @@ The generated `dist/smoke-results.json` records this release's direct MCP eviden
 
 ## Current endpoint policy
 
-Verified runtime **0.14.5** serves the guest MCP at `https://mcp.flaxa.app/demo/mcp`; both package connection manifests use that endpoint. The `/mcp` compatibility alias was removed. Public Demo package **1.6.6**, live package **1.0.0**, server runtime **0.14.5** and App-backed Demo source **1.7.4** are independent version lines. This repository update does not deploy the server or update an installed App-backed plugin.
+Verified runtime **0.14.5** serves the guest MCP at `https://mcp.flaxa.app/demo/mcp`; both package connection manifests use that endpoint. The `/mcp` compatibility alias was removed. Public Demo package **1.6.6**, live package **1.0.0**, server runtime **0.14.5** and App-backed Demo source **1.7.5** are independent version lines. This repository update does not deploy the server or update an installed App-backed plugin.
 
 ## Initial package 1.6.1 verification: Seed Demo
 
