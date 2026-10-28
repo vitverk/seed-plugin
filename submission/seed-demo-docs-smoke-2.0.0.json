@@ -1,0 +1,37 @@
+{
+  "checkedAt": "2026-10-28T14:21:44.235Z",
+  "endpoint": "https://mcp.flaxa.app/demo/mcp",
+  "server": {
+    "name": "flaxa-seed-companion",
+    "title": "SEED Demo",
+    "version": "0.15.0"
+  },
+  "protocolVersion": "2025-11-25",
+  "scope": "Read-only documentation discovery and resources; no gameplay tool calls or host UI acceptance.",
+  "checks": [
+    {
+      "name": "Anonymous guest health, no persistence or background simulation",
+      "status": "passed"
+    },
+    {
+      "name": "MCP initialization",
+      "status": "passed"
+    },
+    {
+      "name": "Twenty-five expected tools, titles, boolean annotations, and anonymous security metadata",
+      "status": "passed"
+    },
+    {
+      "name": "Standard documentation index and canonical search/read resources without guest state",
+      "status": "passed"
+    },
+    {
+      "name": "Demo workflow search and canonical resource reads",
+      "status": "passed"
+    },
+    {
+      "name": "Imported manual search, honest null-URL provenance, and symmetric source conflicts",
+      "status": "passed"
+    }
+  ]
+}

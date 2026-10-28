@@ -7,7 +7,8 @@ Checked locally on **2026-10-28**. Demo and Live contain zero bundled skills; th
 - `npm run check`: passed, **21 offline tests**, including zero-skill archive guards, all manifest variants, API skill allowlist, connection isolation and security checks.
 - `npm run package`: passed; Demo has **11 files / zero skills**, Live has **9 files / zero skills**, API has **12 files / two skill files**. ZIP entries match their generated inventories.
 - Documentation smoke regression: passed against an offline protocol fixture, including canonical document URIs, Demo workflow discovery and a guarantee that documentation-only mode calls no gameplay tools or Skills extension methods.
-- Hosted `npm run smoke:docs` and `npm run smoke`: **not run** for this change. Deployment of Demo runtime **0.15.0** and Live runtime **2.0.0** remains a separate step.
+- Hosted `npm run smoke:docs`: **six checks passed** on 2026-10-28 against deployed Demo runtime **0.15.0**. It verified canonical resources, Demo workflow discovery, provenance and conflict links without gameplay calls; see the [read-only smoke receipt](../submission/seed-demo-docs-smoke-2.0.0.json).
+- Hosted gameplay `npm run smoke`: **not run**. Live runtime **2.0.0** deployment and authenticated documentation acceptance are recorded separately when verified.
 - `npm run check:submission`: existing readiness requirements remain incomplete, including licensing, recorded demo, publisher/contact confirmation and installed-host/portal evidence.
 - ChatGPT, Codex, Claude and other MCP client acceptance: **pending**. Local tests do not establish installed-plugin cache refresh, rendered UI or model prompt routing.
 
