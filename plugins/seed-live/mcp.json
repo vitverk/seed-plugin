@@ -3,7 +3,7 @@
   "mcpServers": {
     "seed_live": {
       "type": "streamable-http",
-      "url": "https://mcp.flaxa.app/live/mcp",
+      "url": "https://mcp.flaxa.app/mcp",
       "extensions": {
         "com.openai": {
           "auth": {
@@ -11,7 +11,7 @@
             "client": {
               "mode": "dcr"
             },
-            "resource": "https://mcp.flaxa.app/live/mcp",
+            "resource": "https://mcp.flaxa.app/mcp",
             "baseScopes": [
               "seed:profile:read",
               "seed:character-information:read",

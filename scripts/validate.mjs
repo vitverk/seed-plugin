@@ -271,7 +271,7 @@ export async function validateLivePackage(root = defaultRoot) {
   assert.deepEqual(Object.keys(mcp.mcpServers), ['seed_live']);
   assert.deepEqual(Object.keys(legacy.mcpServers), ['seed_live']);
   const server = mcp.mcpServers.seed_live;
-  assert.equal(server.url, 'https://mcp.flaxa.app/live/mcp', 'Live package must use the proxy canonical URL');
+  assert.equal(server.url, 'https://mcp.flaxa.app/mcp', 'Live package must use the proxy canonical URL');
   assert.deepEqual(legacy.mcpServers.seed_live, { type: 'http', url: server.url });
   // Agent Plugins core schema excludes vendor extensions. Check the transport
   // against the core schema and validate the documented OpenAI auth separately.

@@ -6,7 +6,7 @@ This marketplace includes three separate plugins:
 
 | Install | Connection | Sign-in |
 | --- | --- | --- |
-| **SEED Live** (`seed-live`) | `https://mcp.flaxa.app/live/mcp` — real SEED staging account | OAuth; game license required |
+| **SEED Live** (`seed-live`) | `https://mcp.flaxa.app/mcp` — real SEED staging account | OAuth; game license required |
 | **SEED API** (`seed-api`) | `https://api.seed-universe.com/seed-api/staging-mcp-dev/mcp` — direct Klang SEED staging API | SEED OAuth; developer tools need a role |
 | **SEED Demo** (`seed`) | `https://mcp.flaxa.app/demo/mcp` — intentionally offline | None |
 

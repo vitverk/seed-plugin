@@ -43,10 +43,22 @@ fresh token with `seed:developer`. See the [SEED API guide](../plugins/seed-api/
 for all 16 announced tools and staging limitations. Select the intended connection
 explicitly when both SEED Live and SEED API are installed.
 
-## Direct MCP fallback
+## Connect directly without a plugin
 
-If your Codex version does not expose repository plugins, follow the [direct-connection quickstart](https://github.com/vitverk/seed/blob/main/mcp-app/docs/staging-quickstart.md). It includes explicit DCR login and the full scopes needed when automatic login requests catalog permission only. Use a separate connection rather than adding this fallback alongside an already-working SEED plugin.
+Add **`https://mcp.flaxa.app/mcp`** to an OAuth-capable Streamable HTTP MCP
+client and complete Flaxa and SEED sign-in. No package, local checkout, API key
+or client secret is needed. The [direct-connection quickstart](https://github.com/vitverk/seed/blob/main/mcp-app/docs/staging-quickstart.md)
+includes Codex setup and explicit scopes when automatic login requests only
+catalog permission. Use one connection to avoid duplicate tools.
 
-Canonical endpoints are `/live/mcp` for SEED Live and `/demo/mcp` for SEED Demo. Existing `/staging/mcp` proxy connections still work. The `seed-api` plugin uses the direct upstream staging endpoint.
+Ask “Read the SEED start guide,” or use `read_seed_doc` with `seed://docs/index`.
+Search/read tools and standard resources supply guidance on demand, including
+care, schedules, production, building, market, elections, onboarding and notes.
+Clients without MCP Apps can still read documentation and data as text.
+
+Existing `/live/mcp` and `/staging/mcp` proxy connections keep working. Each URL
+has its own OAuth audience; keeping an existing connection on its URL preserves
+its grant. The `seed-api` package remains the separate direct upstream connection.
+The anonymous Demo remains offline following its separate service migration.
 
 The marketplace commands and package layout follow [official OpenAI documentation](https://developers.openai.com/plugins/build/plugins). This repository marketplace is a team-distribution source, separate from a reviewed public directory listing.

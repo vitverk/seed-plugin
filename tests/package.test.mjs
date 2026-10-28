@@ -82,7 +82,7 @@ test('marketplace live connection cannot silently point at the guest or direct u
   const root = await fixture(t);
   const path = 'plugins/seed-live/mcp.json';
   const original = await readFile(join(root, path), 'utf8');
-  for (const url of ['https://mcp.flaxa.app/demo/mcp', 'https://api.seed-universe.com/seed-api/staging-mcp-dev/mcp']) {
+  for (const url of ['https://mcp.flaxa.app/demo/mcp', 'https://mcp.flaxa.app/live/mcp', 'https://mcp.flaxa.app/staging/mcp', 'https://api.seed-universe.com/seed-api/staging-mcp-dev/mcp']) {
     await alter(root, path, data => { data.mcpServers.seed_live.url = url; });
     await assert.rejects(validate(root, { quiet: true }), /proxy canonical URL/);
     await writeFile(join(root, path), original);
