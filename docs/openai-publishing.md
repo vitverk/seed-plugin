@@ -4,7 +4,7 @@ Requirements verified against official documentation on **2026-10-26**. OpenAI p
 
 ## Files already prepared
 
-The canonical `plugin.json` uses the Agent Plugins 1.0 schema. OpenAI listing metadata, five positive and three negative review cases, prompts, and release notes live under `extensions.com.openai`. `mcp.json` points at `https://mcp.flaxa.app/demo/mcp`, using `streamable-http`. The compatibility manifest has synchronized identity and presentation. Both portable skills and actual PNG icons are bundled.
+The canonical `plugin.json` uses the Agent Plugins 1.0 schema. OpenAI listing metadata, five positive and three negative review cases, prompts, and release notes live under `extensions.com.openai`. `mcp.json` points at `https://mcp.flaxa.app/demo/mcp`, using `streamable-http`. The compatibility manifest has synchronized identity and presentation. Actual PNG icons are bundled. Demo and Live 2.0.0 contain zero skills; documentation and workflows are loaded from standard MCP tools and resources.
 
 The portable MCP schema currently excludes arbitrary server extension fields, while OpenAI documents additional authentication extensions. Seed Demo does not need an explicit auth declaration: it is anonymous, contains no headers or credentials, and **None** must be selected during portal setup. This keeps the configuration valid against the upstream portable schema.
 
@@ -20,7 +20,7 @@ The app's interactive UI and thread/global entrypoints are served by the MCP ser
 4. Preserve the confirmed **Iceland** targeting (`publication.countries: ["IS"]`) and **no payments or purchases** declaration (`review.commerce: false`). Verify these values imported correctly. These listing declarations do not restrict access to the public repository or MCP endpoint.
 5. The owner will provide the demo video later. Use `submission/demo-walkthrough.md` to rehearse and record the real target-host flow. Host the actual video for reviewers, verify playback without private access, and add `review.demo_recording_url`. A written walkthrough or standalone screenshot does not meet that requirement.
 6. Run the five positive and three negative cases from `plugin.json` in the intended host and record results in `submission/test-results.md`. Direct MCP checks are additional evidence, not replacements for host cases.
-7. Run `npm run check`, `npm run package`, `npm run smoke`, and `npm run check:submission`. Inspect the produced ZIP and its exact version after every content change.
+7. Run `npm run check`, `npm run package`, `npm run smoke:docs`, and `npm run check:submission`. Inspect the produced ZIP and its exact version after every content change.
 
 Required MCP listing URLs are website, support, privacy policy, and terms of service. Display name and subtitle each allow at most 30 characters. The actual category is **Entertainment**. Initial MCP review requires exactly five positive and three negative cases. [Submission metadata and review requirements](https://developers.openai.com/plugins/deploy/submission)
 

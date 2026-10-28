@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "seed",
-  "version": "1.6.7",
+  "version": "2.0.0",
   "description": "A temporary Seedling simulation with activities, resources, goals, and a game calendar.",
   "author": {
     "name": "Vitverk",
@@ -99,7 +99,7 @@
         "commerce": false
       },
       "publication": {
-        "release_notes": "Use the consistent SEED Demo name and orange SEED S icon alongside SEED Live (green) and SEED API (blue) in the three-plugin Vitverk marketplace. Prefer one focused widget for useful SEED Demo status, care, possessions, goals, activities and schedule answers. Use the compact agenda for day/week lists and the calendar for requested navigation controls. Reserve opening the full companion for explicit full-app or fresh-demo requests, preserve the existing guest and source provenance, and keep simple facts and action confirmations in text. Compatible with SEED Demo runtime 0.14.5 at the unchanged anonymous /demo/mcp endpoint.",
+        "release_notes": "SEED Demo and SEED Live now load guidance on demand through standard MCP documentation tools and resources. Both packages contain zero bundled skills. Refresh or reinstall the package and start a new session to clear earlier skill discovery. The stable seed and seed-live identities, endpoints, authentication and SEED artwork remain unchanged. Requires the standard documentation contract in SEED Demo runtime 0.15.0; the separate SEED API package is unchanged.",
         "countries": [
           "IS"
         ]

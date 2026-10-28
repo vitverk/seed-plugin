@@ -9,12 +9,15 @@ Seed Demo is an anonymous guest simulation. It does not connect to a live SEED a
 | Surface | Package route | What must still be verified in that host |
 | --- | --- | --- |
 | OpenAI ChatGPT and Codex | Portable root manifest with OpenAI metadata; follow the OpenAI publishing guide for the registered app and remote MCP submission | App connection, tool discovery, opening the embedded companion, current-view context, and confirmed mutations |
-| Claude chat | Claude manifest, skills, and remote `.mcp.json` connector | Install/upload, connector activation, available tools, embedded app rendering, and current-view updates |
+| Claude chat | Claude manifest and remote `.mcp.json` connector | Install/upload, connector activation, available tools, embedded app rendering, and current-view updates |
 | Claude Cowork | Same Claude package and remote connector | Connector availability in the actual Cowork environment and the complete user workflow |
-| Claude Code | Same package, installed from `vitverk-seed` or loaded with `--plugin-dir` | `/mcp` connection, skill loading, tool behavior, and any UI capability actually provided by the client |
+| Claude Code | Same package, installed from `vitverk-seed` or loaded with `--plugin-dir` | `/mcp` connection, documentation discovery, tool behavior, and any UI capability actually provided by the client |
+| Other MCP clients | Direct `/demo/mcp` or authenticated `/live/mcp` | Standard tool/resource discovery, documentation search/read, authentication and any supported MCP Apps rendering |
 | Standalone browser | Hosted companion at [mcp.flaxa.app](https://mcp.flaxa.app) | Interactive guest controls; host chat context is unavailable outside an embedding chat host |
 
-Claude's documented cross-surface components include skills and remote MCP connectors. Claude chat and Cowork expose a bundled remote server through the plugin's Connectors tab; installation alone does not establish a connected session. Claude Code connects to the declared server directly. Local stdio servers have narrower availability, so this package uses the existing remote endpoint. [Claude plugin structure and testing](https://claude.com/docs/plugins/build)
+Demo and Live 2.0.0 ship zero skills. All supported MCP clients discover documentation through the same standard tools and resources; host-specific UI capabilities may differ. Claude chat and Cowork expose a bundled remote server through the plugin's Connectors tab; installation alone does not establish a connected session. Claude Code connects to the declared server directly. Local stdio servers have narrower availability, so this package uses the existing remote endpoint. [Claude plugin structure and testing](https://claude.com/docs/plugins/build)
+
+For an upgrade from a skills-based package, refresh or reinstall, refresh the MCP metadata and open a new session. Earlier skill URIs and MCP Skills extension methods are removed. See [documentation resources](help-center.md).
 
 ## Tools and interactive views
 

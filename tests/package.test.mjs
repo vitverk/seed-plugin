@@ -1,13 +1,11 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { cp, mkdtemp, rm, readFile, writeFile, symlink, utimes } from 'node:fs/promises';
+import { cp, mkdtemp, rm, readFile, writeFile, symlink, utimes, mkdir } from 'node:fs/promises';
 import { join } from 'node:path';
 import { tmpdir } from 'node:os';
-import { defaultRoot, validate, validateLivePackage, safePath } from '../scripts/validate.mjs';
+import { defaultRoot, validate, validateLivePackage, validateApiPackage, packageFiles, safePath } from '../scripts/validate.mjs';
 import { buildPackage, buildLivePackage, buildApiPackage } from '../scripts/package.mjs';
 import { parseRpcResponse } from '../scripts/rpc.mjs';
-import YAML from 'yaml';
-import { createMetadataValidator, decodeDocument, canonicalBody, bodyHash } from '../scripts/document-metadata.mjs';
 
 async function fixture(t) {
   const root = await mkdtemp(join(tmpdir(), 'seed-plugin-test-'));
@@ -98,29 +96,37 @@ test('marketplace keeps all installed identities and self-contained live assets'
   assert.equal(live.extensions['com.openai'].interface.displayName, 'SEED Live');
   assert.ok((await readFile(join(root, 'plugins/seed-live/assets/icon.png'))).length > 0);
 });
-test('live package includes its focused guidance and rejects guest skills', async t => {
+test('Demo and Live archives contain zero skills and reject reintroduced skill folders', async t => {
   const root = await fixture(t);
-  const result = await buildLivePackage(root);
-  assert.ok(result.files.includes('skills/settlement-operations/SKILL.md'));
-  assert.ok(result.files.includes('skills/settlement-operations/references/care.md'));
-  assert.ok(result.files.includes('skills/save-context/SKILL.md'));
-  assert.ok(!result.files.some(path => /seedling-companion|manage-calendar/.test(path)));
-  const entry = join(root, 'plugins/seed-live/skills/settlement-operations/SKILL.md');
-  const original = await readFile(entry, 'utf8');
-  await writeFile(entry, original.replace('references/care.md', 'references/missing.md'));
-  await assert.rejects(validateLivePackage(root), /reference must be discoverable/);
-  await writeFile(entry, original);
-  await cp(join(root, 'skills/seedling-companion'), join(root, 'plugins/seed-live/skills/seedling-companion'), { recursive: true });
-  await assert.rejects(validateLivePackage(root), /only the live settlement and save-context skills/);
+  for (const [kind, prefix, build] of [['demo', '', buildPackage], ['live', 'plugins/seed-live', buildLivePackage]]) {
+    const archive = await build(root, { quiet: true });
+    assert.deepEqual(archive.files.filter(path => /(^|\/)skills(\/|$)|(^|\/)SKILL\.md$/.test(path)), []);
+    assert.deepEqual(archive.files, await packageFiles(join(root, prefix), { kind }));
+    assert.ok(!archive.files.some(path => /^(sources|knowledge|schemas|scripts|tests|plugins)\//.test(path)));
+    const skills = join(root, prefix, 'skills');
+    await mkdir(skills);
+    await assert.rejects(build(root, { quiet: true }), /must not bundle a skills directory/);
+    await rm(skills, { recursive: true });
+  }
 });
-test('live checkpoint skill must have a valid discoverable identity', async t => {
+test('Demo and Live manifests reject skill declarations and onboarding bindings', async t => {
   const root = await fixture(t);
-  const entry = join(root, 'plugins/seed-live/skills/save-context/SKILL.md');
-  const original = await readFile(entry, 'utf8');
-  await writeFile(entry, original.replace('name: save-context', 'name: settlement-operations'));
-  await assert.rejects(validateLivePackage(root), /skill name must match its directory/);
-  await writeFile(entry, original.replace(/^---\n[\s\S]*?\n---\n/, ''));
-  await assert.rejects(validateLivePackage(root), /needs YAML frontmatter/);
+  for (const prefix of ['', 'plugins/seed-live/']) {
+    for (const suffix of ['plugin.json', '.codex-plugin/plugin.json', '.claude-plugin/plugin.json']) {
+      const path = `${prefix}${suffix}`;
+      const original = await readFile(join(root, path), 'utf8');
+      await alter(root, path, data => { data.skills = './skills/'; });
+      await assert.rejects(validate(root, { quiet: true }), /must not declare|cannot declare root skills|manifest schema|does not match Agent Plugins/);
+      await writeFile(join(root, path), original);
+      await alter(root, path, data => {
+        data.extensions ??= {};
+        data.extensions['com.openai'] ??= {};
+        data.extensions['com.openai'].onboardingSkill = './skills/onboarding/SKILL.md';
+      });
+      await assert.rejects(validate(root, { quiet: true }), /must not declare an onboarding skill/);
+      await writeFile(join(root, path), original);
+    }
+  }
 });
 test('lockfile root versions stay aligned with the released package', async t => {
   const root = await fixture(t);
@@ -129,24 +135,6 @@ test('lockfile root versions stay aligned with the released package', async t =>
     await alter(root, 'package-lock.json', modify);
     await assert.rejects(validate(root, { quiet: true }), /package-lock.json.*version drift/);
     await writeFile(join(root, 'package-lock.json'), original);
-  }
-});
-test('release packaging rejects extra archived material in the skills directory', async t => {
-  const root = await fixture(t);
-  await writeFile(join(root, 'skills/manage-calendar/references/archive.md'), '# Earlier calendar research\n');
-  await assert.rejects(buildPackage(root, { quiet: true }), /only the guest workflows and calendar reference/);
-});
-test('release packaging rejects archived research or app control inside allowed skill files', async t => {
-  const root = await fixture(t);
-  const replacements = [
-    ['skills/manage-calendar/references/seed-calendar.md', '# Native-game research\nhttps://klang-games.eu.theymes.com/hc/en/seed\n'],
-    ['skills/manage-calendar/SKILL.md', '\nOpen the app with cua.getApp("com.Klang.Seed").\n'],
-  ];
-  for (const [path, forbidden] of replacements) {
-    const original = await readFile(join(root, path), 'utf8');
-    await writeFile(join(root, path), original + forbidden);
-    await assert.rejects(buildPackage(root, { quiet: true }), /Native app control or archived research/);
-    await writeFile(join(root, path), original);
   }
 });
 test('portable MCP configuration is checked against the official schema', async t => {
@@ -217,17 +205,6 @@ test('referenced paths cannot escape the package root', () => {
   assert.throws(() => safePath(defaultRoot, './../private/icon.png'), /escapes/);
   assert.throws(() => safePath(defaultRoot, '/tmp/icon.png'), /prefixed/);
 });
-test('documentation inventory rejects an omitted source article', async t => {
-  const root = await fixture(t);
-  await rm(join(root, 'skills/seed-game-guide/resources/building/access-rights-317.md'));
-  await assert.rejects(validate(root, { quiet: true }), /coverage differs|not packaged/);
-});
-test('documentation content remains tied to its source digest', async t => {
-  const root = await fixture(t);
-  const path = join(root, 'skills/seed-game-guide/resources/building/access-rights-317.md');
-  await writeFile(path, `${await readFile(path, 'utf8')}\nA changed rule without refreshed provenance.\n`);
-  await assert.rejects(validate(root, { quiet: true }), /content hash mismatch/);
-});
 test('transport parser handles JSON and SSE while selecting the correct request', () => {
   const reply = { jsonrpc: '2.0', id: 2, result: { ok: true } };
   assert.deepEqual(parseRpcResponse(JSON.stringify(reply), 'application/json', 2), reply);
@@ -235,98 +212,34 @@ test('transport parser handles JSON and SSE while selecting the correct request'
   assert.throws(() => parseRpcResponse(JSON.stringify(reply), 'application/json', 3), /No JSON-RPC response/);
 });
 
-async function alterDocument(root, path, modify, { mirrorInventory = false } = {}) {
-  const fullPath = join(root, path);
-  const source = await readFile(fullPath, 'utf8');
-  const match = source.match(/^---\n([\s\S]*?)\n---\n/);
-  assert.ok(match);
-  const metadata = YAML.parse(match[1]);
-  modify(metadata);
-  await writeFile(fullPath, `---\n${YAML.stringify(metadata)}---\n${source.slice(match[0].length)}`);
-  if (mirrorInventory) await alter(root, 'sources/documentation-inventory.json', inventory => {
-    const entry = inventory.documents.find(item => item.path === path);
-    assert.ok(entry);
-    entry.metadata = metadata;
-  });
-}
-const importedManualPath = 'skills/seed-game-guide/resources/supplemental/library/manual-farming-and-crops.md';
-test('all references use the shared schema and canonical body hashing', async () => {
-  const schema = JSON.parse(await readFile(join(defaultRoot, 'schemas/document-metadata.schema.json'), 'utf8'));
-  const check = createMetadataValidator(schema);
-  const text = await readFile(join(defaultRoot, importedManualPath), 'utf8');
-  const parsed = decodeDocument(text, importedManualPath, check);
-  assert.equal(parsed.metadata.source_url, null);
-  assert.equal(parsed.metadata.verification_status, 'unverified_reference');
-  assert.equal(parsed.metadata.content_hash, bodyHash(parsed.body));
-  assert.equal(canonicalBody('\r\n  \r\n# Topic\r\n\r\nBody.\r\n\r\n'), '# Topic\n\nBody.\n');
-  assert.deepEqual(decodeDocument(text.replaceAll('\n', '\r\n'), importedManualPath, check), parsed);
-});
-test('missing imported source document cannot pass inventory coverage', async t => {
+test('connected packages retain secret, symlink and private binding checks', async t => {
   const root = await fixture(t);
-  await rm(join(root, importedManualPath));
-  await assert.rejects(validate(root, { quiet: true }), /not packaged/);
-});
-test('archive metadata cannot invent source URLs or current-game verification', async t => {
-  const root = await fixture(t);
-  const original = await readFile(join(root, importedManualPath), 'utf8');
-  for (const [modify, expected] of [
-    [metadata => { metadata.source_url = 'https://example.com/fake-source'; }, /no public source URL/],
-    [metadata => { metadata.retrieved_at = '2026-10-27T00:00:00Z'; }, /must not invent a retrieval date/],
-    [metadata => { metadata.verification_status = 'source_snapshot'; }, /Archive verification/],
-    [metadata => { metadata.source_type = 'help_center'; }, /Archive provenance kind/],
-  ]) {
-    await alterDocument(root, importedManualPath, modify);
-    await assert.rejects(validate(root, { quiet: true }), expected);
-    await writeFile(join(root, importedManualPath), original);
+  for (const [prefix, validator] of [['plugins/seed-live', validateLivePackage], ['plugins/seed-api', validateApiPackage]]) {
+    const manifest = `${prefix}/.codex-plugin/plugin.json`;
+    const original = await readFile(join(root, manifest), 'utf8');
+    await alter(root, manifest, data => { data.apps = './.app.json'; });
+    await assert.rejects(validator(root), /apps binding/);
+    await writeFile(join(root, manifest), original);
+    const secret = join(root, prefix, 'assets/secret.txt');
+    await writeFile(secret, '-----BEGIN PRIVATE KEY-----');
+    await assert.rejects(validator(root), /Potential credential/);
+    await rm(secret);
+    const link = join(root, prefix, 'assets/link.txt');
+    await symlink('/etc/hosts', link);
+    await assert.rejects(validator(root), /Symlinks/);
+    await rm(link);
   }
 });
-test('shared metadata schema rejects unknown fields and missing provenance', async t => {
+test('API skill allowlist still rejects missing and extra guidance', async t => {
   const root = await fixture(t);
-  const original = await readFile(join(root, importedManualPath), 'utf8');
-  for (const modify of [metadata => { metadata.unknown_metadata = 'unreviewed'; }, metadata => { delete metadata.source_path; }, metadata => { metadata.imported_at = 'not-a-timestamp'; }]) {
-    await alterDocument(root, importedManualPath, modify);
-    await assert.rejects(validate(root, { quiet: true }), /invalid document metadata/);
-    await writeFile(join(root, importedManualPath), original);
-  }
-});
-test('document identities and canonical source metadata cannot drift silently', async t => {
-  const root = await fixture(t);
-  const original = await readFile(join(root, importedManualPath), 'utf8');
-  await alterDocument(root, importedManualPath, metadata => { metadata.id = 'seed-help-center:article:317'; });
-  await assert.rejects(validate(root, { quiet: true }), /Duplicate documentation ID/);
-  await writeFile(join(root, importedManualPath), original);
-  await alterDocument(root, importedManualPath, metadata => { metadata.title = 'Changed source title'; });
-  await assert.rejects(validate(root, { quiet: true }), /differs from canonical inventory/);
-});
-test('known source conflicts remain resolvable and symmetric', async t => {
-  const root = await fixture(t);
-  await alterDocument(root, importedManualPath, metadata => { metadata.conflicts_with = []; }, { mirrorInventory: true });
-  await assert.rejects(validate(root, { quiet: true }), /conflict must be symmetric/);
-  await alterDocument(root, 'skills/seed-game-guide/resources/building/farming-310.md', metadata => { metadata.conflicts_with = []; }, { mirrorInventory: true });
-  await assert.rejects(validate(root, { quiet: true }), /Known source conflict must remain recorded/);
-});
-test('archive code cannot enter the packaged reference skill', async t => {
-  const root = await fixture(t);
-  await writeFile(join(root, 'skills/seed-game-guide/resources/supplemental/AgentPlayApi.cs'), '// Not part of the documentation corpus.\n');
-  await assert.rejects(buildPackage(root, { quiet: true }), /no archive code or configuration/);
-});
-test('source paths stay relative and source conflicts cannot reference themselves', async t => {
-  const root = await fixture(t);
-  const original = await readFile(join(root, importedManualPath), 'utf8');
-  const inventoryPath = join(root, 'sources/documentation-inventory.json');
-  const originalInventory = await readFile(inventoryPath, 'utf8');
-  for (const sourcePath of ['/tmp/external.md', 'tools/agent-play-api/../../external.md', 'tools\\agent-play-api\\library\\manual.md']) {
-    await alterDocument(root, importedManualPath, metadata => { metadata.source_path = sourcePath; }, { mirrorInventory: true });
-    await assert.rejects(validate(root, { quiet: true }), /source[_ ]?path|relative|traversal/i);
-    await writeFile(join(root, importedManualPath), original);
-    await writeFile(inventoryPath, originalInventory);
-  }
-  await alterDocument(root, importedManualPath, metadata => { metadata.imported_at = '2026-02-30T00:00:00Z'; }, { mirrorInventory: true });
-  await assert.rejects(validate(root, { quiet: true }), /invalid document metadata/);
-  await writeFile(join(root, importedManualPath), original);
-  await writeFile(inventoryPath, originalInventory);
-  await alterDocument(root, importedManualPath, metadata => { metadata.conflicts_with.push(metadata.id); }, { mirrorInventory: true });
-  await assert.rejects(validate(root, { quiet: true }), /self|own.*conflict/i);
+  const required = join(root, 'plugins/seed-api/skills/seed-api/references/tools.md');
+  const original = await readFile(required, 'utf8');
+  await rm(required);
+  await assert.rejects(validateApiPackage(root), /only its direct API guidance/);
+  await writeFile(required, original);
+  const extra = join(root, 'plugins/seed-api/skills/seed-api/extra.md');
+  await writeFile(extra, '# Unreviewed guidance\n');
+  await assert.rejects(validateApiPackage(root), /only its direct API guidance/);
 });
 
 // Keep the direct upstream connection distinct from both Flaxa packages.

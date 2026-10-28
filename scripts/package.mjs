@@ -39,6 +39,7 @@ async function buildConnectedPackage(root, validator, namePrefix) {
   execFileSync('python3', [fileURLToPath(new URL('./zip.py', import.meta.url)), pluginRoot, output], { input: JSON.stringify(files) });
   const sha256 = createHash('sha256').update(await readFile(output)).digest('hex');
   await writeFile(resolve(outputDirectory, `${namePrefix}-SHA256SUMS`), `${sha256}  ${name}\n`);
+  await writeFile(resolve(outputDirectory, `${namePrefix}-archive-inventory.json`), `${JSON.stringify({ version: manifest.version, archive: name, sha256, files }, null, 2)}\n`);
   console.log(`${name}\nSHA-256 ${sha256}`);
   return { output, sha256, files };
 }

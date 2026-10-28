@@ -18,14 +18,16 @@ Restart Codex if the refreshed marketplace is not visible. Open Plugins, choose 
 
 Use your own licensed SEED account. The connection currently uses the **SEED staging world**. The SEED MCP **developer** role is needed for developer reads and game-changing commands. Install **SEED Demo** separately if you want the anonymous temporary simulation. Existing `seed` installations are the demo; installing the live plugin (`seed-live`) does not replace them.
 
-Open a **new chat** and try:
+Demo and Live 2.0.0 load guidance on demand through standard MCP documentation tools and resources and contain zero bundled skills. After upgrading, refresh or reinstall the package, refresh connection metadata and open a **new chat** to discard old skill discovery. The same documentation contract serves ChatGPT, Codex and other MCP clients.
+
+Try:
 
 - “Using SEED Live, give me a compact care overview of my seedlings. Do not change anything or open a panel.”
 - “Using SEED Live, open my account view.”
 - “Using SEED Live, find workbench in the game catalog in English. Do not change anything.”
 - With developer access: “Using SEED Live, show simulation time and list available commands. Do not send any commands.”
 
-Only explicit open/browse requests render the account UI. A developer connection exposes 24 proxy tools (17 data/action tools plus seven presentation tools); a player connection exposes 18 (11 data tools plus seven presentation tools). The `send_command` tool can change the staging world. The demo plugin's calendar and fictional activities do not control your real account.
+Only explicit open/browse requests render the account UI. Discover the current tool list after connecting; Live runtime 2.0.0 adds documentation search and reads to both role-specific catalogs. The `send_command` tool can change the staging world. The demo plugin's calendar and fictional activities do not control your real account.
 
 ## Direct SEED API plugin
 

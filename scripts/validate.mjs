@@ -4,17 +4,12 @@ import { resolve, relative, dirname, sep } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import YAML from 'yaml';
 import Ajv2020 from 'ajv/dist/2020.js';
-import { createMetadataValidator, decodeDocument } from './document-metadata.mjs';
 
 export const defaultRoot = fileURLToPath(new URL('../', import.meta.url));
 export const endpoint = 'https://mcp.flaxa.app/demo/mcp';
 const schemaBase = 'https://agent-plugins.org/schemas/1.0.0/';
 const ignored = new Set(['.git', 'node_modules', 'dist']);
-const guestSkillFiles = [
-  'skills/manage-calendar/SKILL.md',
-  'skills/manage-calendar/references/seed-calendar.md',
-  'skills/seedling-companion/SKILL.md',
-];
+const apiSkillFiles = ['skills/seed-api/SKILL.md', 'skills/seed-api/references/tools.md'];
 const categories = ['Business & Operations', 'Communication', 'Creativity', 'Data & Analytics', 'Developer Tools', 'Education & Research', 'Entertainment', 'Finance', 'Healthcare', 'Other', 'Productivity', 'Scientific Research', 'Security', 'Travel'];
 export async function exists(path) { try { await access(path); return true; } catch { return false; } }
 export async function json(root, path) { return JSON.parse(await readFile(resolve(root, path), 'utf8')); }
@@ -55,20 +50,27 @@ function scanPublicText(content, path) {
   assert.ok(!/-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----|(?:gh[pousr]_[A-Za-z0-9]{30,}|github_pat_[A-Za-z0-9_]{40,}|sk-proj-[A-Za-z0-9_-]{30,})/.test(content), `Potential credential in ${path}`);
   assert.ok(!/plugin_asdk_app_[a-f0-9]{20,}|asdk_app_[a-f0-9]{20,}/.test(content), `Private app binding identifier in package: ${path}`);
 }
-async function validateGuestSkills(root, files) {
-  assert.deepEqual(files.filter(path => path.startsWith('skills/manage-calendar/') || path.startsWith('skills/seedling-companion/')), guestSkillFiles, 'Guest skill folders must contain only the guest workflows and calendar reference');
-  for (const path of guestSkillFiles) {
-    const content = await readFile(resolve(root, path), 'utf8');
-    assert.ok(!/com\.klang\.seed|cua\.getApp|\bmacOS\b|computer[- ]use|desktop[- ]extension|native[- ]game research|klang-games\.eu\.theymes\.com/i.test(content), `Native app control or archived research must not be packaged in guest skills: ${path}`);
-  }
+function noBundledSkills(manifest, label) {
+  assert.ok(!('skills' in manifest), `${label} must not declare bundled skills`);
+  assert.ok(!manifest.extensions?.['com.openai']?.onboardingSkill, `${label} must not declare an onboarding skill`);
 }
-export async function packageFiles(root = defaultRoot) {
-  const required = ['plugin.json', 'mcp.json', '.mcp.json', '.codex-plugin/plugin.json', '.claude-plugin/plugin.json', 'README.md', 'SUPPORT.md'];
+export async function packageFiles(root = defaultRoot, { kind = 'demo' } = {}) {
+  assert.ok(['demo', 'live', 'api'].includes(kind), 'Unknown package kind');
+  const required = ['plugin.json', 'mcp.json', '.mcp.json', '.codex-plugin/plugin.json', '.claude-plugin/plugin.json', 'README.md'];
+  if (kind === 'demo') required.push('SUPPORT.md');
+  if (kind === 'api') required.push('CONNECTION.md');
   const selected = [...required];
   for (const path of required) assert.ok(await exists(resolve(root, path)), `Missing package file: ${path}`);
-  for (const directory of ['skills', 'assets']) {
-    assert.ok(await exists(resolve(root, directory)), `Missing package directory: ${directory}`);
-    selected.push(...await walk(root, directory));
+  assert.ok(await exists(resolve(root, 'assets')), 'Missing package directory: assets');
+  selected.push(...await walk(root, 'assets'));
+  if (kind === 'api') {
+    assert.ok(await exists(resolve(root, 'skills')), 'API package requires its direct API guidance');
+    const skills = await walk(root, 'skills');
+    assert.deepEqual(skills, apiSkillFiles, 'API package must contain only its direct API guidance');
+    selected.push(...skills);
+  } else {
+    assert.ok(!(await exists(resolve(root, 'skills'))), `${kind} package must not bundle a skills directory`);
+    assert.ok(!selected.some(path => /(^|\/)skills(\/|$)|(^|\/)SKILL\.md$/.test(path)), `${kind} package must not bundle skill files in assets`);
   }
   if (await exists(resolve(root, 'LICENSE'))) selected.push('LICENSE');
   return selected.sort();
@@ -78,7 +80,6 @@ export async function validate(root = defaultRoot, { submission = false, quiet =
   const all = await walk(root);
   assert.ok(!all.includes('.app.json'), 'Public source must not contain .app.json');
   const files = await packageFiles(root);
-  await validateGuestSkills(root, files);
   assert.ok(files.length <= 512, 'Plugin must contain at most 512 files');
   let total = 0;
   for (const path of files) {
@@ -109,7 +110,7 @@ export async function validate(root = defaultRoot, { submission = false, quiet =
   assert.equal(portable.name, 'seed');
   assert.match(portable.version, /^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?(?:\+[0-9A-Za-z.-]+)?$/);
   for (const [label, manifest] of [['portable', portable], ['codex', codex], ['claude', claude]]) {
-    object(manifest, label); noAppBindings(manifest, label);
+    object(manifest, label); noAppBindings(manifest, label); noBundledSkills(manifest, label);
     assert.equal(manifest.name, portable.name, `${label} identity drift`);
     assert.equal(manifest.version, portable.version, `${label} version drift`);
     text(manifest.description, `${label}.description`);
@@ -159,27 +160,6 @@ export async function validate(root = defaultRoot, { submission = false, quiet =
   assert.equal(legacy.mcpServers.seed.url, endpoint);
   assert.ok(!legacy.mcpServers.seed.headers && !mcp.mcpServers.seed.headers, 'Anonymous endpoint must not include credential headers');
   assert.equal(codex.mcpServers, './.mcp.json');
-  const skillFiles = files.filter(x => /^skills\/[^/]+\/SKILL\.md$/.test(x));
-  assert.deepEqual(skillFiles.map(path => path.split('/')[1]).sort(), ['manage-calendar', 'seed-game-guide', 'seedling-companion'], 'Package both guest skills and one game guide');
-  for (const path of skillFiles) {
-    const content = await readFile(resolve(root, path), 'utf8');
-    const frontmatter = content.match(/^---\r?\n([\s\S]*?)\r?\n---(?:\r?\n|$)/);
-    assert.ok(frontmatter, `Missing YAML frontmatter: ${path}`);
-    const metadata = YAML.parse(frontmatter[1], { uniqueKeys: true });
-    assert.equal(metadata.name, path.split('/')[1], `Skill name/folder mismatch: ${path}`);
-    text(metadata.description, `Skill description: ${path}`);
-    for (const match of content.matchAll(/\[[^\]]*\]\(([^\s)]+)(?:\s+"[^"]*")?\)/g)) {
-      const target = match[1].replace(/^<|>$/g, '').split('#')[0];
-      if (!target || /^(?:https?:|mailto:|plugin:|app:)/.test(target)) continue;
-      const absolute = resolve(dirname(resolve(root, path)), decodeURIComponent(target));
-      assert.ok(!relative(root, absolute).startsWith('..'), `Skill reference escapes package: ${path}: ${target}`);
-      assert.ok(await exists(absolute), `Missing skill reference: ${path}: ${target}`);
-      assert.ok(files.includes(relative(root, absolute).split(sep).join('/')), `Skill reference not packaged: ${target}`);
-    }
-  }
-  for (const path of files.filter(x => /agents\/openai\.yaml$/.test(x))) object(YAML.parse(await readFile(resolve(root, path), 'utf8'), { uniqueKeys: true }), path);
-  await validateDocumentation(root, files);
-  if (openai.onboardingSkill) assert.ok(files.includes(relative(root, safePath(root, openai.onboardingSkill)).split(sep).join('/')), 'Onboarding skill must be packaged');
   const aiMarket = await json(root, '.agents/plugins/marketplace.json');
   const claudeMarket = await json(root, '.claude-plugin/marketplace.json');
   for (const [label, market] of [['OpenAI', aiMarket], ['Claude', claudeMarket]]) {
@@ -260,7 +240,10 @@ export async function validate(root = defaultRoot, { submission = false, quiet =
 
 export async function validateLivePackage(root = defaultRoot) {
   const liveRoot = resolve(root, 'plugins/seed-live');
-  const files = await walk(liveRoot);
+  const all = await walk(liveRoot);
+  assert.ok(!all.includes('.app.json'), 'Public source must not contain .app.json');
+  const files = await packageFiles(liveRoot, { kind: 'live' });
+  assert.deepEqual(all, files, 'Live package contains unexpected files');
   const portable = await json(liveRoot, 'plugin.json');
   const codex = await json(liveRoot, '.codex-plugin/plugin.json');
   const claude = await json(liveRoot, '.claude-plugin/plugin.json');
@@ -271,6 +254,7 @@ export async function validateLivePackage(root = defaultRoot) {
   assert.ok(checkPlugin(portable), `Live manifest schema: ${ajv.errorsText(checkPlugin.errors)}`);
   for (const manifest of [portable, codex, claude]) {
     noAppBindings(manifest);
+    noBundledSkills(manifest, 'Live manifest');
     assert.equal(manifest.name, 'seed-live');
     assert.equal(manifest.version, portable.version, 'Live package version drift');
   }
@@ -281,28 +265,6 @@ export async function validateLivePackage(root = defaultRoot) {
   assert.deepEqual(codex.interface, ui);
   assert.equal(claude.displayName, 'SEED Live');
   assert.equal(codex.mcpServers, './.mcp.json');
-  assert.ok(!codex.skills, 'Live package uses standard skill discovery');
-  const liveSkillFiles = [
-    'skills/save-context/SKILL.md',
-    'skills/settlement-operations/SKILL.md',
-    'skills/settlement-operations/references/building.md',
-    'skills/settlement-operations/references/care.md',
-    'skills/settlement-operations/references/mcp.md',
-    'skills/settlement-operations/references/production.md',
-  ].sort();
-  assert.deepEqual(files.filter(path => path.startsWith('skills/')), liveSkillFiles, 'Live package must contain only the live settlement and save-context skills and their references');
-  for (const path of liveSkillFiles.filter(path => path.endsWith('/SKILL.md'))) {
-    const content = await readFile(resolve(liveRoot, path), 'utf8');
-    const frontmatter = content.match(/^---\n([\s\S]*?)\n---\n/);
-    assert.ok(frontmatter, `Live skill needs YAML frontmatter: ${path}`);
-    const metadata = YAML.parse(frontmatter[1]);
-    assert.equal(metadata.name, path.split('/')[1], `Live skill name must match its directory: ${path}`);
-    text(metadata.description, 'Live skill description', 1024);
-  }
-  const skill = await readFile(resolve(liveRoot, 'skills/settlement-operations/SKILL.md'), 'utf8');
-  for (const path of liveSkillFiles.filter(path => path.includes('/references/'))) {
-    assert.ok(skill.includes(`references/${path.split('/').at(-1)}`), `Live reference must be discoverable: ${path}`);
-  }
   for (const key of ['logo', 'composerIcon']) {
     assert.ok(files.includes(relative(liveRoot, safePath(liveRoot, ui[key])).split(sep).join('/')), `Live icon missing: ${key}`);
   }
@@ -332,7 +294,9 @@ export async function validateLivePackage(root = defaultRoot) {
 
 export async function validateApiPackage(root = defaultRoot) {
   const apiRoot = resolve(root, 'plugins/seed-api');
-  const files = await walk(apiRoot);
+  const all = await walk(apiRoot);
+  const files = await packageFiles(apiRoot, { kind: 'api' });
+  assert.deepEqual(all, files, 'API package contains unexpected files');
   const portable = await json(apiRoot, 'plugin.json');
   const codex = await json(apiRoot, '.codex-plugin/plugin.json');
   const claude = await json(apiRoot, '.claude-plugin/plugin.json');
@@ -354,9 +318,7 @@ export async function validateApiPackage(root = defaultRoot) {
   assert.equal(claude.displayName, ui.displayName);
   assert.equal(codex.mcpServers, './.mcp.json');
   assert.equal(codex.skills, './skills/');
-  assert.deepEqual(files.filter(path => path.startsWith('skills/')), [
-    'skills/seed-api/SKILL.md', 'skills/seed-api/references/tools.md',
-  ], 'API package must contain only its direct API guidance');
+  assert.deepEqual(files.filter(path => path.startsWith('skills/')), apiSkillFiles, 'API package must contain only its direct API guidance');
   const skill = await readFile(resolve(apiRoot, 'skills/seed-api/SKILL.md'), 'utf8');
   const frontmatter = YAML.parse(skill.match(/^---\n([\s\S]*?)\n---\n/)?.[1] ?? '');
   assert.equal(frontmatter?.name, 'seed-api');
@@ -387,113 +349,6 @@ export async function validateApiPackage(root = defaultRoot) {
     }
   }
   return { root: apiRoot, files, manifest: portable };
-}
-
-export async function validateDocumentation(root, files) {
-  const validateMetadata = createMetadataValidator(await json(root, 'schemas/document-metadata.schema.json'));
-  const inventory = await json(root, 'sources/documentation-inventory.json');
-  assert.equal(inventory.schemaVersion, 1, 'Unsupported documentation inventory version');
-  assert.ok(Array.isArray(inventory.documents) && inventory.documents.length > 0, 'Documentation inventory must enumerate source files');
-  const referencePaths = files.filter(path => /^skills\/[^/]+\/(?:references|resources)\/.+\.md$/.test(path));
-  assert.ok(files.filter(path => path.startsWith('skills/')).every(path => /^skills\/[^/]+\/(?:SKILL\.md|(?:references|resources)\/.+\.md)$/.test(path)), 'Skills may package only Markdown instructions and references; no archive code or configuration');
-  const documents = new Map();
-  const byPath = new Map();
-  const linkedResources = new Map();
-  const helpUrls = new Set();
-  const collections = new Set();
-  for (const path of referencePaths) {
-    const document = decodeDocument(await readFile(resolve(root, path), 'utf8'), path, validateMetadata);
-    const { metadata, body } = document;
-    assert.ok(!documents.has(metadata.id), `Duplicate documentation ID: ${metadata.id}`);
-    documents.set(metadata.id, { ...document, path });
-    byPath.set(path, document);
-    assert.equal(metadata.language, 'en', `Document language: ${path}`);
-    if (metadata.source_type === 'derived') {
-      assert.equal(metadata.verification_status, 'derived', `Derived document verification: ${path}`);
-      assert.equal(metadata.source_collection, 'seed-plugin', `Derived document collection: ${path}`);
-      assert.equal(metadata.source_path, path, `Derived document path: ${path}`);
-      assert.equal(metadata.source_url, null, `Derived documents cannot invent source URLs: ${path}`);
-    } else {
-      collections.add(metadata.source_collection);
-      if (metadata.source_collection === 'seed-help-center') {
-        assert.equal(metadata.source_type, 'help_center', `Help-center provenance: ${path}`);
-        assert.ok(['article', 'navigation'].includes(metadata.document_type), `Help-center document type: ${path}`);
-        assert.equal(metadata.verification_status, 'source_snapshot', `Help-center verification: ${path}`);
-        assert.ok(metadata.retrieved_at, `Help-center retrieval date: ${path}`);
-        assert.match(metadata.source_url, /^https:\/\/klang-games\.eu\.theymes\.com\/hc\/en\/seed(?:\/(?:articles|categories)\/[a-z0-9-]+)?$/, `Canonical help-center URL: ${path}`);
-        assert.ok(!helpUrls.has(metadata.source_url), `Duplicate help-center source: ${metadata.source_url}`);
-        helpUrls.add(metadata.source_url);
-      } else if (metadata.source_collection === 'seed-agent-play-pr34377') {
-        assert.equal(metadata.source_url, null, `Archive documents have no public source URL: ${path}`);
-        assert.equal(metadata.retrieved_at, null, `Archive import must not invent a retrieval date: ${path}`);
-        assert.ok(metadata.imported_at, `Archive import date: ${path}`);
-        assert.equal(metadata.verification_status, 'unverified_reference', `Archive verification: ${path}`);
-        const sourcePath = metadata.source_path.replace(/^tools\/agent-play-api\//, '');
-        assert.notEqual(sourcePath, metadata.source_path, `Archive source path: ${path}`);
-        const kind = sourcePath.startsWith('library/manual-') ? ['in_game_manual', 'manual']
-          : sourcePath.startsWith('library/concept-') ? ['developer_reference', 'concept']
-          : sourcePath === 'library/index.md' ? ['collection_index', 'index']
-          : sourcePath.startsWith('docs/') ? ['local_api_reference', 'workflow']
-          : ['CLAUDE.md', 'DECISIONS.md'].includes(sourcePath) ? ['project_reference', 'project'] : null;
-        assert.ok(kind && sourcePath.endsWith('.md'), `Only reviewed archive Markdown is allowed: ${path}`);
-        assert.deepEqual([metadata.source_type, metadata.document_type], kind, `Archive provenance kind: ${path}`);
-        assert.ok(path.startsWith('skills/seed-game-guide/resources/supplemental/'), `Archive documents must stay in the supplemental resource folder: ${path}`);
-      } else assert.fail(`Unreviewed source collection: ${metadata.source_collection}`);
-    }
-    // Generated navigation has package-local links. Imported source prose is
-    // preserved as data, including its unresolved original client references.
-    if (metadata.source_type === 'derived') {
-      const links = new Set();
-      linkedResources.set(path, links);
-      for (const match of body.matchAll(/\[[^\]]*\]\(([^\s)]+)\)/g)) {
-        if (/^https?:/.test(match[1])) continue;
-        const target = match[1].split('#')[0];
-        if (!target) continue;
-        const absolute = resolve(root, dirname(path), decodeURIComponent(target));
-        const packagedPath = relative(root, absolute).split(sep).join('/');
-        assert.ok(files.includes(packagedPath), `Catalog resource is not packaged: ${path}: ${target}`);
-        links.add(packagedPath);
-      }
-    }
-  }
-  assert.deepEqual([...collections].sort(), ['seed-agent-play-pr34377', 'seed-help-center'], 'Both source collections must be packaged');
-  const inventoryPaths = [];
-  const inventoryIds = new Set();
-  for (const entry of inventory.documents) {
-    assert.ok(entry && typeof entry.path === 'string' && entry.metadata, 'Malformed documentation inventory entry');
-    assert.ok(!inventoryPaths.includes(entry.path), `Duplicate inventory path: ${entry.path}`);
-    validateMetadata(entry.metadata, `inventory:${entry.path}`);
-    assert.ok(!inventoryIds.has(entry.metadata.id), `Duplicate inventory ID: ${entry.metadata.id}`);
-    inventoryIds.add(entry.metadata.id);
-    inventoryPaths.push(entry.path);
-    assert.notEqual(entry.metadata.source_type, 'derived', 'Source inventory must not count generated navigation');
-    assert.ok(byPath.has(entry.path), `Source inventory resource is not packaged: ${entry.path}`);
-    assert.deepEqual(byPath.get(entry.path).metadata, entry.metadata, `Source metadata differs from canonical inventory: ${entry.path}`);
-  }
-  const actualSources = [...byPath].filter(([, document]) => document.metadata.source_type !== 'derived').map(([path]) => path).sort();
-  assert.deepEqual(actualSources, inventoryPaths.sort(), 'Documentation source coverage differs from canonical inventory');
-  for (const path of actualSources) {
-    const metadata = byPath.get(path).metadata;
-    const indexPath = metadata.source_collection === 'seed-help-center'
-      ? 'skills/seed-game-guide/resources/catalog.md'
-      : 'skills/seed-game-guide/resources/supplemental/index.md';
-    assert.ok(linkedResources.get(indexPath)?.has(path), `Source document missing from collection catalog: ${path}`);
-  }
-  for (const { metadata } of documents.values()) {
-    for (const otherId of metadata.conflicts_with) {
-      const other = documents.get(otherId);
-      assert.ok(other && otherId !== metadata.id, `Unresolved or self-referencing source conflict: ${metadata.id} -> ${otherId}`);
-      assert.ok(other.metadata.conflicts_with.includes(metadata.id), `Source conflict must be symmetric: ${metadata.id} -> ${otherId}`);
-    }
-  }
-  for (const [helpId, archiveId] of [
-    ['seed-help-center:article:310', 'seed-agent-play-pr34377:library/manual-farming-and-crops'],
-    ['seed-help-center:article:368', 'seed-agent-play-pr34377:library/manual-seasonal-events'],
-  ]) assert.ok(documents.get(helpId)?.metadata.conflicts_with.includes(archiveId) && documents.get(archiveId)?.metadata.conflicts_with.includes(helpId), `Known source conflict must remain recorded: ${helpId}`);
-  const guestReference = byPath.get('skills/manage-calendar/references/seed-calendar.md');
-  assert.ok(guestReference.body.startsWith('# Seed guest calendar reference\n'), 'Guest calendar reference body must remain scoped to the guest');
-  assert.doesNotMatch(guestReference.body, /https?:\/\//, 'The guest calendar reference must remain self-contained');
-  return { sourceCount: actualSources.length, referenceCount: referencePaths.length, collections: [...collections].sort() };
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1])).href) {

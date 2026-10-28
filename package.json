@@ -1,6 +1,6 @@
 {
   "name": "seed-plugin-packaging",
-  "version": "1.6.7",
+  "version": "2.0.0",
   "private": true,
   "description": "Validation and release packaging for the Seed Demo MCP plugin",
   "type": "module",
@@ -11,7 +11,8 @@
     "check": "node scripts/validate.mjs && node --test tests/*.test.mjs",
     "check:submission": "node scripts/validate.mjs --submission",
     "package": "node scripts/package.mjs",
-    "smoke": "node scripts/smoke.mjs"
+    "smoke": "node scripts/smoke.mjs",
+    "smoke:docs": "node scripts/smoke.mjs --docs-only"
   },
   "devDependencies": {
     "ajv": "8.20.0",
