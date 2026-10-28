@@ -18,6 +18,30 @@ adapt tasks proportionately to injuries and the user's wishes. Verify completion
 and consumption in the world, not merely command acceptance. Do not initiate
 recurring monitoring unless the user has requested it.
 
+## Standing authorization for routine gameplay
+
+An ongoing gameplay request authorizes routine, reversible in-game care,
+crafting, gathering, deliveries, repairs, schedules, bounded queues, and normal
+equipment placement or relocation needed for the stated goals, within verified
+user-owned or group-managed property. Do not ask repeatedly or call these actions
+high risk merely because they change game state or use a developer-tool transport
+with the normal Player actor.
+
+Verify the item, ownership, destination, footprint, resources and intended result.
+A different normal handler is an implementation choice when those same outcomes
+remain verified. Treat game validation errors as technical failures, not evidence
+that the user's authorization has expired. Ask when the scope materially changes,
+such as spending beyond an agreed budget, real-money or Pollen purchases,
+communications with other players, destructive changes outside the agreed plan,
+or account/security changes.
+
+These guidelines do not configure the independent tool-approval reviewer. Respect
+an actual rejection: never disable or bypass approval controls or game rules.
+Distinguish reviewer denials from game errors, continue unaffected work, and use
+genuinely safer verified alternatives where available. Request only the narrow
+additional approval actually required, naming the reviewer and its concrete
+reason. Do not promise that plugin instructions can prevent every future flag.
+
 ## Routine control and review cadence
 
 Operate through schedules, interests, priorities, provisioning and bounded
