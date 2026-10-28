@@ -1,0 +1,22 @@
+{
+  "name": "seed-api",
+  "version": "0.1.0",
+  "description": "Connect to Klang Games’ SEED staging world mcp-dev. Read seedlings, account data, schematics and societies; developer tools require the SEED MCP developer role.",
+  "author": {
+    "name": "Vitverk",
+    "url": "https://github.com/vitverk"
+  },
+  "keywords": [
+    "seed",
+    "seedlings",
+    "klang",
+    "staging",
+    "mcp"
+  ],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "homepage": "https://github.com/vitverk/seed-plugin",
+  "repository": "https://github.com/vitverk/seed-plugin",
+  "displayName": "seed-api",
+  "icon": "./assets/icon.png"
+}

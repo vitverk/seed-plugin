@@ -4,7 +4,7 @@ import { cp, mkdtemp, rm, readFile, writeFile, symlink, utimes } from 'node:fs/p
 import { join } from 'node:path';
 import { tmpdir } from 'node:os';
 import { defaultRoot, validate, safePath } from '../scripts/validate.mjs';
-import { buildPackage } from '../scripts/package.mjs';
+import { buildPackage, buildApiPackage } from '../scripts/package.mjs';
 import { parseRpcResponse } from '../scripts/rpc.mjs';
 import YAML from 'yaml';
 import { createMetadataValidator, decodeDocument, canonicalBody, bodyHash } from '../scripts/document-metadata.mjs';
@@ -90,7 +90,7 @@ test('marketplace live connection cannot silently point at the guest or direct u
     await writeFile(join(root, path), original);
   }
 });
-test('marketplace keeps both installed identities and self-contained live assets', async t => {
+test('marketplace keeps all installed identities and self-contained live assets', async t => {
   const root = await fixture(t);
   await alter(root, '.agents/plugins/marketplace.json', data => { data.plugins.pop(); });
   await assert.rejects(validate(root, { quiet: true }), /preserve the demo/);
@@ -303,4 +303,23 @@ test('source paths stay relative and source conflicts cannot reference themselve
   await writeFile(inventoryPath, originalInventory);
   await alterDocument(root, importedManualPath, metadata => { metadata.conflicts_with.push(metadata.id); }, { mirrorInventory: true });
   await assert.rejects(validate(root, { quiet: true }), /self|own.*conflict/i);
+});
+
+// Keep the direct upstream connection distinct from both Flaxa packages.
+test('direct API rejects proxy endpoints and produces an isolated archive', async t => {
+  const root = await fixture(t);
+  const path = 'plugins/seed-api/mcp.json';
+  const original = await readFile(join(root, path), 'utf8');
+  for (const url of ['https://mcp.flaxa.app/live/mcp', 'https://mcp.flaxa.app/demo/mcp']) {
+    await alter(root, path, data => { data.mcpServers['seed-api'].url = url; });
+    await assert.rejects(validate(root, { quiet: true }), /direct staging URL/);
+    await writeFile(join(root, path), original);
+  }
+  const archive = await buildApiPackage(root);
+  assert.ok(archive.output.endsWith('seed-api-plugin-0.1.0.zip'));
+  assert.ok(archive.files.includes('mcp.json'));
+  assert.deepEqual(archive.files.filter(path => path.startsWith('skills/')), [
+    'skills/seed-api/SKILL.md', 'skills/seed-api/references/tools.md',
+  ]);
+  assert.ok(!archive.files.some(path => /marketplace|seed-live|seedling-companion/.test(path)));
 });

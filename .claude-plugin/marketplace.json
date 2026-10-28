@@ -14,7 +14,12 @@
       "name": "seed-live",
       "source": "./plugins/seed-live",
       "description": "The authenticated SEED companion through the Flaxa proxy, currently connected to SEED staging."
+    },
+    {
+      "name": "seed-api",
+      "source": "./plugins/seed-api",
+      "description": "Connect to Klang Games’ SEED staging world mcp-dev. Read seedlings, account data, schematics and societies; developer tools require the SEED MCP developer role."
     }
   ],
-  "description": "SEED and SEED Demo companions from Vitverk."
+  "description": "SEED, SEED Demo and direct seed-api connections from Vitverk."
 }

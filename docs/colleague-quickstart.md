@@ -27,10 +27,24 @@ Open a **new chat** and try:
 
 Only explicit open/browse requests render the account UI. A developer connection exposes 24 proxy tools (17 data/action tools plus seven presentation tools); a player connection exposes 18 (11 data tools plus seven presentation tools). The `send_command` tool can change the staging world. The demo plugin's calendar and fictional activities do not control your real account.
 
+## Direct seed-api plugin
+
+Install **seed-api** from the same **SEED by Vitverk** marketplace to connect
+directly to Klang’s staging MCP instead of the Flaxa proxy:
+
+```sh
+codex plugin add seed-api@vitverk-seed
+```
+
+Sign in with your SEED account. Developer tools require `mcp_developer` and a
+fresh token with `seed:developer`. See the [seed-api guide](../plugins/seed-api/README.md)
+for all 16 announced tools and staging limitations. Select the intended connection
+explicitly when both SEED and seed-api are installed.
+
 ## Direct MCP fallback
 
 If your Codex version does not expose repository plugins, follow the [direct-connection quickstart](https://github.com/vitverk/seed/blob/main/mcp-app/docs/staging-quickstart.md). It includes explicit DCR login and the full scopes needed when automatic login requests catalog permission only. Use a separate connection rather than adding this fallback alongside an already-working SEED plugin.
 
-Canonical endpoints are `/live/mcp` for SEED and `/demo/mcp` for SEED Demo. Existing `/staging/mcp` proxy connections still work. The separate diagnostic upstream connection may stay installed.
+Canonical endpoints are `/live/mcp` for SEED and `/demo/mcp` for SEED Demo. Existing `/staging/mcp` proxy connections still work. The `seed-api` plugin uses the direct upstream staging endpoint.
 
 The marketplace commands and package layout follow [official OpenAI documentation](https://developers.openai.com/plugins/build/plugins). This repository marketplace is a team-distribution source, separate from a reviewed public directory listing.
