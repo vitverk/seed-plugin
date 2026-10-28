@@ -286,6 +286,7 @@ export async function validateLivePackage(root = defaultRoot) {
     'skills/settlement-operations/SKILL.md',
     'skills/settlement-operations/references/building.md',
     'skills/settlement-operations/references/care.md',
+    'skills/settlement-operations/references/mcp.md',
     'skills/settlement-operations/references/production.md',
   ].sort();
   assert.deepEqual(files.filter(path => path.startsWith('skills/')), liveSkillFiles, 'Live package must contain only the live settlement skill and its references');

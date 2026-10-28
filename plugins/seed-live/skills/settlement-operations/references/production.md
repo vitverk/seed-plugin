@@ -26,5 +26,8 @@ Observed in SEED staging, October 2026; inspect the current world and schemas.
   stock. On one trial, general storage repeatedly received cooking ingredients
   from a campfire; a higher request rank was tried, but its lasting effect was
   not established. Do not claim a self-sustaining logistics fix without testing.
-- Use current resource and recipe lookup results. Numeric recipe IDs from a
-  temporary fallback are build-specific and may expire; never guess an ID.
+- Use current resource and schematic lookup results: `find_schematics` with
+  `direction: produces` when advertised, or the older `find_recipes`/`makes`
+  schema while still deployed. Do not assume the rename supplies missing IDs.
+  Numeric schematic IDs from a temporary fallback are build-specific and may
+  expire; inspect provenance and prefer actual upstream IDs. Never guess an ID.

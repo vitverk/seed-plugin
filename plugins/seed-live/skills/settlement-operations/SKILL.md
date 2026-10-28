@@ -76,6 +76,8 @@ or replace the user's primary objective.
 
 Read only the reference relevant to the task:
 
+- [MCP capabilities and naming](references/mcp.md): schema changes, compact reads,
+  action discovery, sampled events and the difference between upstream and proxy tools.
 - [Care and recovery](references/care.md): health, injury, food, water and sleep.
 - [Production and logistics](references/production.md): crafting, supplies,
   deliveries, queues, machine contention and training.
@@ -87,4 +89,5 @@ For live developer commands, discover the current schema and use the authorized
 player identity; do not use system or developer privileges to bypass game rules.
 Use exact returned identifiers, keep writes sequential and observe the connector's
 rate limit. Check the inner result and world state before retrying an uncertain
-write. Never invent recipe IDs or reuse dated IDs from another world.
+write. Upstream may retry a timed-out command itself; one proxy call does not
+guarantee one execution. Never invent schematic IDs or reuse dated IDs from another world.

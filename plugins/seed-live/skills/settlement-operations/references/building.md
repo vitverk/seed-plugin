@@ -8,6 +8,10 @@ Observed in SEED staging, October 2026. Verify current access and boundaries.
   player's Seedling merely because it belongs to the same group.
 - Read plot cell bounds and placement responses; map centers alone do not prove
   continuity or a valid location. Check what is owned before moving objects.
+  Prefer `query_zones` (older `query_land`) for nearby bounds and ownership when
+  the connected tool exposes it. Check truncation; ownership alone is not access
+  or a terrain/collision check. Use owner kind instead of the removed `household`
+  flag on the renamed schema.
   Empty a container before moving it, provide a usable sleeping alternative and
   verify both the new object and the cleared site after the move.
 - Clearing vegetation can have multiple stages. In one trial, harvesting a
@@ -103,7 +107,8 @@ On an explicit validation rejection, fix the identified rule and recheck the
 plan and affected world facts before a bounded retry. Do not repeat unchanged
 requests or relocate blindly. After a timeout or ambiguous result, inspect the
 world for the site before considering another create command; avoid duplicate
-sites. Stop when a material prerequisite cannot be resolved within the user's
+sites. Upstream may retry a timed-out command even if the proxy does not, so
+one tool call does not prove only one creation attempt. Stop when a material prerequisite cannot be resolved within the user's
 scope. Record the actual response and verification outcome in dated game notes
 so a future session can distinguish a compiled plan, a placed site and a
 completed building.

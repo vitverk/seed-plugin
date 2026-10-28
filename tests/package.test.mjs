@@ -330,7 +330,8 @@ test('direct API rejects proxy endpoints and produces an isolated archive', asyn
     await writeFile(join(root, path), original);
   }
   const archive = await buildApiPackage(root);
-  assert.ok(archive.output.endsWith('seed-api-plugin-0.1.1.zip'));
+  const manifest = JSON.parse(await readFile(join(root, 'plugins/seed-api/plugin.json'), 'utf8'));
+  assert.ok(archive.output.endsWith(`seed-api-plugin-${manifest.version}.zip`));
   assert.ok(archive.files.includes('mcp.json'));
   assert.deepEqual(archive.files.filter(path => path.startsWith('skills/')), [
     'skills/seed-api/SKILL.md', 'skills/seed-api/references/tools.md',

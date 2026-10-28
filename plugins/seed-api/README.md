@@ -56,7 +56,9 @@ second per developer. The other announced tools read state or discover actions.
 See the [tool reference](skills/seed-api/references/tools.md) for all 16 tools
 and the [connection record](CONNECTION.md) for the configured environment.
 
-`list_events` supports cursor-based polling. MCP Events push delivery was
+`user_events` (previously `list_events`) supports cursor-based polling. Use the
+name advertised by the connected server; the 28 October naming pass was still
+pending in the catalog inspected for this review. MCP Events push delivery was
 announced as planned work later that evening; this package does not claim
 that push delivery or background automation is available.
 
@@ -68,6 +70,11 @@ and [tool-reference reply](https://vitverk.slack.com/archives/C0835FED87P/p17931
 on 27 October 2026, reviewed on 28 October. These source links require Slack access. Oddur
 reported end-to-end testing of all 16 tools. This package has not independently
 completed authenticated installation or tool testing in each client.
+
+The 28 October review also inspected the authenticated upstream catalog through
+the Flaxa proxy and the developer naming-pass note supplied by the user.
+The [tool reference](skills/seed-api/references/tools.md) records both the observed
+names and the announced replacements, including their associated field changes.
 
 The endpoint responded with HTTP 401 and OAuth resource discovery on
 28 October 2026. That confirms an authentication challenge, not successful
