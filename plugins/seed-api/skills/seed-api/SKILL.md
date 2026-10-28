@@ -42,7 +42,8 @@ unlocks every progression quest; use it only when that effect is requested.
 Find and verify the result with `my_seedlings`; do not automatically retry creation.
 
 `user_events` (formerly `list_events`) is cursor-based polling. MCP Events is
-included but disabled until Klang configures its callback host. Read the
+advertised upstream; delivery remains unverified. The developer announcement
+said callback-host setup was pending. Read the
 [Events test guide](references/events.md) for protocol discovery and the bounded
 host test. Do not promise push delivery until signed callback verification,
 a matching event received in ChatGPT, and unsubscribe have been verified.

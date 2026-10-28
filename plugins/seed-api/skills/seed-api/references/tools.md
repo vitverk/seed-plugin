@@ -121,6 +121,7 @@ After expiry, establish a new baseline and refresh state; do not assume replay
 of missed changes. MCP Events push delivery and unattended monitoring require
 separate evidence of server and host support.
 
-MCP Events push delivery is included in the new server but disabled pending
-callback-host setup. Follow the [Events test guide](events.md); successful
+MCP Events is advertised in the new server; delivery remains unverified. The
+developer announcement said callback-host setup was pending. Follow the
+[Events test guide](events.md); successful
 `user_events` polling is not evidence for any webhook or host delivery stage.

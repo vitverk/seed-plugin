@@ -15,7 +15,7 @@ codex plugin add seed-api@vitverk-seed
 
 For Claude Code, use `claude plugin marketplace add vitverk/seed-plugin` and
 `claude plugin install seed-api@vitverk-seed`. Refresh/reinstall an existing
-API package to version **0.2.0**, refresh connection metadata, and sign in again.
+API package to version **0.2.1**, refresh connection metadata, and sign in again.
 On the consent screen, include **`seed:market:read`** for Global Market access.
 Installing or updating the package does not grant a developer role.
 
@@ -41,8 +41,9 @@ The 28 October 2026 developer update announces the renamed `find_schematics`,
 `market` tool, and developer-only `create_seedling`. Use the currently advertised
 schemas. See the [tool reference](skills/seed-api/references/tools.md).
 
-MCP Events is included upstream but **remains off until Klang configures the
-callback host**. `user_events` is a polling tool and does not prove push delivery.
+MCP Events is advertised upstream, but delivery remains unverified. The developer
+announcement said callback-host setup was pending; its current configuration has
+not been independently measured. `user_events` is a polling tool and does not prove push delivery.
 The [Events test guide](skills/seed-api/references/events.md) covers discovery,
 signed callback verification, delivery into ChatGPT and unsubscribe. The Flaxa
 proxy currently does not forward the Events protocol; test the direct connector.
@@ -57,5 +58,9 @@ not sign-in by itself. Subsequent authenticated local verification passed tool
 discovery, a static read and token refresh on server `a846fcb5`. Its catalog
 contains all 18 expected tools. MCP2 Events discovery also passed and lists
 `seedling.chat_reply`, `seedling.need_crisis_started` and `user.notification`.
-No subscription or live delivery was tested. Refresh the connected catalog
+A later ChatGPT Work/Cloud check discovered the same events, but native task
+creation failed with a generic host service error. No event arrived; no matching
+saved host task was found, and upstream subscription state remains unknown.
+See the [Events test guide](skills/seed-api/references/events.md) for this
+inconclusive result and the timing/cleanup limits. Refresh the connected catalog
 before use. The package's offline checks do not establish authenticated access.
