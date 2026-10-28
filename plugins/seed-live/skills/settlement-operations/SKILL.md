@@ -76,6 +76,13 @@ show only verified facts. Do not present proposed plans as completed or recorded
 goals, invent percentages, or open a stack of cards. Ordinary reads remain text
 unless visual intent applies.
 
+After updating a character's schedule, verify the saved schedule and display
+the updated calendar widget for that character. This standing preference is
+explicit visual intent: use the connected staging `show_seedling_agenda` view,
+with the correct subject and capture time. Combine a coherent set of edits
+before rendering; only saved events belong in the calendar. If the edit or
+readback fails, report that instead of presenting the update as saved.
+
 ## Maintain the game-specific notes
 
 At the start of ongoing play, list the connected account's game notes and read
@@ -89,11 +96,15 @@ journal. Use list_game_notes, read_game_note and save_game_note when available.
 Record the environment, observation date/time, goals and priority order,
 verified outcomes, configured routines/queues, remaining allowances, blockers
 and next useful checks. Distinguish observations, hypotheses and unresolved
-issues; explicitly correct outdated claims. Keep transient entity IDs in dated
+issues; explicitly correct outdated claims. Keep the current checkpoint around
+6–8k characters, within the hard 16,000-character body limit. Put history and
+detailed evidence under separate note keys linked from it. Label numeric IDs as
+`entity_id`, `resource_id` or `schematic_id`; keep these transient IDs in dated
 account/session notes rather than reusable guidelines. Do not save credentials,
-private chat or raw account exports. Use the revision from a fresh read when
-updating an existing note (0 for a new key); on a conflict, reread and reconcile
-rather than overwriting newer content. If note tools are unavailable, keep an
+private chat or raw account exports. Count the body before saving and use
+`expected_revision` from a fresh read (0 only for a confirmed new key). Shorten or
+split on a length error; reread and reconcile on a revision conflict. Never
+repeat an oversized body unchanged. If note tools are unavailable, keep an
 authorized local handoff and report that connected notes were not updated.
 Note maintenance accompanies gameplay and does not increase polling frequency
 or replace the user's primary objective.
@@ -109,9 +120,12 @@ Read only the reference relevant to the task:
   the read-only `prepare_building_plan` helper, authorized site creation and
   construction, as well as ownership, clearance and moving equipment.
 
-For live developer commands, discover the current schema and use the authorized
-player identity; do not use system or developer privileges to bypass game rules.
-Use exact returned identifiers, keep writes sequential and observe the connector's
-rate limit. Check the inner result and world state before retrying an uncertain
-write. Upstream may retry a timed-out command itself; one proxy call does not
-guarantee one execution. Never invent schematic IDs or reuse dated IDs from another world.
+For live developer commands, reuse exact schemas within a task. A catalog
+fingerprint does not version every ECO command response schema; refresh affected
+schemas after a catalog/build change, reconnect, schema mismatch or uncertainty.
+Use the authorized player identity, exact returned IDs and
+supported helpers; do not use system or developer privileges to bypass game rules.
+Keep writes sequential and observe the connector's rate limit. Check the inner
+result and world state before retrying an uncertain write. Upstream may retry a
+timed-out command itself; one proxy call does not guarantee one execution. Never
+invent schematic IDs or reuse dated IDs from another world.

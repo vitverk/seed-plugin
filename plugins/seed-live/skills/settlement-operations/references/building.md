@@ -26,7 +26,11 @@ Observed in SEED staging, October 2026. Verify current access and boundaries.
   or a terrain/collision check. Use owner kind instead of the removed `household`
   flag on the renamed schema.
   Empty a container before moving it, provide a usable sleeping alternative and
-  verify both the new object and the cleared site after the move.
+  verify both the new object and the cleared site after the move. Packing and
+  placement can change `entity_id` and clear production. Resolve exact old/new
+  IDs and audit known workers' schedules/priorities, finite orders, provisioner
+  requests and routes as described in [Production and logistics](production.md).
+  Preserve care ordering; do not blindly retarget old references.
 - Clearing vegetation can have multiple stages. In one trial, harvesting a
   landscape tree converted it to an entity with further harvests, then a stump
   that required removal. An empty landscape scan alone did not prove clearance.
@@ -104,8 +108,9 @@ do not infer that modular building is intrinsically unsupported by SEED.
 
 ## Create the site and complete construction
 
-Discover the fresh `PlayerCommand.create_modular_building` schema and the
-connected player's identity before writing. Use the existing `send_command`
+Use the exact `PlayerCommand.create_modular_building` schema retained for the
+current capability revision; refresh it if the revision or schema changed.
+Verify the connected player's identity before writing. Use the existing `send_command`
 with the generated request, an authorized `Player` header and that same player
 entity as receiver. Do not use system/developer identity or
 `Constructible.debug_finish_construction`. Send only one creation at a time.

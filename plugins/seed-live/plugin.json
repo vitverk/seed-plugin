@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "seed-live",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "The authenticated SEED companion through the Flaxa proxy, currently connected to SEED staging.",
   "author": {
     "name": "Vitverk",

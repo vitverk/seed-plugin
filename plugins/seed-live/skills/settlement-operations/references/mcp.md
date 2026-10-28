@@ -25,18 +25,50 @@ ordinary care needs are broader. Follow linked need definitions when needed.
 
 ## Choose reads by the decision
 
-`my_seedlings(seedling_id, section: "now")` is a compact upstream option when
-advertised. It supplies current activity, feelings and location; do not infer
-missing health, skills or queues from it. Use `care_status` or a full document
-for injury/care checks, and `production_status` for known production targets.
-Those helpers, account notes and `prepare_building_plan` are proxy additions;
-their presence on a direct SEED connection must not be assumed.
+Prefer existing supported helpers: `care_status` for known characters' current
+activity, queues and care; `production_status` for known machines' progress and
+stock; `inspect_entities` with `view: work` for machine production details.
+Machine work is not the character's current activity. Use a full document only
+for fields the compact read omits. Preserve capture times, missing fields,
+incomplete/truncated results and unresolved IDs; missing is not healthy or empty.
+`my_seedlings(seedling_id, section: "now")` is another compact upstream option
+only when advertised. It supplies activity, feelings and location, not full care.
 
-The reviewed proxy 1.7.0 did not expose `section` or upstream action search,
-zone query, chat history and event polling. If still absent, use supported
-bounded reads and explicit command-schema discovery. Do not treat a hidden
-proxy capability as evidence that upstream SEED lacks it. Conversely, do not
-attempt an upstream tool through a proxy that has not exposed it.
+When the connected proxy exposes `logistics`, that inspect_entities preset joins
+known containers, provisioner requests and transfer routes without full recipe
+definitions. It does not establish usable stock, worker assignment or delivery
+completion. `relocation_impact` can check supplied old/new IDs and related workers
+or storage for possible references; matches need interpretation and verified
+destinations before edits. Neither helper scans for all dependencies.
+
+Helpers, account notes and `prepare_building_plan` are proxy additions. Check
+the actual connected catalog and input schemas before using them or upstream
+action search, zone query, chat history and events. Neither a deployment, release
+note nor availability on a different connection proves availability in this
+chat. Refresh the connection/catalog when appropriate; use supported bounded
+fallbacks if a tool remains absent. Absence on the proxy does not establish an
+upstream limitation.
+
+Reuse `inspect_entities.itemDefinitions` before making item lookups. Send at
+most 30 exact numeric `resource_id` values per `resolve_items` batch, deduplicated
+and split before calling. If a request exceeds the limit, split it rather than
+retrying the identical oversized batch. Retain unresolved/deferred IDs and
+continue only the unresolved lookup when `catalogComplete` is false.
+
+Use `commands` for name discovery and `command_schemas` for up to four exact
+schemas when available. Retain the exact request/response schemas and actor
+requirements with the connected capability revision; reuse them within the task.
+The proxy's `capability_status`, when available, supplies reviewed availability
+and a scoped catalog fingerprint. It does not version every ECO command response
+schema. Refresh affected schemas after a catalog/build change, reconnect, schema
+mismatch or uncertainty.
+Do not repeat broad discovery for a known unchanged command or treat a saved
+schema as proof that a capability is callable now.
+
+After a successful character schedule edit, read it back and show the updated
+calendar with the connected staging `show_seedling_agenda` renderer, following
+the standing visual preference. Preserve subject, saved events and capture time;
+do not substitute the guest Demo calendar or render unverified proposed edits.
 
 When `find_actions` is available, use it to find enabled actions instead of
 reconstructing context-menu requests. Preserve its returned `enqueueRequest`

@@ -13,6 +13,9 @@ Observed in SEED staging, October 2026; inspect the current world and schemas.
   exhausted completion cap will stop even when stock is low. Preserve bounded
   production and verify output; failed attempts and occupied stations can
   interrupt a chain. Queue acceptance is not execution or successful output.
+- Use `production_status` for compact known-machine progress and
+  `inspect_entities` with `view: work` for work details. Read character activity
+  through `care_status`; a machine's process does not establish who is doing it.
 - A cooking station can be unavailable while occupied by another activity. A
   separate resting place and ingredient/output storage can reduce contention;
   verify the action's actual disabled reason before moving anyone.
@@ -21,6 +24,12 @@ Observed in SEED staging, October 2026; inspect the current world and schemas.
   did not provide a worker; one haul could move only one carrying load. The
   route's delivered counter remained zero during a verified partial delivery.
   Inspect source and destination stock and active reservations before retrying.
+- After a verified machine relocation, resolve the exact old/new `entity_id`,
+  destination room and floor. Audit known workers' schedule and priority
+  references, finite production orders, provisioner requests and routes for the
+  old ID. Restore only still-needed work against verified destinations, read
+  each change back and preserve care ordering and capacity. Do not blindly
+  retarget all references or recreate a fulfilled queue.
 - Reserved ingredients may be unavailable to ordinary pickup until delivered.
   Check that personal harvest has been unloaded before counting it as shared
   stock. On one trial, general storage repeatedly received cooking ingredients
