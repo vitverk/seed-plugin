@@ -3,8 +3,8 @@ import assert from 'node:assert/strict';
 import { cp, mkdtemp, rm, readFile, writeFile, symlink, utimes } from 'node:fs/promises';
 import { join } from 'node:path';
 import { tmpdir } from 'node:os';
-import { defaultRoot, validate, safePath } from '../scripts/validate.mjs';
-import { buildPackage } from '../scripts/package.mjs';
+import { defaultRoot, validate, validateLivePackage, safePath } from '../scripts/validate.mjs';
+import { buildPackage, buildLivePackage } from '../scripts/package.mjs';
 import { parseRpcResponse } from '../scripts/rpc.mjs';
 import YAML from 'yaml';
 import { createMetadataValidator, decodeDocument, canonicalBody, bodyHash } from '../scripts/document-metadata.mjs';
@@ -97,6 +97,20 @@ test('marketplace keeps both installed identities and self-contained live assets
   const live = JSON.parse(await readFile(join(root, 'plugins/seed-live/plugin.json'), 'utf8'));
   assert.equal(live.extensions['com.openai'].interface.displayName, 'SEED');
   assert.ok((await readFile(join(root, 'plugins/seed-live/assets/icon.png'))).length > 0);
+});
+test('live package includes its focused guidance and rejects guest skills', async t => {
+  const root = await fixture(t);
+  const result = await buildLivePackage(root);
+  assert.ok(result.files.includes('skills/settlement-operations/SKILL.md'));
+  assert.ok(result.files.includes('skills/settlement-operations/references/care.md'));
+  assert.ok(!result.files.some(path => /seedling-companion|manage-calendar/.test(path)));
+  const entry = join(root, 'plugins/seed-live/skills/settlement-operations/SKILL.md');
+  const original = await readFile(entry, 'utf8');
+  await writeFile(entry, original.replace('references/care.md', 'references/missing.md'));
+  await assert.rejects(validateLivePackage(root), /reference must be discoverable/);
+  await writeFile(entry, original);
+  await cp(join(root, 'skills/seedling-companion'), join(root, 'plugins/seed-live/skills/seedling-companion'), { recursive: true });
+  await assert.rejects(validateLivePackage(root), /only the live settlement skill/);
 });
 test('lockfile root versions stay aligned with the released package', async t => {
   const root = await fixture(t);

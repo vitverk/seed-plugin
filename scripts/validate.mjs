@@ -276,7 +276,23 @@ export async function validateLivePackage(root = defaultRoot) {
   assert.deepEqual(codex.interface, ui);
   assert.equal(claude.displayName, 'SEED');
   assert.equal(codex.mcpServers, './.mcp.json');
-  assert.ok(!codex.skills && !files.some(path => path.startsWith('skills/')), 'Live package must not inherit guest simulation skills');
+  assert.ok(!codex.skills, 'Live package uses standard skill discovery');
+  const liveSkillFiles = [
+    'skills/settlement-operations/SKILL.md',
+    'skills/settlement-operations/references/building.md',
+    'skills/settlement-operations/references/care.md',
+    'skills/settlement-operations/references/production.md',
+  ].sort();
+  assert.deepEqual(files.filter(path => path.startsWith('skills/')), liveSkillFiles, 'Live package must contain only the live settlement skill and its references');
+  const skill = await readFile(resolve(liveRoot, liveSkillFiles.find(path => path.endsWith('/SKILL.md'))), 'utf8');
+  const frontmatter = skill.match(/^---\n([\s\S]*?)\n---\n/);
+  assert.ok(frontmatter, 'Live skill needs YAML frontmatter');
+  const metadata = YAML.parse(frontmatter[1]);
+  assert.equal(metadata.name, 'settlement-operations');
+  text(metadata.description, 'Live skill description', 1024);
+  for (const path of liveSkillFiles.filter(path => path.includes('/references/'))) {
+    assert.ok(skill.includes(`references/${path.split('/').at(-1)}`), `Live reference must be discoverable: ${path}`);
+  }
   for (const key of ['logo', 'composerIcon']) {
     assert.ok(files.includes(relative(liveRoot, safePath(liveRoot, ui[key])).split(sep).join('/')), `Live icon missing: ${key}`);
   }
