@@ -6,6 +6,8 @@ Observed in SEED staging, October 2026; inspect the current world and schemas.
   skills, access and delivery. Prefer useful training that also supplies an
   actual need. A published recipe's level may not show every live skill gate:
   check the character's available action and its reason when disabled.
+- A filtered stock list cannot establish that a container is empty. Inspect
+  relevant finished outputs as well as inputs before diagnosing a blockage.
 - Inspect inputs, output capacity, active step, reservations, completed count,
   stop conditions and assigned workers. A stock target combined with an
   exhausted completion cap will stop even when stock is low. Preserve bounded

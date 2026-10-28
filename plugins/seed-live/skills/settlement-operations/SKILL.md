@@ -29,6 +29,29 @@ when nothing actionable is expected. Batch health, needs, stocks and goal
 progress into each review. Configuration readback belongs to setup; do not use
 it as a reason to keep polling individual batches.
 
+## Focus on prioritized task demand
+
+Work backwards from the user's current priority order and the remaining task
+requirements. Count accessible stock, reservations and incoming deliveries before
+adding production or gathering. Size finite orders to unmet demand, allowing only
+a necessary recipe batch and a justified failure margin. Stop or disable fulfilled
+orders and remove obsolete input requests and training priorities. Surplus from a
+fixed-output batch is not a reason to refill it. Start training, reserve expansion
+or unrelated production only when it serves a prioritized task or the user asks.
+Keep essential food and water replenishment tied to bounded stock targets.
+
+## Report useful progress and show appropriate views
+
+During ongoing play, report regularly at the agreed review cadence with concrete
+completed work, remaining requirements, blockers and the next useful action.
+Avoid per-command narration. Honor the user's request for progress widgets where
+applicable: choose one focused goal, care, inventory or schedule view that makes
+the update clearer, following the connected tool's visual-intent contract.
+Read the intended account first, preserve capture times and exact subjects, and
+show only verified facts. Do not present proposed plans as completed or recorded
+goals, invent percentages, or open a stack of cards. Ordinary reads remain text
+unless visual intent applies.
+
 ## Maintain the game-specific notes
 
 At the start of ongoing play, list the connected account's game notes and read
