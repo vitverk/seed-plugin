@@ -5,6 +5,9 @@ import { pathToFileURL } from 'node:url';
 import { defaultRoot, endpoint } from './validate.mjs';
 import { parseRpcResponse } from './rpc.mjs';
 
+// The plugin declares no scopes, so hosts request what the canonical challenge offers.
+const seedScopes = ['seed:profile:read', 'seed:character-information:read', 'seed:societies:read', 'seed:wallet:read', 'seed:staticdata:read', 'seed:market:read', 'seed:developer'];
+
 // Public checks need no credentials. Authenticated checks only discover tools,
 // read documentation and UI resources; they never call game or note-write tools.
 export async function runSmoke({ docsOnly = false, token = process.env.SEED_SMOKE_TOKEN,
@@ -29,6 +32,7 @@ export async function runSmoke({ docsOnly = false, token = process.env.SEED_SMOK
     assert.equal((await request(path, {method})).status, 404, `Retired route: ${method} ${path}`);
   }
   check('Retired anonymous routes remain unavailable');
+  let canonicalScopes;
   for (const path of ['/mcp', '/live/mcp', '/staging/mcp']) {
     const response = await request(path);
     assert.equal(response.status, 401, `${path} must require authentication`);
@@ -39,8 +43,16 @@ export async function runSmoke({ docsOnly = false, token = process.env.SEED_SMOK
     const resource = await resourceResponse.json();
     assert.equal(resource.resource, `${origin}${path}`);
     assert.deepEqual(resource.authorization_servers, [path === '/mcp' ? origin : `${origin}/staging`], `${path} OAuth issuer`);
+    if (path === '/mcp') canonicalScopes = {
+      'challenge scope': /\bscope="([^"]*)"/.exec(response.headers.get('www-authenticate') ?? '')?.[1].split(' ') ?? [],
+      scopes_supported: resource.scopes_supported ?? [],
+    };
   }
   check('Canonical endpoint and compatibility aliases preserve OAuth audiences');
+  for (const [label, scopes] of Object.entries(canonicalScopes)) {
+    assert.deepEqual([...scopes].sort(), [...seedScopes].sort(), `/mcp ${label} must list every SEED permission exactly once`);
+  }
+  check('Canonical sign-in requests every SEED permission');
   for (const prefix of ['', '/staging']) {
     const metadataPath = `/.well-known/oauth-authorization-server${prefix}`;
     const response = await request(metadataPath);

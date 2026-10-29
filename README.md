@@ -22,7 +22,9 @@ claude plugin marketplace add vitverk/seed-plugin
 claude plugin install seed@vitverk-seed
 ```
 
-Sign in with your own licensed SEED account. Developer tools require the SEED MCP developer role and the relevant OAuth permissions. See the [connection quickstart](docs/colleague-quickstart.md) and [data behavior](docs/data-behavior.md).
+Sign in with your own licensed SEED account. The first sign-in asks for all currently supported SEED permissions together: profile, character information, societies, wallet, static data and market reads, and developer access. Codex also requests `offline_access` for refresh access. Review and explicitly approve the requested access during sign-in. Developer access can enable actions that change the game and also requires the upstream SEED MCP developer role. Wallet and market read access does not authorize purchases.
+
+Installing or updating the plugin, or requesting a scope, does not grant access. Existing grants remain unchanged; reconnect and approve a new consent request if your connection needs additional permissions. Both connection files are URL-only; the permissions come from the server's OAuth discovery. See the [connection quickstart](docs/colleague-quickstart.md) and [data behavior](docs/data-behavior.md).
 
 SEED is the sole plugin offered by this repository. The former optional direct API plugin has been removed; use SEED for the connected companion.
 

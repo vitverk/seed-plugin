@@ -1,6 +1,6 @@
 {
   "name": "seed-plugin-packaging",
-  "version": "3.3.0",
+  "version": "3.3.1",
   "private": true,
   "description": "Validation and release packaging for the authenticated SEED plugin",
   "type": "module",

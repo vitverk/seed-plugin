@@ -6,7 +6,8 @@ import {join} from 'node:path';
 import {runSmoke} from '../scripts/smoke.mjs';
 import {endpoint} from '../scripts/validate.mjs';
 
-function server({retiredStatus=404,badPolicy=false,canonicalIssuer='https://mcp.flaxa.app',authorizationOverrides={},legacyAuthorizationOverrides={},authorizationStatus=200}={}) {
+const seedScopes=['seed:profile:read','seed:character-information:read','seed:developer','seed:societies:read','seed:staticdata:read','seed:wallet:read','seed:market:read'];
+function server({retiredStatus=404,badPolicy=false,canonicalIssuer='https://mcp.flaxa.app',authorizationOverrides={},legacyAuthorizationOverrides={},authorizationStatus=200,scopes=seedScopes}={}) {
  const calls=[],requests=[];
  const json=(value,status=200,headers={})=>new Response(JSON.stringify(value),{status,headers:{'Content-Type':'application/json',...headers}});
  return {calls,requests,fetchImpl:async(url,options={})=>{
@@ -18,7 +19,7 @@ function server({retiredStatus=404,badPolicy=false,canonicalIssuer='https://mcp.
   if(['/demo/mcp','/guest/channel'].includes(path)) return new Response('',{status:retiredStatus});
   if(path.startsWith('/.well-known/oauth-protected-resource')) {
    const resourcePath=path.replace('/.well-known/oauth-protected-resource','');
-   return json({resource:`https://mcp.flaxa.app${resourcePath}`,authorization_servers:[resourcePath==='/mcp'?canonicalIssuer:'https://mcp.flaxa.app/staging']});
+   return json({resource:`https://mcp.flaxa.app${resourcePath}`,authorization_servers:[resourcePath==='/mcp'?canonicalIssuer:'https://mcp.flaxa.app/staging'],...(resourcePath==='/mcp'?{scopes_supported:scopes}:{})});
   }
   if(['/.well-known/oauth-authorization-server','/.well-known/oauth-authorization-server/staging'].includes(path)) {
    const legacy=path.endsWith('/staging');
@@ -26,7 +27,7 @@ function server({retiredStatus=404,badPolicy=false,canonicalIssuer='https://mcp.
    return json({issuer,authorization_endpoint:`${issuer}/oauth/authorize`,token_endpoint:`${issuer}/oauth/token`,registration_endpoint:`${issuer}/oauth/register`,protected_resources:[endpoint,'https://mcp.flaxa.app/live/mcp','https://mcp.flaxa.app/staging/mcp'],...(legacy?legacyAuthorizationOverrides:authorizationOverrides)},authorizationStatus);
   }
   assert.ok(['/mcp','/live/mcp','/staging/mcp'].includes(path),`Unexpected request: ${path}`);
-  if(!options.headers?.Authorization) return new Response('',{status:401,headers:{'WWW-Authenticate':`Bearer resource_metadata="https://mcp.flaxa.app/.well-known/oauth-protected-resource${path}"`}});
+  if(!options.headers?.Authorization) return new Response('',{status:401,headers:{'WWW-Authenticate':`Bearer resource_metadata="https://mcp.flaxa.app/.well-known/oauth-protected-resource${path}"${path==='/mcp'?`, scope="${scopes.join(' ')}"`:''}`}});
   assert.equal(path,'/mcp','Credentials must be sent only to the canonical audience');
   const request=JSON.parse(options.body); calls.push(request);
   let result;
@@ -43,7 +44,7 @@ function server({retiredStatus=404,badPolicy=false,canonicalIssuer='https://mcp.
 async function directory(t){const path=await mkdtemp(join(tmpdir(),'seed-smoke-'));t.after(()=>rm(path,{recursive:true,force:true}));return path;}
 test('public release smoke verifies authenticated routing and retired paths without game reads',async t=>{
  const fixture=server();const report=await runSmoke({token:undefined,fetchImpl:fixture.fetchImpl,outputDirectory:await directory(t),log:()=>{}});
- assert.equal(report.authenticated,'not_run');assert.equal(report.checks.length,4);assert.deepEqual(fixture.calls,[]);
+ assert.equal(report.authenticated,'not_run');assert.equal(report.checks.length,5);assert.deepEqual(fixture.calls,[]);
  assert.ok(fixture.requests.every(request=>!request.authenticated));
  assert.deepEqual(fixture.requests.filter(request=>request.path.includes('oauth-authorization-server')).map(request=>request.path),['/.well-known/oauth-authorization-server','/.well-known/oauth-authorization-server/staging']);
  assert.ok(fixture.requests.every(request=>request.method==='GET'||['/demo/mcp','/guest/channel'].includes(request.path)));
@@ -51,7 +52,7 @@ test('public release smoke verifies authenticated routing and retired paths with
 test('authenticated documentation smoke verifies deployed policy and never calls gameplay tools',async t=>{
  const fixture=server();const outputDirectory=await directory(t);const token='synthetic-test-token';
  const report=await runSmoke({docsOnly:true,token,expectedVersion:'2.5.0',fetchImpl:fixture.fetchImpl,outputDirectory,log:()=>{}});
- assert.equal(report.authenticated,'passed');assert.equal(report.checks.length,7);
+ assert.equal(report.authenticated,'passed');assert.equal(report.checks.length,8);
  assert.deepEqual([...new Set(fixture.calls.filter(c=>c.method==='tools/call').map(c=>c.params.name))],['read_seed_doc']);
  const saved=await readFile(join(outputDirectory,'smoke-docs-results.json'),'utf8');assert.ok(!saved.includes(token));
  assert.deepEqual(JSON.parse(saved),report);
@@ -62,6 +63,12 @@ test('release smoke rejects canonical discovery that sends new connections to st
  await assert.rejects(runSmoke({token:undefined,fetchImpl:server({authorizationStatus:404}).fetchImpl,outputDirectory,log:()=>{}}),/oauth-authorization-server must be available/);
  for(const [field,route] of [['issuer',''],['authorization_endpoint','/oauth/authorize'],['token_endpoint','/oauth/token'],['registration_endpoint','/oauth/register']]) {
   await assert.rejects(runSmoke({token:undefined,fetchImpl:server({authorizationOverrides:{[field]:`https://mcp.flaxa.app/staging${route}`}}).fetchImpl,outputDirectory,log:()=>{}}),new RegExp(`oauth-authorization-server ${field}`));
+ }
+});
+test('release smoke requires the canonical sign-in to request every SEED permission once',async t=>{
+ const outputDirectory=await directory(t);
+ for(const scopes of [seedScopes.filter(scope=>scope!=='seed:market:read'),[...seedScopes,'seed:market:read'],[...seedScopes,'seed:market:write'],[]]) {
+  await assert.rejects(runSmoke({token:undefined,fetchImpl:server({scopes}).fetchImpl,outputDirectory,log:()=>{}}),/every SEED permission exactly once/);
  }
 });
 test('release smoke preserves the issuer and endpoints used by existing alias connections',async t=>{
