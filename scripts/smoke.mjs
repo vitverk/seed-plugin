@@ -32,12 +32,28 @@ export async function runSmoke({ docsOnly = false, token = process.env.SEED_SMOK
   for (const path of ['/mcp', '/live/mcp', '/staging/mcp']) {
     const response = await request(path);
     assert.equal(response.status, 401, `${path} must require authentication`);
-    assert.ok(response.headers.get('www-authenticate')?.includes(`oauth-protected-resource${path}`));
-    const resource = await (await request(`/.well-known/oauth-protected-resource${path}`)).json();
+    const metadataPath = `/.well-known/oauth-protected-resource${path}`;
+    assert.ok(response.headers.get('www-authenticate')?.includes(`resource_metadata="${origin}${metadataPath}"`), `${path} must advertise its own resource metadata`);
+    const resourceResponse = await request(metadataPath);
+    assert.equal(resourceResponse.status, 200, `${metadataPath} must be available`);
+    const resource = await resourceResponse.json();
     assert.equal(resource.resource, `${origin}${path}`);
-    assert.deepEqual(resource.authorization_servers, [`${origin}/staging`]);
+    assert.deepEqual(resource.authorization_servers, [path === '/mcp' ? origin : `${origin}/staging`], `${path} OAuth issuer`);
   }
   check('Canonical endpoint and compatibility aliases preserve OAuth audiences');
+  for (const prefix of ['', '/staging']) {
+    const metadataPath = `/.well-known/oauth-authorization-server${prefix}`;
+    const response = await request(metadataPath);
+    assert.equal(response.status, 200, `${metadataPath} must be available`);
+    const authorization = await response.json();
+    const issuer = `${origin}${prefix}`;
+    assert.equal(authorization.issuer, issuer, `${metadataPath} issuer`);
+    for (const [field, route] of [['authorization_endpoint', 'authorize'], ['token_endpoint', 'token'], ['registration_endpoint', 'register']]) {
+      assert.equal(authorization[field], `${issuer}/oauth/${route}`, `${metadataPath} ${field}`);
+    }
+    assert.ok(authorization.protected_resources?.includes(endpoint), `${metadataPath} must support the canonical MCP audience`);
+  }
+  check('Root OAuth discovery advertises canonical endpoints and staging discovery remains compatible');
   let server;
   if (token) {
     let id = 0;

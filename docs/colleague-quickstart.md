@@ -11,6 +11,8 @@ codex mcp login seed --oauth-client-registration dcr
 
 Existing connections may have an older local name. Use the name reported by your client when reconnecting. Existing `/live/mcp` and `/staging/mcp` URLs remain compatibility aliases; new connections should use `/mcp`.
 
+The canonical connection discovers the OAuth issuer `https://mcp.flaxa.app` and uses `/oauth/authorize`, `/oauth/token` and `/oauth/register`. Existing alias connections retain the `/staging` issuer and their own resource audiences. If a connection at `/mcp` still opens `/staging/oauth/authorize`, refresh its OAuth metadata and reconnect at `/mcp`. These proxy URLs do not change the upstream game world.
+
 Open a new chat and ask for a care overview without changing anything. SEED can show a useful focused card for substantive questions. Ask for text only when preferred, or “Open my SEED account view” for the full companion. A previous card does not cause background refreshes.
 
 Developer tools require the SEED MCP developer role and the corresponding OAuth scope. Commands can change the game; a successful receipt is not proof that the requested work finished. Missing permissions require reauthorization, not a switch to a different account or interface.
