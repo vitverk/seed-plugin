@@ -8,4 +8,4 @@ Cards display bounded snapshots with the original subject, source and capture ti
 
 The currently configured upstream world is `mcp-dev2` in SEED staging. Keep its credentials, identifiers and account notes separate from older worlds. This technical environment marker remains in machine responses and operational records.
 
-The direct SEED API plugin has its own OAuth connection and grants. Installing either package does not grant account or developer access. Neither package embeds credentials.
+Installing SEED does not grant account or developer access. The package embeds no credentials.

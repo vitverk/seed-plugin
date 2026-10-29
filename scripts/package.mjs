@@ -3,7 +3,7 @@ import { readFile, mkdir, writeFile, rename, rm } from 'node:fs/promises';
 import { execFileSync } from 'node:child_process';
 import { resolve } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
-import { defaultRoot, validate, validateApiPackage } from './validate.mjs';
+import { defaultRoot, validate } from './validate.mjs';
 
 export async function buildPackage(root = defaultRoot, { outputDirectory = resolve(root, 'dist'), quiet = false } = {}) {
   const { files, manifest } = await validate(root, { quiet });
@@ -22,30 +22,11 @@ export async function buildPackage(root = defaultRoot, { outputDirectory = resol
   return { output, sha256, files };
 }
 
-export async function buildApiPackage(root = defaultRoot) {
-  return buildConnectedPackage(root, validateApiPackage, 'seed-api');
-}
-
-async function buildConnectedPackage(root, validator, namePrefix) {
-  const { root: pluginRoot, files, manifest } = await validator(root);
-  const outputDirectory = resolve(root, 'dist');
-  await mkdir(outputDirectory, { recursive: true });
-  const name = `${namePrefix}-plugin-${manifest.version}.zip`;
-  const output = resolve(outputDirectory, name);
-  execFileSync('python3', [fileURLToPath(new URL('./zip.py', import.meta.url)), pluginRoot, output], { input: JSON.stringify(files) });
-  const sha256 = createHash('sha256').update(await readFile(output)).digest('hex');
-  await writeFile(resolve(outputDirectory, `${namePrefix}-SHA256SUMS`), `${sha256}  ${name}\n`);
-  await writeFile(resolve(outputDirectory, `${namePrefix}-archive-inventory.json`), `${JSON.stringify({ version: manifest.version, archive: name, sha256, files }, null, 2)}\n`);
-  console.log(`${name}\nSHA-256 ${sha256}`);
-  return { output, sha256, files };
-}
 if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1])).href) {
   try {
-    if (process.argv.includes('--api')) await buildApiPackage();
-    else {
-      // dist contains generated release artifacts only; do not upload stale retired packages.
-      await rm(resolve(defaultRoot, 'dist'), { recursive: true, force: true });
-      await buildPackage();
-    }
+    if (process.argv.length > 2) throw new Error('This repository packages only SEED; no package options are supported.');
+    // dist contains generated release artifacts only; do not upload stale retired packages.
+    await rm(resolve(defaultRoot, 'dist'), { recursive: true, force: true });
+    await buildPackage();
   } catch (error) { console.error(error.message); process.exitCode = 1; }
 }

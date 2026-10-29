@@ -19,6 +19,6 @@ Developer tools require the SEED MCP developer role and the corresponding OAuth 
 
 The current upstream deployment is the `mcp-dev2` staging world. This is an environment detail, not a separate plugin. Rediscover world-specific identifiers after a world migration; older notes and credentials may not apply.
 
-Most users need only SEED. Install the optional SEED API plugin only for a workflow that requires the direct upstream interface, such as testing its event protocol. Its tools, permissions and documentation are distinct.
+SEED is the sole plugin offered by this repository. If you previously installed the separate SEED API plugin, remove it in your client and use SEED. Removing it from the repository does not uninstall existing client installations.
 
 Refresh MCP metadata and start a new chat after an upgrade. Existing authenticated plugin installs retain the internal `seed-live` identifier; its displayed name is SEED. The retired anonymous `seed` plugin is no longer offered and cannot be used to control your SEED account.

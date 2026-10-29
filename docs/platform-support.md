@@ -6,6 +6,6 @@ MCP Apps-capable hosts can display the full companion, focused widgets and chara
 
 SEED bundles no skills. Standard `search_seed_docs`, `read_seed_doc` and `seed://docs/index` discovery supply its guidance. Refresh metadata and begin a new chat after updating.
 
-The optional SEED API connection targets Klang's direct interface and has an independent capability catalog. Existing OAuth aliases and internal identifiers remain compatibility details; user-facing presentation is SEED.
+Existing OAuth aliases and internal identifiers remain compatibility details; user-facing presentation is SEED.
 
 The server advertises the SEED S logo in its initialization metadata and on tools and resources, using the same-origin PNG at `https://mcp.flaxa.app/brand/seed-s-mark-v2.png`. MCP-capable clients choose how to display supplied icons. OpenAI UI entrypoints prefer tool icons; hosted app listings can instead use the app's registered logo. A custom app's listing logo may therefore need its own setting even when MCP icons are present. See the [MCP icon contract](https://github.com/modelcontextprotocol/modelcontextprotocol/blob/main/docs/specification/2025-11-25/basic/index.mdx#icons) and [OpenAI entrypoint icon precedence](https://github.com/openai/mcp-extensions/blob/main/docs/spec.md#entrypoint-icons).
