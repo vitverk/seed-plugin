@@ -1,0 +1,29 @@
+{
+  "version": "3.1.1",
+  "releaseUrl": "https://github.com/vitverk/seed-plugin/releases/tag/v3.1.1",
+  "publishedAt": "2026-10-29T11:25:03Z",
+  "tag": "v3.1.1",
+  "tagCommit": "81d1ba8bb43141fe35bb3ec4ccbb3ce9621e7000",
+  "pullRequest": "https://github.com/vitverk/seed-plugin/pull/6",
+  "archive": "seed-plugin-3.1.1.zip",
+  "sha256": "18fdeb0d0fb9b4fe7ad57e0b935bb8b957c93d363c546000d63787f2c1ca176e",
+  "files": 9,
+  "skills": 0,
+  "canonicalMcp": "https://mcp.flaxa.app/mcp",
+  "assets": [
+    "seed-plugin-3.1.1.zip",
+    "SHA256SUMS",
+    "archive-inventory.json"
+  ],
+  "assetsDownloadedAndVerified": true,
+  "packageTests": 24,
+  "pullRequestChecks": "passed",
+  "publicRoutingAndOAuthSmoke": "passed",
+  "observedHealthVersion": "2.7.3",
+  "authenticatedSignInAndHostAttachment": "not reverified for this publication",
+  "serverDeployment": "not required: package and catalogs only; no server source changes",
+  "latestGitHubRelease": true,
+  "publicDirectorySubmission": false,
+  "directApiRemoved": true,
+  "existingClientInstallations": "not automatically uninstalled"
+}

@@ -21,3 +21,11 @@ Published [SEED 3.1.0](https://github.com/vitverk/seed-plugin/releases/tag/v3.1.
 The uploaded ZIP, checksum and inventory were downloaded and matched the validated local artifacts byte-for-byte. The archive SHA-256 is `bad0b689c2043b395f05d2d63b577bb82a003af819abe9c240a26db1cfd8cb27`. See the [release receipt](seed-3.1.0-release.json).
 
 This publishes the repository package; it does not submit to a public plugin directory or update installed host connections. Authenticated sign-in and host widget attachment were not reverified during publication. The optional direct API package and retired Demo were not republished.
+
+## Published package — SEED 3.1.1
+
+Published [SEED 3.1.1](https://github.com/vitverk/seed-plugin/releases/tag/v3.1.1) on 29 October 2026 at 11:25:03 UTC after merging [PR #6](https://github.com/vitverk/seed-plugin/pull/6). The release tag points to `81d1ba8bb43141fe35bb3ec4ccbb3ce9621e7000`. Both repository catalogs now offer only the primary SEED plugin.
+
+All 24 tests and PR checks passed. The nine-file ZIP, checksum and inventory were downloaded from the published release and matched the validated local artifacts byte-for-byte. The archive SHA-256 is `18fdeb0d0fb9b4fe7ad57e0b935bb8b957c93d363c546000d63787f2c1ca176e`. See the [release receipt](seed-3.1.1-release.json).
+
+Public health, routing and OAuth checks passed against MCP 2.7.3. No server deployment was required for this package-only change. Authenticated sign-in and host widget rendering were not reverified. Existing client installations of SEED API are not automatically uninstalled. This release does not submit the plugin to a public directory.
