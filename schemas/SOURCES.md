@@ -12,9 +12,9 @@ the compatibility manifests. Schemas are development files and are excluded from
 the release ZIP.
 
 The published MCP 1.0.0 schema currently forbids server-level extension fields.
-Seed uses the portable URL and transport only. Its endpoint is anonymous;
-select no authentication when configuring the submission portal. This avoids
-relying on OpenAI-specific authentication extensions unsupported by this schema.
+Seed uses the portable URL and transport only and validates `mcp.json` without
+removing any field. The endpoint advertises its own OAuth metadata. Codex reads
+the root manifests and silently drops a server that declares extensions.
 
 These schemas do not validate OpenAI or Claude portal readiness. The separate
 `npm run check:submission` command reports missing listing/review declarations

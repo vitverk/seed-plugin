@@ -94,7 +94,6 @@ export async function validate(root = defaultRoot, { submission = false, quiet =
   for (const [path, schema] of [['plugin.json', 'plugin.schema.json'], ['mcp.json', 'mcp.schema.json']]) {
     const check = ajv.compile(await json(root, `schemas/${schema}`));
     const data = await json(root, path);
-    if (path === 'mcp.json') delete data.mcpServers?.seed_live?.extensions;
     assert.ok(check(data), `${path} does not match Agent Plugins 1.0.0: ${ajv.errorsText(check.errors)}`);
   }
   assert.equal(portable.$schema, `${schemaBase}plugin.schema.json`);
@@ -150,10 +149,9 @@ export async function validate(root = defaultRoot, { submission = false, quiet =
   assert.equal(server.url, endpoint, 'SEED package must use the proxy canonical URL');
   assert.deepEqual(legacy, { mcpServers: { seed_live: { type: 'http', url: endpoint } } });
   assert.ok(!server.headers, 'Do not embed credentials in the public package');
-  assert.deepEqual(server.extensions, { 'com.openai': { auth: {
-    type: 'oauth', client: { mode: 'dcr' }, resource: endpoint,
-    baseScopes: ['seed:profile:read', 'seed:character-information:read', 'seed:societies:read', 'seed:wallet:read', 'seed:staticdata:read', 'seed:developer', 'offline_access'],
-  } } });
+  // Codex reads the root manifests and silently drops a server that declares
+  // extensions. OAuth and scopes come from the server's own discovery metadata.
+  assert.ok(!('extensions' in server), 'mcp.json server must not declare extensions; Codex would install SEED without its MCP server');
   assert.equal(ui.displayName, 'SEED');
   assert.equal(claude.displayName, 'SEED');
   for (const value of [portable.description, claude.description, ...Object.values(ui).flat().filter(value => typeof value === 'string' && !value.startsWith('http'))]) {

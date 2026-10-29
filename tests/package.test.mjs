@@ -148,6 +148,11 @@ test('portable MCP configuration is checked against the official schema', async 
   await alter(root, 'mcp.json', data => { data.mcpServers.seed_live.unrecognized = true; });
   await assert.rejects(validate(root, { quiet: true }), /does not match Agent Plugins/);
 });
+test('portable MCP server cannot declare extensions that Codex drops', async t => {
+  const root = await fixture(t);
+  await alter(root, 'mcp.json', data => { data.mcpServers.seed_live.extensions = { 'com.openai': { auth: { type: 'oauth' } } }; });
+  await assert.rejects(validate(root, { quiet: true }), /does not match Agent Plugins/);
+});
 test('submission readiness cannot be bypassed with missing, empty or malformed checks', async t => {
   const root = await fixture(t);
   for (const value of [{ ready: true }, { ready: true, checks: [] }, { checks: [null] }]) {
