@@ -56,11 +56,13 @@ export async function runSmoke({ docsOnly = false, token = process.env.SEED_SMOK
     assert.match(initialized.instructions, /user need not say "card" or "widget"/);
     assert.doesNotMatch(initialized.instructions, /Render only for an explicit visual request|SEED Live/);
     server = initialized.serverInfo;
-    check('Authenticated SEED initialization and useful-widget policy');
+    assert.match(initialized.instructions, /prepare_presentation_review/);
+    assert.match(initialized.instructions, /verified completion transitions do trigger panels/);
+    check('Authenticated SEED initialization and meaningful-change policy');
     const listed = await rpc('tools/list');
     for (const retired of ['get_seedling_state','get_companion_capabilities','schedule_activity','advance_demo_time','show_seedling_calendar']) assert.ok(!listed.tools.some(tool=>tool.name===retired), `Retired tool ${retired}`);
     const focused = listed.tools.filter(tool=>tool.name.startsWith('show_'));
-    assert.equal(focused.length,9);
+    assert.equal(focused.length,14);
     for(const tool of focused) {
       assert.match(tool.description,/user need not say "card" or "widget"/);
       assert.doesNotMatch(tool.description,/Only call when the user explicitly|SEED Live|SEED staging/);
@@ -69,7 +71,7 @@ export async function runSmoke({ docsOnly = false, token = process.env.SEED_SMOK
     }
     const ui = await rpc('resources/read',{uri:focused[0]._meta.ui.resourceUri});
     assert.ok(ui.contents.some(item=>item.mimeType==='text/html;profile=mcp-app' && item.text?.includes('<html')));
-    check('Nine focused widgets with render-only resources; no retired gameplay tools');
+    check('Fourteen focused widgets with render-only resources; no retired gameplay tools');
     async function read(uri) {
       const result = await rpc('tools/call',{name:'read_seed_doc',arguments:{uri}});
       assert.ok(result.structuredContent?.text);

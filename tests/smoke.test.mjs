@@ -21,8 +21,8 @@ function server({retiredStatus=404,badPolicy=false}={}) {
   assert.equal(options.redirect,'error');
   const request=JSON.parse(options.body); calls.push(request);
   let result;
-  if(request.method==='initialize') result={serverInfo:{name:'flaxa-seed',title:'SEED',version:'2.5.0'},instructions:badPolicy?'Render only for an explicit visual request':'The user need not say "card" or "widget".'};
-  else if(request.method==='tools/list') result={tools:['status','inventory','health','agenda','goals','mood','radar','needs','activity'].map(name=>({name:`show_${name}`,description:'The user need not say "card" or "widget".',annotations:{readOnlyHint:true},_meta:{ui:{resourceUri:'ui://seed/widget.html'}}}))};
+  if(request.method==='initialize') result={serverInfo:{name:'flaxa-seed',title:'SEED',version:'2.5.0'},instructions:badPolicy?'Render only for an explicit visual request':'The user need not say "card" or "widget". Use prepare_presentation_review; verified completion transitions do trigger panels.'};
+  else if(request.method==='tools/list') result={tools:['status','inventory','health','agenda','goals','mood','radar','needs','activity','society_goals','seedling_character','game_plans','settlement_supplies','project_status'].map(name=>({name:`show_${name}`,description:'The user need not say "card" or "widget".',annotations:{readOnlyHint:true},_meta:{ui:{resourceUri:'ui://seed/widget.html'}}}))};
   else if(request.method==='resources/read') result={contents:[{mimeType:'text/html;profile=mcp-app',text:'<html></html>'}]};
   else if(request.method==='tools/call') {
    assert.equal(request.params.name,'read_seed_doc','Only documentation reads are allowed');

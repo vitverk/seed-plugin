@@ -1,6 +1,6 @@
 {
   "name": "seed-live",
-  "version": "3.0.1",
+  "version": "3.1.0",
   "description": "Your SEED companion: account data, care views, game guidance and permission-scoped actions.",
   "author": {
     "name": "Vitverk",
@@ -17,7 +17,7 @@
   "interface": {
     "displayName": "SEED",
     "shortDescription": "Your connected SEED companion",
-    "longDescription": "Connect your SEED account, care for your seedlings, explore game data and use interactive views. Useful focused cards support care, inventory, health, goals and schedule answers. Sign in with your licensed SEED account. Developer tools require the SEED MCP developer role and can change the game.",
+    "longDescription": "Connect your SEED account, care for your seedlings, explore game data and use interactive views. Focused cards explain society achievements, character milestones and health changes, saved plans, supply changes and project progress, alongside useful care, inventory and schedule answers. Sign in with your licensed SEED account. Developer tools require the SEED MCP developer role and can change the game.",
     "developerName": "Vitverk",
     "category": "Entertainment",
     "capabilities": [
