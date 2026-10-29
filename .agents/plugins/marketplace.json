@@ -15,18 +15,6 @@
         "authentication": "ON_INSTALL"
       },
       "category": "Entertainment"
-    },
-    {
-      "name": "seed-api",
-      "source": {
-        "source": "local",
-        "path": "./plugins/seed-api"
-      },
-      "policy": {
-        "installation": "AVAILABLE",
-        "authentication": "ON_INSTALL"
-      },
-      "category": "Entertainment"
     }
   ]
 }

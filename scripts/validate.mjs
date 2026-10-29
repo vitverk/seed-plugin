@@ -1,15 +1,13 @@
 import assert from 'node:assert/strict';
 import { readFile, readdir, lstat, access } from 'node:fs/promises';
-import { resolve, relative, dirname, sep } from 'node:path';
+import { resolve, relative, sep } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
-import YAML from 'yaml';
 import Ajv2020 from 'ajv/dist/2020.js';
 
 export const defaultRoot = fileURLToPath(new URL('../', import.meta.url));
 export const endpoint = 'https://mcp.flaxa.app/mcp';
 const schemaBase = 'https://agent-plugins.org/schemas/1.0.0/';
 const ignored = new Set(['.git', 'node_modules', 'dist']);
-const apiSkillFiles = ['skills/seed-api/SKILL.md', 'skills/seed-api/references/events.md', 'skills/seed-api/references/tools.md'];
 const categories = ['Business & Operations', 'Communication', 'Creativity', 'Data & Analytics', 'Developer Tools', 'Education & Research', 'Entertainment', 'Finance', 'Healthcare', 'Other', 'Productivity', 'Scientific Research', 'Security', 'Travel'];
 export async function exists(path) { try { await access(path); return true; } catch { return false; } }
 export async function json(root, path) { return JSON.parse(await readFile(resolve(root, path), 'utf8')); }
@@ -55,22 +53,14 @@ function noBundledSkills(manifest, label) {
   assert.ok(!manifest.extensions?.['com.openai']?.onboardingSkill, `${label} must not declare an onboarding skill`);
 }
 export async function packageFiles(root = defaultRoot, { kind = 'seed' } = {}) {
-  assert.ok(['seed', 'api'].includes(kind), 'Unknown package kind');
+  assert.ok(kind === 'seed', 'Unknown package kind');
   const required = ['plugin.json', 'mcp.json', '.mcp.json', '.codex-plugin/plugin.json', '.claude-plugin/plugin.json', 'README.md'];
-  if (kind === 'api') required.push('CONNECTION.md');
   const selected = [...required];
   for (const path of required) assert.ok(await exists(resolve(root, path)), `Missing package file: ${path}`);
   assert.ok(await exists(resolve(root, 'assets')), 'Missing package directory: assets');
   selected.push(...await walk(root, 'assets'));
-  if (kind === 'api') {
-    assert.ok(await exists(resolve(root, 'skills')), 'API package requires its direct API guidance');
-    const skills = await walk(root, 'skills');
-    assert.deepEqual(skills, apiSkillFiles, 'API package must contain only its direct API guidance');
-    selected.push(...skills);
-  } else {
-    assert.ok(!(await exists(resolve(root, 'skills'))), `${kind} package must not bundle a skills directory`);
-    assert.ok(!selected.some(path => /(^|\/)skills(\/|$)|(^|\/)SKILL\.md$/.test(path)), `${kind} package must not bundle skill files in assets`);
-  }
+  assert.ok(!(await exists(resolve(root, 'skills'))), 'seed package must not bundle a skills directory');
+  assert.ok(!selected.some(path => /(^|\/)skills(\/|$)|(^|\/)SKILL\.md$/.test(path)), 'seed package must not bundle skill files in assets');
   if (await exists(resolve(root, 'LICENSE'))) selected.push('LICENSE');
   return selected.sort();
 }
@@ -174,15 +164,11 @@ export async function validate(root = defaultRoot, { submission = false, quiet =
   const claudeMarket = await json(root, '.claude-plugin/marketplace.json');
   for (const [label, market] of [['OpenAI', aiMarket], ['Claude', claudeMarket]]) {
     assert.equal(market.name, 'vitverk-seed', `${label} marketplace name`);
-    assert.deepEqual(market.plugins.map(plugin => plugin.name), ['seed-live', 'seed-api'], `${label} marketplace must advertise only SEED and the optional direct API`);
+    assert.deepEqual(market.plugins.map(plugin => plugin.name), ['seed-live'], `${label} marketplace must advertise only SEED`);
   }
   assert.deepEqual(aiMarket.plugins[0].source, { source: 'local', path: './' });
   assert.equal(aiMarket.plugins[0].policy?.authentication, 'ON_INSTALL');
   assert.equal(claudeMarket.plugins[0].source, './');
-  assert.equal(aiMarket.plugins[1].source.path, './plugins/seed-api');
-  assert.equal(aiMarket.plugins[1].policy?.authentication, 'ON_INSTALL');
-  assert.equal(claudeMarket.plugins[1].source, './plugins/seed-api');
-  await validateApiPackage(root);
   const review = openai.review;
   if (review?.test_cases) {
     const cases = review.test_cases;
@@ -238,65 +224,6 @@ export async function validate(root = defaultRoot, { submission = false, quiet =
   }
   if (!quiet) console.log(`Validated SEED ${portable.version}: ${files.length} package files, ${(total / 1024).toFixed(1)} KiB. ${submission ? 'Submission fields and recorded readiness passed.' : 'Package validation does not imply marketplace approval or submission readiness.'}`);
   return { root, files, manifest: portable, bytes: total };
-}
-
-export async function validateApiPackage(root = defaultRoot) {
-  const apiRoot = resolve(root, 'plugins/seed-api');
-  const all = await walk(apiRoot);
-  const files = await packageFiles(apiRoot, { kind: 'api' });
-  assert.deepEqual(all, files, 'API package contains unexpected files');
-  const portable = await json(apiRoot, 'plugin.json');
-  const codex = await json(apiRoot, '.codex-plugin/plugin.json');
-  const claude = await json(apiRoot, '.claude-plugin/plugin.json');
-  const mcp = await json(apiRoot, 'mcp.json');
-  const legacy = await json(apiRoot, '.mcp.json');
-  const ajv = new Ajv2020({ allErrors: true, strict: true });
-  const checkPlugin = ajv.compile(await json(root, 'schemas/plugin.schema.json'));
-  assert.ok(checkPlugin(portable), `API manifest schema: ${ajv.errorsText(checkPlugin.errors)}`);
-  for (const manifest of [portable, codex, claude]) {
-    noAppBindings(manifest);
-    assert.equal(manifest.name, 'seed-api');
-    assert.equal(manifest.version, portable.version, 'API package version drift');
-  }
-  assert.match(portable.version, /^\d+\.\d+\.\d+$/);
-  const ui = portable.extensions['com.openai'].interface;
-  assert.equal(ui.displayName, 'SEED API');
-  text(ui.shortDescription, 'API subtitle', 30);
-  assert.deepEqual(codex.interface, ui);
-  assert.equal(claude.displayName, ui.displayName);
-  assert.equal(codex.mcpServers, './.mcp.json');
-  assert.equal(codex.skills, './skills/');
-  assert.deepEqual(files.filter(path => path.startsWith('skills/')), apiSkillFiles, 'API package must contain only its direct API guidance');
-  const skill = await readFile(resolve(apiRoot, 'skills/seed-api/SKILL.md'), 'utf8');
-  const frontmatter = YAML.parse(skill.match(/^---\n([\s\S]*?)\n---\n/)?.[1] ?? '');
-  assert.equal(frontmatter?.name, 'seed-api');
-  text(frontmatter.description, 'API skill description');
-  for (const key of ['logo', 'composerIcon']) {
-    assert.ok(files.includes(relative(apiRoot, safePath(apiRoot, ui[key])).split(sep).join('/')), `API icon missing: ${key}`);
-  }
-  assert.deepEqual(Object.keys(mcp.mcpServers), ['seed-api']);
-  const server = mcp.mcpServers['seed-api'];
-  assert.equal(server.url, 'https://api.seed-universe.com/seed-api/staging-mcp-dev2/mcp', 'API package must use the direct staging URL');
-  assert.equal(server.type, 'streamable-http');
-  assert.deepEqual(server.extensions, { 'com.openai': { auth: { type: 'oauth' } } });
-  assert.deepEqual(legacy, { mcpServers: { 'seed-api': { type: 'http', url: server.url } } });
-  const coreMcp = structuredClone(mcp);
-  delete coreMcp.mcpServers['seed-api'].extensions;
-  const checkMcp = ajv.compile(await json(root, 'schemas/mcp.schema.json'));
-  assert.ok(checkMcp(coreMcp), `API MCP schema: ${ajv.errorsText(checkMcp.errors)}`);
-  for (const path of files) {
-    const data = await readFile(resolve(apiRoot, path));
-    assert.ok(data.length <= 5 * 1024 * 1024);
-    if (!/\.(?:png|jpe?g|webp|gif|ico)$/i.test(path)) scanPublicText(data.toString('utf8'), path);
-    if (path.endsWith('.md')) {
-      for (const [, target] of data.toString('utf8').matchAll(/\]\(([^)]+)\)/g)) {
-        if (/^[a-z]+:/i.test(target) || target.startsWith('#')) continue;
-        const linked = relative(apiRoot, resolve(apiRoot, dirname(path), target.split('#')[0])).split(sep).join('/');
-        assert.ok(files.includes(linked), `API package reference missing: ${path}: ${target}`);
-      }
-    }
-  }
-  return { root: apiRoot, files, manifest: portable };
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1])).href) {

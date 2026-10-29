@@ -3,8 +3,8 @@ import assert from 'node:assert/strict';
 import { cp, mkdtemp, rm, readFile, writeFile, symlink, utimes, mkdir } from 'node:fs/promises';
 import { join } from 'node:path';
 import { tmpdir } from 'node:os';
-import { defaultRoot, validate, validateApiPackage, packageFiles, safePath } from '../scripts/validate.mjs';
-import { buildPackage, buildApiPackage } from '../scripts/package.mjs';
+import { defaultRoot, validate, packageFiles, safePath } from '../scripts/validate.mjs';
+import { buildPackage } from '../scripts/package.mjs';
 import { parseRpcResponse } from '../scripts/rpc.mjs';
 
 async function fixture(t) {
@@ -93,7 +93,7 @@ test('SEED connection cannot silently point at the guest or direct upstream', as
 test('marketplace excludes the retired identity and preserves SEED assets', async t => {
   const root = await fixture(t);
   await alter(root, '.agents/plugins/marketplace.json', data => { data.plugins.pop(); });
-  await assert.rejects(validate(root, { quiet: true }), /only SEED and the optional direct API/);
+  await assert.rejects(validate(root, { quiet: true }), /only SEED/);
   const live = JSON.parse(await readFile(join(root, 'plugin.json'), 'utf8'));
   assert.equal(live.extensions['com.openai'].interface.displayName, 'SEED');
   assert.ok((await readFile(join(root, 'assets/icon.png'))).length > 0);
@@ -218,58 +218,23 @@ test('transport parser handles JSON and SSE while selecting the correct request'
   assert.throws(() => parseRpcResponse(JSON.stringify(reply), 'application/json', 3), /No JSON-RPC response/);
 });
 
-test('connected packages retain secret, symlink and private binding checks', async t => {
+test('SEED retains secret, symlink and private binding checks', async t => {
   const root = await fixture(t);
-  for (const [prefix, validator] of [['', validate], ['plugins/seed-api', validateApiPackage]]) {
-    const manifest = join(prefix, '.codex-plugin/plugin.json');
-    const original = await readFile(join(root, manifest), 'utf8');
-    await alter(root, manifest, data => { data.apps = './.app.json'; });
-    await assert.rejects(validator(root), /apps binding/);
-    await writeFile(join(root, manifest), original);
-    const secret = join(root, prefix, 'assets/secret.txt');
-    await writeFile(secret, '-----BEGIN PRIVATE KEY-----');
-    await assert.rejects(validator(root), /Potential credential/);
-    await rm(secret);
-    const link = join(root, prefix, 'assets/link.txt');
-    await symlink('/etc/hosts', link);
-    await assert.rejects(validator(root), /Symlinks/);
-    await rm(link);
-  }
-});
-test('API skill allowlist still rejects missing and extra guidance', async t => {
-  const root = await fixture(t);
-  const required = join(root, 'plugins/seed-api/skills/seed-api/references/tools.md');
-  const original = await readFile(required, 'utf8');
-  await rm(required);
-  await assert.rejects(validateApiPackage(root), /only its direct API guidance/);
-  await writeFile(required, original);
-  const extra = join(root, 'plugins/seed-api/skills/seed-api/extra.md');
-  await writeFile(extra, '# Unreviewed guidance\n');
-  await assert.rejects(validateApiPackage(root), /only its direct API guidance/);
+  const manifest = '.codex-plugin/plugin.json';
+  const original = await readFile(join(root, manifest), 'utf8');
+  await alter(root, manifest, data => { data.apps = './.app.json'; });
+  await assert.rejects(validate(root), /apps binding/);
+  await writeFile(join(root, manifest), original);
+  const secret = join(root, 'assets/secret.txt');
+  await writeFile(secret, '-----BEGIN PRIVATE KEY-----');
+  await assert.rejects(validate(root), /Potential credential/);
+  await rm(secret);
+  const link = join(root, 'assets/link.txt');
+  await symlink('/etc/hosts', link);
+  await assert.rejects(validate(root), /Symlinks/);
 });
 
-// Keep the direct upstream connection distinct from the SEED proxy.
-test('direct API rejects proxy endpoints and produces an isolated archive', async t => {
-  const root = await fixture(t);
-  const path = 'plugins/seed-api/mcp.json';
-  const original = await readFile(join(root, path), 'utf8');
-  for (const url of ['https://mcp.flaxa.app/live/mcp', 'https://mcp.flaxa.app/demo/mcp', 'https://api.seed-universe.com/seed-api/staging-mcp-dev/mcp']) {
-    await alter(root, path, data => { data.mcpServers['seed-api'].url = url; });
-    await assert.rejects(validate(root, { quiet: true }), /direct staging URL/);
-    await writeFile(join(root, path), original);
-  }
-  const archive = await buildApiPackage(root);
-  const manifest = JSON.parse(await readFile(join(root, 'plugins/seed-api/plugin.json'), 'utf8'));
-  assert.ok(archive.output.endsWith(`seed-api-plugin-${manifest.version}.zip`));
-  assert.ok(archive.files.includes('mcp.json'));
-  assert.deepEqual(archive.files.filter(path => path.startsWith('skills/')), [
-    'skills/seed-api/SKILL.md', 'skills/seed-api/references/events.md', 'skills/seed-api/references/tools.md',
-  ]);
-  assert.ok(!archive.files.some(path => /marketplace|seed-live|seedling-companion/.test(path)));
-});
-
-
-test('retired Demo cannot return to catalogs or default artifacts', async t => {
+test('retired plugins cannot return to catalogs or default artifacts', async t => {
   const root = await fixture(t);
   const archive = await buildPackage(root, {quiet: true});
   const manifest = JSON.parse(await readFile(join(root, 'plugin.json'), 'utf8'));
@@ -278,11 +243,13 @@ test('retired Demo cannot return to catalogs or default artifacts', async t => {
   assert.ok(!archive.files.some(path => /^(archive|plugins|docs|submission)\//.test(path)));
   for (const catalog of ['.agents/plugins/marketplace.json', '.claude-plugin/marketplace.json']) {
     const original = await readFile(join(root, catalog), 'utf8');
-    await alter(root, catalog, data => {data.plugins.unshift({name: 'seed', source: './archive/demo'});});
-    await assert.rejects(validate(root, {quiet: true}), /only SEED and the optional direct API/);
-    await writeFile(join(root, catalog), original);
+    for (const name of ['seed', 'seed-api']) {
+      await alter(root, catalog, data => { data.plugins.push({ name, source: './retired' }); });
+      await assert.rejects(validate(root, {quiet: true}), /only SEED/);
+      await writeFile(join(root, catalog), original);
+    }
   }
-  await assert.rejects(packageFiles(root, {kind: 'demo'}), /Unknown package kind/);
+  for (const kind of ['demo', 'api']) await assert.rejects(packageFiles(root, {kind}), /Unknown package kind/);
 });
 
 test('public plugin presentation cannot regress to environment branding', async t => {

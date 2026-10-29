@@ -21,7 +21,7 @@ claude plugin install seed-live@vitverk-seed
 
 Sign in with your own licensed SEED account. Developer tools require the SEED MCP developer role and the relevant OAuth permissions. See the [connection quickstart](docs/colleague-quickstart.md) and [data behavior](docs/data-behavior.md).
 
-The optional **SEED API** plugin connects directly to Klang's API for developer workflows and upstream-only capabilities. It is a separate interface, not another SEED companion. Most users need only SEED.
+SEED is the sole plugin offered by this repository. The former optional direct API plugin has been removed; use SEED for the connected companion.
 
 ## Use it
 
@@ -43,7 +43,7 @@ npm run package
 npm run smoke
 ```
 
-The default archive is the authenticated SEED package only. `npm run package:api` additionally builds the optional API archive. Smoke checks verify public routing and OAuth metadata; `SEED_SMOKE_TOKEN` enables bounded authenticated documentation and widget-discovery checks. Keep tokens out of shell history and logs. See [release checks](docs/releasing.md).
+The archive contains the authenticated SEED package only. Smoke checks verify public routing and OAuth metadata; `SEED_SMOKE_TOKEN` enables bounded authenticated documentation and widget-discovery checks. Keep tokens out of shell history and logs. See [release checks](docs/releasing.md).
 
 This repository distributes source and packages; it is not an approved public directory listing. Public submission has separate identity, policies, licensing and host-review requirements. `npm run check:submission` reports the unresolved requirements for SEED and does not reuse evidence from the retired simulation.
 

@@ -9,12 +9,7 @@
       "name": "seed-live",
       "source": "./",
       "description": "Your authenticated SEED companion with account data, care views and game guidance."
-    },
-    {
-      "name": "seed-api",
-      "source": "./plugins/seed-api",
-      "description": "Optional direct SEED API connection for developer workflows and upstream-only capabilities."
     }
   ],
-  "description": "SEED by Vitverk, with an optional direct SEED API connection."
+  "description": "SEED by Vitverk."
 }
