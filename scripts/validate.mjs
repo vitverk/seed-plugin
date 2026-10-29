@@ -162,13 +162,26 @@ export async function validate(root = defaultRoot, { submission = false, quiet =
   assert.equal(codex.mcpServers, './.mcp.json');
   const aiMarket = await json(root, '.agents/plugins/marketplace.json');
   const claudeMarket = await json(root, '.claude-plugin/marketplace.json');
-  for (const [label, market] of [['OpenAI', aiMarket], ['Claude', claudeMarket]]) {
+  // Claude installs its own folder so its plugin and server are named seed,
+  // while Codex and archive installs keep seed-live and their sign-ins.
+  for (const [label, market, name] of [['OpenAI', aiMarket, 'seed-live'], ['Claude', claudeMarket, 'seed']]) {
     assert.equal(market.name, 'vitverk-seed', `${label} marketplace name`);
-    assert.deepEqual(market.plugins.map(plugin => plugin.name), ['seed-live'], `${label} marketplace must advertise only SEED`);
+    assert.deepEqual(market.plugins.map(plugin => plugin.name), [name], `${label} marketplace must advertise only SEED`);
   }
   assert.deepEqual(aiMarket.plugins[0].source, { source: 'local', path: './' });
   assert.equal(aiMarket.plugins[0].policy?.authentication, 'ON_INSTALL');
-  assert.equal(claudeMarket.plugins[0].source, './');
+  assert.equal(claudeMarket.plugins[0].source, './claude');
+  const claudeFiles = await walk(root, 'claude');
+  assert.deepEqual(claudeFiles, ['claude/.claude-plugin/plugin.json', 'claude/.mcp.json', 'claude/README.md', 'claude/assets/icon.png'], 'Claude plugin folder contents');
+  for (const path of claudeFiles) if (!path.endsWith('.png')) scanPublicText(await readFile(resolve(root, path), 'utf8'), path);
+  const claudePlugin = await json(root, 'claude/.claude-plugin/plugin.json');
+  object(claudePlugin, 'Claude plugin'); noAppBindings(claudePlugin, 'Claude plugin'); noBundledSkills(claudePlugin, 'Claude plugin');
+  assert.equal(claudePlugin.name, 'seed');
+  for (const key of ['version', 'displayName', 'icon', 'homepage', 'repository']) assert.deepEqual(claudePlugin[key], claude[key], `Claude plugin ${key} drift`);
+  text(claudePlugin.description, 'Claude plugin description');
+  assert.ok(!/SEED Live|SEED Demo|\bstaging\b/i.test(claudePlugin.description), 'Public SEED presentation must use the unified name');
+  assert.ok(await exists(safePath(resolve(root, 'claude'), claudePlugin.icon)), 'Claude plugin icon must exist');
+  assert.deepEqual(await json(root, 'claude/.mcp.json'), { mcpServers: { seed: { type: 'http', url: endpoint } } });
   const review = openai.review;
   if (review?.test_cases) {
     const cases = review.test_cases;

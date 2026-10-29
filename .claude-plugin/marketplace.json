@@ -6,8 +6,8 @@
   },
   "plugins": [
     {
-      "name": "seed-live",
-      "source": "./",
+      "name": "seed",
+      "source": "./claude",
       "description": "Your authenticated SEED companion with account data, care views and game guidance."
     }
   ],

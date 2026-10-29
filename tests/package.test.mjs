@@ -252,6 +252,25 @@ test('retired plugins cannot return to catalogs or default artifacts', async t =
   for (const kind of ['demo', 'api']) await assert.rejects(packageFiles(root, {kind}), /Unknown package kind/);
 });
 
+test('Claude installs its own seed folder while Codex keeps seed-live', async t => {
+  const root = await fixture(t);
+  await validate(root, {quiet: true});
+  for (const [path, modify, error] of [
+    ['claude/.mcp.json', data => { data.mcpServers = {seed_live: data.mcpServers.seed}; }, /deepStrictEqual|deep-equal/],
+    ['claude/.claude-plugin/plugin.json', data => { data.name = 'seed-live'; }, /seed-live/],
+    ['claude/.claude-plugin/plugin.json', data => { data.version = '99.0.0'; }, /version drift/],
+    ['.claude-plugin/marketplace.json', data => { data.plugins[0].source = './'; }, /\.\/claude/],
+    ['.agents/plugins/marketplace.json', data => { data.plugins[0].name = 'seed'; }, /only SEED/],
+  ]) {
+    const original = await readFile(join(root, path), 'utf8');
+    await alter(root, path, modify);
+    await assert.rejects(validate(root, {quiet: true}), error, path);
+    await writeFile(join(root, path), original);
+  }
+  await writeFile(join(root, 'claude/extra.md'), 'Unexpected');
+  await assert.rejects(validate(root, {quiet: true}), /Claude plugin folder contents/);
+});
+
 test('public plugin presentation cannot regress to environment branding', async t => {
   const root = await fixture(t);
   const original = await readFile(join(root, 'plugin.json'), 'utf8');
