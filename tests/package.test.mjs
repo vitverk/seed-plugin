@@ -274,7 +274,7 @@ test('retired Demo cannot return to catalogs or default artifacts', async t => {
   const archive = await buildPackage(root, {quiet: true});
   const manifest = JSON.parse(await readFile(join(root, 'plugin.json'), 'utf8'));
   assert.equal(manifest.name, 'seed-live');
-  assert.ok(archive.output.endsWith('seed-plugin-3.0.0.zip'));
+  assert.ok(archive.output.endsWith(`seed-plugin-${manifest.version}.zip`));
   assert.ok(!archive.files.some(path => /^(archive|plugins|docs|submission)\//.test(path)));
   for (const catalog of ['.agents/plugins/marketplace.json', '.claude-plugin/marketplace.json']) {
     const original = await readFile(join(root, catalog), 'utf8');

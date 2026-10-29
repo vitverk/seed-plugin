@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "seed-live",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Your SEED companion: account data, care views, game guidance and permission-scoped actions.",
   "author": {
     "name": "Vitverk",
@@ -36,7 +36,7 @@
         ],
         "logo": "./assets/icon.png",
         "composerIcon": "./assets/composer.png",
-        "brandColor": "#00A857"
+        "brandColor": "#F99400"
       }
     }
   }
