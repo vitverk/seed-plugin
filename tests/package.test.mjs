@@ -98,6 +98,14 @@ test('marketplace excludes the retired identity and preserves SEED assets', asyn
   assert.equal(live.extensions['com.openai'].interface.displayName, 'SEED');
   assert.ok((await readFile(join(root, 'assets/icon.png'))).length > 0);
 });
+test('URL-only compatibility configuration remains supported without custom scope fields', async t => {
+  const root = await fixture(t);
+  const legacy = JSON.parse(await readFile(join(root, '.mcp.json'), 'utf8'));
+  assert.deepEqual(legacy, { mcpServers: { seed: { type: 'http', url: endpoint } } });
+  await validate(root, { quiet: true });
+  await alter(root, '.mcp.json', data => { data.mcpServers.seed.scopes = ['seed:developer']; });
+  await assert.rejects(validate(root, { quiet: true }), /Compatibility MCP configuration must remain URL-only/);
+});
 test('SEED archive contains zero skills and rejects reintroduced skill folders', async t => {
   const root = await fixture(t);
   for (const [kind, prefix, build] of [['seed', '', buildPackage]]) {

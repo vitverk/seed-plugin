@@ -147,7 +147,7 @@ export async function validate(root = defaultRoot, { submission = false, quiet =
   const server = mcp.mcpServers.seed;
   assert.equal(server.type, 'streamable-http');
   assert.equal(server.url, endpoint, 'SEED package must use the proxy canonical URL');
-  assert.deepEqual(legacy, { mcpServers: { seed: { type: 'http', url: endpoint } } });
+  assert.deepEqual(legacy, { mcpServers: { seed: { type: 'http', url: endpoint } } }, 'Compatibility MCP configuration must remain URL-only');
   assert.ok(!server.headers, 'Do not embed credentials in the public package');
   // Codex reads the root manifests and silently drops a server that declares
   // extensions. OAuth and scopes come from the server's own discovery metadata.
