@@ -21,4 +21,4 @@ The current upstream deployment is the `mcp-dev2` staging world. This is an envi
 
 SEED is the sole plugin offered by this repository. If you previously installed the separate SEED API plugin, remove it in your client and use SEED. Removing it from the repository does not uninstall existing client installations.
 
-Refresh MCP metadata and start a new chat after an upgrade. Existing authenticated plugin installs retain the internal `seed-live` identifier; its displayed name is SEED. The retired anonymous `seed` plugin is no longer offered and cannot be used to control your SEED account.
+Refresh MCP metadata and start a new chat after an upgrade. Codex plugin installs retain the internal `seed-live` identifier; its displayed name is SEED. Claude Code installs `seed@vitverk-seed`; replace an earlier `seed-live@vitverk-seed` Claude install with it. The retired anonymous demo plugin is no longer offered and cannot be used to control your SEED account; today's Claude `seed` plugin is the authenticated companion and always requires sign-in.

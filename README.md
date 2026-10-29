@@ -6,7 +6,7 @@ SEED provides account and Seedling data, care and production reads, game guidanc
 
 ## Install or connect
 
-Install **SEED** from the **SEED by Vitverk** repository marketplace. Existing authenticated installations retain the internal `seed-live` identifier and connection configuration; their display name is now SEED.
+Install **SEED** from the **SEED by Vitverk** repository marketplace. Codex installations retain the internal `seed-live` identifier and connection configuration; their display name is SEED. Claude Code installs the `seed` plugin from the [`claude`](claude/) folder, with a server also named `seed`.
 
 ```sh
 codex plugin marketplace add vitverk/seed-plugin
@@ -16,7 +16,7 @@ For Claude Code:
 
 ```sh
 claude plugin marketplace add vitverk/seed-plugin
-claude plugin install seed-live@vitverk-seed
+claude plugin install seed@vitverk-seed
 ```
 
 Sign in with your own licensed SEED account. Developer tools require the SEED MCP developer role and the relevant OAuth permissions. See the [connection quickstart](docs/colleague-quickstart.md) and [data behavior](docs/data-behavior.md).
@@ -47,4 +47,4 @@ The archive contains the authenticated SEED package only. Smoke checks verify pu
 
 This repository distributes source and packages; it is not an approved public directory listing. Public submission has separate identity, policies, licensing and host-review requirements. `npm run check:submission` reports the unresolved requirements for SEED and does not reuse evidence from the retired simulation.
 
-The former anonymous simulation is retired from active catalogs and releases. Its old `seed` identity and endpoint are not redirected to SEED. Historical material is preserved under [archive/demo](archive/demo/RETIRED.md); it is excluded from packages and release checks.
+The former anonymous simulation is retired from active catalogs and releases. Its old endpoint is not redirected to SEED. The Claude plugin now reuses the `seed` name for the authenticated companion, so an old demo install in Claude updates to SEED and asks for sign-in. Historical material is preserved under [archive/demo](archive/demo/RETIRED.md); it is excluded from packages and release checks.
