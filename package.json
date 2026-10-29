@@ -1,8 +1,8 @@
 {
   "name": "seed-plugin-packaging",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "private": true,
-  "description": "Validation and release packaging for the Seed Demo MCP plugin",
+  "description": "Validation and release packaging for the authenticated SEED plugin",
   "type": "module",
   "engines": {
     "node": ">=24"
@@ -13,7 +13,8 @@
     "package": "node scripts/package.mjs",
     "smoke": "node scripts/smoke.mjs",
     "smoke:docs": "node scripts/smoke.mjs --docs-only",
-    "probe:api-events": "node scripts/seed-api-events.mjs"
+    "probe:api-events": "node scripts/seed-api-events.mjs",
+    "package:api": "node scripts/package.mjs --api"
   },
   "devDependencies": {
     "ajv": "8.20.0",

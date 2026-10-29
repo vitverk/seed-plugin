@@ -6,20 +6,15 @@
   },
   "plugins": [
     {
-      "name": "seed",
-      "source": "./",
-      "description": "SEED Demo: a temporary Seedling simulation with activities, resources, goals, and a game calendar."
-    },
-    {
       "name": "seed-live",
-      "source": "./plugins/seed-live",
-      "description": "The authenticated SEED companion through the Flaxa proxy, currently connected to SEED staging."
+      "source": "./",
+      "description": "Your authenticated SEED companion with account data, care views and game guidance."
     },
     {
       "name": "seed-api",
       "source": "./plugins/seed-api",
-      "description": "Connect to Klang Games’ SEED staging world mcp-dev2. Read seedlings, account data, schematics and societies; developer tools require the SEED MCP developer role."
+      "description": "Optional direct SEED API connection for developer workflows and upstream-only capabilities."
     }
   ],
-  "description": "SEED Demo, SEED Live and SEED API from Vitverk."
+  "description": "SEED by Vitverk, with an optional direct SEED API connection."
 }

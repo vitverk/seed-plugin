@@ -1,19 +1,11 @@
-# Observed data behavior
+# SEED data behavior
 
-Technical preparation notes as of 2026-10-26. These notes are **not a privacy policy** and do not establish legal commitments or infrastructure-provider retention periods.
+SEED reads the connected player's actual account through the Flaxa proxy. It is not a disposable simulation. OAuth permissions and the upstream game enforce access; developer tools can change the game within the user's authorized task.
 
-The app and server source describe an anonymous guest simulation. The guest world lives in browser memory, begins paused, and is lost on close or reload. The client does not use cookies, local/session storage, IndexedDB, or host widget storage to persist progress. There is no account flow or live SEED game API integration.
+The proxy keeps encrypted connection credentials and account-specific notes in its existing storage. Notes persist across chats for the same connected account and world. Disconnecting revokes host credentials; it does not undo game changes or erase the chat host's retained messages and tool results.
 
-In supporting embedded hosts, the client sends captured summary and state through MCP Apps model context. The host may retain that context, conversation messages, and tool results according to its policies. The explicit **Share with chat** action sends a snapshot as a message and can trigger a response; normal model-context updates are separate.
+Cards display bounded snapshots with the original subject, source and capture time. A card does not run the game, store a simulation, or refresh because of an unrelated read. Read again when freshness matters. The character creator saves a design locally and does not create a game entity by itself.
 
-The visible guest can create a temporary Cloudflare command mailbox. Its random scoped command capability appears in host context; a separate owner capability controls polling and acknowledgments. The mailbox holds bounded commands and receipts in memory, expires after five minutes without its owner heartbeat, and never owns or persists the game world. Acknowledged channel calls can change that same open guest. State-only tool calls transform a supplied detached snapshot and do not update the visible guest.
+The currently configured upstream world is `mcp-dev2` in SEED staging. Keep its credentials, identifiers and account notes separate from older worlds. This technical environment marker remains in machine responses and operational records.
 
-Cloudflare receives service requests and may retain ordinary infrastructure logs. Application observability is disabled in the inspected deployment configuration, but that does not establish zero provider logging. The source retains inert legacy storage bindings for deployment compatibility; it does not expose or delete any previous stored data. Exact service-log retention and historical-data handling are not established by these technical observations.
-
-The owner selected **Vitverk** as publisher, **Iceland** as the intended marketplace audience, and confirmed **no payments or purchases**. The published Seed policies are [privacy](https://flaxa.app/privacy) and [terms](https://flaxa.app/terms); see [publication evidence](../submission/policy-check.json). Vitverk's known public contact is **support@vitverk.is**. These technical notes do not replace those policies or make claims about platform retention periods or jurisdictional enforcement.
-
-Do not publish raw guest-channel credentials or context in screenshots, issues, logs, or review fixtures. The supplied smoke check uses synthetic detached state and stores a bounded non-sensitive summary.
-
-## MCP event experiment (endpoint deployed 2026-10-27)
-
-Opt-in `seed.demo.notification` subscriptions retain the host callback URL, signing credentials, expiry and any pending synthetic event in a separate Durable Object. Default lifetime is one hour, capped at 24 hours per refresh; unsubscribe, expiry and terminal callback rejection remove those records. The timer may run after closing the guest but neither stores nor advances its game. Payloads are public fictional fixtures, not observations about an open guest. The endpoint’s event discovery and unsubscribe routing were checked after deployment. On 2026-10-27, a native Cloud Work event-triggered task also completed signed callback verification, received HTTP 200 webhook deliveries at one-minute intervals, and produced the requested sequence-numbered chat responses. Optional `until` caps delivery at an absolute deadline even across subscription refresh. Package 1.3.2 adds the corresponding event guidance; these observations do not establish support in every host or account.
+The direct SEED API plugin has its own OAuth connection and grants. Installing either package does not grant account or developer access. Neither package embeds credentials.

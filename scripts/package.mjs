@@ -3,7 +3,7 @@ import { readFile, mkdir, writeFile, rename, rm } from 'node:fs/promises';
 import { execFileSync } from 'node:child_process';
 import { resolve } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
-import { defaultRoot, validate, validateLivePackage, validateApiPackage } from './validate.mjs';
+import { defaultRoot, validate, validateApiPackage } from './validate.mjs';
 
 export async function buildPackage(root = defaultRoot, { outputDirectory = resolve(root, 'dist'), quiet = false } = {}) {
   const { files, manifest } = await validate(root, { quiet });
@@ -20,10 +20,6 @@ export async function buildPackage(root = defaultRoot, { outputDirectory = resol
   await writeFile(resolve(outputDirectory, 'archive-inventory.json'), `${JSON.stringify({ version: manifest.version, archive: name, sha256, files }, null, 2)}\n`);
   if (!quiet) console.log(`${name}\nSHA-256 ${sha256}\nThis archive excludes marketplace catalogs, private app bindings, and development files.`);
   return { output, sha256, files };
-}
-
-export async function buildLivePackage(root = defaultRoot) {
-  return buildConnectedPackage(root, validateLivePackage, 'seed-live');
 }
 
 export async function buildApiPackage(root = defaultRoot) {
@@ -44,5 +40,12 @@ async function buildConnectedPackage(root, validator, namePrefix) {
   return { output, sha256, files };
 }
 if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1])).href) {
-  try { await buildPackage(); await buildLivePackage(); await buildApiPackage(); } catch (error) { console.error(error.message); process.exitCode = 1; }
+  try {
+    if (process.argv.includes('--api')) await buildApiPackage();
+    else {
+      // dist contains generated release artifacts only; do not upload stale retired packages.
+      await rm(resolve(defaultRoot, 'dist'), { recursive: true, force: true });
+      await buildPackage();
+    }
+  } catch (error) { console.error(error.message); process.exitCode = 1; }
 }

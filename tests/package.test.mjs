@@ -3,8 +3,8 @@ import assert from 'node:assert/strict';
 import { cp, mkdtemp, rm, readFile, writeFile, symlink, utimes, mkdir } from 'node:fs/promises';
 import { join } from 'node:path';
 import { tmpdir } from 'node:os';
-import { defaultRoot, validate, validateLivePackage, validateApiPackage, packageFiles, safePath } from '../scripts/validate.mjs';
-import { buildPackage, buildLivePackage, buildApiPackage } from '../scripts/package.mjs';
+import { defaultRoot, validate, validateApiPackage, packageFiles, safePath } from '../scripts/validate.mjs';
+import { buildPackage, buildApiPackage } from '../scripts/package.mjs';
 import { parseRpcResponse } from '../scripts/rpc.mjs';
 
 async function fixture(t) {
@@ -28,6 +28,8 @@ async function syntheticSubmission(t) {
     data.license = 'LicenseRef-TestOnly';
     const openai = data.extensions['com.openai'];
     Object.assign(openai.interface, { privacyPolicyURL: privacy, termsOfServiceURL: terms });
+    openai.review = {test_cases: {positive: Array.from({length: 5}, () => ({description: 'Synthetic case', prompt: 'Synthetic prompt', tools_triggered: 'read_seed_doc', expected_behavior: 'Read fixture'})), negative: Array.from({length: 3}, () => ({description: 'Synthetic case', prompt: 'Synthetic prompt'}))}};
+    openai.publication = {};
     Object.assign(openai.review, { demo_recording_url: 'https://example.invalid/test-only/demo', commerce: false });
     openai.publication.countries = ['IS', 'US'];
   });
@@ -78,9 +80,9 @@ test('version drift across clients fails validation', async t => {
   await alter(root, '.claude-plugin/plugin.json', data => { data.version = '99.0.0'; });
   await assert.rejects(validate(root, { quiet: true }), /version drift/);
 });
-test('marketplace live connection cannot silently point at the guest or direct upstream', async t => {
+test('SEED connection cannot silently point at the guest or direct upstream', async t => {
   const root = await fixture(t);
-  const path = 'plugins/seed-live/mcp.json';
+  const path = 'mcp.json';
   const original = await readFile(join(root, path), 'utf8');
   for (const url of ['https://mcp.flaxa.app/demo/mcp', 'https://mcp.flaxa.app/live/mcp', 'https://mcp.flaxa.app/staging/mcp', 'https://api.seed-universe.com/seed-api/staging-mcp-dev2/mcp']) {
     await alter(root, path, data => { data.mcpServers.seed_live.url = url; });
@@ -88,17 +90,17 @@ test('marketplace live connection cannot silently point at the guest or direct u
     await writeFile(join(root, path), original);
   }
 });
-test('marketplace keeps all installed identities and self-contained live assets', async t => {
+test('marketplace excludes the retired identity and preserves SEED assets', async t => {
   const root = await fixture(t);
   await alter(root, '.agents/plugins/marketplace.json', data => { data.plugins.pop(); });
-  await assert.rejects(validate(root, { quiet: true }), /preserve the demo/);
-  const live = JSON.parse(await readFile(join(root, 'plugins/seed-live/plugin.json'), 'utf8'));
-  assert.equal(live.extensions['com.openai'].interface.displayName, 'SEED Live');
-  assert.ok((await readFile(join(root, 'plugins/seed-live/assets/icon.png'))).length > 0);
+  await assert.rejects(validate(root, { quiet: true }), /only SEED and the optional direct API/);
+  const live = JSON.parse(await readFile(join(root, 'plugin.json'), 'utf8'));
+  assert.equal(live.extensions['com.openai'].interface.displayName, 'SEED');
+  assert.ok((await readFile(join(root, 'assets/icon.png'))).length > 0);
 });
-test('Demo and Live archives contain zero skills and reject reintroduced skill folders', async t => {
+test('SEED archive contains zero skills and rejects reintroduced skill folders', async t => {
   const root = await fixture(t);
-  for (const [kind, prefix, build] of [['demo', '', buildPackage], ['live', 'plugins/seed-live', buildLivePackage]]) {
+  for (const [kind, prefix, build] of [['seed', '', buildPackage]]) {
     const archive = await build(root, { quiet: true });
     assert.deepEqual(archive.files.filter(path => /(^|\/)skills(\/|$)|(^|\/)SKILL\.md$/.test(path)), []);
     assert.deepEqual(archive.files, await packageFiles(join(root, prefix), { kind }));
@@ -113,9 +115,9 @@ test('Demo and Live archives contain zero skills and reject reintroduced skill f
     await rm(misplaced);
   }
 });
-test('Demo and Live manifests reject skill declarations and onboarding bindings', async t => {
+test('SEED manifests reject skill declarations and onboarding bindings', async t => {
   const root = await fixture(t);
-  for (const prefix of ['', 'plugins/seed-live/']) {
+  for (const prefix of ['']) {
     for (const suffix of ['plugin.json', '.codex-plugin/plugin.json', '.claude-plugin/plugin.json']) {
       const path = `${prefix}${suffix}`;
       const original = await readFile(join(root, path), 'utf8');
@@ -143,7 +145,7 @@ test('lockfile root versions stay aligned with the released package', async t =>
 });
 test('portable MCP configuration is checked against the official schema', async t => {
   const root = await fixture(t);
-  await alter(root, 'mcp.json', data => { data.mcpServers.seed.unrecognized = true; });
+  await alter(root, 'mcp.json', data => { data.mcpServers.seed_live.unrecognized = true; });
   await assert.rejects(validate(root, { quiet: true }), /does not match Agent Plugins/);
 });
 test('submission readiness cannot be bypassed with missing, empty or malformed checks', async t => {
@@ -218,8 +220,8 @@ test('transport parser handles JSON and SSE while selecting the correct request'
 
 test('connected packages retain secret, symlink and private binding checks', async t => {
   const root = await fixture(t);
-  for (const [prefix, validator] of [['plugins/seed-live', validateLivePackage], ['plugins/seed-api', validateApiPackage]]) {
-    const manifest = `${prefix}/.codex-plugin/plugin.json`;
+  for (const [prefix, validator] of [['', validate], ['plugins/seed-api', validateApiPackage]]) {
+    const manifest = join(prefix, '.codex-plugin/plugin.json');
     const original = await readFile(join(root, manifest), 'utf8');
     await alter(root, manifest, data => { data.apps = './.app.json'; });
     await assert.rejects(validator(root), /apps binding/);
@@ -246,7 +248,7 @@ test('API skill allowlist still rejects missing and extra guidance', async t => 
   await assert.rejects(validateApiPackage(root), /only its direct API guidance/);
 });
 
-// Keep the direct upstream connection distinct from both Flaxa packages.
+// Keep the direct upstream connection distinct from the SEED proxy.
 test('direct API rejects proxy endpoints and produces an isolated archive', async t => {
   const root = await fixture(t);
   const path = 'plugins/seed-api/mcp.json';
@@ -264,4 +266,33 @@ test('direct API rejects proxy endpoints and produces an isolated archive', asyn
     'skills/seed-api/SKILL.md', 'skills/seed-api/references/events.md', 'skills/seed-api/references/tools.md',
   ]);
   assert.ok(!archive.files.some(path => /marketplace|seed-live|seedling-companion/.test(path)));
+});
+
+
+test('retired Demo cannot return to catalogs or default artifacts', async t => {
+  const root = await fixture(t);
+  const archive = await buildPackage(root, {quiet: true});
+  const manifest = JSON.parse(await readFile(join(root, 'plugin.json'), 'utf8'));
+  assert.equal(manifest.name, 'seed-live');
+  assert.ok(archive.output.endsWith('seed-plugin-3.0.0.zip'));
+  assert.ok(!archive.files.some(path => /^(archive|plugins|docs|submission)\//.test(path)));
+  for (const catalog of ['.agents/plugins/marketplace.json', '.claude-plugin/marketplace.json']) {
+    const original = await readFile(join(root, catalog), 'utf8');
+    await alter(root, catalog, data => {data.plugins.unshift({name: 'seed', source: './archive/demo'});});
+    await assert.rejects(validate(root, {quiet: true}), /only SEED and the optional direct API/);
+    await writeFile(join(root, catalog), original);
+  }
+  await assert.rejects(packageFiles(root, {kind: 'demo'}), /Unknown package kind/);
+});
+
+test('public plugin presentation cannot regress to environment branding', async t => {
+  const root = await fixture(t);
+  const original = await readFile(join(root, 'plugin.json'), 'utf8');
+  const compatibility = await readFile(join(root, '.codex-plugin/plugin.json'), 'utf8');
+  for (const description of ['SEED Live companion', 'SEED Demo companion', 'SEED staging companion']) {
+    for (const path of ['plugin.json', '.codex-plugin/plugin.json']) await alter(root, path, data => { data.description = description; });
+    await assert.rejects(validate(root, {quiet: true}), /unified name/);
+    await writeFile(join(root, 'plugin.json'), original);
+    await writeFile(join(root, '.codex-plugin/plugin.json'), compatibility);
+  }
 });

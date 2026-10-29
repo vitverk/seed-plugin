@@ -1,13 +1,13 @@
 ---
 name: seed-api
-description: Connect to the SEED staging MCP, understand its player and developer tools, or troubleshoot missing access to the mcp-dev2 world.
+description: Connect to the direct SEED MCP, understand its player and developer tools, or troubleshoot missing access to the mcp-dev2 world.
 ---
 
-# SEED staging API
+# SEED API
 
 Read the [connection record](../../CONNECTION.md) before using this plugin.
 It targets Klang Games’ live staging world `mcp-dev2`. Keep this connection
-distinct from the Seed / Seed Demo guest simulations and other SEED worlds.
+distinct from the SEED companion proxy and other SEED worlds.
 
 Use the connected server’s current tool schemas and returned permissions as
 the authority. The [tool reference](references/tools.md) explains the naming

@@ -1,7 +1,7 @@
 {
   "name": "seed-api",
-  "version": "0.2.1",
-  "description": "Connect to Klang Games’ SEED staging world mcp-dev2. Read seedlings, schematics, societies and the Global Market; developer tools can change the game.",
+  "version": "0.2.2",
+  "description": "Direct SEED API access for account data, schematics, markets and developer workflows.",
   "author": {
     "name": "Vitverk",
     "url": "https://github.com/vitverk"
@@ -10,15 +10,14 @@
     "seed",
     "seedlings",
     "klang",
-    "staging",
     "mcp"
   ],
   "skills": "./skills/",
   "mcpServers": "./.mcp.json",
   "interface": {
     "displayName": "SEED API",
-    "shortDescription": "Direct SEED staging API",
-    "longDescription": "Connect to Klang Games’ SEED staging world mcp-dev2. Read seedlings, schematics, societies and the Global Market; developer tools can change the game.",
+    "shortDescription": "Direct SEED API",
+    "longDescription": "Connect directly to Klang Games\u2019 SEED API. Read seedlings, schematics, societies and the Global Market. Developer tools require the SEED MCP developer role and can change the game.",
     "developerName": "Vitverk",
     "category": "Entertainment",
     "capabilities": [

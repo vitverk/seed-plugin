@@ -1,168 +1,94 @@
 import assert from 'node:assert/strict';
-import { randomUUID } from 'node:crypto';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
-import { defaultRoot, endpoint, json } from './validate.mjs';
+import { defaultRoot, endpoint } from './validate.mjs';
 import { parseRpcResponse } from './rpc.mjs';
 
-// Default: anonymous synthetic detached snapshots. --docs-only: documentation reads only.
-// Neither mode accepts browser channel tokens.
-export async function runSmoke({ docsOnly = false, fetchImpl = fetch, outputDirectory = resolve(defaultRoot, 'dist'), log = console.log } = {}) {
+// Public checks need no credentials. Authenticated checks only discover tools,
+// read documentation and UI resources; they never call game or note-write tools.
+export async function runSmoke({ docsOnly = false, token = process.env.SEED_SMOKE_TOKEN,
+  expectedVersion = process.env.SEED_EXPECTED_VERSION, fetchImpl = fetch,
+  outputDirectory = resolve(defaultRoot, 'dist'), log = console.log } = {}) {
+  assert.ok(!docsOnly || token, 'Authenticated documentation smoke requires SEED_SMOKE_TOKEN');
+  const origin = new URL(endpoint).origin;
   const checks = [];
-  let id = 0;
-  const version = '2025-11-25';
   const check = name => { checks.push({ name, status: 'passed' }); log(`✓ ${name}`); };
-  async function request(url, options = {}) {
-    const response = await fetchImpl(url, { ...options, signal: AbortSignal.timeout(20000) });
-    assert.equal(response.headers.get('set-cookie'), null, 'Anonymous service must not set cookies');
-    assert.equal(response.headers.get('www-authenticate'), null, 'Anonymous service must not request login');
-    assert.ok(response.ok, `HTTP ${response.status} from ${new URL(url).pathname}`);
-    return response;
+  async function request(path, options = {}) {
+    return fetchImpl(new URL(path, origin), { ...options, redirect: 'error', signal: AbortSignal.timeout(20000) });
   }
-  async function rpc(method, params = {}) {
-    const current = ++id;
-    const response = await request(endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json, text/event-stream', 'MCP-Protocol-Version': version }, body: JSON.stringify({ jsonrpc: '2.0', id: current, method, params }) });
-    const data = parseRpcResponse(await response.text(), response.headers.get('content-type'), current);
-    assert.ok(!data.error, `${method} failed: ${data.error?.message ?? 'unknown error'}`);
-    return data.result;
-  }
-  async function tool(name, args = {}) {
-    assert.ok(!('guestChannel' in args), 'Smoke must never act on a browser guest');
-    if (docsOnly) assert.ok(['search_seed_docs', 'read_seed_doc'].includes(name), 'Documentation-only smoke must not call gameplay tools');
-    const result = await rpc('tools/call', { name, arguments: args });
-    assert.ok(!result.isError, `${name} returned an error`);
-    assert.ok(result.structuredContent, `${name} needs structuredContent`);
-    return result.structuredContent;
-  }
-  let serverInfo;
-  const health = await (await request(new URL('/health', endpoint))).json();
-  assert.equal(health.mode, 'guest');
-  assert.equal(health.version, '0.15.0', 'This package requires the SEED Demo runtime');
-  assert.equal(health.service, 'SEED Demo');
+  const healthResponse = await request('/health');
+  assert.equal(healthResponse.status, 200);
+  const health = await healthResponse.json();
+  assert.equal(health.name, 'SEED');
+  assert.equal(health.authentication, 'oauth2');
   assert.equal(health.mcp, endpoint);
-  for (const key of ['saved', 'authentication']) assert.equal(health[key], false, `health.${key}`);
-  assert.equal(typeof health.backgroundEvents, 'boolean');
-  if (health.backgroundEvents) assert.equal(health.backgroundSimulation, false, 'Synthetic notifications cannot imply background game simulation.');
-  check('Anonymous guest health, no persistence or background simulation');
-  const initialized = await rpc('initialize', { protocolVersion: version, clientInfo: { name: 'seed-plugin-release-smoke', version: (await json(defaultRoot, 'package.json')).version }, capabilities: {} });
-  assert.equal(initialized.protocolVersion, version);
-  assert.equal(initialized.serverInfo.title, 'SEED Demo');
-  serverInfo = { name: initialized.serverInfo.name, title: initialized.serverInfo.title, version: initialized.serverInfo.version };
-  check('MCP initialization');
-  const discovered = await rpc('tools/list');
-  const expected = ['open_seedling', 'browse_seedling', 'show_seedling_calendar', 'get_companion_capabilities', 'get_seedling_state', 'schedule_activity', 'update_schedule', 'queue_action', 'cancel_action', 'advance_demo_time', 'set_clock', 'create_goal', 'cancel_goal', 'search_seed_docs', 'read_seed_doc', 'open_character_creator', 'show_seedling_status', 'show_seedling_agenda', 'show_activity_detail', 'show_seedling_inventory', 'show_seedling_goals', 'show_seedling_health', 'show_seedling_needs', 'show_seedling_mood', 'show_seedling_radar'];
-  assert.equal(discovered.tools.length, expected.length, 'Expected twenty-five advertised tools');
-  for (const name of expected) assert.ok(discovered.tools.some(tool => tool.name === name), `Missing tool: ${name}`);
-  for (const entry of discovered.tools) {
-    assert.ok(entry.title && entry.description, `Tool needs a title and description: ${entry.name}`);
-    for (const hint of ['readOnlyHint', 'destructiveHint', 'openWorldHint']) assert.equal(typeof entry.annotations?.[hint], 'boolean', `${entry.name}.${hint}`);
-    assert.deepEqual(entry._meta?.securitySchemes, [{ type: 'noauth' }]);
+  if (expectedVersion) assert.equal(health.version, expectedVersion);
+  check('SEED health and authenticated canonical endpoint');
+  for (const path of ['/demo/mcp', '/guest/channel']) for (const method of ['GET', 'POST']) {
+    assert.equal((await request(path, {method})).status, 404, `Retired route: ${method} ${path}`);
   }
-  check('Twenty-five expected tools, titles, boolean annotations, and anonymous security metadata');
-  const resources = await rpc('resources/list');
-  assert.ok(resources.resources.some(resource => resource.uri === 'seed://docs/index'), 'Standard resources must advertise the documentation index');
-  assert.ok(!resources.resources.some(resource => resource.uri.startsWith('skill://')), 'Removed skill URIs must not be advertised');
-  const index = await rpc('resources/read', { uri: 'seed://docs/index' });
-  assert.ok(index.contents.some(content => content.uri === 'seed://docs/index' && content.text), 'Documentation index must be readable');
-  const docs = await tool('search_seed_docs', { query: 'access rights', sourceCollection: 'seed-help-center', limit: 1 });
-  const guide = docs.results[0];
-  assert.equal(guide.title, 'Access Rights');
-  assert.equal(guide.uri, `seed://docs/${encodeURIComponent(guide.id)}`);
-  assert.ok(guide.sourceUrl.startsWith('https://klang-games.eu.theymes.com/hc/en/seed/articles/'));
-  const article = await rpc('resources/read', { uri: guide.uri });
-  const doc = await tool('read_seed_doc', { uri: guide.uri });
-  assert.equal(doc.text, article.contents[0].text);
-  assert.equal(doc.sourceUrl, guide.sourceUrl);
-  assert.equal(doc.nextOffset, null);
-  check('Standard documentation index and canonical search/read resources without guest state');
-  const workflows = await tool('search_seed_docs', { query: 'calendar', sourceCollection: 'seed-workflows-demo', limit: 10 });
-  assert.ok(workflows.results.length > 0, 'Demo calendar workflow must be discoverable');
-  for (const workflow of workflows.results) {
-    assert.equal(workflow.sourceCollection, 'seed-workflows-demo');
-    assert.ok(['workflow', 'reference'].includes(workflow.documentType));
-    assert.equal(workflow.uri, `seed://docs/${encodeURIComponent(workflow.id)}`);
+  check('Retired anonymous routes remain unavailable');
+  for (const path of ['/mcp', '/live/mcp', '/staging/mcp']) {
+    const response = await request(path);
+    assert.equal(response.status, 401, `${path} must require authentication`);
+    assert.ok(response.headers.get('www-authenticate')?.includes(`oauth-protected-resource${path}`));
+    const resource = await (await request(`/.well-known/oauth-protected-resource${path}`)).json();
+    assert.equal(resource.resource, `${origin}${path}`);
+    assert.deepEqual(resource.authorization_servers, [`${origin}/staging`]);
   }
-  const workflow = workflows.results[0];
-  const workflowRead = await tool('read_seed_doc', { uri: workflow.uri, limit: 24000 });
-  const workflowResource = await rpc('resources/read', { uri: workflow.uri });
-  assert.equal(workflowResource.contents[0].text.slice(workflowRead.offset, workflowRead.offset + workflowRead.text.length), workflowRead.text);
-  check('Demo workflow search and canonical resource reads');
-  const imported = await tool('search_seed_docs', { query: 'Memoria', sourceCollection: 'seed-agent-play-pr34377', sourceType: 'in_game_manual', limit: 10 });
-  assert.ok(imported.results.length > 0);
-  assert.ok(imported.results.every(result => result.sourceCollection === 'seed-agent-play-pr34377' && result.sourceType === 'in_game_manual'));
-  const memoria = imported.results.find(result => result.id === 'seed-agent-play-pr34377:library/manual-seedlings');
-  assert.ok(memoria, 'Imported Memoria guidance must be searchable within the manual collection');
-  assert.equal(memoria.uri, `seed://docs/${encodeURIComponent(memoria.id)}`);
-  assert.equal(memoria.sourceUrl, null);
-  assert.equal(memoria.retrievedAt, null);
-  assert.ok(memoria.importedAt);
-  assert.equal(memoria.verificationStatus, 'unverified_reference');
-  assert.equal(memoria.citation, memoria.sourcePath);
-  const manual = await tool('read_seed_doc', { uri: memoria.uri, limit: 1000 });
-  assert.equal(manual.sourceUrl, null);
-  assert.equal(manual.sourcePath, 'tools/agent-play-api/library/manual-seedlings.md');
-  assert.equal(manual.verificationStatus, 'unverified_reference');
-  const manualFarming = (await tool('search_seed_docs', { query: 'farming and crops', sourceCollection: 'seed-agent-play-pr34377', documentType: 'manual', limit: 10 })).results.find(result => result.id === 'seed-agent-play-pr34377:library/manual-farming-and-crops');
-  assert.ok(manualFarming);
-  assert.ok(manualFarming.conflicts.some(conflict => conflict.id === 'seed-help-center:article:310' && conflict.sourceType === 'help_center'));
-  const helpFarming = await tool('read_seed_doc', { uri: manualFarming.conflicts.find(conflict => conflict.id === 'seed-help-center:article:310').uri, limit: 1000 });
-  assert.ok(helpFarming.conflictsWith.includes(manualFarming.id));
-  assert.match(helpFarming.verificationNote, /neither source is established as current/i);
-  check('Imported manual search, honest null-URL provenance, and symmetric source conflicts');
-  if (!docsOnly) {
-    const opener = discovered.tools.find(tool => tool.name === 'open_seedling');
-    const uri = opener._meta?.ui?.resourceUri;
-    assert.ok(uri?.startsWith('ui://'), 'Opening tool must advertise MCP App resource');
-    assert.ok(resources.resources.some(resource => resource.uri === uri));
-    const resource = await rpc('resources/read', { uri });
-    const view = resource.contents.find(content => content.uri === uri);
-    assert.equal(view.mimeType, 'text/html;profile=mcp-app');
-    assert.ok(view.text?.includes('<html'), 'App resource must return HTML');
-    assert.ok(view._meta?.ui?.csp, 'App resource needs CSP metadata');
-    check('MCP App resource and content-security metadata');
-    const capabilities = await tool('get_companion_capabilities');
-    assert.equal(capabilities.mode, 'guest');
-    assert.equal(capabilities.saved, false);
-    assert.ok(capabilities.recurrence?.includes('weekly') || JSON.stringify(capabilities).includes('weekdays'), 'Catalog must describe recurrence');
-    check('Read-only capability discovery');
-    const opened = await tool('open_seedling');
-    let state = opened.state;
-    assert.equal(state.demo, true); assert.equal(state.clock.paused, true);
-    assert.equal(opened.saved, false); assert.equal(opened.browserUpdated, false);
-    const originalBlocks = state.schedule.map(block => ({ ...block }));
-    check('Fresh paused detached guest snapshot');
-    const scheduled = await tool('schedule_activity', { state, commandId: randomUUID(), expectedVersion: state.version, activity: 'harvest', durationMinutes: 60, repeat: 'once' });
-    assert.equal(scheduled.browserUpdated, false);
-    assert.equal(scheduled.state.schedule.length, state.schedule.length + 1);
-    for (const block of originalBlocks) assert.deepEqual(scheduled.state.schedule.find(item => item.id === block.id), block);
-    assert.equal(scheduled.state.clock.paused, true);
-    state = scheduled.state;
-    check('Detached harvest scheduling preserves existing blocks and paused clock');
-    const planned = await tool('create_goal', { state, commandId: randomUUID(), expectedVersion: state.version, title: 'Package smoke cabin fitting', steps: [{ activity: 'mine', targetId: 'hematite-mine' }, { activity: 'haul', targetId: 'hematite-mine' }, { activity: 'craft', recipeId: 'iron-ingot' }, { activity: 'custom', title: 'Fit the cabin bracket', durationMinutes: 10, targetId: 'cabin' }] });
-    assert.equal(planned.browserUpdated, false);
-    assert.equal(planned.state.goals.at(-1).actionIds.length, 4);
-    assert.equal(planned.state.clock.paused, true);
-    state = planned.state;
-    check('Detached ordered goal with modeled and fictional steps');
-    const beforeMinutes = (state.clock.day - 1) * 1440 + state.clock.minute;
-    const advanced = await tool('advance_demo_time', { state, commandId: randomUUID(), expectedVersion: state.version, minutes: 30 });
-    assert.equal((advanced.state.clock.day - 1) * 1440 + advanced.state.clock.minute, beforeMinutes + 30);
-    assert.equal(advanced.browserUpdated, false);
-    check('Detached advance uses minutes=30 and reports no visible browser update');
-    const missing = await rpc('tools/call', { name: 'get_seedling_state', arguments: {} });
-    assert.equal(missing.isError, true, 'Missing target must fail instead of inventing state');
-    check('Missing target is rejected');
+  check('Canonical endpoint and compatibility aliases preserve OAuth audiences');
+  let server;
+  if (token) {
+    let id = 0;
+    async function rpc(method, params = {}) {
+      const current = ++id;
+      const response = await request('/mcp', {method:'POST', headers:{Authorization:`Bearer ${token}`, 'Content-Type':'application/json', Accept:'application/json, text/event-stream', 'MCP-Protocol-Version':'2025-11-25'}, body:JSON.stringify({jsonrpc:'2.0',id:current,method,params})});
+      assert.equal(response.status, 200, `Authenticated ${method} failed`);
+      const reply = parseRpcResponse(await response.text(), response.headers.get('content-type'), current);
+      assert.ok(!reply.error && !reply.result?.isError, `${method} failed`);
+      return reply.result;
+    }
+    const initialized = await rpc('initialize', {protocolVersion:'2025-11-25', clientInfo:{name:'seed-release-smoke',version:'3.0.0'},capabilities:{}});
+    assert.equal(initialized.serverInfo.title, 'SEED');
+    assert.equal(initialized.serverInfo.name, 'flaxa-seed');
+    if (expectedVersion) assert.equal(initialized.serverInfo.version, expectedVersion);
+    assert.match(initialized.instructions, /user need not say "card" or "widget"/);
+    assert.doesNotMatch(initialized.instructions, /Render only for an explicit visual request|SEED Live/);
+    server = initialized.serverInfo;
+    check('Authenticated SEED initialization and useful-widget policy');
+    const listed = await rpc('tools/list');
+    for (const retired of ['get_seedling_state','get_companion_capabilities','schedule_activity','advance_demo_time','show_seedling_calendar']) assert.ok(!listed.tools.some(tool=>tool.name===retired), `Retired tool ${retired}`);
+    const focused = listed.tools.filter(tool=>tool.name.startsWith('show_'));
+    assert.equal(focused.length,9);
+    for(const tool of focused) {
+      assert.match(tool.description,/user need not say "card" or "widget"/);
+      assert.doesNotMatch(tool.description,/Only call when the user explicitly|SEED Live|SEED staging/);
+      assert.equal(tool.annotations.readOnlyHint,true);
+      assert.ok(tool._meta?.ui?.resourceUri?.startsWith('ui://'));
+    }
+    const ui = await rpc('resources/read',{uri:focused[0]._meta.ui.resourceUri});
+    assert.ok(ui.contents.some(item=>item.mimeType==='text/html;profile=mcp-app' && item.text?.includes('<html')));
+    check('Nine focused widgets with render-only resources; no retired gameplay tools');
+    async function read(uri) {
+      const result = await rpc('tools/call',{name:'read_seed_doc',arguments:{uri}});
+      assert.ok(result.structuredContent?.text);
+      return result.structuredContent.text;
+    }
+    const index = await read('seed://docs/index');
+    assert.match(index,/SEED documentation/);
+    assert.doesNotMatch(index,/SEED Live|SEED Demo|seed-workflows-demo/);
+    const guide = await read('seed://docs/seed-workflow%3Alive%2Fstart-here');
+    assert.match(guide,/focused card/);
+    check('Current SEED documentation and focused guidance without gameplay calls');
   }
-  await mkdir(outputDirectory, { recursive: true });
-  const report = { checkedAt: new Date().toISOString(), endpoint, server: serverInfo, protocolVersion: version, scope: docsOnly ? 'Read-only documentation discovery and resources; no gameplay tool calls or host UI acceptance.' : 'Direct anonymous MCP and detached synthetic snapshots only; does not establish host UI or prompt review-case acceptance.', checks };
-  const reportName = docsOnly ? 'smoke-docs-results.json' : 'smoke-results.json';
-  await writeFile(resolve(outputDirectory, reportName), `${JSON.stringify(report, null, 2)}\n`);
-  log(`Saved ${resolve(outputDirectory, reportName)}. No browser channel or live game account was used.`);
+  const report = {checkedAt:new Date().toISOString(),endpoint,healthVersion:health.version,server,
+    authenticated:token ? 'passed' : 'not_run',scope:'Read-only routing, OAuth metadata, optional authenticated documentation and widget discovery; no game mutations or host UI acceptance.',checks};
+  await mkdir(outputDirectory,{recursive:true});
+  await writeFile(resolve(outputDirectory, docsOnly?'smoke-docs-results.json':'smoke-results.json'),JSON.stringify(report,null,2)+'\n');
   return report;
 }
-
 if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1])).href) {
-  try { await runSmoke({ docsOnly: process.argv.includes('--docs-only') }); }
-  catch (error) { console.error(`Smoke failed: ${error.message}`); process.exitCode = 1; }
+  try { await runSmoke({docsOnly:process.argv.includes('--docs-only')}); }
+  catch(error) { console.error(`Smoke failed: ${error.message}`); process.exitCode=1; }
 }

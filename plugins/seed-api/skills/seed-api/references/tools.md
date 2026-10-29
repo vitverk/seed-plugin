@@ -1,4 +1,4 @@
-# SEED staging tools and naming transition
+# SEED API tools and naming transition
 
 The developer’s 28 October 2026 update announces deployment to `mcp-dev2`.
 Authenticated dev2 discovery on 28 October verified all 18 announced tools on

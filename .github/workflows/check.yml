@@ -25,8 +25,12 @@ jobs:
       - run: npm ci --ignore-scripts
       - run: npm run check
       - run: npm run package
+      - name: Public SEED routing and OAuth smoke
+        run: npm run smoke
       - name: Optional documentation MCP smoke
         if: github.event_name == 'workflow_dispatch' && inputs.docs_smoke
+        env:
+          SEED_SMOKE_TOKEN: ${{ secrets.SEED_SMOKE_TOKEN }}
         run: npm run smoke:docs
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:

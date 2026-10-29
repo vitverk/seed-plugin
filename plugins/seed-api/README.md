@@ -3,8 +3,8 @@
 Connect directly to Klang Games’ SEED staging world **`mcp-dev2`** with your
 seed-universe.com account. This world is separate from `mcp-dev`: rediscover
 your society and seedlings instead of reusing old-world IDs or campaign notes.
-SEED API (`seed-api`), the Flaxa proxy (`seed-live`) and the guest Demo (`seed`)
-are separate connections. Game writes affect real staging state.
+SEED API (`seed-api`) is the optional direct interface. Most users should use
+the SEED companion through the Flaxa proxy. Game writes affect the connected world.
 
 ## Install and connect
 
@@ -15,7 +15,7 @@ codex plugin add seed-api@vitverk-seed
 
 For Claude Code, use `claude plugin marketplace add vitverk/seed-plugin` and
 `claude plugin install seed-api@vitverk-seed`. Refresh/reinstall an existing
-API package to version **0.2.1**, refresh connection metadata, and sign in again.
+API package to version **0.2.2**, refresh connection metadata, and sign in again.
 On the consent screen, include **`seed:market:read`** for Global Market access.
 Installing or updating the package does not grant a developer role.
 

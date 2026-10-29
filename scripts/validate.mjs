@@ -6,7 +6,7 @@ import YAML from 'yaml';
 import Ajv2020 from 'ajv/dist/2020.js';
 
 export const defaultRoot = fileURLToPath(new URL('../', import.meta.url));
-export const endpoint = 'https://mcp.flaxa.app/demo/mcp';
+export const endpoint = 'https://mcp.flaxa.app/mcp';
 const schemaBase = 'https://agent-plugins.org/schemas/1.0.0/';
 const ignored = new Set(['.git', 'node_modules', 'dist']);
 const apiSkillFiles = ['skills/seed-api/SKILL.md', 'skills/seed-api/references/events.md', 'skills/seed-api/references/tools.md'];
@@ -54,10 +54,9 @@ function noBundledSkills(manifest, label) {
   assert.ok(!('skills' in manifest), `${label} must not declare bundled skills`);
   assert.ok(!manifest.extensions?.['com.openai']?.onboardingSkill, `${label} must not declare an onboarding skill`);
 }
-export async function packageFiles(root = defaultRoot, { kind = 'demo' } = {}) {
-  assert.ok(['demo', 'live', 'api'].includes(kind), 'Unknown package kind');
+export async function packageFiles(root = defaultRoot, { kind = 'seed' } = {}) {
+  assert.ok(['seed', 'api'].includes(kind), 'Unknown package kind');
   const required = ['plugin.json', 'mcp.json', '.mcp.json', '.codex-plugin/plugin.json', '.claude-plugin/plugin.json', 'README.md'];
-  if (kind === 'demo') required.push('SUPPORT.md');
   if (kind === 'api') required.push('CONNECTION.md');
   const selected = [...required];
   for (const path of required) assert.ok(await exists(resolve(root, path)), `Missing package file: ${path}`);
@@ -104,10 +103,12 @@ export async function validate(root = defaultRoot, { submission = false, quiet =
   const ajv = new Ajv2020({ allErrors: true, strict: true });
   for (const [path, schema] of [['plugin.json', 'plugin.schema.json'], ['mcp.json', 'mcp.schema.json']]) {
     const check = ajv.compile(await json(root, `schemas/${schema}`));
-    assert.ok(check(await json(root, path)), `${path} does not match Agent Plugins 1.0.0: ${ajv.errorsText(check.errors)}`);
+    const data = await json(root, path);
+    if (path === 'mcp.json') delete data.mcpServers?.seed_live?.extensions;
+    assert.ok(check(data), `${path} does not match Agent Plugins 1.0.0: ${ajv.errorsText(check.errors)}`);
   }
   assert.equal(portable.$schema, `${schemaBase}plugin.schema.json`);
-  assert.equal(portable.name, 'seed');
+  assert.equal(portable.name, 'seed-live', 'Preserve the installed SEED identity');
   assert.match(portable.version, /^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?(?:\+[0-9A-Za-z.-]+)?$/);
   for (const [label, manifest] of [['portable', portable], ['codex', codex], ['claude', claude]]) {
     object(manifest, label); noAppBindings(manifest, label); noBundledSkills(manifest, label);
@@ -152,34 +153,35 @@ export async function validate(root = defaultRoot, { submission = false, quiet =
   assert.equal(mcp.$schema, `${schemaBase}mcp.schema.json`);
   noAppBindings(mcp, 'mcp');
   const legacy = await json(root, '.mcp.json');
-  assert.deepEqual(Object.keys(mcp.mcpServers), ['seed']);
-  assert.deepEqual(Object.keys(legacy.mcpServers), ['seed']);
-  assert.equal(mcp.mcpServers.seed.type, 'streamable-http');
-  assert.equal(legacy.mcpServers.seed.type, 'http');
-  assert.equal(mcp.mcpServers.seed.url, endpoint);
-  assert.equal(legacy.mcpServers.seed.url, endpoint);
-  assert.ok(!legacy.mcpServers.seed.headers && !mcp.mcpServers.seed.headers, 'Anonymous endpoint must not include credential headers');
+  assert.deepEqual(Object.keys(mcp.mcpServers), ['seed_live']);
+  assert.deepEqual(Object.keys(legacy.mcpServers), ['seed_live']);
+  const server = mcp.mcpServers.seed_live;
+  assert.equal(server.type, 'streamable-http');
+  assert.equal(server.url, endpoint, 'SEED package must use the proxy canonical URL');
+  assert.deepEqual(legacy, { mcpServers: { seed_live: { type: 'http', url: endpoint } } });
+  assert.ok(!server.headers, 'Do not embed credentials in the public package');
+  assert.deepEqual(server.extensions, { 'com.openai': { auth: {
+    type: 'oauth', client: { mode: 'dcr' }, resource: endpoint,
+    baseScopes: ['seed:profile:read', 'seed:character-information:read', 'seed:societies:read', 'seed:wallet:read', 'seed:staticdata:read', 'seed:developer', 'offline_access'],
+  } } });
+  assert.equal(ui.displayName, 'SEED');
+  assert.equal(claude.displayName, 'SEED');
+  for (const value of [portable.description, claude.description, ...Object.values(ui).flat().filter(value => typeof value === 'string' && !value.startsWith('http'))]) {
+    assert.ok(!/SEED Live|SEED Demo|\bstaging\b/i.test(value), 'Public SEED presentation must use the unified name');
+  }
   assert.equal(codex.mcpServers, './.mcp.json');
   const aiMarket = await json(root, '.agents/plugins/marketplace.json');
   const claudeMarket = await json(root, '.claude-plugin/marketplace.json');
   for (const [label, market] of [['OpenAI', aiMarket], ['Claude', claudeMarket]]) {
     assert.equal(market.name, 'vitverk-seed', `${label} marketplace name`);
-    assert.deepEqual(market.plugins.map(plugin => plugin.name), ['seed', 'seed-live', 'seed-api'], `${label} marketplace must preserve the demo, live proxy and direct API`);
-    assert.equal(market.plugins[0].name, portable.name);
+    assert.deepEqual(market.plugins.map(plugin => plugin.name), ['seed-live', 'seed-api'], `${label} marketplace must advertise only SEED and the optional direct API`);
   }
-  assert.equal(aiMarket.plugins[0].source.path, './');
-  assert.equal(aiMarket.plugins[0].source.source, 'local');
-  assert.ok(aiMarket.plugins[0].policy?.installation && aiMarket.plugins[0].policy?.authentication, 'OpenAI marketplace needs policies');
+  assert.deepEqual(aiMarket.plugins[0].source, { source: 'local', path: './' });
+  assert.equal(aiMarket.plugins[0].policy?.authentication, 'ON_INSTALL');
   assert.equal(claudeMarket.plugins[0].source, './');
-  assert.equal(aiMarket.plugins[1].source.path, './plugins/seed-live');
-  assert.equal(aiMarket.plugins[1].source.source, 'local');
+  assert.equal(aiMarket.plugins[1].source.path, './plugins/seed-api');
   assert.equal(aiMarket.plugins[1].policy?.authentication, 'ON_INSTALL');
-  assert.equal(claudeMarket.plugins[1].source, './plugins/seed-live');
-  await validateLivePackage(root);
-  assert.equal(aiMarket.plugins[2].source.path, './plugins/seed-api');
-  assert.equal(aiMarket.plugins[2].source.source, 'local');
-  assert.equal(aiMarket.plugins[2].policy?.authentication, 'ON_INSTALL');
-  assert.equal(claudeMarket.plugins[2].source, './plugins/seed-api');
+  assert.equal(claudeMarket.plugins[1].source, './plugins/seed-api');
   await validateApiPackage(root);
   const review = openai.review;
   if (review?.test_cases) {
@@ -234,62 +236,8 @@ export async function validate(root = defaultRoot, { submission = false, quiet =
     }
     if (missing.length) throw new Error(`Submission is incomplete:\n- ${missing.join('\n- ')}`);
   }
-  if (!quiet) console.log(`Validated Seed Demo ${portable.version}: ${files.length} package files, ${(total / 1024).toFixed(1)} KiB. ${submission ? 'Submission fields and recorded readiness passed.' : 'Package validation does not imply marketplace approval or submission readiness.'}`);
+  if (!quiet) console.log(`Validated SEED ${portable.version}: ${files.length} package files, ${(total / 1024).toFixed(1)} KiB. ${submission ? 'Submission fields and recorded readiness passed.' : 'Package validation does not imply marketplace approval or submission readiness.'}`);
   return { root, files, manifest: portable, bytes: total };
-}
-
-export async function validateLivePackage(root = defaultRoot) {
-  const liveRoot = resolve(root, 'plugins/seed-live');
-  const all = await walk(liveRoot);
-  assert.ok(!all.includes('.app.json'), 'Public source must not contain .app.json');
-  const files = await packageFiles(liveRoot, { kind: 'live' });
-  assert.deepEqual(all, files, 'Live package contains unexpected files');
-  const portable = await json(liveRoot, 'plugin.json');
-  const codex = await json(liveRoot, '.codex-plugin/plugin.json');
-  const claude = await json(liveRoot, '.claude-plugin/plugin.json');
-  const mcp = await json(liveRoot, 'mcp.json');
-  const legacy = await json(liveRoot, '.mcp.json');
-  const ajv = new Ajv2020({ allErrors: true, strict: true });
-  const checkPlugin = ajv.compile(await json(root, 'schemas/plugin.schema.json'));
-  assert.ok(checkPlugin(portable), `Live manifest schema: ${ajv.errorsText(checkPlugin.errors)}`);
-  for (const manifest of [portable, codex, claude]) {
-    noAppBindings(manifest);
-    noBundledSkills(manifest, 'Live manifest');
-    assert.equal(manifest.name, 'seed-live');
-    assert.equal(manifest.version, portable.version, 'Live package version drift');
-  }
-  assert.match(portable.version, /^\d+\.\d+\.\d+$/);
-  const ui = portable.extensions['com.openai'].interface;
-  assert.equal(ui.displayName, 'SEED Live');
-  assert.ok(ui.shortDescription.length <= 30);
-  assert.deepEqual(codex.interface, ui);
-  assert.equal(claude.displayName, 'SEED Live');
-  assert.equal(codex.mcpServers, './.mcp.json');
-  for (const key of ['logo', 'composerIcon']) {
-    assert.ok(files.includes(relative(liveRoot, safePath(liveRoot, ui[key])).split(sep).join('/')), `Live icon missing: ${key}`);
-  }
-  assert.deepEqual(Object.keys(mcp.mcpServers), ['seed_live']);
-  assert.deepEqual(Object.keys(legacy.mcpServers), ['seed_live']);
-  const server = mcp.mcpServers.seed_live;
-  assert.equal(server.url, 'https://mcp.flaxa.app/mcp', 'Live package must use the proxy canonical URL');
-  assert.deepEqual(legacy.mcpServers.seed_live, { type: 'http', url: server.url });
-  // Agent Plugins core schema excludes vendor extensions. Check the transport
-  // against the core schema and validate the documented OpenAI auth separately.
-  const coreMcp = structuredClone(mcp);
-  delete coreMcp.mcpServers.seed_live.extensions;
-  const checkMcp = ajv.compile(await json(root, 'schemas/mcp.schema.json'));
-  assert.ok(checkMcp(coreMcp), `Live MCP schema: ${ajv.errorsText(checkMcp.errors)}`);
-  assert.equal(server.type, 'streamable-http');
-  assert.deepEqual(server.extensions, { 'com.openai': { auth: {
-    type: 'oauth', client: { mode: 'dcr' }, resource: server.url,
-    baseScopes: ['seed:profile:read', 'seed:character-information:read', 'seed:societies:read', 'seed:wallet:read', 'seed:staticdata:read', 'seed:developer', 'offline_access'],
-  } } });
-  for (const path of files) {
-    const data = await readFile(resolve(liveRoot, path));
-    assert.ok(data.length <= 5 * 1024 * 1024);
-    if (!/\.(?:png|jpe?g|webp|gif|ico)$/i.test(path)) scanPublicText(data.toString('utf8'), path);
-  }
-  return { root: liveRoot, files, manifest: portable };
 }
 
 export async function validateApiPackage(root = defaultRoot) {
