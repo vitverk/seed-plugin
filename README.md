@@ -2,7 +2,7 @@
 
 Connect your SEED account at **https://mcp.flaxa.app/mcp** using OAuth and Streamable HTTP. The plugin is optional: the same server works with compatible MCP clients directly.
 
-SEED provides account and Seedling data, care and production reads, game guidance, persistent account notes, permission-scoped actions and interactive views. It prefers one useful focused card for substantive care, inventory, health, goals and schedule answers. Simple facts, proposed plans and action receipts stay in text; full companion views open when requested.
+SEED provides account and Seedling data, care and production reads, game guidance, persistent account notes, permission-scoped actions and interactive views. It prefers one useful focused card for substantive care, inventory, health, goals and schedule answers. Simple facts, proposed plans and action receipts stay in text; full companion views open when requested. The companion speaks in game terms, reports verified successes, and shares meaningful progress toward your goals during ongoing play.
 
 ## Install or connect
 
