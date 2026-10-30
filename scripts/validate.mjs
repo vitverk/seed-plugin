@@ -97,7 +97,7 @@ export async function validate(root = defaultRoot, { submission = false, quiet =
     assert.ok(check(data), `${path} does not match Agent Plugins 1.0.0: ${ajv.errorsText(check.errors)}`);
   }
   assert.equal(portable.$schema, `${schemaBase}plugin.schema.json`);
-  assert.equal(portable.name, 'seed-live', 'Preserve the installed SEED identity');
+  assert.equal(portable.name, 'seed', 'SEED installs as seed on every host');
   assert.match(portable.version, /^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?(?:\+[0-9A-Za-z.-]+)?$/);
   for (const [label, manifest] of [['portable', portable], ['codex', codex], ['claude', claude]]) {
     object(manifest, label); noAppBindings(manifest, label); noBundledSkills(manifest, label);
@@ -142,12 +142,12 @@ export async function validate(root = defaultRoot, { submission = false, quiet =
   assert.equal(mcp.$schema, `${schemaBase}mcp.schema.json`);
   noAppBindings(mcp, 'mcp');
   const legacy = await json(root, '.mcp.json');
-  assert.deepEqual(Object.keys(mcp.mcpServers), ['seed_live']);
-  assert.deepEqual(Object.keys(legacy.mcpServers), ['seed_live']);
-  const server = mcp.mcpServers.seed_live;
+  assert.deepEqual(Object.keys(mcp.mcpServers), ['seed'], 'Portable mcp.json server must be named seed');
+  assert.deepEqual(Object.keys(legacy.mcpServers), ['seed'], 'Compatibility .mcp.json server must be named seed');
+  const server = mcp.mcpServers.seed;
   assert.equal(server.type, 'streamable-http');
   assert.equal(server.url, endpoint, 'SEED package must use the proxy canonical URL');
-  assert.deepEqual(legacy, { mcpServers: { seed_live: { type: 'http', url: endpoint } } });
+  assert.deepEqual(legacy, { mcpServers: { seed: { type: 'http', url: endpoint } } });
   assert.ok(!server.headers, 'Do not embed credentials in the public package');
   // Codex reads the root manifests and silently drops a server that declares
   // extensions. OAuth and scopes come from the server's own discovery metadata.
@@ -160,9 +160,9 @@ export async function validate(root = defaultRoot, { submission = false, quiet =
   assert.equal(codex.mcpServers, './.mcp.json');
   const aiMarket = await json(root, '.agents/plugins/marketplace.json');
   const claudeMarket = await json(root, '.claude-plugin/marketplace.json');
-  // Claude installs its own folder so its plugin and server are named seed,
-  // while Codex and archive installs keep seed-live and their sign-ins.
-  for (const [label, market, name] of [['OpenAI', aiMarket, 'seed-live'], ['Claude', claudeMarket, 'seed']]) {
+  // Codex installs the repository root and Claude installs the claude folder;
+  // both name the plugin and its server seed.
+  for (const [label, market, name] of [['OpenAI', aiMarket, 'seed'], ['Claude', claudeMarket, 'seed']]) {
     assert.equal(market.name, 'vitverk-seed', `${label} marketplace name`);
     assert.deepEqual(market.plugins.map(plugin => plugin.name), [name], `${label} marketplace must advertise only SEED`);
   }
@@ -179,7 +179,7 @@ export async function validate(root = defaultRoot, { submission = false, quiet =
   text(claudePlugin.description, 'Claude plugin description');
   assert.ok(!/SEED Live|SEED Demo|\bstaging\b/i.test(claudePlugin.description), 'Public SEED presentation must use the unified name');
   assert.ok(await exists(safePath(resolve(root, 'claude'), claudePlugin.icon)), 'Claude plugin icon must exist');
-  assert.deepEqual(await json(root, 'claude/.mcp.json'), { mcpServers: { seed: { type: 'http', url: endpoint } } });
+  assert.deepEqual(await json(root, 'claude/.mcp.json'), { mcpServers: { seed: { type: 'http', url: endpoint } } }, 'Claude .mcp.json must declare only the seed server');
   const review = openai.review;
   if (review?.test_cases) {
     const cases = review.test_cases;

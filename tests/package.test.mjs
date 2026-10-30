@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { cp, mkdtemp, rm, readFile, writeFile, symlink, utimes, mkdir } from 'node:fs/promises';
 import { join } from 'node:path';
 import { tmpdir } from 'node:os';
-import { defaultRoot, validate, packageFiles, safePath } from '../scripts/validate.mjs';
+import { defaultRoot, endpoint, validate, packageFiles, safePath } from '../scripts/validate.mjs';
 import { buildPackage } from '../scripts/package.mjs';
 import { parseRpcResponse } from '../scripts/rpc.mjs';
 
@@ -85,7 +85,7 @@ test('SEED connection cannot silently point at the guest or direct upstream', as
   const path = 'mcp.json';
   const original = await readFile(join(root, path), 'utf8');
   for (const url of ['https://mcp.flaxa.app/demo/mcp', 'https://mcp.flaxa.app/live/mcp', 'https://mcp.flaxa.app/staging/mcp', 'https://api.seed-universe.com/seed-api/staging-mcp-dev2/mcp']) {
-    await alter(root, path, data => { data.mcpServers.seed_live.url = url; });
+    await alter(root, path, data => { data.mcpServers.seed.url = url; });
     await assert.rejects(validate(root, { quiet: true }), /proxy canonical URL/);
     await writeFile(join(root, path), original);
   }
@@ -145,12 +145,12 @@ test('lockfile root versions stay aligned with the released package', async t =>
 });
 test('portable MCP configuration is checked against the official schema', async t => {
   const root = await fixture(t);
-  await alter(root, 'mcp.json', data => { data.mcpServers.seed_live.unrecognized = true; });
+  await alter(root, 'mcp.json', data => { data.mcpServers.seed.unrecognized = true; });
   await assert.rejects(validate(root, { quiet: true }), /does not match Agent Plugins/);
 });
 test('portable MCP server cannot declare extensions that Codex drops', async t => {
   const root = await fixture(t);
-  await alter(root, 'mcp.json', data => { data.mcpServers.seed_live.extensions = { 'com.openai': { auth: { type: 'oauth' } } }; });
+  await alter(root, 'mcp.json', data => { data.mcpServers.seed.extensions = { 'com.openai': { auth: { type: 'oauth' } } }; });
   await assert.rejects(validate(root, { quiet: true }), /does not match Agent Plugins/);
 });
 test('submission readiness cannot be bypassed with missing, empty or malformed checks', async t => {
@@ -243,12 +243,12 @@ test('retired plugins cannot return to catalogs or default artifacts', async t =
   const root = await fixture(t);
   const archive = await buildPackage(root, {quiet: true});
   const manifest = JSON.parse(await readFile(join(root, 'plugin.json'), 'utf8'));
-  assert.equal(manifest.name, 'seed-live');
+  assert.equal(manifest.name, 'seed');
   assert.ok(archive.output.endsWith(`seed-plugin-${manifest.version}.zip`));
   assert.ok(!archive.files.some(path => /^(archive|plugins|docs|submission)\//.test(path)));
   for (const catalog of ['.agents/plugins/marketplace.json', '.claude-plugin/marketplace.json']) {
     const original = await readFile(join(root, catalog), 'utf8');
-    for (const name of ['seed', 'seed-api']) {
+    for (const name of ['seed-live', 'seed-api']) {
       await alter(root, catalog, data => { data.plugins.push({ name, source: './retired' }); });
       await assert.rejects(validate(root, {quiet: true}), /only SEED/);
       await writeFile(join(root, catalog), original);
@@ -257,15 +257,18 @@ test('retired plugins cannot return to catalogs or default artifacts', async t =
   for (const kind of ['demo', 'api']) await assert.rejects(packageFiles(root, {kind}), /Unknown package kind/);
 });
 
-test('Claude installs its own seed folder while Codex keeps seed-live', async t => {
+test('Codex and Claude both install seed and reject the old seed-live names', async t => {
   const root = await fixture(t);
   await validate(root, {quiet: true});
   for (const [path, modify, error] of [
-    ['claude/.mcp.json', data => { data.mcpServers = {seed_live: data.mcpServers.seed}; }, /deepStrictEqual|deep-equal/],
+    ['claude/.mcp.json', data => { data.mcpServers = {seed_live: {type: 'http', url: endpoint}}; }, /Claude \.mcp\.json must declare only the seed server/],
     ['claude/.claude-plugin/plugin.json', data => { data.name = 'seed-live'; }, /seed-live/],
     ['claude/.claude-plugin/plugin.json', data => { data.version = '99.0.0'; }, /version drift/],
     ['.claude-plugin/marketplace.json', data => { data.plugins[0].source = './'; }, /\.\/claude/],
-    ['.agents/plugins/marketplace.json', data => { data.plugins[0].name = 'seed'; }, /only SEED/],
+    ['.agents/plugins/marketplace.json', data => { data.plugins[0].name = 'seed-live'; }, /only SEED/],
+    ['plugin.json', data => { data.name = 'seed-live'; }, /installs as seed/],
+    ['mcp.json', data => { data.mcpServers = {seed_live: {type: 'streamable-http', url: endpoint}}; }, /Portable mcp\.json server must be named seed/],
+    ['.mcp.json', data => { data.mcpServers = {seed_live: {type: 'http', url: endpoint}}; }, /Compatibility \.mcp\.json server must be named seed/],
   ]) {
     const original = await readFile(join(root, path), 'utf8');
     await alter(root, path, modify);

@@ -1,6 +1,6 @@
 # Release SEED
 
-The root package is the authenticated SEED companion. Its stable internal plugin identifier remains `seed-live` for Codex and the archive; the Claude marketplace installs the `claude` folder as `seed`. Display names and normal guidance use SEED. SEED is the sole installable plugin. Historical anonymous-package material under `archive/demo` is excluded from active catalogs, validation, packages and host smoke checks.
+The root package is the authenticated SEED companion. Codex and the archive install it as `seed`, and the Claude marketplace installs the `claude` folder as `seed`; every host names the MCP server `seed`. Display names and normal guidance use SEED. SEED is the sole installable plugin.
 
 1. Update the SEED manifests (including `claude/.claude-plugin/plugin.json`), root package version and lockfile together. Preserve the existing OAuth connection configuration and plugin identity.
 2. Run `npm ci --ignore-scripts` and `npm run check`. Checks cover the active catalogs, canonical endpoint, OAuth configuration, public branding, package boundaries and exclusion of retired plugins.

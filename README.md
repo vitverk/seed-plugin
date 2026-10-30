@@ -6,11 +6,14 @@ SEED provides account and Seedling data, care and production reads, game guidanc
 
 ## Install or connect
 
-Install **SEED** from the **SEED by Vitverk** repository marketplace. Codex installations retain the internal `seed-live` identifier and connection configuration; their display name is SEED. Claude Code installs the `seed` plugin from the [`claude`](claude/) folder, with a server also named `seed`.
+Install **SEED** from the **SEED by Vitverk** repository marketplace. Codex and Claude Code both install it as `seed`, with an MCP server also named `seed`; Claude Code installs it from the [`claude`](claude/) folder.
 
 ```sh
 codex plugin marketplace add vitverk/seed-plugin
+codex plugin add seed@vitverk-seed
 ```
+
+If you added the marketplace earlier, run `codex plugin marketplace upgrade vitverk-seed` first so Codex sees the current catalog.
 
 For Claude Code:
 
@@ -47,4 +50,4 @@ The archive contains the authenticated SEED package only. Smoke checks verify pu
 
 This repository distributes source and packages; it is not an approved public directory listing. Public submission has separate identity, policies, licensing and host-review requirements. `npm run check:submission` reports the unresolved requirements for SEED and does not reuse evidence from the retired simulation.
 
-The former anonymous simulation is retired from active catalogs and releases. Its old endpoint is not redirected to SEED. The Claude plugin now reuses the `seed` name for the authenticated companion, so an old demo install in Claude updates to SEED and asks for sign-in. Historical material is preserved under [archive/demo](archive/demo/RETIRED.md); it is excluded from packages and release checks.
+The former anonymous simulation is retired from active catalogs and releases. Its old endpoint is not redirected to SEED. Codex and Claude Code now both use the `seed` name for the authenticated companion, so an old demo install of `seed@vitverk-seed` in either host becomes SEED once its marketplace refreshes, and asks for sign-in. Its historical material was removed in 3.3.0 and remains in the Git history.

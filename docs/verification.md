@@ -4,7 +4,7 @@ The 3.0.1 distribution removes the retired simulation from active catalogs, defa
 
 Run `npm run check` and `npm run package` for local evidence. Run `npm run smoke` for public routing and OAuth metadata. Authenticated `npm run smoke:docs` verifies server branding, focused widget selection guidance and current documentation without game mutations. Record the checked source SHA, runtime version, artifact checksums, date and limits in a release receipt after deployment.
 
-Earlier product releases and submission records are preserved under `archive/demo`. Their historical names and versions are evidence from those dates and are not current setup instructions.
+Earlier product releases and submission records were removed from the tree in 3.3.0 and remain in the Git history. Historical names and versions below are evidence from those dates and are not current setup instructions.
 
 ## Verified release — 29 October 2026
 

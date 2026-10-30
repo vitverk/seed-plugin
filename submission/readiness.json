@@ -1,61 +1,61 @@
 {
   "product": "SEED",
-  "version": "3.2.2",
+  "version": "3.3.0",
   "checks": [
     {
       "id": "verified-publisher",
       "status": "not_run",
-      "detail": "Current authenticated SEED evidence is required; archived anonymous-service evidence is not reused."
+      "detail": "Current authenticated SEED evidence is required; retired anonymous-service evidence is not reused."
     },
     {
       "id": "privacy-policy",
       "status": "not_run",
-      "detail": "Current authenticated SEED evidence is required; archived anonymous-service evidence is not reused."
+      "detail": "Current authenticated SEED evidence is required; retired anonymous-service evidence is not reused."
     },
     {
       "id": "terms-of-service",
       "status": "not_run",
-      "detail": "Current authenticated SEED evidence is required; archived anonymous-service evidence is not reused."
+      "detail": "Current authenticated SEED evidence is required; retired anonymous-service evidence is not reused."
     },
     {
       "id": "license-and-brand-rights",
       "status": "not_run",
-      "detail": "Current authenticated SEED evidence is required; archived anonymous-service evidence is not reused."
+      "detail": "Current authenticated SEED evidence is required; retired anonymous-service evidence is not reused."
     },
     {
       "id": "countries",
       "status": "not_run",
-      "detail": "Current authenticated SEED evidence is required; archived anonymous-service evidence is not reused."
+      "detail": "Current authenticated SEED evidence is required; retired anonymous-service evidence is not reused."
     },
     {
       "id": "commerce",
       "status": "not_run",
-      "detail": "Current authenticated SEED evidence is required; archived anonymous-service evidence is not reused."
+      "detail": "Current authenticated SEED evidence is required; retired anonymous-service evidence is not reused."
     },
     {
       "id": "review-contact",
       "status": "not_run",
-      "detail": "Current authenticated SEED evidence is required; archived anonymous-service evidence is not reused."
+      "detail": "Current authenticated SEED evidence is required; retired anonymous-service evidence is not reused."
     },
     {
       "id": "recorded-demo",
       "status": "not_run",
-      "detail": "Current authenticated SEED evidence is required; archived anonymous-service evidence is not reused."
+      "detail": "Current authenticated SEED evidence is required; retired anonymous-service evidence is not reused."
     },
     {
       "id": "claude-screenshots",
       "status": "not_run",
-      "detail": "Current authenticated SEED evidence is required; archived anonymous-service evidence is not reused."
+      "detail": "Current authenticated SEED evidence is required; retired anonymous-service evidence is not reused."
     },
     {
       "id": "host-review-cases",
       "status": "not_run",
-      "detail": "Current authenticated SEED evidence is required; archived anonymous-service evidence is not reused."
+      "detail": "Current authenticated SEED evidence is required; retired anonymous-service evidence is not reused."
     },
     {
       "id": "portal-validation",
       "status": "not_run",
-      "detail": "Current authenticated SEED evidence is required; archived anonymous-service evidence is not reused."
+      "detail": "Current authenticated SEED evidence is required; retired anonymous-service evidence is not reused."
     }
   ]
 }

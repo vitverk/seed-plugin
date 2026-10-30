@@ -5,7 +5,7 @@
   },
   "plugins": [
     {
-      "name": "seed-live",
+      "name": "seed",
       "source": {
         "source": "local",
         "path": "./"

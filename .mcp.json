@@ -1,6 +1,6 @@
 {
   "mcpServers": {
-    "seed_live": {
+    "seed": {
       "type": "http",
       "url": "https://mcp.flaxa.app/mcp"
     }
