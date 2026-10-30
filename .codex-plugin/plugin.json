@@ -28,9 +28,9 @@
     "websiteURL": "https://github.com/vitverk/seed-plugin",
     "supportURL": "https://github.com/vitverk/seed-plugin/issues",
     "defaultPrompt": [
-      "Give me a compact care overview of my seedlings without changing anything.",
-      "Open my SEED account view.",
-      "Find workbench in the game catalog without changing anything."
+      "Gather supplies",
+      "Help my seedling find love.",
+      "Let's learn a new skill while staying happy"
     ],
     "logo": "./assets/icon.png",
     "composerIcon": "./assets/composer.png",
