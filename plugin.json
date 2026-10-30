@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "seed",
-  "version": "3.3.1",
+  "version": "3.3.2",
   "description": "Your SEED companion: account data, care views, game guidance and permission-scoped actions.",
   "author": {
     "name": "Vitverk",

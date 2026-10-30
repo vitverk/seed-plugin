@@ -1,0 +1,15 @@
+{
+  "description": "Keeps ongoing SEED play from ending its turn with nothing due to wake it.",
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "command -v node >/dev/null 2>&1 || exit 0; node \"${CLAUDE_PLUGIN_ROOT}/hooks/keep-waiting.mjs\""
+          }
+        ]
+      }
+    ]
+  }
+}
