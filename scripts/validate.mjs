@@ -170,7 +170,7 @@ export async function validate(root = defaultRoot, { submission = false, quiet =
   assert.equal(aiMarket.plugins[0].policy?.authentication, 'ON_INSTALL');
   assert.equal(claudeMarket.plugins[0].source, './claude');
   const claudeFiles = await walk(root, 'claude');
-  assert.deepEqual(claudeFiles, ['claude/.claude-plugin/plugin.json', 'claude/.mcp.json', 'claude/README.md', 'claude/assets/icon.png'], 'Claude plugin folder contents');
+  assert.deepEqual(claudeFiles, ['claude/.claude-plugin/plugin.json', 'claude/.mcp.json', 'claude/README.md', 'claude/assets/icon.png', 'claude/hooks/hooks.json', 'claude/hooks/keep-waiting.mjs'], 'Claude plugin folder contents');
   for (const path of claudeFiles) if (!path.endsWith('.png')) scanPublicText(await readFile(resolve(root, path), 'utf8'), path);
   const claudePlugin = await json(root, 'claude/.claude-plugin/plugin.json');
   object(claudePlugin, 'Claude plugin'); noAppBindings(claudePlugin, 'Claude plugin'); noBundledSkills(claudePlugin, 'Claude plugin');
