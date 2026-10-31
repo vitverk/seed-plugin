@@ -6,6 +6,10 @@ The portable `mcp.json` and the compatibility `.mcp.json` are both URL-only and 
 
 MCP Apps-capable hosts can display the full companion, focused widgets and character creator. Other clients can use the same data and documentation tools in text. Source and protocol checks do not prove UI rendering or model routing in a particular host.
 
+Gemini CLI installs the repository root using `gemini-extension.json`, with extension and server name `seed`. Its `mcpServers.seed.httpUrl` points to the same canonical endpoint and relies on OAuth discovery. It bundles no skills, context file or hooks; guidance remains server-owned. Google's [extension reference](https://geminicli.com/docs/extensions/reference/) and [MCP configuration guide](https://geminicli.com/docs/tools/mcp-server/) document these formats.
+
+The Gemini CLI package targets text-based tool and documentation use. Verified on 31 October 2026 with Gemini CLI 0.66.0: extension validation, local installation and listing passed in a temporary profile, which listed `seed` 3.4.0 as active with the canonical endpoint. Authenticated SEED sign-in and tool use in Gemini CLI have not yet been smoke-tested. The extension manifest does not install or configure consumer Gemini Connected Apps or establish MCP Apps rendering in Gemini web or Gemini Enterprise; those hosts require separate connection and rendering verification. See the [Gemini CLI quickstart](colleague-quickstart.md#gemini-cli).
+
 Verified on 29 October 2026 with Claude Code 2.1.301: the Claude desktop app's Code tab rendered SEED's focused Seedling status card inline after a `seed@vitverk-seed` sign-in. The model receives only the card's JSON snapshot, so confirm rendering with the person viewing the session rather than from the tool result. A headless `claude -p` run advertised no MCP Apps capability, and Claude Code in a terminal shows text only. The full companion and character creator have not yet been checked in the Code tab.
 
 SEED bundles no skills. Standard `search_seed_docs`, `read_seed_doc` and `seed://docs/index` discovery supply its guidance. Refresh metadata and begin a new chat after updating.
