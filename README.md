@@ -22,13 +22,15 @@ claude plugin marketplace add vitverk/seed-plugin
 claude plugin install seed@vitverk-seed
 ```
 
-For Gemini CLI, install the extension from the repository's `main` branch:
+Gemini CLI requires supported model authentication, such as a Gemini API key or an eligible existing organizational entitlement. Personal Google sign-in, including Google AI Pro and Ultra, stopped serving Gemini CLI requests on 18 June 2026; see Google's [deprecation notice](https://developers.google.com/gemini-code-assist/docs/deprecations/code-assist-individuals).
+
+With model access configured, install the extension from the repository's `main` branch:
 
 ```sh
 gemini extensions install https://github.com/vitverk/seed-plugin --ref main
 ```
 
-Restart Gemini CLI, then run `/mcp auth seed` to sign in. The extension and MCP server are both named `seed`. This provides SEED's tools in the CLI; it does not install a consumer Gemini web app or establish interactive-card support. See the [Gemini CLI quickstart](docs/colleague-quickstart.md#gemini-cli) for status and update commands.
+Restart Gemini CLI, then run `/mcp auth seed` to authorize your SEED account separately from Google's model access. The extension and MCP server are both named `seed`. Authenticated SEED tool use remains unverified in Gemini CLI; this package does not install a consumer Gemini web app or establish interactive-card support. See the [Gemini CLI quickstart](docs/colleague-quickstart.md#gemini-cli) for authentication, status and update commands.
 
 Sign in with your own licensed SEED account. The first sign-in asks for all currently supported SEED permissions together: profile, character information, societies, wallet, static data and market reads, and developer access. Codex also requests `offline_access` for refresh access. Review and explicitly approve the requested access during sign-in. Developer access can enable actions that change the game and also requires the upstream SEED MCP developer role. Wallet and market read access does not authorize purchases.
 

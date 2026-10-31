@@ -37,6 +37,8 @@ In Claude Code, uninstall `seed-live@vitverk-seed` if it is still installed and 
 
 ## Gemini CLI
 
+First configure supported Gemini CLI model access: a [Gemini API key](https://geminicli.com/docs/get-started/authentication/#use-gemini-api-key) or an eligible existing organizational entitlement. Personal Google sign-in, including Google AI Pro and Ultra, stopped serving Gemini CLI requests on 18 June 2026, as Google's [deprecation notice](https://developers.google.com/gemini-code-assist/docs/deprecations/code-assist-individuals) explains. The separate `/mcp auth seed` flow authorizes SEED access and cannot resolve a Google model-access rejection.
+
 With Gemini CLI and Git installed, run these commands in your terminal:
 
 ```sh
@@ -52,8 +54,8 @@ The explicit `main` ref follows this repository's release branch. Restart Gemini
 /mcp list
 ```
 
-Complete sign-in in the browser and review the requested permissions. The extension configures `seed` with the canonical Streamable HTTP endpoint through `mcpServers.seed.httpUrl`; OAuth settings come from server discovery. If your Gemini CLI `settings.json` already defines a server named `seed`, that configuration takes precedence over the extension's. See Google's [extension reference](https://geminicli.com/docs/extensions/reference/) and [MCP authentication guide](https://geminicli.com/docs/tools/mcp-server/#managing-oauth-authentication).
+Complete SEED sign-in in the browser and review the requested permissions. The extension configures `seed` with the canonical Streamable HTTP endpoint through `mcpServers.seed.httpUrl`; OAuth settings come from server discovery. If your Gemini CLI `settings.json` already defines a server named `seed`, that configuration takes precedence over the extension's. See Google's [extension reference](https://geminicli.com/docs/extensions/reference/) and [MCP authentication guide](https://geminicli.com/docs/tools/mcp-server/#managing-oauth-authentication).
 
-Ask “How are my seedlings doing? Use text only and don't change anything.” Guidance comes from the server through `search_seed_docs`, `read_seed_doc` and `seed://docs/index`; this extension adds no skills, `GEMINI.md` or hooks. Authenticated SEED use in Gemini CLI has not yet been smoke-tested, and this package makes no claim of interactive-card support in the CLI or consumer Gemini web app.
+Ask “How are my seedlings doing? Use text only and don't change anything.” Guidance comes from the server through `search_seed_docs`, `read_seed_doc` and `seed://docs/index`; this extension adds no skills, `GEMINI.md` or hooks. Authenticated SEED tool use remains unverified in Gemini CLI, and this package makes no claim of interactive-card support in the CLI or consumer Gemini web app. See the [client support record](platform-support.md) for the tested onboarding limitation.
 
 To update, run `gemini extensions update seed` in your terminal, then restart Gemini CLI. Updating preserves existing OAuth grants; use `/mcp auth seed` when reauthorization is needed.
