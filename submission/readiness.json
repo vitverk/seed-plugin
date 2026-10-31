@@ -1,6 +1,6 @@
 {
   "product": "SEED",
-  "version": "3.3.2",
+  "version": "3.4.0",
   "checks": [
     {
       "id": "verified-publisher",

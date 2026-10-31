@@ -1,0 +1,10 @@
+{
+  "name": "seed",
+  "version": "3.4.0",
+  "description": "Your SEED companion: account data, care views, game guidance and permission-scoped actions.",
+  "mcpServers": {
+    "seed": {
+      "httpUrl": "https://mcp.flaxa.app/mcp"
+    }
+  }
+}

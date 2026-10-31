@@ -63,6 +63,7 @@ test('release archive is deterministic and contains only allowlisted plugin file
   const second = await buildPackage(root, { quiet: true });
   assert.equal(first.sha256, second.sha256);
   assert.ok(first.files.includes('.claude-plugin/plugin.json'));
+  assert.ok(first.files.includes('gemini-extension.json'));
   assert.ok(!first.files.some(path => /marketplace\.json|^submission\/|^scripts\/|^tests\/|^schemas\/|^sources\/|^\.github\//.test(path)));
 });
 test('private app binding in a shadowed compatibility manifest is rejected', async t => {
@@ -77,8 +78,28 @@ test('root private app file cannot be hidden by the package allowlist', async t 
 });
 test('version drift across clients fails validation', async t => {
   const root = await fixture(t);
-  await alter(root, '.claude-plugin/plugin.json', data => { data.version = '99.0.0'; });
-  await assert.rejects(validate(root, { quiet: true }), /version drift/);
+  for (const path of ['.claude-plugin/plugin.json', 'gemini-extension.json']) {
+    const original = await readFile(join(root, path), 'utf8');
+    await alter(root, path, data => { data.version = '99.0.0'; });
+    await assert.rejects(validate(root, { quiet: true }), /version drift/);
+    await writeFile(join(root, path), original);
+  }
+});
+test('Gemini CLI uses only the canonical Streamable HTTP server without auth or trust overrides', async t => {
+  const root = await fixture(t);
+  const path = 'gemini-extension.json';
+  const original = await readFile(join(root, path), 'utf8');
+  for (const server of [
+    { url: endpoint },
+    { httpUrl: `${endpoint}/wrong` },
+    { httpUrl: endpoint, trust: true },
+    { httpUrl: endpoint, headers: { Authorization: 'Bearer test-only' } },
+    { httpUrl: endpoint, oauth: { scopes: ['seed:developer'] } },
+  ]) {
+    await alter(root, path, data => { data.mcpServers.seed = server; });
+    await assert.rejects(validate(root, { quiet: true }), /Gemini CLI configuration/);
+    await writeFile(join(root, path), original);
+  }
 });
 test('SEED connection cannot silently point at the guest or direct upstream', async t => {
   const root = await fixture(t);

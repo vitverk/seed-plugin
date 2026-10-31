@@ -54,7 +54,7 @@ function noBundledSkills(manifest, label) {
 }
 export async function packageFiles(root = defaultRoot, { kind = 'seed' } = {}) {
   assert.ok(kind === 'seed', 'Unknown package kind');
-  const required = ['plugin.json', 'mcp.json', '.mcp.json', '.codex-plugin/plugin.json', '.claude-plugin/plugin.json', 'README.md'];
+  const required = ['plugin.json', 'mcp.json', '.mcp.json', '.codex-plugin/plugin.json', '.claude-plugin/plugin.json', 'gemini-extension.json', 'README.md'];
   const selected = [...required];
   for (const path of required) assert.ok(await exists(resolve(root, path)), `Missing package file: ${path}`);
   assert.ok(await exists(resolve(root, 'assets')), 'Missing package directory: assets');
@@ -89,6 +89,7 @@ export async function validate(root = defaultRoot, { submission = false, quiet =
   const portable = await json(root, 'plugin.json');
   const codex = await json(root, '.codex-plugin/plugin.json');
   const claude = await json(root, '.claude-plugin/plugin.json');
+  const gemini = await json(root, 'gemini-extension.json');
   const npm = await json(root, 'package.json');
   const ajv = new Ajv2020({ allErrors: true, strict: true });
   for (const [path, schema] of [['plugin.json', 'plugin.schema.json'], ['mcp.json', 'mcp.schema.json']]) {
@@ -99,7 +100,7 @@ export async function validate(root = defaultRoot, { submission = false, quiet =
   assert.equal(portable.$schema, `${schemaBase}plugin.schema.json`);
   assert.equal(portable.name, 'seed', 'SEED installs as seed on every host');
   assert.match(portable.version, /^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?(?:\+[0-9A-Za-z.-]+)?$/);
-  for (const [label, manifest] of [['portable', portable], ['codex', codex], ['claude', claude]]) {
+  for (const [label, manifest] of [['portable', portable], ['codex', codex], ['claude', claude], ['gemini', gemini]]) {
     object(manifest, label); noAppBindings(manifest, label); noBundledSkills(manifest, label);
     assert.equal(manifest.name, portable.name, `${label} identity drift`);
     assert.equal(manifest.version, portable.version, `${label} version drift`);
@@ -148,13 +149,14 @@ export async function validate(root = defaultRoot, { submission = false, quiet =
   assert.equal(server.type, 'streamable-http');
   assert.equal(server.url, endpoint, 'SEED package must use the proxy canonical URL');
   assert.deepEqual(legacy, { mcpServers: { seed: { type: 'http', url: endpoint } } }, 'Compatibility MCP configuration must remain URL-only');
+  assert.deepEqual(gemini.mcpServers, { seed: { httpUrl: endpoint } }, 'Gemini CLI configuration must contain only the canonical Streamable HTTP URL');
   assert.ok(!server.headers, 'Do not embed credentials in the public package');
   // Codex reads the root manifests and silently drops a server that declares
   // extensions. OAuth and scopes come from the server's own discovery metadata.
   assert.ok(!('extensions' in server), 'mcp.json server must not declare extensions; Codex would install SEED without its MCP server');
   assert.equal(ui.displayName, 'SEED');
   assert.equal(claude.displayName, 'SEED');
-  for (const value of [portable.description, claude.description, ...Object.values(ui).flat().filter(value => typeof value === 'string' && !value.startsWith('http'))]) {
+  for (const value of [portable.description, claude.description, gemini.description, ...Object.values(ui).flat().filter(value => typeof value === 'string' && !value.startsWith('http'))]) {
     assert.ok(!/SEED Live|SEED Demo|\bstaging\b/i.test(value), 'Public SEED presentation must use the unified name');
   }
   assert.equal(codex.mcpServers, './.mcp.json');
