@@ -59,3 +59,16 @@ Complete SEED sign-in in the browser and review the requested permissions. The e
 Ask “How are my seedlings doing? Use text only and don't change anything.” Guidance comes from the server through `search_seed_docs`, `read_seed_doc` and `seed://docs/index`; this extension adds no skills, `GEMINI.md` or hooks. Authenticated SEED tool use remains unverified in Gemini CLI, and this package makes no claim of interactive-card support in the CLI or consumer Gemini web app. See the [client support record](platform-support.md) for the tested onboarding limitation.
 
 To update, run `gemini extensions update seed` in your terminal, then restart Gemini CLI. Updating preserves existing OAuth grants; use `/mcp auth seed` when reauthorization is needed.
+
+## Antigravity CLI
+
+Install and sign in to Antigravity CLI using Google's [quickstart](https://antigravity.google/docs/getting-started/). Personal Google model sign-in works in the tested Antigravity version. Install the SEED Gemini extension with the command above if needed; extension installation does not require Gemini CLI model access. Then import it using Google's [migration workflow](https://antigravity.google/docs/cli/gcli-migration):
+
+```sh
+agy plugin import gemini
+agy
+```
+
+Open `/mcp`, select `seed_seed`, then choose **Authenticate**. Complete SEED sign-in and review its permissions separately from Google model sign-in. For a read-only trial, omit developer access during consent. The importer converts `httpUrl` to `serverUrl` in native `mcp_config.json`; the imported plugin is `seed`, while its runtime server name is `seed_seed`.
+
+Ask “Show my SEED profile in text. Don't change anything.” With Antigravity 1.4.12 and SEED 3.4.0, this returned visible profile values, and saved SEED authorization worked in fresh headless processes. The current deployed server's documentation tools return success receipts but omit search links and document text from the model-visible result, so documentation navigation remains blocked pending a server fix and retest. Interactive cards remain unverified. See the [client support record](platform-support.md).
