@@ -80,3 +80,9 @@ test('the script answers on stdout and never fails a stop', () => {
   assert.equal(run(JSON.stringify({transcript_path: join(dir, 'missing')})), '');
   assert.equal(run('not json'), '');
 });
+
+test('a running monitor will wake the chat, until its notice arrives', () => {
+  const started = [resume('ongoing_play'), wait('w'), result('w', '{"status":"watching"}'), assistant('Monitor', {ws: {url: 'wss://mcp.flaxa.app/events/socket'}}, 'm'), result('m', 'Monitor started (task sabc123, expires in 30m unless the source ends first).')];
+  assert.equal(answer(started), null, 'A Claude Code that leaves background_tasks out of the input');
+  assert.deepEqual(answer([...started, notified('sabc123')]), {decision: 'block', reason: REASON});
+});

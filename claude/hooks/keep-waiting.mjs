@@ -11,7 +11,7 @@ export const REASON = 'This ongoing SEED chat has no wait running, so nothing wi
 const RESUME_PLAY = /^mcp__.*seed.*__resume_play$/;
 const REMINDED = 'Stop hook feedback:';
 // For a Claude Code that leaves background_tasks out of the hook's input.
-const BACKGROUND = /was moved to the background as task (\w+)|Command running in background with ID: (\w+)|Async agent launched[\s\S]*?agentId: (\w+)/;
+const BACKGROUND = /was moved to the background as task (\w+)|Command running in background with ID: (\w+)|Async agent launched[\s\S]*?agentId: (\w+)|Monitor started \(task (\w+)/;
 const FINISHED = /<task-id>(\w+)<\/task-id>/g;
 
 const blocks = content => Array.isArray(content) ? content.filter(block => block && typeof block === 'object') : [];
@@ -38,7 +38,7 @@ export function readTranscript(lines) {
       if (typeof content === 'string' && content.startsWith(REMINDED)) obeyed = false;
       for (const block of blocks(content)) {
         const started = block.type === 'tool_result' && BACKGROUND.exec(resultText(block.content));
-        if (started) pending.add(started[1] ?? started[2] ?? started[3]);
+        if (started) pending.add(started[1] ?? started[2] ?? started[3] ?? started[4]);
       }
     }
   }
